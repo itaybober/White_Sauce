@@ -1,16 +1,18 @@
 
-
+import * as React from 'react';
+import Button from '@mui/material/Button';
 
 function Dugma() {
 
     let comp
 
-    if (false) {
-        comp = <h1> hello </h1>
-    } else {
-        comp =  <h1> goodbye </h1>
-    }
+    const [condition, setCondition] = React.useState(true)
 
+    if (condition) {
+        comp =  <Button onClick={ () => setCondition(false) } variant="contained">Hello </Button>
+    } else {
+        comp =  <Button onClick={() => setCondition(true)} variant="contained">Goodbye</Button>
+    }
     return (
         <div>
             {comp}
