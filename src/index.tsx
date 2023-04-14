@@ -6,13 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import FirebaseTest from "./Achsaf_Folder/FirebaseTest";
 import Chwazi from "./Achsaf_Folder/Chwazi";
 import Demo from "./Achsaf_Folder/Demo";
+import Dugma from "./Pages/Dugma";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Chwazi/>
+    <Dugma/>
     {/*<App />*/}
   </React.StrictMode>
 );
