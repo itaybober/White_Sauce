@@ -1,0 +1,22 @@
+
+#container {
+    display: flex;
+    justify-content: center;
+}
+
+.bute {
+    font-size: 200px;
+    padding: 100px;
+    text-align: center;
+    text-justify: auto;
+}
+
+#minus {
+    width: 400px;
+    height: 400px;
+}
+
+#plus {
+    width: 400px;
+    height: 400px;
+}
