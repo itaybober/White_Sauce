@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import FirebaseTest from "./Achsaf_Folder/FirebaseTest";
+import Chwazi from "./Achsaf_Folder/Chwazi";
+import Demo from "./Achsaf_Folder/Demo";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Chwazi/>
+    {/*<App />*/}
   </React.StrictMode>
 );
 

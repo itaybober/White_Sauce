@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>
-          Achsaf Was Here {"\n"} Itay Was Here And also Mayaaaa
+          Achsaf Was Here <br></br> Itay Was Here And also Mayaaaa
         </h1>
 
         <a
