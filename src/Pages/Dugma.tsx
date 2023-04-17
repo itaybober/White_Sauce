@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import Button from '@mui/material/Button';
-
+import "./Dugma.css"
 function Dugma() {
 
     let comp
