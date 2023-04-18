@@ -1,8 +1,7 @@
 
 
-div {
+#button-dugma {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 10%;
 }

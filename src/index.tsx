@@ -7,14 +7,18 @@ import FirebaseTest from "./Achsaf_Folder/FirebaseTest";
 import Chwazi from "./Achsaf_Folder/Chwazi";
 import Demo from "./Achsaf_Folder/Demo";
 import Dugma from "./Pages/Dugma";
+import Background from "./Components/Background";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <Dugma/>
-    {/*<App />*/}
+      <Background angle={100} color1={"green"} color2={"yellow"}>
+          <Dugma />
+      </Background>
+      {/*<App />*/}
   </React.StrictMode>
 );
 

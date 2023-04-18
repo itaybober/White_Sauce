@@ -14,7 +14,7 @@ function Dugma() {
         comp =  <Button onClick={() => setCondition(true)} variant="contained">Goodbye</Button>
     }
     return (
-        <div>
+        <div id={"button-dugma"}>
             {comp}
         </div>
     )
