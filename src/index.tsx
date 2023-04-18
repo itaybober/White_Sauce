@@ -15,8 +15,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-      <Background angle={100} color1={"green"} color2={"yellow"}>
-          <Dugma />
+      <Background>
+        <Dugma />
       </Background>
       {/*<App />*/}
   </React.StrictMode>

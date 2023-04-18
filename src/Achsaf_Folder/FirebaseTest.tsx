@@ -2,11 +2,11 @@
 import './FireBaseTest.css';
 
 
-import {useState, useEffect } from "react";
+import { useState } from "react";
 import { db } from "./firebase-config";
 import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore"
 
-// TODO tell github to run npm install firebase
+// TODO for this to work run "npm install firebase" in the terminal
 
 
 
