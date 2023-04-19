@@ -13,11 +13,11 @@ const theme = createTheme({
             main: '#ff9e80',
         },
         background: {
-            default: '#4e7cc9',
+            default: '#961f7a',
             paper: '#37474F',
         },
         text: {
-            primary: '#37474F',
+            primary: '#ececec',
             secondary: '#ececec',
             disabled: '#ececec',
         },
@@ -31,5 +31,76 @@ const theme = createTheme({
             main: '#29832d',
         },
     },
+    typography: {
+        h1: {
+            fontFamily: "Calibre",
+            primary: '#ececec',
+            secondary: '#ececec',
+            disabled: '#ececec',
+        },
+
+        h2: {
+            fontFamily: "Calibre",
+            primary: '#ececec',
+            secondary: '#ececec',
+            disabled: '#ececec',
+        },
+        h3: {
+            fontFamily: "Calibre",
+            primary: '#ececec',
+            secondary: '#ececec',
+            disabled: '#ececec',
+        },
+        h4: {
+            fontFamily: "Calibre",
+            primary: '#ececec',
+            secondary: '#ececec',
+            disabled: '#ececec',
+        },
+        subtitle1: {
+            fontFamily: "Calibre",
+            primary: '#ececec',
+            secondary: '#ececec',
+            disabled: '#ececec',
+        },
+        subtitle2: {
+            fontFamily: "Calibre",
+            primary: '#ececec',
+            secondary: '#ececec',
+            disabled: '#ececec',
+        },
+        body1: {
+            fontFamily: "Calibre",
+            primary: '#ececec',
+            secondary: '#ececec',
+            disabled: '#ececec',
+        },
+        body2: {
+            fontFamily: "Calibre",
+            primary: '#ececec',
+            secondary: '#ececec',
+            disabled: '#ececec',
+        },
+        button: {
+            fontFamily: "Calibre",
+            primary: '#ececec',
+            secondary: '#ececec',
+            disabled: '#ececec',
+        },
+        caption: {
+            fontFamily: "Calibre",
+            primary: '#ececec',
+            secondary: '#ececec',
+            disabled: '#ececec',
+        },
+        overline: {
+            fontFamily: "Calibre",
+            primary: '#ececec',
+            secondary: '#ececec',
+            disabled: '#ececec',
+        },
+
+
+    }
 })
 export default theme;
