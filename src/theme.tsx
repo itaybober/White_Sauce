@@ -1,6 +1,8 @@
-import { createTheme } from '@mui/material/styles';
+import { ThemeOptions } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-let theme=createTheme({
+const theme = createTheme({
+
     palette: {
         mode: 'light',
         primary: {
@@ -11,14 +13,14 @@ let theme=createTheme({
             main: '#ff9e80',
         },
         background: {
-            default: '#242e3f',
+            default: '#4e7cc9',
             paper: '#37474F',
         },
         text: {
-            primary: '#ffffff',
-            secondary: '#ffffff',
-            disabled: '#ffffff',
-                    },
+            primary: '#37474F',
+            secondary: '#ececec',
+            disabled: '#ececec',
+        },
         warning: {
             main: '#ed3202',
         },
@@ -29,4 +31,5 @@ let theme=createTheme({
             main: '#29832d',
         },
     },
-});
+})
+export default theme;
