@@ -1,6 +1,14 @@
 import { ThemeOptions } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+
+const CustomButton = styled(Button)({
+    // your custom styles go here
+}) as typeof Button;
+
+
 const theme = createTheme({
 
     palette: {
@@ -13,11 +21,12 @@ const theme = createTheme({
             main: '#ff9e80',
         },
         background: {
-            default: '#961f7a',
-            paper: '#37474F',
+
+            default: 'rgba(150,31,122,0)',
+            paper: '#a02727',
         },
         text: {
-            primary: '#ececec',
+            primary: '#703737',
             secondary: '#ececec',
             disabled: '#ececec',
         },
@@ -30,76 +39,57 @@ const theme = createTheme({
         success: {
             main: '#29832d',
         },
+
     },
     typography: {
+        fontFamily: "Calibre",
+        fontSize:14,
+
         h1: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
 
         h2: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         h3: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         h4: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         subtitle1: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         subtitle2: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         body1: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         body2: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         button: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         caption: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         overline: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
-        },
 
+        },
 
     }
 })
