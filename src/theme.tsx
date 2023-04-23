@@ -1,8 +1,18 @@
 import { ThemeOptions } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
+import '@fontsource/roboto/300.css';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import '@mui/lab/themeAugmentation';
+import {ComponentsProps} from "@mui/material/styles/props";
+import {ComponentsOverrides} from "@mui/material/styles/overrides";
+import {ComponentsVariants} from "@mui/material/styles/variants";
+
+
 
 const CustomButton = styled(Button)({
     // your custom styles go here
@@ -10,6 +20,18 @@ const CustomButton = styled(Button)({
 
 
 const theme = createTheme({
+
+    // example for changing mui component
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root:{
+                    size : 2,
+                    background :"red"
+                },
+            },
+        },
+    },
 
     palette: {
         mode: 'light',
@@ -42,11 +64,10 @@ const theme = createTheme({
 
     },
     typography: {
-        fontFamily: "Calibre",
-        fontSize:14,
+        fontSize: 14,
 
         h1: {
-            fontFamily: "Calibre",
+// this one is without font in order to show the default one
 
         },
 
@@ -92,5 +113,5 @@ const theme = createTheme({
         },
 
     }
-})
+});
 export default theme;
