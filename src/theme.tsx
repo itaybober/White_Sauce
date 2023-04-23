@@ -1,37 +1,55 @@
-import { ThemeOptions } from '@mui/material/styles';
+
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import '@fontsource/roboto/300.css';
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import '@mui/lab/themeAugmentation';
+
+import '@fontsource/roboto/300.css'; // for roboto font
+import '@fontsource/roboto/400.css'; // for roboto font
+import '@fontsource/roboto/500.css'; // for roboto font
+import '@fontsource/roboto/700.css'; // for roboto font
+import '@mui/lab/themeAugmentation';// in order to use ts
+
+
 import {ComponentsProps} from "@mui/material/styles/props";
 import {ComponentsOverrides} from "@mui/material/styles/overrides";
 import {ComponentsVariants} from "@mui/material/styles/variants";
+import {orange, red} from "@mui/material/colors";
 
 
-
-const CustomButton = styled(Button)({
-    // your custom styles go here
-}) as typeof Button;
+// example for creating new variables:
+// declare module '@mui/material/styles' {
+//     interface Theme {
+//         status: {
+//             danger: string;
+//         };
+//     }
+//     // allow configuration using `createTheme`
+//     interface ThemeOptions {
+//         status?: {
+//             danger?: string;
+//         };
+//     }
+// }
+// const theme = createTheme({
+//
+//
+//     status: {
+//         danger: orange[500],
+//     },
 
 
 const theme = createTheme({
 
     // example for changing mui component
-    components: {
-        MuiButton: {
-            styleOverrides: {
-                root:{
-                    size : 2,
-                    background :"red"
-                },
-            },
-        },
-    },
+    // components: {
+    //     MuiButton: {
+    //         styleOverrides: {
+    //             root:{
+    //                 size : 2,
+    //                 background :"red"
+    //             },
+    //         },
+    //     },
+    // },
+
 
     palette: {
         mode: 'light',
