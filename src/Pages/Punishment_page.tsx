@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 import CameraIcon from '@mui/icons-material/Camera';
-import Dugma from "./Dugma";
+// import Dugma from "./Dugma";
 
 
 
