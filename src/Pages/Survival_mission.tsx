@@ -43,7 +43,7 @@ function survival() {
                 sx={{
                     width: 360,
                     height: 182,
-                    backgroundColor:theme.status.danger}}> //example for using our var in the page
+                    backgroundColor:"primary"}}> //example for using our var in the page
 
             {/*<TextField id="filled-basic" label="survival" variant="filled">*/}
                 <Typography variant="h4" color={"primary"} >survival</Typography>
@@ -69,6 +69,8 @@ function CircularProgressWithLabel(
     props: CircularProgressProps & { value: number },
 ) {
     return (
+        <div className = "container">
+
         <Box sx={{ position: 'relative', display: 'inline-flex' }}>
             <CircularProgress variant="determinate" {...props} />
             <Box
@@ -90,6 +92,8 @@ function CircularProgressWithLabel(
                 >{`${Math.round(props.value)}%`}</Typography>
             </Box>
         </Box>
+        </div>
+
     );
 }
 //

@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Card,Button, Typography } from "@mui/material";
 
 export function ThemePage() {
     return (
@@ -20,6 +20,7 @@ export function ThemePage() {
             <Button variant="contained">button contained</Button>
             <Button variant="outlined">button outlined</Button>
             <Button variant="text">button text</Button>
+            <Card variant="outlined">card</Card>
         </div>
     );
 }

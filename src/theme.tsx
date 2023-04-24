@@ -19,7 +19,7 @@ import {orange, red} from "@mui/material/colors";
 //     interface Theme {
 //         status: {
 //             danger: string;
-//         };
+//         };3
 //     }
 //     // allow configuration using `createTheme`
 //     interface ThemeOptions {
@@ -51,6 +51,8 @@ const theme = createTheme({
     // },
 
 
+
+
     palette: {
         mode: 'light',
         primary: {
@@ -62,11 +64,11 @@ const theme = createTheme({
         },
         background: {
 
-            default: 'rgba(150,31,122,0)',
-            paper: '#a02727',
+            default: 'rgb(30,31,34)',
+            paper: '#1e1f22',
         },
         text: {
-            primary: '#703737',
+            primary: '#ececec',
             secondary: '#ececec',
             disabled: '#ececec',
         },
@@ -81,8 +83,9 @@ const theme = createTheme({
         },
 
     },
-    typography: {
+    typography : {
         fontSize: 14,
+
 
         h1: {
 // this one is without font in order to show the default one
@@ -130,6 +133,28 @@ const theme = createTheme({
 
         },
 
-    }
+    },
+    // mui components -
+    components: {
+        MuiCard: {
+            styleOverrides: {
+                root: {
+                    size: 2,
+                    background: '#2b2d30',
+                    text: 'primary'
+                },
+            },
+        },
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    background: '#2b2d30',
+                    text: 'primary'
+                },
+            },
+        },
+
+    },
+
 });
 export default theme;

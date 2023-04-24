@@ -17,7 +17,10 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import Filters from "./Pages/filters";
 import Mainpage from "./Pages/main_page";
+import App from "./App";
 // import Itay_Testing from "./Itay_Folder/Itay_Testing";
+
+
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -29,7 +32,7 @@ root.render(
       <StyledEngineProvider injectFirst>
           <ThemeProvider theme={theme}>
               <CssBaseline />
-              <Itay_Testing />
+              <App/>
           </ThemeProvider>
       </StyledEngineProvider>
   </React.StrictMode>
