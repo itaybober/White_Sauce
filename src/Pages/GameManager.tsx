@@ -20,8 +20,8 @@ import CovenantPage from "./CovenantPage";
 
     // Firebase the relevant page??
     6 - survival
-    7 - punishment
-    8 - goup
+    7 - group
+    8 - punishment
     //
 
 
