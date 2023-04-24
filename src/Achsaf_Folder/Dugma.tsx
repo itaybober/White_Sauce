@@ -2,6 +2,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import "./Dugma.css"
+import Background from "../Components/Background";
 function Dugma() {
 
     let comp
@@ -14,9 +15,12 @@ function Dugma() {
         comp =  <Button onClick={() => setCondition(true)} variant="contained">Goodbye</Button>
     }
     return (
-        <div id={"button-dugma"}>
-            {comp}
-        </div>
+        <Background>
+            <div id={"button-dugma"}>
+                {comp}
+            </div>
+        </Background>
+
     )
 
 }

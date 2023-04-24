@@ -55,7 +55,8 @@ function Chwazi({radius = 100}) {
     //
     // @ts-ignore
     return (
-        <div id={"frame"} onMouseMove={handleMouseMove} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}  onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={handleTouchMove}>
+        <div id={"frame"} onMouseMove={handleMouseMove} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}
+             onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={handleTouchMove}>
             {
                 mouse ? <Circle radius={radius} color={'red'} x={xPos} y={yPos}/> : null
             }
