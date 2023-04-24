@@ -15,7 +15,6 @@ import sunshine from './images/sunshine.svg'
 import waves from './images/waves.svg'
 import bulb from './images/bulb.svg'
 import Button from "@mui/material/Button";
-import join_Page from "./Join_Page";
 
 
 

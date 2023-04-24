@@ -1,7 +1,6 @@
 import {useState} from "react";
 import Start_Page from "./Start_Page";
 import Join_Page from "./Join_Page";
-import Itay_Testing from "../Itay_Folder/Itay_Testing";
 import Filters from "./Filters";
 import Theme_page, {ThemePage} from "./Theme_page";
 import Background from "../Components/Background";
@@ -66,7 +65,7 @@ function GameManager() {
             {page}
         </div>
 
-)
+    )
 
 }
 

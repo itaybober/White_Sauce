@@ -17,7 +17,7 @@ function GroupMission() {
 
     return (
         <div >
-            <div className={"container"}>
+            <div>
                 <h1> Group mission!</h1>
             </div>
 
