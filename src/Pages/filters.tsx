@@ -16,10 +16,9 @@ import waves from './images/waves.svg'
 import bulb from './images/bulb.svg'
 
 
-
-function Filters() {
+export default function Filters() {
     return(
-        <div>
+        <>
             <div className={"logo_container"}>
                 <img src={logo} width={103} height={85}/>
             </div>
@@ -152,8 +151,10 @@ function Filters() {
                     </CardActionArea>
                 </Card>
             </div>
-        </div>
-    );
-}
+        </>
+    );}
 
-export default Filters;
+
+
+
+

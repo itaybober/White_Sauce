@@ -1,28 +1,29 @@
 import React from 'react';
-import "./Itay_Testing.css"
-import Button from "@mui/material/Button";
-import Box from '@mui/material/Box';
+// import "./Itay_Testing.css"
+// import Button from "@mui/material/Button";
+// import Box from '@mui/material/Box';
 import logo from './step-1_logo.svg'
+import './main_page.css'
 
 
-function main_page() {
+
+function Mainpage() {
     return(
         <div>
             <div>
                 <img src={logo} width={278} height={255.5}/>
             </div>
-            <h2>step-1</h2>
-            <h1 >
+            <h2 className={"step1"}>step-1</h2>
+            <h1 className={"journey"}>
                 this is where
-            </h1>
-            <h1>
+           <br />
                 your journey begins
             </h1>
-            <Button variant="contained">Sing in </Button>
+            <button className={"sign_in"}>Sing in </button>
             <p></p>
-            <Button variant="contained">Create Account </Button>
+            <button className={"create_account"}>Create Account </button>
         </div>
     );
 }
 
-export default main_page;
+export default Mainpage;
