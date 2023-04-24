@@ -2,9 +2,11 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Survival_mission from "./Pages/Survival_mission";
+import {ThemePage} from "./Pages/Theme_page";
 
 function App() {
   return (
+
     <div className="App">
       {/*<header className="App-header">*/}
         {/*<img src={logo} className="App-logo" alt="logo" />*/}
@@ -21,7 +23,7 @@ function App() {
         {/*  Learn React*/}
       {/*  </a>*/}
       {/*</header>*/}
-
+        <ThemePage/>
       <Survival_mission/>
     </div>
   );

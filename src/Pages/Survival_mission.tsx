@@ -13,7 +13,9 @@ import Button from "@mui/material/Button";
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
+
 import { useTheme } from '@mui/material/styles'
+import theme from "../theme"; //for using the theme in component
 
 
 // we need to add the stepper here later
@@ -41,7 +43,7 @@ function survival() {
                 sx={{
                     width: 360,
                     height: 182,
-                    backgroundColor:"secondary"}}>
+                    backgroundColor:theme.status.danger}}> //example for using our var in the page
 
             {/*<TextField id="filled-basic" label="survival" variant="filled">*/}
                 <Typography variant="h4" color={"primary"} >survival</Typography>

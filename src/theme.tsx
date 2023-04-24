@@ -1,7 +1,55 @@
-import { ThemeOptions } from '@mui/material/styles';
+
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+import '@fontsource/roboto/300.css'; // for roboto font
+import '@fontsource/roboto/400.css'; // for roboto font
+import '@fontsource/roboto/500.css'; // for roboto font
+import '@fontsource/roboto/700.css'; // for roboto font
+import '@mui/lab/themeAugmentation';// in order to use ts
+
+
+import {ComponentsProps} from "@mui/material/styles/props";
+import {ComponentsOverrides} from "@mui/material/styles/overrides";
+import {ComponentsVariants} from "@mui/material/styles/variants";
+import {orange, red} from "@mui/material/colors";
+
+
+// example for creating new variables:
+// declare module '@mui/material/styles' {
+//     interface Theme {
+//         status: {
+//             danger: string;
+//         };
+//     }
+//     // allow configuration using `createTheme`
+//     interface ThemeOptions {
+//         status?: {
+//             danger?: string;
+//         };
+//     }
+// }
+// const theme = createTheme({
+//
+//
+//     status: {
+//         danger: orange[500],
+//     },
+
+
 const theme = createTheme({
+
+    // example for changing mui component
+    // components: {
+    //     MuiButton: {
+    //         styleOverrides: {
+    //             root:{
+    //                 size : 2,
+    //                 background :"red"
+    //             },
+    //         },
+    //     },
+    // },
+
 
     palette: {
         mode: 'light',
@@ -13,11 +61,12 @@ const theme = createTheme({
             main: '#ff9e80',
         },
         background: {
-            default: '#961f7a',
-            paper: '#37474F',
+
+            default: 'rgba(150,31,122,0)',
+            paper: '#a02727',
         },
         text: {
-            primary: '#ececec',
+            primary: '#703737',
             secondary: '#ececec',
             disabled: '#ececec',
         },
@@ -30,77 +79,57 @@ const theme = createTheme({
         success: {
             main: '#29832d',
         },
+
     },
     typography: {
+        fontSize: 14,
+
         h1: {
-            fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+// this one is without font in order to show the default one
+
         },
 
         h2: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         h3: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         h4: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         subtitle1: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         subtitle2: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         body1: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         body2: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         button: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         caption: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
         overline: {
             fontFamily: "Calibre",
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+
         },
 
-
     }
-})
+});
 export default theme;
