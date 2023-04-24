@@ -23,3 +23,4 @@ export function ThemePage() {
         </div>
     );
 }
+export default ThemePage()

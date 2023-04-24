@@ -13,8 +13,9 @@ import Button from "@mui/material/Button";
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import { useTheme } from '@mui/material/styles';
 
+import { useTheme } from '@mui/material/styles'
+import theme from "../theme"; //for using the theme in component
 
 
 // we need to add the stepper here later
@@ -24,13 +25,13 @@ function survival() {
         <div>
 
             {/* Avatar- head of the page*/}
-            <Avatar sx={{ bgcolor: deepPurple[500] }}>MS</Avatar>
+            <Avatar sx={{ bgcolor: "secondary" }}>MS</Avatar>
 
             <Box
                 sx={{
                     width: 360,
                     height: 182,
-                    backgroundColor: "primary.dark"}}>
+                    backgroundColor: "secondary"}}>
             the content of the mission
                 </Box>
             {/*box=the bg*/}
@@ -42,11 +43,11 @@ function survival() {
                 sx={{
                     width: 360,
                     height: 182,
-                    backgroundColor:"primary.dark"}}>
+                    backgroundColor:theme.status.danger}}> //example for using our var in the page
 
             {/*<TextField id="filled-basic" label="survival" variant="filled">*/}
-                <Typography variant="h4" >survival</Typography>
-                <Typography variant="h6" >Don't be last</Typography>
+                <Typography variant="h4" color={"primary"} >survival</Typography>
+                <Typography variant="h6"  >Don't be last</Typography>
                 <Typography variant="subtitle2" >Lorem ipsum dolor sit amet, consec
                     tetur adipiscing elit
                     dcvndknv
@@ -57,7 +58,7 @@ function survival() {
             {/*</TextField>*/}
 
             {/*//button in the bottom part*/}
-            <Button variant="contained" color="primary" size={"medium"} >I finished</Button>
+            <Button variant="contained" color="secondary" size={"medium"} >I finished</Button>
         </div>
             )
 }
