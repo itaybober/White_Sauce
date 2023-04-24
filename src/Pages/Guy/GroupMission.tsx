@@ -9,8 +9,8 @@ import Button from "@mui/material/Button";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCameraRetro} from "@fortawesome/free-solid-svg-icons";
+// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+// import {faCameraRetro} from "@fortawesome/free-solid-svg-icons";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 function GroupMission() {
