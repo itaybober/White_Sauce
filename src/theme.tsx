@@ -57,7 +57,7 @@ const theme = createTheme({
         mode: 'light',
         primary: {
             main: '#90ece4',
-            contrastText: '#000000',
+            contrastText: '#ffffff',
         },
         secondary: {
             main: '#ff9e80',
@@ -93,43 +93,43 @@ const theme = createTheme({
         },
 
         h2: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         h3: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         h4: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         subtitle1: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         subtitle2: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         body1: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         body2: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         button: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         caption: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         overline: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
 
@@ -140,7 +140,7 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     size: 2,
-                    background: '#2b2d30',
+                    background: '#37464e',
                     text: 'primary'
                 },
             },
@@ -148,8 +148,8 @@ const theme = createTheme({
         MuiButton: {
             styleOverrides: {
                 root: {
-                    background: '#4a4d57',
-                    text: 'primary'
+                    background: '#37464e',
+                    text: "#ececec"
 
                 },
             },
