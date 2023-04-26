@@ -8,11 +8,15 @@ import {Timer_Component} from "../Components/Timer_Component";
 import * as React from "react";
 import {ImageList, ImageListItem} from "@mui/material";
 
-function Punishment() {
+
+export default function Punishment({ jump }: { jump: (arg: number) => void }) {
     const loser_player = "Guy";
 
     const itemData = [{ img: 'image-1.jpg', title: 'Image 1' }];
 
+    function next(){
+        jump(9)
+    }
 
     return (
         <div>
@@ -53,7 +57,7 @@ function Punishment() {
                 ))}
             </ImageList>
 
-                <Button variant="contained" color="primary" size={"medium"} sx={{
+                <Button onClick={next} variant="contained" color="primary" size={"medium"} sx={{
                     mb: 2,
                     position: 'fixed',
                     bottom: 0,
@@ -62,49 +66,3 @@ function Punishment() {
         </div>
     )
 }
-
-export default Punishment;
-
-// timer-bottom of the page
-// function CircularProgressWithLabel(
-//     props: CircularProgressProps & { value: number },
-// ) {
-//     return (
-//         <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-//             <CircularProgress variant="determinate" {...props} />
-//             <Box
-//                 sx={{
-//                     top: 0,
-//                     left: 0,
-//                     bottom: 0,
-//                     right: 0,
-//                     position: 'absolute',
-//                     display: 'flex',
-//                     alignItems: 'center',
-//                     justifyContent: 'center',
-//                 }}
-//             >
-//                 <Typography
-//                     variant="caption"
-//                     component="div"
-//                     color="text.secondary"
-//                 >{`${Math.round(props.value)}%`}</Typography>
-//             </Box>
-//         </Box>
-//     );
-// }
-//
-// export default function CircularStatic() {
-//     const [progress, setProgress] = React.useState(10);
-//
-//     React.useEffect(() => {
-//         const timer = setInterval(() => {
-//             setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
-//         }, 800);
-//         return () => {
-//             clearInterval(timer);
-//         };
-//     }, []);
-//
-//     return <CircularProgressWithLabel value={progress} />;
-// }

@@ -1,19 +1,17 @@
-import {IconButton, LinearProgress, TextField} from "@mui/material";
-import { positions } from '@mui/system';
-import Container from '@mui/material/Container';
 
+import Container from '@mui/material/Container';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-// import {faCameraRetro} from "@fortawesome/free-solid-svg-icons";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
-function GroupMission() {
+export default function GroupMission({ jump }: { jump: (arg: number) => void }) {
+
+    function next(){
+        jump(6)
+    }
 
     return (
         <div >
@@ -40,9 +38,9 @@ function GroupMission() {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
                 <Button variant="contained" startIcon={<AddAPhotoIcon />}>Take a Picture</Button>
             </div>
+זג
 
-
-            <Button variant="contained" color="primary" size={"medium"} sx={{
+            <Button onClick={next}  variant="contained" color="primary" size={"medium"} sx={{
                 mb: 2,
                 position: 'fixed',
                 bottom: 0,
@@ -54,4 +52,3 @@ function GroupMission() {
     )
 }
 
-export default GroupMission
