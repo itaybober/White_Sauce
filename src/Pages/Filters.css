@@ -32,7 +32,7 @@
     left: 0px;
     top: 0px;
 
-    background: #FFFFFF;
+    /*background: #FFFFFF;*/
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
 
@@ -76,7 +76,7 @@
 .cards_container {
     /*position: absolute;*/
     width: 353px;
-    height: 468px;
+    height: 10%;
     left: 38px;
     top: 360px;
     overflow-y: scroll;
@@ -102,6 +102,7 @@
     color: black;
     background: #FFFFFF;
     border-radius: 15px;
+    margin: 30px;
 }
 .go_button:hover {
     background: black;

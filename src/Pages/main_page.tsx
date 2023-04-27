@@ -9,7 +9,7 @@ import './main_page.css'
 
 function Mainpage() {
     return(
-        <div>
+        <div className={"mainFrame"}>
             <div>
                 <img src={logo} width={278} height={255.5}/>
             </div>
