@@ -10,7 +10,7 @@ function Join_Page( {jump} ) {
         if (ev.key === "Enter"){
 
             // TODO work based on firebase
-            jump(2);
+            jump(4);
             ev.preventDefault();
         }
     }
