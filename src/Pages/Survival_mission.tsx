@@ -42,7 +42,13 @@ import Punishment from "./Punishment_page";
 //     )
 //
 // }
-export default function survival() {
+// @ts-ignore
+export default function survival({jump}) {
+
+    function next(){
+        jump(8)
+    }
+
 
     return (<Background>
         <div className={"survival_page_component"}>
@@ -76,7 +82,7 @@ export default function survival() {
 
             <Timer_Component/>
 
-            <Button onClick={Punishment} variant="contained" size={"medium"}>I finished</Button>
+            <Button onClick={next}  variant="contained" size={"medium"}>I finished</Button>
 
         </div>
         </Background>

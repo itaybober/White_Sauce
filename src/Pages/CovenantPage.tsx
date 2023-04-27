@@ -8,7 +8,7 @@ import {useState} from 'react';
 
 
 // TODO determined by number of players in firebase
-const NUM_OF_PLAYERS = 2;
+const NUM_OF_PLAYERS = 1;
 
 // @ts-ignore
 function CovenantPage({jump}) {
@@ -18,7 +18,7 @@ function CovenantPage({jump}) {
     function startGame(){
         // TODO get from firebase
         if (numFingers === NUM_OF_PLAYERS){
-            jump(2);
+            jump(6);
         }
     }
 

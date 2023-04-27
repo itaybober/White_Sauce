@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import {Timer_Component} from "../Components/Timer_Component";
+import Timer_Component from "../Components/Timer_Component";
 import * as React from "react";
 import {ImageList, ImageListItem} from "@mui/material";
 
@@ -15,7 +15,7 @@ export default function Punishment({ jump }: { jump: (arg: number) => void }) {
     const itemData = [{ img: 'image-1.jpg', title: 'Image 1' }];
 
     function next(){
-        jump(9)
+        jump(10)
     }
 
     return (
