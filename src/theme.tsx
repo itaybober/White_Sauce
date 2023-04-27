@@ -7,11 +7,14 @@ import '@fontsource/roboto/500.css'; // for roboto font
 import '@fontsource/roboto/700.css'; // for roboto font
 import '@mui/lab/themeAugmentation';// in order to use ts
 
-
 import {ComponentsProps} from "@mui/material/styles/props";
 import {ComponentsOverrides} from "@mui/material/styles/overrides";
 import {ComponentsVariants} from "@mui/material/styles/variants";
 import {orange, red} from "@mui/material/colors";
+import {inspect} from "util";
+
+import {text} from "stream/consumers";
+
 
 
 // example for creating new variables:
@@ -54,13 +57,19 @@ const theme = createTheme({
 
 
     palette: {
-        mode: 'light',
+        mode:"dark",
         primary: {
+            contrastText: '#1e1f22',
             main: '#90ece4',
-            contrastText: '#000000',
+            light: '#9fd2cc',
+            dark: '#508c86',
+
         },
         secondary: {
             main: '#ff9e80',
+            contrastText: '#ffffff',
+            light: '#d0a397',
+            dark: '#b66c53',
         },
         background: {
 
@@ -68,9 +77,10 @@ const theme = createTheme({
             paper: '#1e1f22',
         },
         text: {
-            primary: '#ececec',
-            secondary: '#ececec',
-            disabled: '#ececec',
+            secondary: '#afbdbb',
+            disabled: '#b6cbc8',
+            primary: '#ffffff',
+
         },
         warning: {
             main: '#ed3202',
@@ -84,7 +94,9 @@ const theme = createTheme({
 
     },
     typography : {
-        fontSize: 14,
+        // fontFamily: 'Didact Gothic',
+
+
 
 
         h1: {
@@ -93,43 +105,43 @@ const theme = createTheme({
         },
 
         h2: {
-            fontFamily: "Calibre",
+            // fontFamily: "Didactic",
 
         },
         h3: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         h4: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         subtitle1: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         subtitle2: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         body1: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         body2: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         button: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         caption: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
         overline: {
-            fontFamily: "Calibre",
+            // fontFamily: "Calibre",
 
         },
 
@@ -140,22 +152,16 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     size: 2,
-                    background: '#2b2d30',
+                    background: '#37464e',
                     text: 'primary'
                 },
             },
         },
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    background: '#4a4d57',
-                    text: 'primary'
 
-                },
             },
-        },
 
-    },
 
-});
+    });
+
+
 export default theme;
