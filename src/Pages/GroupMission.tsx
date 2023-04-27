@@ -10,7 +10,7 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 export default function GroupMission({ jump }: { jump: (arg: number) => void }) {
 
     function next(){
-        jump(6)
+        jump(7)
     }
 
     return (

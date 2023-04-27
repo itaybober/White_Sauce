@@ -11,7 +11,7 @@ function Start_Page({jump}) {
     //     jump(whatever)
     }
     function joinPage(){
-        jump(1);
+        jump(3);
     }
 
 
