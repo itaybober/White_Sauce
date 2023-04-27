@@ -33,9 +33,15 @@ import Background from "../Components/Background"
 
 import Demo from "../Achsaf_Folder/Demo";
 import Winner_list from "../Components/Winner_list";
+import Punishment from "./Punishment_page";
 // we need to add the stepper here later
 
-
+// function  winner_list_update({name,points,bg}){
+//     return(
+//     <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"} name2={"Itay"} points2={240} bg2={"#EFB2B2"} name3={name} points3={points} bg3={bg} />
+//     )
+//
+// }
 export default function survival() {
 
     return (<Background>
@@ -61,7 +67,7 @@ export default function survival() {
 
 
             <Card sx={{ width: 330, height: 240 } }>
-                <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"} name2={"Itay"} points2={240} bg2={"#EFB2B2"} name3={"Gay"} points3={150} bg3={"#E3B2EF"} name4={"?"} points4={0} bg4={"#78909C"} />
+                <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"} name2={"Itay"} points2={240} bg2={"#EFB2B2"} name3={"?"} points3={0} bg3={"#78909C"} />
                 </Card>
 
 
@@ -70,7 +76,7 @@ export default function survival() {
 
             <Timer_Component/>
 
-            <Button variant="contained" size={"medium"}>I finished</Button>
+            <Button onClick={Punishment} variant="contained" size={"medium"}>I finished</Button>
 
         </div>
         </Background>

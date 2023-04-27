@@ -17,7 +17,7 @@ export  default function Avatar_and_points({name, points}) {
         <Avatar sx={{bgcolor: "#90ece4" ,width: 60, height: 60}}> MS </Avatar>
         <Container sx={{width: 280, height: 65, display: 'flex', flexDirection: 'column', justifyContent:  "space-between", alignItems: 'flex-start'}   }>
             <Typography
-            variant="subtitle1"> {name} </Typography>
+            variant="h6"> {name} </Typography>
 
             <Card sx={{ width: 250, height: 45 }   }>
 
@@ -25,7 +25,7 @@ export  default function Avatar_and_points({name, points}) {
 
 
                      <Typography
-                    variant="subtitle1"> points : {points} </Typography>
+                    variant="subtitle1"> {points} points </Typography>
                     <Typography color={"primary"}
                         variant="subtitle1"> #2 </Typography>
 
