@@ -16,10 +16,13 @@ import sunshine from './images/sunshine.svg'
 import waves from './images/waves.svg'
 import bulb from './images/bulb.svg'
 import Button from "@mui/material/Button";
-import join_Page from "./Join_Page";
 
 // @ts-ignore
 export default function Filters({jump}) {
+    function next(){
+        jump(5)
+    }
+
     return(
         <div className={"filter"}>
             <div className={"logo_container"}>
@@ -45,7 +48,7 @@ export default function Filters({jump}) {
 
             </div>
             <p></p>
-            <Button className={"go_button"}>
+            <Button onClick={next} className={"go_button"}>
                 let's goooo
             </Button>
         </div>

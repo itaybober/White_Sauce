@@ -1,0 +1,14 @@
+
+
+#CovenantPage_Background{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /*width: 100%;*/
+}
+
+#CovenantPage_ChwaziContainer{
+    flex:1;
+    /*height: 300px;*/
+    /*width: 300px;*/
+}

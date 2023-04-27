@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './App';
-import Itay_Testing from "./Itay_Folder/Itay_Testing";
 // import reactTutorial from "./Itay_Folder/react tutorial";
 // import main_page from "./Pages/main_page";
 import reportWebVitals from './reportWebVitals';
@@ -15,10 +14,9 @@ import { StyledEngineProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
-import Filters from "./Pages/filters";
+import Filters from "./Pages/Filters";
 import Mainpage from "./Pages/main_page";
 import App from "./App";
-// import Itay_Testing from "./Itay_Folder/Itay_Testing";
 
 
 
