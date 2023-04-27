@@ -57,8 +57,8 @@ function Chwazi({radius = 100}) {
     return (
         <div id={"frame"} onMouseMove={handleMouseMove} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}
              onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={handleTouchMove}>
-            {
-                mouse ? <Circle radius={radius} color={'red'} x={xPos} y={yPos}/> : null
+            {//maya edit color
+                mouse ? <Circle radius={radius} color={"#90ece4"} x={xPos} y={yPos}/> : null
             }
         </div>
     )

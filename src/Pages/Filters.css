@@ -2,7 +2,7 @@
 .container_filters_col {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     gap: 2em;
 }
@@ -16,8 +16,10 @@
 }
 
 .logo_container {
+
     display: flex;
     justify-content: center;
+
     /*padding: 2em;*/
 }
 
@@ -47,6 +49,7 @@
     top: 225px;
     display: flex;
     margin: auto;
+
     justify-content: space-evenly;
 }
 

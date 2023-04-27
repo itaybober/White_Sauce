@@ -16,7 +16,7 @@ import sunshine from './images/sunshine.svg'
 import waves from './images/waves.svg'
 import bulb from './images/bulb.svg'
 import Button from "@mui/material/Button";
-
+import Background from "../Components/Background";
 // @ts-ignore
 export default function Filters({jump}) {
     function next(){
@@ -24,18 +24,19 @@ export default function Filters({jump}) {
     }
 
     return(
+
         <div className={"filter"}>
             <div className={"logo_container"}>
                 <img src={logo} width={103} height={85}/>
             </div>
-            <h2
-                style={{fontSize: 40}}
+            <h1
+                // style={{fontSize: 40}} maya edit
                 className={"text_container"}
             >
                 what are you
                 <br/>
                 looking for?
-            </h2>
+            </h1>
             <div className={"cards_container"}>
                 <MyCard icon={active_logo} text="Active" />
                 <MyCard icon={shopping} text="supplies" />
@@ -48,13 +49,16 @@ export default function Filters({jump}) {
 
             </div>
             <p></p>
-            <Button onClick={next} className={"go_button"}>
+            {/*maya edit:*/}
+            <Button onClick={next} variant="contained">
                 let's goooo
             </Button>
         </div>
+
     );
 }
 
+// <Button onClick={next} variant="contained" className={"go_button"}> הגרסה הקודמת
 
 function MyCard(props: React.PropsWithChildren<{ icon: string; text: string }>) {
     const [isActive, setIsActive] = useState(false);
@@ -67,7 +71,8 @@ function MyCard(props: React.PropsWithChildren<{ icon: string; text: string }>) 
         <Card
             sx={{
                 maxWidth: 160,
-                backgroundColor: isActive ? "#6fa1ee" : "white",
+                // maya edit:
+                backgroundColor: isActive ? "#6fa1ee" : "#54666D",
             }}
             className={"card_container"}
             onClick={handleClick}
@@ -81,7 +86,8 @@ function MyCard(props: React.PropsWithChildren<{ icon: string; text: string }>) 
                     image={props.icon}
                 />
                 <CardContent>
-                    <Typography className={"typo_card"}>{props.text}</Typography>
+                     {/*maya edit:*/}
+                    <Typography variant="h5">{props.text}</Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
@@ -91,6 +97,6 @@ function MyCard(props: React.PropsWithChildren<{ icon: string; text: string }>) 
 
 
 
-
+// className={"typo_card"}
 
 

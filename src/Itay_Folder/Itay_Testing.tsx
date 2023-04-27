@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import logo from './images/step-1_logo.svg'
-import active_logo from './running.svg'
+import active_logo from '../Pages/images/running.svg'
 import shopping from './images/shopping-cart.svg'
 import snacks from './images/snacks.svg'
 import drinks from './images/drink.svg'

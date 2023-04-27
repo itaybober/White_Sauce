@@ -8,6 +8,7 @@ import Container from "@mui/material/Container";
 import GetAppIcon from '@mui/icons-material/GetApp';
 import ShareIcon from '@mui/icons-material/Share';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import Winner_list from "../Components/Winner_list";
 function EndingPage() {
 
 
@@ -23,6 +24,7 @@ function EndingPage() {
         // Add more items here...
     ];
     return (
+
         <div>
             <h1>
                 The touching Ending
@@ -32,8 +34,11 @@ function EndingPage() {
             <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <Card sx={{ width: 300, height: 300 }   }>
                     <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                        {/*הוספתי בנתיים כדי שיהיה בפנים משהו אבל נעשה את זה סופר קול*/}
+                        <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"} name2={"Itay"} points2={240} bg2={"#EFB2B2"} name3={"Maya"} points3={150} bg3={"#9fd2cc"}/>
                         <Typography sx={{ fontSize: 26 }} color="text.secondary" gutterBottom>
-                            כאן נשים את רשימת המנצחים/מדרגות יפות של ניצחון
+                            {/*כאן נשים את רשימת המנצחים/מדרגות יפות של ניצחון*/}
+
                         </Typography>
                     </CardContent>
                 </Card>
@@ -56,20 +61,21 @@ function EndingPage() {
                     </ImageListItem>
                 ))}
             </ImageList>
-
+            {/*maya edit the buttons size and variant*/}
             <Container sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '15px'}}>
-                <Button variant="contained" startIcon={<GetAppIcon />}>Download</Button>
-                <Button variant="contained" startIcon={<ShareIcon/>}>Share</Button>
+                <Button size= "small" variant="text" startIcon={<GetAppIcon />}>Download</Button>
+                <Button size= "small" variant="text" startIcon={<ShareIcon/>}>Share</Button>
             </Container>
 
             <div>
                 <h2 >
-                    So What now?
+                    So what now?
                 </h2>
                 <Container sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '15px'}}>
-                    <Button variant="contained">New adventure</Button>
-                    <Button variant="contained">Bonus mission</Button>
-                    <Button variant="contained">get da fuck outta heee</Button>
+                    {/*maya edit*/}
+                    <Button variant="outlined">New adventure</Button>
+                    <Button variant="outlined">Bonus mission</Button>
+                    <Button variant="outlined">get da fuck outta heee</Button>
                 </Container>
             </div>
 

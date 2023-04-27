@@ -60,7 +60,7 @@ const theme = createTheme({
         mode:"dark",
         primary: {
             contrastText: '#1e1f22',
-            main: '#90ece4',
+            main: '#96d9d2',
             light: '#9fd2cc',
             dark: '#508c86',
 
@@ -74,10 +74,10 @@ const theme = createTheme({
         background: {
 
             default: 'rgb(30,31,34)',
-            paper: '#1e1f22',
+            paper: '#6e6f7a',
         },
         text: {
-            secondary: '#afbdbb',
+            secondary: '#96e7dc',
             disabled: '#b6cbc8',
             primary: '#ffffff',
 
@@ -94,6 +94,7 @@ const theme = createTheme({
 
     },
     typography : {
+
         // fontFamily: 'Didact Gothic',
 
 
@@ -157,6 +158,15 @@ const theme = createTheme({
                 },
             },
         },
+        // MuiButton: {
+        //         styleOverrides: {
+        //             root: {
+        //                 size: 2,
+        //                 background: '#37454d',
+        //
+        //             },
+        //         },
+        // },
 
             },
 

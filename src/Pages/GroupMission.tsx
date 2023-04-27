@@ -22,9 +22,11 @@ export default function GroupMission({ jump }: { jump: (arg: number) => void }) 
 
             <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <Card sx={{ width: 300, height: 300 }   }>
-                    <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                        <Typography sx={{ fontSize: 26 }} color="text.secondary" gutterBottom>
+                    <CardContent sx={{ display: 'inline-flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                        <Typography variant="h6"  gutterBottom>
                             This is the FUCKING group mission so just do it:
+                            </Typography>
+                            <Typography variant="subtitle1"  gutterBottom>
                             Go to the bathroom
                             take a massive massive piece of toilet, and come back
                         </Typography>
@@ -38,7 +40,6 @@ export default function GroupMission({ jump }: { jump: (arg: number) => void }) 
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
                 <Button variant="contained" startIcon={<AddAPhotoIcon />}>Take a Picture</Button>
             </div>
-זג
 
             <Button onClick={next}  variant="contained" color="primary" size={"medium"} sx={{
                 mb: 2,
