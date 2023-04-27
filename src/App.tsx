@@ -3,13 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import Survival_mission from "./Pages/Survival_mission";
 import {ThemePage} from "./Pages/Theme_page";
-import Filters from "./Pages/filters";
+import GameManager from "./Pages/GameManager";
+import EndingPage from "./Pages/EndingPage";
+
 
 function App() {
   return (
-
     <div className="App">
-        <Survival_mission/>
+        <GameManager/>
     </div>
   );
 }
