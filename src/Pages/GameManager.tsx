@@ -5,6 +5,7 @@ import Filters from "./Filters";
 import Theme_page, {ThemePage} from "./Theme_page";
 import Background from "../Components/Background";
 import CovenantPage from "./CovenantPage";
+import Chwazi from "../Achsaf_Folder/Chwazi";
 
 
 /*
@@ -30,7 +31,8 @@ import CovenantPage from "./CovenantPage";
  */
 function GameManager() {
 
-    const [curPage, setPage] = useState(0)
+    const [curPage, setPage] = useState(2)
+
 
 
     let page;
@@ -39,12 +41,12 @@ function GameManager() {
 
     switch (curPage) {
 
+        // For debug and testing
         case 0:
-            page = <CovenantPage jump={setPage}/>
-            break
+
+
 
         case 2:
-            // @ts-ignore
             page = <Start_Page jump={setPage}/>;
             break;
         case 3:
@@ -56,12 +58,11 @@ function GameManager() {
         case 5:
             page = <CovenantPage jump={setPage}/>
             break;
-
     }
 
 
     return(
-        <div>
+        <div style={{height: "100vh", width : "100vw"}}>
             {page}
         </div>
 
