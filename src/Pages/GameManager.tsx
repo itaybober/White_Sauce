@@ -5,7 +5,10 @@ import Filters from "./Filters";
 import Theme_page, {ThemePage} from "./Theme_page";
 import Background from "../Components/Background";
 import CovenantPage from "./CovenantPage";
-
+import Survival_mission from "./Survival_mission"
+import GroupMission from "./GroupMission";
+import Punishment from "./Punishment_page";
+import EndingPage from "./EndingPage";
 
 /*
     0 - debug
@@ -18,8 +21,8 @@ import CovenantPage from "./CovenantPage";
 
 
     // Firebase the relevant page??
-    6 - survival
-    7 - group
+    6 - group
+    7 - survival
     8 - punishment
     //
 
@@ -30,7 +33,7 @@ import CovenantPage from "./CovenantPage";
  */
 function GameManager() {
 
-    const [curPage, setPage] = useState(5)
+    const [curPage, setPage] = useState(2)
 
     let page;
 
@@ -54,6 +57,18 @@ function GameManager() {
             break;
         case 5:
             page = <CovenantPage jump={setPage}/>
+            break;
+        case 6:
+            page = <GroupMission jump={setPage}/>
+            break;
+        case 7:
+            page = <Survival_mission jump={setPage}/>
+            break;
+        case 8:
+            page = <Punishment jump={setPage}/>
+            break;
+        case 10:
+            page = <EndingPage jump={setPage}/>
             break;
     }
 
