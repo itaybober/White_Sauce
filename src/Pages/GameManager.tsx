@@ -9,6 +9,7 @@ import Survival_mission from "./Survival_mission"
 import GroupMission from "./GroupMission";
 import Punishment from "./Punishment_page";
 import EndingPage from "./EndingPage";
+import Chwazi from "../Achsaf_Folder/Chwazi";
 
 /*
     0 - debug
@@ -33,7 +34,7 @@ import EndingPage from "./EndingPage";
  */
 function GameManager() {
 
-    const [curPage, setPage] = useState(2)
+    const [curPage, setPage] = useState(0)
 
     let page;
 
@@ -42,10 +43,9 @@ function GameManager() {
     switch (curPage) {
 
         // For debug and testing
-        // case 0:
-        //     page = <CovenantPage jump={setPage}/>;
-        //     break;
-
+        case 0:
+            page = <CovenantPage jump={setPage}/>;
+            break;
         case 2:
             page = <Start_Page jump={setPage}/>;
             break;

@@ -15,26 +15,13 @@ function Join_Page( {jump} ) {
         }
     }
 
-
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 16,
-                // padding: 16,
-            }}
-        >
-            <div></div>
-            <h1 id={"JoinPage_Title"}>Enter Cypher</h1>
-            <TextField onKeyDown={enterValue} inputProps={{min: 0, style: { textAlign: 'center' }}}  placeholder={"PIN"}   variant="outlined" />
-        </Box>
 
-        // <div id={"JoinPage_Background"}>
-        //     <h1 id={"JoinPage_Title"}>Enter Cypher</h1>
-        //     <TextField id={"JoinPage_Input"} inputProps={{min: 0, style: { textAlign: 'center' }}} placeholder={"PIN"}  sx={{ textAlign: 'center' }}  variant="outlined" />
-        // </div>
+        <div id={"JoinPage_Background"}>
+            <h1 id={"JoinPage_Title"}>Enter Cypher</h1>
+            <TextField id={"JoinPage_Input"} onKeyDown={enterValue} inputProps={{min: 0, style: { textAlign: 'center' }}}
+               placeholder={"PIN"} sx={{ textAlign: 'center', position:'relative', top:'50%' }}  variant="outlined" />
+        </div>
     )
 }
 

@@ -3,12 +3,13 @@
 #CovenantPage_Background{
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100vh;
     /*width: 100%;*/
 }
 
 #CovenantPage_ChwaziContainer{
-    flex:1;
-    /*height: 300px;*/
-    /*width: 300px;*/
+    flex: auto;
+    padding: 5%;
+    width: 100%;
 }
