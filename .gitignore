@@ -22,6 +22,10 @@ package.json
 tsconfig.json
 *.json
 *.xml
+*.iml
+
+
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

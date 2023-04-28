@@ -9,7 +9,7 @@ import Survival_mission from "./Survival_mission"
 import GroupMission from "./GroupMission";
 import Punishment from "./Punishment_page";
 import EndingPage from "./EndingPage";
-import Chwazi from "../Achsaf_Folder/Chwazi";
+import Chwazi from "../Components/Chwazi";
 
 /*
     0 - debug

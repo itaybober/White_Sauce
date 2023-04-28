@@ -2,7 +2,7 @@
 
 
 
-import Chwazi from "../Achsaf_Folder/Chwazi";
+import Chwazi from "../Components/Chwazi";
 import "./CovenantPage.css";
 import {useState} from 'react';
 import Card from "@mui/material/Card";
