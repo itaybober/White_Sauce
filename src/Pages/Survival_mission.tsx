@@ -30,11 +30,13 @@ import theme from "../theme"; //for using the theme in component
 import "./Survival_mission.css"
 import Timer_Component from "../Components/Timer_Component"
 import Background from "../Components/Background"
-
+import itay from './Souvenirs/criptai.jpg'
 import Demo from "../Achsaf_Folder/Demo";
 import Winner_list from "../Components/Winner_list";
 import Punishment from "./Punishment_page";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import {useState} from "react";
+import {ImageList, ImageListItem} from "@mui/material";
 // we need to add the stepper here later
 
 // function  winner_list_update({name,points,bg}){
@@ -44,43 +46,67 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 //
 // }
 // @ts-ignore
-export default function survival({jump, toPage}) {
+export default function Survival({jump, toPage}) {
 
+    const [itemData, setItemData] = useState([])
     function next(){
         jump(toPage)
     }
 
+    function addPhoto() {
+        // @ts-ignore
+        setItemData([itay])
+    }
 
     return (<Background>
         <div className={"survival_page_component"}>
 
             <Avatar_and_points name={"Maya"} points={430}/>
 
-            <Card sx={{ width: 330, height: 160 }   }>
-                <CardContent className={"align_to_the_left"} sx={{alignItems: 'center'}}>
+            <Card sx={{ width: 370, height: 320 }   }>
+                <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
                     <Typography variant="h5" color={"primary"}> Seek And Ye Shall Find</Typography>
                     <Typography variant="h6">Your goal: <span style={{ color: 'pink' }}>Wine Bottle Cork</span></Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="h6">
                         The faster you find your object the more you gain.
                         Anyone who doesn't find their object by the end of the timer must participate in the penalty.
                         May the odds be ever in your favor.
                     </Typography>
-                        <Typography display="block"> Mxbxnc xn vmz kc kcvjbck c,m </Typography>
+                        <Typography display="block">Take a photo of yourself with your new spirit object.</Typography>
                 </CardContent>
             </Card>
 
 
 
-            <Card sx={{ width: 330, height: 240 } }>
+            <Card sx={{ width: 370, height: 240 } }>
                 <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"}
                              name2={"Itay"} points2={240} bg2={"#EFB2B2"}
                              name3={"?"} points3={0} bg3={"#78909C"} />
                 </Card>
 
-            <Timer_Component/>
+            <Timer_Component timerLimit={60}/>
 
-            <Button onClick={next}  startIcon={<AddAPhotoIcon />} variant="contained" size={"medium"}>I finished</Button>
+            <Button onClick={addPhoto}  startIcon={<AddAPhotoIcon />} variant="contained" size={"medium"}>Proof Of Concept</Button>
 
+            <ImageList variant="masonry" cols={2} gap={8} sx={{ display: 'flex', justifyContent: 'center' }}>
+                {itemData.map((item) => (
+                    <ImageListItem key={item}>
+                        <img
+                            src={`${item}?w=248&fit=crop&auto=format`}
+                            srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                            alt={item}
+                            loading="lazy"
+                            style={{ backgroundColor: 'gray', width: 200, height: 200, margin: 'auto' }}
+                        />
+                    </ImageListItem>
+                ))}
+            </ImageList>
+            <Button onClick={next} variant="contained" color="primary" size={"medium"} sx={{
+                mb: 2,
+                position: 'fixed',
+                bottom: 0,
+                right: 0,
+            }} >Next</Button>
         </div>
         </Background>
     );

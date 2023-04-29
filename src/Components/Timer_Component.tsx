@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Button from "@mui/material/Button";
 
-export default function Timer_Component() {
-    const [timeLeft, setTimeLeft] = useState(15);
+export default function Timer_Component({timerLimit = 15}) {
+    const [timeLeft, setTimeLeft] = useState(timerLimit);
     const [timerStarted, setTimerStarted] = useState(false);
 
     useEffect(() => {

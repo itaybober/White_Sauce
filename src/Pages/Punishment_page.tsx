@@ -31,11 +31,11 @@ export default function Punishment({ jump, toPage }) {
         <div>
             <h1>It's punishment time</h1>
             <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <Card sx={{ width: 300, height: 300 }}>
-                    <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                        <Typography sx={{ fontSize: 22 }} color="red" gutterBottom>
+                <Card sx={{ width: 370, height: 410 }}>
+                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
+                        <Typography variant={"h6"} color="#F78585" >
                             Well, well, well, look who we have here - the ultimate loser! As punishment,
-                            you must chug a beer in 30 seconds - and no dribbling.
+                            you must chug a beer in 30 seconds.
                             We have another treat for you! You must wear your socks
                             on your hands until the end of the evening - wait, what's that? You don't have socks?
                             Well, looks like you'll have to borrow a pair from another contestant!
@@ -47,7 +47,7 @@ export default function Punishment({ jump, toPage }) {
 
             <div style={{ height: 20 }}></div>
 
-            <Timer_Component />
+            <Timer_Component timerLimit={30} />
 
             <div style={{ height: 20 }}></div>
 

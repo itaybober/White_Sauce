@@ -1,46 +1,53 @@
 
-import Container from '@mui/material/Container';
+
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import {ImageList, ImageListItem} from "@mui/material";
+import Avatar_and_points from "../Components/avatar_and_points";
+import "./Survival_mission.css"
+import Timer_Component from "../Components/Timer_Component"
+import Background from "../Components/Background"
+import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import {useState} from "react";
-import untangle from "./Souvenirs/untangle.gif"
+import {ImageList, ImageListItem} from "@mui/material";
+import friends from "./Souvenirs/friends hanging out and being buddies.jpg"
 
+// we need to add the stepper here later
 
+// function  winner_list_update({name,points,bg}){
+//     return(
+//     <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"} name2={"Itay"} points2={240} bg2={"#EFB2B2"} name3={name} points3={points} bg3={bg} />
+//     )
+//
+// }
 // @ts-ignore
-export default function GroupMission({ jump , toPage}) {
+export default function GroupMission({jump, toPage}) {
 
+    const [itemData, setItemData] = useState([])
     function next(){
         jump(toPage)
     }
 
-    const [gifs, setGifs] = useState([untangle])
-
-    function forDemo() {
+    function addPhoto() {
         // @ts-ignore
-        setGifs([untangle])
+        setItemData([friends])
     }
 
-    // @ts-ignore
-    // @ts-ignore
-    return (
-        <div >
-            <div>
-                <h1> Group mission!</h1>
-            </div>
+    return (<Background>
+            <div className={"survival_page_component"}>
 
+                <Avatar_and_points name={"Maya"} points={600}/>
 
-            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <Card sx={{ width: 300, height: 300 }   }>
-                    <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                        <Typography sx={{ fontSize: 26 }} color="text.secondary" gutterBottom>
-                            Alright, folks, it's time to channel our inner acrobats because we're about to play
-                            the human pretzel game! Gather round and stand in a circle facing eachother. Reach out a hand
-                            and grab a friends hand, tight and strong like your friendship. Got a hand? Good, a hand with, socks?
+                <Card sx={{ width: 370, height: 530 }   }>
+                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
+                        <Typography variant="h5" color={"primary"}>The Human Pretzel</Typography>
+                        <Typography variant="h6">
+                            Gather round and stand in a circle facing each other. Reach out a hand
+                            and grab a friends hand,
+                            <span style={{ color: 'pink' }}> tight and strong like your friendship</span>.
+                             Got a hand? Good, a hand with, socks?
                             even better. Now reach
                             out another hand to a weaker friend with your weaker hand. The goal is simple you must untangle
                             your hands without letting go of each others hands. The task is complete when you all stand
@@ -48,23 +55,34 @@ export default function GroupMission({ jump , toPage}) {
                         </Typography>
                     </CardContent>
                 </Card>
-            </Container>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-                <Button variant="contained" startIcon={<AddAPhotoIcon />}>Take a Picture</Button>
+
+                <Timer_Component timerLimit={60}/>
+
+                <Button onClick={addPhoto}  startIcon={<AddAPhotoIcon />} variant="contained" size={"medium"}>Proof Of Concept</Button>
+
+                <ImageList variant="masonry" cols={2} gap={8} sx={{ display: 'flex', justifyContent: 'center' }}>
+                    {itemData.map((item) => (
+                        <ImageListItem key={item}>
+                            <img
+                                src={`${item}?w=248&fit=crop&auto=format`}
+                                srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                alt={item}
+                                loading="lazy"
+                                style={{ backgroundColor: 'gray', width: 200, height: 200, margin: 'auto' }}
+                            />
+                        </ImageListItem>
+                    ))}
+                </ImageList>
+                <Button onClick={next} variant="contained" color="primary" size={"medium"} sx={{
+                    mb: 2,
+                    position: 'fixed',
+                    bottom: 0,
+                    right: 0,
+                }} >Next</Button>
             </div>
+        </Background>
+    );
 
-
-            <Button onClick={next}  variant="contained" color="primary" size={"medium"} sx={{
-                mb: 2,
-                position: 'fixed',
-                bottom: 0,
-                right: 0,
-            }} >Next</Button>
-
-
-        </div>
-
-    )
 }
 
