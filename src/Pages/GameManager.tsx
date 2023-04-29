@@ -13,16 +13,16 @@ import Chwazi from "../Components/Chwazi";
 
 
 
-let IDDEBUG = 0;
-let IDSIGNUP = 1;
-let IDSTART = 2;
-let IDJOIN = 3;
-let IDFILTERS = 4;
-let IDCOVEN = 5;
-let IDGROUP = 6;
-let IDSURV = 7;
-let IDPUN = 8;
-let IDEND = 9;
+const IDEBUG = 0;
+const IDSIGNUP = 1;
+const IDSTART = 2;
+const IDJOIN = 3;
+const IDFILTERS = 4;
+const IDCOVEN = 5;
+const IDGROUP = 6;
+const IDSURV = 7;
+const IDPUN = 8;
+const IDEND = 9;
 
 /*
     0 - debug
@@ -47,7 +47,7 @@ let IDEND = 9;
  */
 function GameManager() {
 
-    const [curPage, setPage] = useState(0)
+    const [curPage, setPage] = useState(IDEND)
 
     let page;
 
@@ -55,33 +55,33 @@ function GameManager() {
 
     switch (curPage) {
 
-        // For debug and testing
-        case 0:
-            page = <CovenantPage jump={setPage}/>;
+        case IDEBUG:
+            // For debug and testing
+            page = <Survival_mission jump={setPage} toPage={null}/>;
             break;
-        case 2:
+        case IDSTART:
             page = <Start_Page jump={setPage} toPage={IDJOIN}/>;
             break;
-        case 3:
-            page = <Join_Page jump={setPage}/>
+        case IDJOIN:
+            page = <Join_Page jump={setPage} toPage={IDFILTERS}/>
             break;
-        case 4:
-            page = <Filters jump={setPage}/>
+        case IDFILTERS:
+            page = <Filters jump={setPage} toPage={IDCOVEN}/>
             break;
-        case 5:
-            page = <CovenantPage jump={setPage}/>
+        case IDCOVEN:
+            page = <CovenantPage jump={setPage} toPage={IDSURV}/>
             break;
-        case 6:
-            page = <GroupMission jump={setPage}/>
+        case IDGROUP:
+            page = <GroupMission jump={setPage} toPage={IDEND}/>
             break;
-        case 7:
-            page = <Survival_mission jump={setPage}/>
+        case IDSURV:
+            page = <Survival_mission jump={setPage} toPage={IDPUN}/>
             break;
-        case 8:
-            page = <Punishment jump={setPage}/>
+        case IDPUN:
+            page = <Punishment jump={setPage} toPage={IDGROUP}/>
             break;
-        case 9:
-            page = <EndingPage jump={setPage}/>
+        case IDEND:
+            page = <EndingPage jump={setPage} toPage={IDSTART}/>
             break;
     }
 

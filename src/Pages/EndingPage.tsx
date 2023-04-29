@@ -8,27 +8,27 @@ import Container from "@mui/material/Container";
 import GetAppIcon from '@mui/icons-material/GetApp';
 import ShareIcon from '@mui/icons-material/Share';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import friends from "./Souvenirs/friends hanging out and being buddies.jpg"
+import sock from "./Souvenirs/sockhands.jpg"
+import rock from "./Souvenirs/ultimate rock paper scissors.jpg"
+import itay from "./Souvenirs/criptai.jpg"
+
+
+
+
 // @ts-ignore
-function EndingPage({jump}) {
+function EndingPage({jump, toPage}) {
 
     function next() {
-        jump(2);
+        jump(toPage);
     }
 
 
-    const itemData = [
-        { img: 'image-1.jpg', title: 'Image 1' },
-        { img: 'image-2.jpg', title: 'Image 2' },
-        { img: 'image-3.jpg', title: 'Image 3' },
-        { img: 'image-4.jpg', title: 'Image 4' },
-        { img: 'image-5.jpg', title: 'Image 5' },
-        { img: 'image-6.jpg', title: 'Image 6' },
-        // Add more items here...
-    ];
+    const itemData = [  itay, sock,rock,friends ];
     return (
         <div>
             <h1>
-                The touching Ending
+                The Touching Ending
 
             </h1>
 
@@ -46,13 +46,13 @@ function EndingPage({jump}) {
                 Souvenirs
             </h2>
 
-            <ImageList variant="masonry" cols={2} gap={8} >
+            <ImageList cols={2}  >
                 {itemData.map((item) => (
-                    <ImageListItem key={item.img} >
+                    <ImageListItem key={item} >
                         <img
-                            src={`${item.img}?w=248&fit=crop&auto=format`}
-                            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                            alt={item.title}
+                            src={`${item}?w=248&fit=crop&auto=format`}
+                            srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                            alt={item}
                             loading="lazy"
                             style={{ backgroundColor: 'gray' }}
                         />

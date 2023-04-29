@@ -34,6 +34,7 @@ import Background from "../Components/Background"
 import Demo from "../Achsaf_Folder/Demo";
 import Winner_list from "../Components/Winner_list";
 import Punishment from "./Punishment_page";
+import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 // we need to add the stepper here later
 
 // function  winner_list_update({name,points,bg}){
@@ -43,10 +44,10 @@ import Punishment from "./Punishment_page";
 //
 // }
 // @ts-ignore
-export default function survival({jump}) {
+export default function survival({jump, toPage}) {
 
     function next(){
-        jump(8)
+        jump(toPage)
     }
 
 
@@ -57,32 +58,28 @@ export default function survival({jump}) {
 
             <Card sx={{ width: 330, height: 160 }   }>
                 <CardContent className={"align_to_the_left"} sx={{alignItems: 'center'}}>
-                    <Typography variant="h5" color={"primary"}> Survival</Typography>
-                    <Typography variant="h6">Don't be last</Typography>
+                    <Typography variant="h5" color={"primary"}> Seek And Ye Shall Find</Typography>
+                    <Typography variant="h6">Your goal: <span style={{ color: 'pink' }}>Wine Bottle Cork</span></Typography>
                     <Typography variant="subtitle2">
-                        Lorem ipsum dolor sit amet
+                        The faster you find your object the more you gain.
+                        Anyone who doesn't find their object by the end of the timer must participate in the penalty.
+                        May the odds be ever in your favor.
                     </Typography>
                         <Typography display="block"> Mxbxnc xn vmz kc kcvjbck c,m </Typography>
-
-
-
-
                 </CardContent>
             </Card>
 
 
 
             <Card sx={{ width: 330, height: 240 } }>
-                <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"} name2={"Itay"} points2={240} bg2={"#EFB2B2"} name3={"?"} points3={0} bg3={"#78909C"} />
+                <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"}
+                             name2={"Itay"} points2={240} bg2={"#EFB2B2"}
+                             name3={"?"} points3={0} bg3={"#78909C"} />
                 </Card>
-
-
-
-
 
             <Timer_Component/>
 
-            <Button onClick={next}  variant="contained" size={"medium"}>I finished</Button>
+            <Button onClick={next}  startIcon={<AddAPhotoIcon />} variant="contained" size={"medium"}>I finished</Button>
 
         </div>
         </Background>

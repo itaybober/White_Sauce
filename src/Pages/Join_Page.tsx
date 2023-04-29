@@ -3,14 +3,14 @@ import "./Join_Page.css"
 import {TextField, Box} from '@mui/material';
 import Background from "../Components/Background";
 // @ts-ignore
-function Join_Page( {jump} ) {
+function Join_Page( {jump, toPage} ) {
 
     // @ts-ignore
     function enterValue(ev) {
         if (ev.key === "Enter"){
 
             // TODO work based on firebase
-            jump(4);
+            jump(toPage);
             ev.preventDefault();
         }
     }
