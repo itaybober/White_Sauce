@@ -4,7 +4,7 @@ import Background from "../Components/Background";
 import Box from "@mui/material/Box";
 
 // @ts-ignore
-function Start_Page({jump}) {
+function Start_Page({jump, toPage}) {
 
 
     function startPage(){
@@ -12,7 +12,7 @@ function Start_Page({jump}) {
     //     jump(whatever)
     }
     function joinPage(){
-        jump(3);
+        jump(toPage);
     }
 
 

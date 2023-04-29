@@ -15,7 +15,7 @@ export default function Punishment({ jump }: { jump: (arg: number) => void }) {
     const itemData = [{ img: 'image-1.jpg', title: 'Image 1' }];
 
     function next(){
-        jump(10)
+        jump(9)
     }
 
     return (

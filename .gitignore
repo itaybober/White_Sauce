@@ -18,9 +18,7 @@
 .env.test.local
 .env.production.local
 package-lock.json
-package.json
 tsconfig.json
-*.json
 *.xml
 *.iml
 

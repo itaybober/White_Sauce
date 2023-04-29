@@ -11,6 +11,19 @@ import Punishment from "./Punishment_page";
 import EndingPage from "./EndingPage";
 import Chwazi from "../Components/Chwazi";
 
+
+
+let IDDEBUG = 0;
+let IDSIGNUP = 1;
+let IDSTART = 2;
+let IDJOIN = 3;
+let IDFILTERS = 4;
+let IDCOVEN = 5;
+let IDGROUP = 6;
+let IDSURV = 7;
+let IDPUN = 8;
+let IDEND = 9;
+
 /*
     0 - debug
 
@@ -47,7 +60,7 @@ function GameManager() {
             page = <CovenantPage jump={setPage}/>;
             break;
         case 2:
-            page = <Start_Page jump={setPage}/>;
+            page = <Start_Page jump={setPage} toPage={IDJOIN}/>;
             break;
         case 3:
             page = <Join_Page jump={setPage}/>
@@ -67,7 +80,7 @@ function GameManager() {
         case 8:
             page = <Punishment jump={setPage}/>
             break;
-        case 10:
+        case 9:
             page = <EndingPage jump={setPage}/>
             break;
     }
