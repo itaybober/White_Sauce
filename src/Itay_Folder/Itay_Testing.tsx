@@ -5,15 +5,15 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import logo from '../Pages/images/step-1_logo.svg'
-import active_logo from '../Pages/images/running.svg'
-import shopping from '../Pages/images/shopping-cart.svg'
-import snacks from '../Pages/images/snacks.svg'
-import drinks from '../Pages/images/drink.svg'
-import night from '../Pages/images/night.svg'
-import sunshine from '../Pages/images/sunshine.svg'
-import waves from '../Pages/images/waves.svg'
-import bulb from '../Pages/images/bulb.svg'
+import logo from './images/step-1_logo.svg'
+import active_logo from './running.svg'
+import shopping from './images/shopping-cart.svg'
+import snacks from './images/snacks.svg'
+import drinks from './images/drink.svg'
+import night from './images/night.svg'
+import sunshine from './images/sunshine.svg'
+import waves from './images/waves.svg'
+import bulb from './images/bulb.svg'
 
 
 
