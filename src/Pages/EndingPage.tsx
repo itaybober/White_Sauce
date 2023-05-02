@@ -8,9 +8,12 @@ import Container from "@mui/material/Container";
 import GetAppIcon from '@mui/icons-material/GetApp';
 import ShareIcon from '@mui/icons-material/Share';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-function EndingPage() {
+// @ts-ignore
+function EndingPage({jump}) {
 
-
+    function next() {
+        jump(2);
+    }
 
 
     const itemData = [
@@ -67,7 +70,7 @@ function EndingPage() {
                     So What now?
                 </h2>
                 <Container sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '15px'}}>
-                    <Button variant="contained">New adventure</Button>
+                    <Button onClick={next} variant="contained">New adventure</Button>
                     <Button variant="contained">Bonus mission</Button>
                     <Button variant="contained">get da fuck outta heee</Button>
                 </Container>

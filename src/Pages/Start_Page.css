@@ -11,6 +11,8 @@
 #StartPage_Title {
     position: relative;
     top: 30%;
+    width: 80%;
+    text-justify: auto;
 }
 
 #StartPage_Button_Start {

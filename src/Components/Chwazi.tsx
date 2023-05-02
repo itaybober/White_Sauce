@@ -1,6 +1,6 @@
 
 import "./Chwazi.css";
-import Circle from "./Circle";
+import Circle from "../Achsaf_Folder/Circle";
 import React, { useState} from "react";
 
 

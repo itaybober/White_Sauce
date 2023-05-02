@@ -18,9 +18,9 @@ import bulb from './images/bulb.svg'
 import Button from "@mui/material/Button";
 import Background from "../Components/Background";
 // @ts-ignore
-export default function Filters({jump}) {
+export default function Filters({jump, toPage}) {
     function next(){
-        jump(5)
+        jump(toPage)
     }
 
     return(

@@ -4,28 +4,42 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import {Timer_Component} from "../Components/Timer_Component";
+import Timer_Component from "../Components/Timer_Component";
 import * as React from "react";
 import {ImageList, ImageListItem} from "@mui/material";
+import sockhands from './Souvenirs/sockhands.jpg'
+import {useState} from "react";
 
-
-export default function Punishment({ jump }: { jump: (arg: number) => void }) {
+// @ts-ignore
+export default function Punishment({ jump, toPage }) {
     const loser_player = "Guy";
 
-    const itemData = [{ img: 'image-1.jpg', title: 'Image 1' }];
+    const [itemData, setItemData] = useState([]);
 
     function next(){
-        jump(9)
+        jump(toPage)
     }
 
+    function forTheDemo(){
+        // @ts-ignore
+        setItemData([sockhands]);
+    }
+
+    // @ts-ignore
+    // @ts-ignore
     return (
         <div>
             <h1>It's punishment time</h1>
             <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <Card sx={{ width: 300, height: 300 }}>
-                    <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                        <Typography sx={{ fontSize: 22 }} color="red" gutterBottom>
-                            good good good looks like {loser_player} deserves a punishment!! In 15 seconds you will do something. If you are disqualified, you will forever be remembered as "The Big Big Loser"
+                <Card sx={{ width: 370, height: 410 }}>
+                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
+                        <Typography variant={"h6"} color="#F78585" >
+                            Well, well, well, look who we have here - the ultimate loser! As punishment,
+                            you must chug a beer in 30 seconds.
+                            We have another treat for you! You must wear your socks
+                            on your hands until the end of the evening - wait, what's that? You don't have socks?
+                            Well, looks like you'll have to borrow a pair from another contestant!
+                            Don't worry, they won't mind. After all, sharing is caring!
                         </Typography>
                     </CardContent>
                 </Card>
@@ -33,23 +47,23 @@ export default function Punishment({ jump }: { jump: (arg: number) => void }) {
 
             <div style={{ height: 20 }}></div>
 
-            <Timer_Component />
+            <Timer_Component timerLimit={30} />
 
             <div style={{ height: 20 }}></div>
 
             <h2>Loser - take a Loser photo </h2>
 
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-                <Button variant="contained" startIcon={<AddAPhotoIcon />}>Take a disgraceful Picture</Button>
+                <Button onClick={forTheDemo} variant="contained" startIcon={<AddAPhotoIcon />}>Take a disgraceful Picture</Button>
             </div>
 
             <ImageList variant="masonry" cols={2} gap={8} sx={{ display: 'flex', justifyContent: 'center' }}>
                 {itemData.map((item) => (
-                    <ImageListItem key={item.img}>
+                    <ImageListItem key={item}>
                         <img
-                            src={`${item.img}?w=248&fit=crop&auto=format`}
-                            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                            alt={item.title}
+                            src={`${item}?w=248&fit=crop&auto=format`}
+                            srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                            alt={item}
                             loading="lazy"
                             style={{ backgroundColor: 'gray', width: 200, height: 200, margin: 'auto' }}
                         />

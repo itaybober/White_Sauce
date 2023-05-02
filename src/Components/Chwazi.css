@@ -1,8 +1,7 @@
 #frame {
     height: 100%;
     width: 100%;
-    /*maya edit color:*/
-    border: solid #9fd2cc 10px;
+    border: solid #0176B5FF 10px;
     /*touch-action: none;*/
     box-sizing: border-box;
     overscroll-behavior: none;
