@@ -16,7 +16,7 @@ import sunshine from './images/sunshine.svg'
 import waves from './images/waves.svg'
 import bulb from './images/bulb.svg'
 import Button from "@mui/material/Button";
-import Background from "../Components/Background";
+
 // @ts-ignore
 export default function Filters({jump, toPage}) {
     function next(){
@@ -24,6 +24,7 @@ export default function Filters({jump, toPage}) {
     }
 
     return(
+
 
         <div className={"filter"}>
             <div className={"logo_container"}>
@@ -38,7 +39,7 @@ export default function Filters({jump, toPage}) {
                 looking for?
             </h1>
             <div className={"cards_container"}>
-                <MyCard icon={active_logo} text="Active" />
+                <MyCard icon={active_logo} text="active" />
                 <MyCard icon={shopping} text="supplies" />
                 <MyCard icon={snacks} text="snacks" />
                 <MyCard icon={waves} text="get wet" />
@@ -72,7 +73,7 @@ function MyCard(props: React.PropsWithChildren<{ icon: string; text: string }>) 
             sx={{
                 maxWidth: 160,
                 // maya edit:
-                backgroundColor: isActive ? "#6fa1ee" : "#54666D",
+                backgroundColor: isActive ? "#058378" : "#54666D",
             }}
             className={"card_container"}
             onClick={handleClick}

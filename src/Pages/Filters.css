@@ -16,9 +16,9 @@
 }
 
 .logo_container {
-
     display: flex;
-    justify-content: center;
+    align-items: center;
+    height: 130px;
 
     /*padding: 2em;*/
 }
@@ -31,13 +31,9 @@
 .card_container {
     width: 162px;
     height: 161px;
-    left: 0px;
-    top: 0px;
-
     /*background: #FFFFFF;*/
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
-
     display: flex;
     align-items: center;
 }
@@ -78,14 +74,15 @@
 
 .cards_container {
     /*position: absolute;*/
-    width: 353px;
+    width: 340px;
     height: 10%;
-    left: 38px;
+    /*left: 38px;*/
     top: 360px;
     overflow-y: scroll;
     display: flex;
     flex-wrap: wrap;
-    gap: 1em;
+    gap: 15px;
+    justify-content: space-between;
 
 
 
@@ -95,8 +92,9 @@
 .filter {
     display: flex;
     flex-direction: column;
-    align-content: center;
+    justify-content: space-evenly;
     align-items: center;
+
 }
 
 .go_button {
