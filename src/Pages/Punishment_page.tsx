@@ -9,6 +9,7 @@ import * as React from "react";
 import {ImageList, ImageListItem} from "@mui/material";
 import sockhands from './Souvenirs/sockhands.jpg'
 import {useState} from "react";
+import Background from "../Components/Background";
 
 // @ts-ignore
 export default function Punishment({ jump, toPage }) {
@@ -28,7 +29,7 @@ export default function Punishment({ jump, toPage }) {
     // @ts-ignore
     // @ts-ignore
     return (
-        <div>
+        <Background>
             <h1>It's punishment time</h1>
             <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <Card sx={{ width: 370, height: 410 }}>
@@ -77,6 +78,6 @@ export default function Punishment({ jump, toPage }) {
                     bottom: 0,
                     right: 0,
                 }} >Next</Button>
-        </div>
+        </Background>
     )
 }

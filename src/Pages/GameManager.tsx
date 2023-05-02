@@ -12,17 +12,19 @@ import EndingPage from "./EndingPage";
 import Chwazi from "../Components/Chwazi";
 
 
+const PAGES = {
+     IDEBUG : 0,
+     IDSIGNUP : 1,
+     IDSTART : 2,
+     IDJOIN : 3,
+     IDFILTERS : 4,
+     IDCOVEN : 5,
+     IDGROUP : 6,
+     IDSURV : 7,
+     IDPUN : 8,
+     IDEND : 9
+}
 
-const IDEBUG = 0;
-const IDSIGNUP = 1;
-const IDSTART = 2;
-const IDJOIN = 3;
-const IDFILTERS = 4;
-const IDCOVEN = 5;
-const IDGROUP = 6;
-const IDSURV = 7;
-const IDPUN = 8;
-const IDEND = 9;
 
 /*
     0 - debug
@@ -40,58 +42,52 @@ const IDEND = 9;
     8 - punishment
     //
 
-
     9 - Ending
-
-
  */
+
+
 function GameManager() {
 
-    const [curPage, setPage] = useState(IDEND)
+    const [curPage, setPage] = useState(PAGES.IDSTART)
 
-    let page;
+    let page = <div/>;
 
     console.log(curPage)
 
     switch (curPage) {
 
-        case IDEBUG:
+        case PAGES.IDSTART:
+            page = <Start_Page jump={setPage} toPage={PAGES.IDJOIN}/>;
+            break;
+        case PAGES.IDEBUG:
             // For debug and testing
             page = <Survival_mission jump={setPage} toPage={null}/>;
             break;
-        case IDSTART:
-            page = <Start_Page jump={setPage} toPage={IDJOIN}/>;
+        case PAGES.IDJOIN:
+            page = <Join_Page jump={setPage} toPage={PAGES.IDFILTERS}/>
             break;
-        case IDJOIN:
-            page = <Join_Page jump={setPage} toPage={IDFILTERS}/>
+        case PAGES.IDFILTERS:
+            page = <Filters jump={setPage} toPage={PAGES.IDCOVEN}/>
             break;
-        case IDFILTERS:
-            page = <Filters jump={setPage} toPage={IDCOVEN}/>
+        case PAGES.IDCOVEN:
+            page = <CovenantPage jump={setPage} toPage={PAGES.IDSURV}/>
             break;
-        case IDCOVEN:
-            page = <CovenantPage jump={setPage} toPage={IDSURV}/>
+        case PAGES.IDGROUP:
+            page = <GroupMission jump={setPage} toPage={PAGES.IDEND}/>
             break;
-        case IDGROUP:
-            page = <GroupMission jump={setPage} toPage={IDEND}/>
+        case PAGES.IDSURV:
+            page = <Survival_mission jump={setPage} toPage={PAGES.IDPUN}/>
             break;
-        case IDSURV:
-            page = <Survival_mission jump={setPage} toPage={IDPUN}/>
+        case PAGES.IDPUN:
+            page = <Punishment jump={setPage} toPage={PAGES.IDGROUP}/>
             break;
-        case IDPUN:
-            page = <Punishment jump={setPage} toPage={IDGROUP}/>
-            break;
-        case IDEND:
-            page = <EndingPage jump={setPage} toPage={IDSTART}/>
+        case PAGES.IDEND:
+            page = <EndingPage jump={setPage} toPage={PAGES.IDSTART}/>
             break;
     }
 
 
-    return(
-        <div style={{height: "100vh", width : "100vw"}}>
-            {page}
-        </div>
-
-    )
+    return(page)
 
 }
 

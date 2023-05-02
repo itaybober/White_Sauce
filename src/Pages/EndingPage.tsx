@@ -10,6 +10,10 @@ import sock from "./Souvenirs/sockhands.jpg"
 import rock from "./Souvenirs/ultimate rock paper scissors.jpg"
 import itay from "./Souvenirs/criptai.jpg"
 import winning from "./Souvenirs/winning.jpg"
+import tangle from "./Souvenirs/tangled.jpg"
+import tiger from "./Souvenirs/tiger.jpg"
+import comic from "./Souvenirs/comic.jpg"
+import Background from "../Components/Background";
 
 
 
@@ -21,12 +25,13 @@ function EndingPage({jump, toPage}) {
     }
 
 
-    const itemData = [  itay, sock,rock,friends ];
+    const itemData = [  itay, sock,rock,friends, comic, tiger, tangle ];
     return (
+
+        <Background>
         <div>
             <h1>
-                The Touching Ending
-
+                Achsaf Wins
             </h1>
 
             <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
@@ -39,7 +44,7 @@ function EndingPage({jump, toPage}) {
                 Souvenirs
             </h2>
 
-            <ImageList cols={2}  >
+            <ImageList cols={2} variant="masonry" >
                 {itemData.map((item) => (
                     <ImageListItem key={item} >
                         <img
@@ -71,6 +76,7 @@ function EndingPage({jump, toPage}) {
 
 
         </div>
+        </Background>
         )
 }
 

@@ -9,6 +9,7 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import CardContent from "@mui/material/CardContent";
+import Background from "../Components/Background";
 
 
 // TODO determined by number of players in firebase
@@ -29,7 +30,7 @@ function CovenantPage({jump, toPage}) {
 
     return(
 
-
+        <Background>
         <div id={"CovenantPage_Background"}>
             <Card sx={{flex:"auto",  position:'relative', width: "90%", height: 160, top: "2%", alignContent: "left" }   } >
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
@@ -51,6 +52,7 @@ function CovenantPage({jump, toPage}) {
                 <Chwazi setNumFingers={setNumFingers}/>
             </div>
         </div>
+        </Background>
     )
 }
 

@@ -8,7 +8,7 @@ import EndingPage from "./Pages/EndingPage";
 
 
 function App() {
-  return (
+    return (
     <div className="App">
         <GameManager/>
     </div>

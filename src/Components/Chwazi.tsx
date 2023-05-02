@@ -7,7 +7,7 @@ import React, { useState} from "react";
 
 // @ts-ignore
 
-function Chwazi({radius = 100, setNumFingers}) {
+function Chwazi({radius = 100, setNumFingers }) {
     const [touches, setTouches] = useState([]);
 
     // @ts-ignore
