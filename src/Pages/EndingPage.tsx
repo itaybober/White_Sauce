@@ -8,6 +8,8 @@ import Container from "@mui/material/Container";
 import GetAppIcon from '@mui/icons-material/GetApp';
 import ShareIcon from '@mui/icons-material/Share';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import Winner_list from "../Components/Winner_list";
+import "./EndingPage.css"
 // @ts-ignore
 function EndingPage({jump}) {
 
@@ -26,27 +28,36 @@ function EndingPage({jump}) {
         // Add more items here...
     ];
     return (
-        <div>
-            <h1>
-                The touching Ending
+        <Container sx={{display: "flex", flexFlow:"column" ,textAlign: "justify"}}>
+
+            <h1>The touching Ending
 
             </h1>
 
+
             <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <Card sx={{ width: 300, height: 300 }   }>
-                    <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                        <Typography sx={{ fontSize: 26 }} color="text.secondary" gutterBottom>
-                            כאן נשים את רשימת המנצחים/מדרגות יפות של ניצחון
-                        </Typography>
-                    </CardContent>
+                {/*maya edit:*/}
+                <Card sx={{ width: 370, height: 240 } }>
+                    <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"}
+                                 name2={"Itay"} points2={240} bg2={"#EFB2B2"}
+                                 name3={"Maya"} points3={150} bg3={"#c0a5ce"} />
                 </Card>
+                {/*<Card sx={{ width: 300, height: 300 }   }>*/}
+                {/*    <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>*/}
+                {/*        <Typography sx={{ fontSize: 26 }} color="text.secondary" gutterBottom>*/}
+                {/*            כאן נשים את רשימת המנצחים/מדרגות יפות של ניצחון*/}
+                {/*        </Typography>*/}
+                {/*    </CardContent>*/}
+                {/*</Card>*/}
             </Container>
+
 
             <h2 className="secnd_head" >
                 Souvenirs
             </h2>
-
-            <ImageList variant="masonry" cols={2} gap={8} >
+            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+<Card sx={{ width: 370, height: 140 } }>
+            <ImageList variant="masonry" cols={2} gap={10} >
                 {itemData.map((item) => (
                     <ImageListItem key={item.img} >
                         <img
@@ -59,27 +70,25 @@ function EndingPage({jump}) {
                     </ImageListItem>
                 ))}
             </ImageList>
+</Card>
+            </Container>
 
             <Container sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '15px'}}>
-                <Button variant="contained" startIcon={<GetAppIcon />}>Download</Button>
-                <Button variant="contained" startIcon={<ShareIcon/>}>Share</Button>
+                <Button size={"small"} variant="text" startIcon={<GetAppIcon />}>Download</Button>
+                <Button size={"small"} variant="text" startIcon={<ShareIcon/>}>Share</Button>
             </Container>
 
             <div>
                 <h2 >
                     So What now?
                 </h2>
+                {/*maya edit*/}
                 <Container sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '15px'}}>
-                    <Button onClick={next} variant="contained">New adventure</Button>
-                    <Button variant="contained">Bonus mission</Button>
-                    <Button variant="contained">get da fuck outta heee</Button>
+                    <Button onClick={next} variant="outlined">New adventure</Button>
+                    <Button variant="outlined">Bonus mission</Button>
+                    <Button variant="outlined">get dafuck outta heee</Button>
                 </Container>
             </div>
-
-
-
-        </div>
-        )
+        </Container>        )
 }
-
-export default EndingPage;
+export default EndingPage
