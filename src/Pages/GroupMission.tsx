@@ -7,10 +7,11 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
-export default function GroupMission({ jump }: { jump: (arg: number) => void }) {
-
+// @ts-ignore
+export default function GroupMission({jump, toPage}) {
+    // maya edit-
     function next(){
-        jump(7)
+        jump(toPage)
     }
 
     return (

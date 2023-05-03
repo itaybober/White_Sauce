@@ -82,7 +82,7 @@ function GameManager() {
             page = <Punishment jump={setPage} toPage={PAGES.IDGROUP}/>
             break;
         case PAGES.IDEND:
-            page = <EndingPage jump={setPage} toPage={PAGES.IDSTART}/>
+            page = <EndingPage jump={setPage}/>
             break;
     }
 
