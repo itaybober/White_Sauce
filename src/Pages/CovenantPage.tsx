@@ -30,8 +30,8 @@ function CovenantPage({jump, toPage}) {
     return(
         <div id={"CovenantPage_Background"}>
             <Card sx={{flex:"auto",  position:'relative', width: "90%", height: 160, top: "2%", alignContent: "left" }   } >
-                <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
-                    <Typography variant="h5" color={"primary"}> The Covenant </Typography>
+                <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "left"}}>
+                    <Typography variant="h4" color={"primary"}> The Covenant </Typography>
                     <Typography variant="h6" >Your New Ride or Die</Typography>
                     <Typography variant="h6">
                         The anticipation is palpable.<br/> You have all gathered here together in order to
@@ -40,8 +40,8 @@ function CovenantPage({jump, toPage}) {
                         each idea more exciting than the last, they knew they were in for an uplifting and
                         unforgettable experience.
                     </Typography>
-                    <Typography variant="subtitle2" >Press your finger to the square, but remeber...<br/> No Backsies</Typography>
-                    <Typography variant="subtitle1" ><br/> <br/> -- Adele</Typography>
+                    <Typography variant="subtitle2" ><br/>Press your finger to the square, but remeber...<br/> No Backsies</Typography>
+
                 </CardContent>
             </Card>
 

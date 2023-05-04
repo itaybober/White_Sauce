@@ -14,7 +14,7 @@ import tangle from "./Souvenirs/tangled.jpg"
 import tiger from "./Souvenirs/tiger.jpg"
 import comic from "./Souvenirs/comic.jpg"
 import Background from "../Components/Background";
-
+import "./EndingPage.css"
 
 
 // @ts-ignore
@@ -27,9 +27,7 @@ function EndingPage({jump, toPage}) {
 
     const itemData = [  itay, sock,rock,friends, comic, tiger, tangle ];
     return (
-
-        <Background>
-            <div>
+         <div className={"Ending_page_component"}>
                 <h1>
                     Achsaf Wins
                 </h1>
@@ -76,7 +74,7 @@ function EndingPage({jump, toPage}) {
 
 
             </div>
-        </Background>
+
     )
 }
 

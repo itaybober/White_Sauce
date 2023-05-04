@@ -57,7 +57,7 @@ export default function Survival({jump, toPage}) {
         setItemData([itay])
     }
 
-    return (<Background>
+    return (
         <div className={"survival_page_component"}>
 
             <Avatar_and_points name={"Maya"} points={430}/>
@@ -107,7 +107,7 @@ export default function Survival({jump, toPage}) {
                 right: 0,
             }} >Next</Button>
         </div>
-        </Background>
+        
     );
 
 }

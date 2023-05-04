@@ -1,13 +1,9 @@
-h1{
-    text-align: center;
-}
-.Ending_page_component {
+.punishment_page_component {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     gap: 8px;
-    /*height: 100vh;*/
-    /*width: 100vw;*/
-
 }
+/*height: 100vh;*/
+/*width: 100vw;*/
