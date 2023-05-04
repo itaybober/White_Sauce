@@ -33,7 +33,6 @@ import Background from "../Components/Background"
 import itay from './Souvenirs/criptai.jpg'
 import Demo from "../Achsaf_Folder/Demo";
 import Winner_list from "../Components/Winner_list";
-import Punishment from "./Punishment_page";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import {useState} from "react";
 import {ImageList, ImageListItem} from "@mui/material";

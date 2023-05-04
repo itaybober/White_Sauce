@@ -7,22 +7,22 @@ import Background from "../Components/Background";
 import CovenantPage from "./CovenantPage";
 import Survival_mission from "./Survival_mission"
 import GroupMission from "./GroupMission";
-import Punishment from "./Punishment_page";
+import Punishment from "./Punishment_Page";
 import EndingPage from "./EndingPage";
 import Chwazi from "../Components/Chwazi";
 
 
 const PAGES = {
-     IDEBUG : 0,
-     IDSIGNUP : 1,
-     IDSTART : 2,
-     IDJOIN : 3,
-     IDFILTERS : 4,
-     IDCOVEN : 5,
-     IDGROUP : 6,
-     IDSURV : 7,
-     IDPUN : 8,
-     IDEND : 9
+     DEBUG : 0,
+     SIGNUP : 1,
+     START : 2,
+     JOIN : 3,
+     FILTERS : 4,
+     COVEN : 5,
+     GROUP : 6,
+     SURV : 7,
+     PUN : 8,
+     END : 9
 }
 
 
@@ -48,7 +48,7 @@ const PAGES = {
 
 function GameManager() {
 
-    const [curPage, setPage] = useState(PAGES.IDSTART)
+    const [curPage, setPage] = useState(PAGES.START)
 
     let page = <div/>;
 
@@ -56,33 +56,33 @@ function GameManager() {
 
     switch (curPage) {
 
-        case PAGES.IDSTART:
-            page = <Start_Page jump={setPage} toPage={PAGES.IDJOIN}/>;
+        case PAGES.START:
+            page = <Start_Page jump={setPage} toPage={PAGES.JOIN}/>;
             break;
-        case PAGES.IDEBUG:
+        case PAGES.DEBUG:
             // For debug and testing
             page = <Survival_mission jump={setPage} toPage={null}/>;
             break;
-        case PAGES.IDJOIN:
-            page = <Join_Page jump={setPage} toPage={PAGES.IDFILTERS}/>
+        case PAGES.JOIN:
+            page = <Join_Page jump={setPage} toPage={PAGES.FILTERS}/>
             break;
-        case PAGES.IDFILTERS:
-            page = <Filters jump={setPage} toPage={PAGES.IDCOVEN}/>
+        case PAGES.FILTERS:
+            page = <Filters jump={setPage} toPage={PAGES.COVEN}/>
             break;
-        case PAGES.IDCOVEN:
-            page = <CovenantPage jump={setPage} toPage={PAGES.IDSURV}/>
+        case PAGES.COVEN:
+            page = <CovenantPage jump={setPage} toPage={PAGES.SURV}/>
             break;
-        case PAGES.IDGROUP:
-            page = <GroupMission jump={setPage} toPage={PAGES.IDEND}/>
+        case PAGES.GROUP:
+            page = <GroupMission jump={setPage} toPage={PAGES.END}/>
             break;
-        case PAGES.IDSURV:
-            page = <Survival_mission jump={setPage} toPage={PAGES.IDPUN}/>
+        case PAGES.SURV:
+            page = <Survival_mission jump={setPage} toPage={PAGES.PUN}/>
             break;
-        case PAGES.IDPUN:
-            page = <Punishment jump={setPage} toPage={PAGES.IDGROUP}/>
+        case PAGES.PUN:
+            page = <Punishment jump={setPage} toPage={PAGES.GROUP}/>
             break;
-        case PAGES.IDEND:
-            page = <EndingPage jump={setPage}/>
+        case PAGES.END:
+            page = <EndingPage jump={setPage} toPage={PAGES.START}/>
             break;
     }
 
