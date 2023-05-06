@@ -9,16 +9,22 @@
     width: 100vw;
 }
 
+#JoinPage_Logo {
+    position: relative;
+    top: 5%;
+
+}
+
 #JoinPage_Title{
     position: relative;
-    top: 30%;
+    top: 25%;
     width: 80%;
     text-justify: auto;
 }
 
 #JoinPage_Input {
-    /*position: relative;*/
-    /*top: 50%;*/
+    position: relative;
+    top: 30%;
 }
 
 
