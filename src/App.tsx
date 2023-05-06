@@ -12,7 +12,7 @@ function App() {
     return (
     <div className="App">
         <Background>
-        <GameManager/>
+            <GameManager/>
         </Background>
     </div>
   );

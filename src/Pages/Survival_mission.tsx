@@ -60,9 +60,7 @@ export default function Survival({jump, toPage}) {
 
     return (
         <Container className={"survival_page_component"} >
-
             <Avatar_and_points name={"Maya"} points={430} />
-
             <Card sx={{ width: 330, height: 280 }   } >
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
                     <Typography variant="h5" color={"primary"}> <b> Seek And Ye Shall Find</b></Typography>
@@ -110,7 +108,6 @@ export default function Survival({jump, toPage}) {
 
             <Button onClick={next} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 10,
-
             }} >Next</Button>
         </Container>
 
