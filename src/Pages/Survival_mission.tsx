@@ -63,22 +63,23 @@ export default function Survival({jump, toPage}) {
 
             <Avatar_and_points name={"Maya"} points={430} />
 
-            <Card sx={{ width: 330, height: 280 }   } >
+            <Card sx={{ width: 330, height: 390 }   } >
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
                     <Typography variant="h5" color={"primary"}> <b> Seek And Ye Shall Find</b></Typography>
-                    <Typography variant="body1">Your goal: <span style={{ color: 'pink' }}>Wine Bottle Cork</span></Typography>
-                    <Typography variant="body1">
+                    <Typography variant="h6">Your goal: <span style={{ color: 'pink' }}>Wine Bottle Cork</span></Typography>
+                    <Typography variant="h6">
                         The faster you find your object the more you gain.
                         Anyone who doesn't find their object by the end of the timer must participate in the penalty.
                         May the odds be ever in your favor.
                     </Typography>
-                        <Typography display="block">Take a photo of yourself with your new spirit object.</Typography>
+                        <Typography variant="h6" display="block"><br/>Take a photo of yourself with your new spirit object.</Typography>
                 </CardContent>
             </Card>
 
             <Timer_Component timerLimit={60}/>
+
             <Container sx={{ width: 330, flex: 1 }}  >
-                <Typography variant={"h6"}>To finish your task take a picture<br/><br/></Typography>
+                <Typography variant={"h6"}><br/>To finish your task take a picture<br/><br/></Typography>
             <Button onClick={addPhoto}  startIcon={<AddAPhotoIcon />} color= {"info"} variant="contained" size={"medium"}>Proof Of Concept</Button>
 
 
