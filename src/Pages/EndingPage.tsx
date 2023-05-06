@@ -15,7 +15,8 @@ import tiger from "./Souvenirs/tiger.jpg"
 import comic from "./Souvenirs/comic.jpg"
 import Background from "../Components/Background";
 import "./EndingPage.css"
-
+import Typography from '@mui/material/Typography';
+import {grey} from "@mui/material/colors";
 
 // @ts-ignore
 function EndingPage({jump, toPage}) {
@@ -25,24 +26,27 @@ function EndingPage({jump, toPage}) {
     }
 
 
-    const itemData = [  itay, sock,rock,friends, comic, tiger, tangle ];
+    const itemData = [sock,rock,friends, comic, tiger, tangle ];
     return (
          <div className={"Ending_page_component"}>
-                <h1>
-                    Achsaf Wins
-                </h1>
-
+             {/*<Typography variant="h4" sx={{p:2}}> Summary</Typography>*/}
+<Container sx={{p:3}}>
+    <Typography variant="h3" > Achsaf wins!</Typography>
+    <Typography variant="h5" > He gets 500 extra points!</Typography>
+</Container>
                 <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                    <Card sx={{ width: 300, height: 300 }   }>
-                        <img src={winning} width={450} height={305}/>
+                    <Card sx={{ width: 350, height: 250 }   }>
+                        <img src={winning} width={350} height={250}  style={{ borderRadius: '10px' }}/>
                     </Card>
                 </Container>
 
-                <h2 className="secnd_head" >
-                    Souvenirs
-                </h2>
 
-                <ImageList cols={2} variant="masonry" >
+<Container>
+                 <Typography variant="h3"><br/> Souvenirs</Typography>
+                 <Typography variant="h5"> Wow what an adventure we had together!</Typography>
+</Container>
+                <ImageList sx={{ width: 350 }}
+                           cols={2} variant="masonry" gap={10} >
                     {itemData.map((item) => (
                         <ImageListItem key={item} >
                             <img
@@ -50,24 +54,37 @@ function EndingPage({jump, toPage}) {
                                 srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
                                 alt={item}
                                 loading="lazy"
-                                style={{ backgroundColor: 'gray' }}
+                                style={{ borderRadius: '10px' }}
                             />
                         </ImageListItem>
                     ))}
                 </ImageList>
+             <Container sx={{ display: 'flex', justifyContent: "center", alignItems: "center", gap: '15px'}}>
+                 <Button  variant="contained" startIcon={<GetAppIcon />} style={{ borderRadius: '10px' }}>Download</Button>
+                 <Button  variant="contained"  startIcon={<ShareIcon/>} style={{ borderRadius: '10px' }}>Share</Button>
 
-                <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px'}}>
-                    <Button variant="contained" startIcon={<GetAppIcon />}>Download</Button>
-                    <Button variant="contained" startIcon={<ShareIcon/>}>Share</Button>
-                </Container>
+             </Container>
 
-             <div className="button-container">
-                 <h2>So What now?</h2>
-                 <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px', padding: '20px'}}>
-                     <Button onClick={next} variant="contained">New adventure</Button>
-                     <Button variant="contained">Bonus mission</Button>
-                 </Container>
-             </div>
+
+             <Container>
+                 <Typography variant="h5"> <br></br><br/><i> "A wonderful journey begins with <b>one step" </b>
+                     And you just did it!</i></Typography>
+             </Container>
+
+
+                    <Typography variant="h3"> <br></br>So What now?</Typography>
+                    <Typography variant="h5">We are ready for the next step!</Typography>
+                    <Container sx={{ display: 'flex', justifyContent: "center", alignItems: "center", gap: '15px',p:2}}>
+                        <Button onClick={next} variant="contained">New adventure</Button>
+                        <Button variant="contained">Bonus mission</Button>
+                    </Container>
+                        <Typography variant="h5"><br/><br/>That's all for today</Typography>
+             <Container sx={{ display: 'flex', justifyContent:"center",alignItems: "center", gap: '15px',p:2}}>
+                 <Button  variant="contained" >Save & exit</Button>
+             </Container>
+
+
+
 
 
 
