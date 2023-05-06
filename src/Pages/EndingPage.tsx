@@ -61,15 +61,13 @@ function EndingPage({jump, toPage}) {
                     <Button variant="contained" startIcon={<ShareIcon/>}>Share</Button>
                 </Container>
 
-                <div>
-                    <h2 >
-                        So What now?
-                    </h2>
-                    <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px'}}>
-                        <Button onClick={next} variant="contained">New adventure</Button>
-                        <Button variant="contained">Bonus mission</Button>
-                    </Container>
-                </div>
+             <div className="button-container">
+                 <h2>So What now?</h2>
+                 <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px', padding: '20px'}}>
+                     <Button onClick={next} variant="contained">New adventure</Button>
+                     <Button variant="contained">Bonus mission</Button>
+                 </Container>
+             </div>
 
 
 
