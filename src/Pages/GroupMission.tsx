@@ -12,7 +12,7 @@ import Background from "../Components/Background"
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import {useState} from "react";
 import {ImageList, ImageListItem} from "@mui/material";
-import friends from "./Souvenirs/friends hanging out and being buddies.jpg"
+import friends from "./Souvenirs/tangled.jpg"
 
 // we need to add the stepper here later
 
@@ -43,21 +43,24 @@ export default function GroupMission({jump, toPage}) {
                 <Card sx={{ width: 370, height: 530 }   }>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
                         <Typography variant="h5" color={"primary"}>The Human Pretzel</Typography>
+
                         <Typography variant="h6">
-                            Gather round and stand in a circle facing each other. Reach out a hand
-                            and grab a friends hand,
-                            <span style={{ color: 'pink' }}> tight and strong like your friendship</span>.
-                            Got a hand? Good, a hand with, socks?
-                            even better. Now reach
-                            out another hand to a weaker friend with your weaker hand. The goal is simple you must untangle
-                            your hands without letting go of each others hands. The task is complete when you all stand
-                            in a circle with no crossed hands among you.
+                            Gather round in a circle and face each other. Each one must grab two friends at random,
+                            you must untangle yourselves without letting go. <br/><br/>
+                            You win when everyone is as open as their hearts.
+
+                            {/*Gather round and stand in a circle facing each other. Reach out a hand*/}
+                            {/*and grab a friends hand,*/}
+                            {/*<span style={{ color: 'pink' }}> tight and strong like your friendship</span>.*/}
+                            {/*Got a hand? Good, a hand with, socks?*/}
+                            {/*even better. Now reach*/}
+                            {/*out another hand to a weaker friend with your weaker hand. The goal is simple you must untangle*/}
+                            {/*your hands without letting go of each others hands. The task is complete when you all stand*/}
+                            {/*in a circle with no crossed hands among you.*/}
                         </Typography>
+
                     </CardContent>
                 </Card>
-
-
-                <Timer_Component timerLimit={60}/>
 
                 <Button onClick={addPhoto}  startIcon={<AddAPhotoIcon />} variant="contained" size={"medium"}>Proof Of Concept</Button>
 

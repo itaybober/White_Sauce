@@ -90,7 +90,7 @@ export default function Survival({jump, toPage}) {
                             srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
                             alt={item}
                             loading="lazy"
-                            style={{ backgroundColor: 'gray', width: 200, height: 200, margin: 'auto' }}
+                            style={{borderRadius: '10px', backgroundColor: 'gray', width: 200, height: 200, margin: 'auto' }}
                         />
                     </ImageListItem>
                 ))}
