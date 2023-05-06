@@ -160,15 +160,16 @@ const theme = createTheme({
                 },
             },
         },
-        // MuiButton: {
-        //         styleOverrides: {
-        //             root: {
-        //                 size: 2,
-        //                 background: '#37454d',
-        //
-        //             },
-        //         },
-        // },
+        MuiButton: {
+                styleOverrides: {
+                    root: {
+                        size: 2,
+                        background: '#37454d',
+                        borderRadius: '10px'
+
+                    },
+                },
+        },
 
             },
 
