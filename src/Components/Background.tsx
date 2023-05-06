@@ -33,7 +33,7 @@ const gradient = "linear-gradient("+angle+"deg, "+colors+")";
 return (
     <div className={className} id={id} style={{
         backgroundImage: gradient,
-        minHeight: 896
+        minHeight: 'min-content'
     }} >
         {children}
     </div>
