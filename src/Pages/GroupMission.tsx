@@ -11,7 +11,7 @@ import Timer_Component from "../Components/Timer_Component"
 import Background from "../Components/Background"
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import {useState} from "react";
-import {ImageList, ImageListItem} from "@mui/material";
+import {Container, ImageList, ImageListItem} from "@mui/material";
 import friends from "./Souvenirs/tangled.jpg"
 
 // we need to add the stepper here later
@@ -35,11 +35,9 @@ export default function GroupMission({jump, toPage}) {
         setItemData([friends])
     }
 
-    return (<Background>
-            <div className={"survival_page_component"}>
-
+    return (
+            <Container className={"survival_page_component"}>
                 <Avatar_and_points name={"Maya"} points={600}/>
-
                 <Card sx={{ width: 370, height: 530 }   }>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
                         <Typography variant="h5" color={"primary"}>The Human Pretzel</Typography>
@@ -78,13 +76,9 @@ export default function GroupMission({jump, toPage}) {
                     ))}
                 </ImageList>
                 <Button onClick={next} variant="contained" color="primary" size={"medium"} sx={{
-                    mb: 2,
-                    position: 'fixed',
-                    bottom: 0,
-                    right: 0,
+                    mb: 10,
                 }} >Next</Button>
-            </div>
-        </Background>
+            </Container>
     );
 
 }

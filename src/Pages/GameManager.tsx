@@ -48,7 +48,7 @@ const PAGES = {
 
 function GameManager() {
 
-    const [curPage, setPage] = useState(PAGES.SURV)
+    const [curPage, setPage] = useState(PAGES.GROUP)
 
     let page = <div/>;
 
