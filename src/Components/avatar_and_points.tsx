@@ -12,12 +12,12 @@ import Container from "@mui/material/Container";
 export  default function Avatar_and_points({name, points}) {
     return (
 
-    <Container sx={{width: 360, height: 90, display: 'flex', flexDirection: 'row', justifyContent:  "space-between", alignItems: 'center' }   }>
+    <Container sx={{width: 360, height: 100, display: 'flex', flexDirection: 'row', justifyContent:  "space-between", alignItems: 'center' }   }>
 
         <Avatar sx={{bgcolor: "#90ece4" ,width: 60, height: 60}}> MS </Avatar>
         <Container sx={{width: 280, height: 65, display: 'flex', flexDirection: 'column', justifyContent:  "space-between", alignItems: 'flex-start'}   }>
             <Typography
-            variant="h6"> {name} </Typography>
+            variant="h5"> {name} </Typography>
 
             <Card sx={{ width: 250, height: 45 }   }>
 

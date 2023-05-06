@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import {deepOrange, deepPurple, grey} from '@mui/material/colors';
 import CircularProgress, {
     CircularProgressProps,
 } from '@mui/material/CircularProgress';
@@ -36,6 +36,7 @@ import Winner_list from "../Components/Winner_list";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import {useState} from "react";
 import {ImageList, ImageListItem} from "@mui/material";
+import Container from "@mui/material/Container";
 // we need to add the stepper here later
 
 // function  winner_list_update({name,points,bg}){
@@ -58,15 +59,15 @@ export default function Survival({jump, toPage}) {
     }
 
     return (
-        <div className={"survival_page_component"}>
+        <Container className={"survival_page_component"} >
 
-            <Avatar_and_points name={"Maya"} points={430}/>
+            <Avatar_and_points name={"Maya"} points={430} />
 
-            <Card sx={{ width: 370, height: 320 }   }>
+            <Card sx={{ width: 330, height: 280 }   } >
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
-                    <Typography variant="h5" color={"primary"}> Seek And Ye Shall Find</Typography>
-                    <Typography variant="h6">Your goal: <span style={{ color: 'pink' }}>Wine Bottle Cork</span></Typography>
-                    <Typography variant="h6">
+                    <Typography variant="h5" color={"primary"}> <b> Seek And Ye Shall Find</b></Typography>
+                    <Typography variant="body1">Your goal: <span style={{ color: 'pink' }}>Wine Bottle Cork</span></Typography>
+                    <Typography variant="body1">
                         The faster you find your object the more you gain.
                         Anyone who doesn't find their object by the end of the timer must participate in the penalty.
                         May the odds be ever in your favor.
@@ -75,19 +76,13 @@ export default function Survival({jump, toPage}) {
                 </CardContent>
             </Card>
 
-
-
-            <Card sx={{ width: 370, height: 240 } }>
-                <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"}
-                             name2={"Itay"} points2={240} bg2={"#EFB2B2"}
-                             name3={"?"} points3={0} bg3={"#78909C"} />
-                </Card>
-
             <Timer_Component timerLimit={60}/>
+            <Container sx={{ width: 330, flex: 1 }}  >
+                <Typography variant={"h6"}>To finish your task take a picture<br/><br/></Typography>
+            <Button onClick={addPhoto}  startIcon={<AddAPhotoIcon />} color= {"info"} variant="contained" size={"medium"}>Proof Of Concept</Button>
 
-            <Button onClick={addPhoto}  startIcon={<AddAPhotoIcon />} variant="contained" size={"medium"}>Proof Of Concept</Button>
 
-            <ImageList variant="masonry" cols={2} gap={8} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <ImageList variant="masonry" cols={2} gap={8} sx={{ display: 'flex', justifyContent: 'center'  ,flex: 1 }}>
                 {itemData.map((item) => (
                     <ImageListItem key={item}>
                         <img
@@ -100,14 +95,25 @@ export default function Survival({jump, toPage}) {
                     </ImageListItem>
                 ))}
             </ImageList>
+            </Container>
+
+
+            <Card sx={{ width: 330, height: 340 } }>
+                <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
+                <Typography variant="h5" color={"primary"}> <b>You better hurry people are starting to finish...</b></Typography>
+                <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"}
+                             name2={"?"} points2={0} bg2={"#78909C"}
+                             name3={"?"} points3={0} bg3={"#78909C"} />
+                </CardContent>
+                </Card>
+
+
             <Button onClick={next} variant="contained" color="primary" size={"medium"} sx={{
-                mb: 2,
-                position: 'fixed',
-                bottom: 0,
-                right: 0,
+                mb: 10,
+
             }} >Next</Button>
-        </div>
-        
+        </Container>
+
     );
 
 }
