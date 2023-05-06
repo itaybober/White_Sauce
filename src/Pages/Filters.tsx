@@ -51,9 +51,12 @@ export default function Filters({jump, toPage}) {
             </div>
             <p></p>
             {/*maya edit:*/}
-            <Button onClick={next} variant="contained">
-                let's goooo
-            </Button>
+            <div style={{ padding: '20px' }}>
+                <Button onClick={next} variant="contained">
+                    let's goooo
+                </Button>
+
+            </div>
         </div>
 
     );

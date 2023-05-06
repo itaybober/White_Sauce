@@ -36,7 +36,7 @@ function EndingPage({jump, toPage}) {
 </Container>
                 <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <Card sx={{ width: 350, height: 250 }   }>
-                        <img src={winning} width={350} height={250} />
+                        <img src={winning} width={350} height={250}  style={{ borderRadius: '10px' }}/>
                     </Card>
                 </Container>
 
@@ -54,15 +54,14 @@ function EndingPage({jump, toPage}) {
                                 srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
                                 alt={item}
                                 loading="lazy"
-
-                                // style={{gap: 20 }}
+                                style={{ borderRadius: '10px' }}
                             />
                         </ImageListItem>
                     ))}
                 </ImageList>
              <Container sx={{ display: 'flex', justifyContent: "center", alignItems: "center", gap: '15px'}}>
-                 <Button  variant="contained" startIcon={<GetAppIcon />}>Download</Button>
-                 <Button  variant="contained" startIcon={<ShareIcon/>}>Share</Button>
+                 <Button  variant="contained" startIcon={<GetAppIcon />} style={{ borderRadius: '10px' }}>Download</Button>
+                 <Button  variant="contained"  startIcon={<ShareIcon/>} style={{ borderRadius: '10px' }}>Share</Button>
 
              </Container>
 

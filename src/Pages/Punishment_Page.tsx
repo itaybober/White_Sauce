@@ -33,14 +33,23 @@ export default function Punishment({ jump, toPage }) {
             <h1>It's punishment time</h1>
             <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <Card sx={{ width: 370, height: 410 }}>
-                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
-                        <Typography variant={"h6"} color="#F78585" >
-                            Well, well, well, look who we have here - the ultimate loser! As punishment,
-                            you must chug a beer in 30 seconds.
-                            We have another treat for you! You must wear your socks
-                            on your hands until the end of the evening - wait, what's that? You don't have socks?
-                            Well, looks like you'll have to borrow a pair from another contestant!
-                            Don't worry, they won't mind. After all, sharing is caring!
+                    <CardContent sx={{ display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
+                        <Typography  sx={{lineHeight: '20px'}} variant={"h6"} color="#F78585" >
+                            You lost, sucks to suck. <br/><br/>
+                            You got one shot,<br/> don't miss your chance to blow <br/><br/>
+                            You gotta freestyle,<br/> put on a good show <br/><br/>
+                            But if too many verses, <br/> dont manage to land <br/><br/>
+                            For the rest of the evening, <br/> you must wear socks on your hands
+
+                            {/*Well, well, well, look who we have here - the ultimate loser! As punishment,*/}
+                            {/*you must chug a beer in 30 seconds.*/}
+                            {/*We have another treat for you! You must wear your socks*/}
+                            {/*on your hands until the end of the evening - wait, what's that? You don't have socks?*/}
+                            {/*Well, looks like you'll have to borrow a pair from another contestant!*/}
+                            {/*Don't worry, they won't mind. After all, sharing is caring!*/}
+                        </Typography>
+                        <Typography>
+
                         </Typography>
                     </CardContent>
                 </Card>
@@ -66,7 +75,7 @@ export default function Punishment({ jump, toPage }) {
                             srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
                             alt={item}
                             loading="lazy"
-                            style={{ backgroundColor: 'gray', width: 200, height: 200, margin: 'auto' }}
+                            style={{borderRadius: '10px', backgroundColor: 'gray', width: 200, height: 200, margin: 'auto' }}
                         />
                     </ImageListItem>
                 ))}

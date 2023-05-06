@@ -48,7 +48,7 @@ const PAGES = {
 
 function GameManager() {
 
-    const [curPage, setPage] = useState(PAGES.COVEN)
+    const [curPage, setPage] = useState(PAGES.SURV)
 
     let page = <div/>;
 
@@ -56,12 +56,12 @@ function GameManager() {
 
     switch (curPage) {
 
-        case PAGES.START:
-            page = <Start_Page jump={setPage} toPage={PAGES.JOIN}/>;
-            break;
         case PAGES.DEBUG:
             // For debug and testing
             page = <Survival_mission jump={setPage} toPage={null}/>;
+            break;
+        case PAGES.START:
+            page = <Start_Page jump={setPage} toPage={PAGES.JOIN}/>;
             break;
         case PAGES.JOIN:
             page = <Join_Page jump={setPage} toPage={PAGES.FILTERS}/>
