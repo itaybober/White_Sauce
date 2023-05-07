@@ -23,30 +23,30 @@ export default function Winner_list({name1, points1, bg1 ,name2, points2,bg2,nam
             <ListItem>
                 <ListItemAvatar>
                     <Avatar
-                        sx={{ bgcolor: bg1 }}>
+                        sx={{ width: 45, height: 45,bgcolor: bg1 }}>
                         {name1.slice(0, 2)}
                     </Avatar>
                 </ListItemAvatar>
-                <ListItemText sx={{ color: "#ececec" }} primary={name1} secondary={points1} />
+                <ListItemText sx={{color: "#ececec" }} primary={name1} secondary={points1} primaryTypographyProps={{ variant: 'h6' }} secondaryTypographyProps={{variant:"h6"}} />
             </ListItem>
 
             <ListItem>
                 <ListItemAvatar>
                     <Avatar
-                        sx={{ bgcolor: bg2 }}>
+                        sx={{width: 45, height: 45, bgcolor: bg2  }} sizes={""}>
                         {name2.slice(0, 2)}
                     </Avatar>
                 </ListItemAvatar>
-                <ListItemText sx={{ color: "#ececec" }} primary={name2} secondary={points2} />
+                <ListItemText sx={{ color: "#ececec" }} primary={name2} secondary={points2} primaryTypographyProps={{ variant: 'h6' }} secondaryTypographyProps={{variant:"h6"}}/>
             </ListItem>
 
             <ListItem>
                 <ListItemAvatar>
-                    <Avatar sx={{bgcolor: bg3}}>
+                    <Avatar sx={{width: 45, height: 45,bgcolor: bg3}}>
                         {name3.slice(0, 2)}
                     </Avatar>
                 </ListItemAvatar>
-                <ListItemText sx={{ color: "#ececec" }} primary={name3} secondary={points3} />
+                <ListItemText sx={{ color: "#ececec" }} primary={name3} secondary={points3} primaryTypographyProps={{ variant: 'h6' }} secondaryTypographyProps={{variant:"h6"}} />
             </ListItem>
         </List>
     );

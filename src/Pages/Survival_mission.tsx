@@ -59,7 +59,7 @@ export default function Survival({jump, toPage}) {
     }
 
     return (
-        <Container className={"survival_page_component"} >
+        <Container className={"survival_page_component"} sx={{p:2}} >
 
             <Avatar_and_points name={"Maya"} points={430} />
 
@@ -79,7 +79,7 @@ export default function Survival({jump, toPage}) {
             <Timer_Component timerLimit={60}/>
 
             <Container sx={{ width: 330, flex: 1 }}  >
-                <Typography variant={"h6"}><br/>To finish your task take a picture<br/><br/></Typography>
+                <Typography variant={"h5"}><br/>To finish your task take a picture<br/><br/></Typography>
             <Button onClick={addPhoto}  startIcon={<AddAPhotoIcon />} color= {"info"} variant="contained" size={"medium"}>Proof Of Concept</Button>
 
 
@@ -99,7 +99,7 @@ export default function Survival({jump, toPage}) {
             </Container>
 
 
-            <Card sx={{ width: 330, height: 340 } }>
+            <Card sx={{ width: 330, height: 370 } }>
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
                 <Typography variant="h5" color={"primary"}> <b>You better hurry people are starting to finish...</b></Typography>
                 <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"}
@@ -110,7 +110,7 @@ export default function Survival({jump, toPage}) {
 
 
             <Button onClick={next} variant="contained" color="primary" size={"medium"} sx={{
-                mb: 10,
+                mb: 4,
 
             }} >Next</Button>
         </Container>
