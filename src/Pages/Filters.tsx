@@ -16,6 +16,7 @@ import sunshine from './images/sunshine.svg'
 import waves from './images/waves.svg'
 import bulb from './images/bulb.svg'
 import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
 
 // @ts-ignore
 export default function Filters({jump, toPage}) {
@@ -26,18 +27,14 @@ export default function Filters({jump, toPage}) {
     return(
 
 
-        <div className={"filter"}>
-            <div className={"logo_container"}>
+        <Container className={"filter"} sx={{p:5}}>
+            {/*<div className={"logo_container"}>*/}
                 <img src={logo} width={103} height={85}/>
-            </div>
-            <h1
-                // style={{fontSize: 40}} maya edit
-                className={"text_container"}
-            >
-                what are you
+            {/*</div>*/}
+            <Typography variant={"h4"}  className={"text_container"}><b>what are you
                 <br/>
-                looking for?
-            </h1>
+                looking for?</b></Typography>
+
             <div className={"cards_container"}>
                 <MyCard icon={active_logo} text="active" />
                 <MyCard icon={shopping} text="supplies" />
@@ -49,7 +46,7 @@ export default function Filters({jump, toPage}) {
                 <MyCard icon={drinks} text="drinks" />
 
             </div>
-            <p></p>
+
             {/*maya edit:*/}
             <div style={{ padding: '20px' }}>
                 <Button onClick={next} variant="contained">
@@ -57,7 +54,7 @@ export default function Filters({jump, toPage}) {
                 </Button>
 
             </div>
-        </div>
+        </Container>
 
     );
 }
