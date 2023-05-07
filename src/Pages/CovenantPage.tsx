@@ -34,7 +34,7 @@ function CovenantPage({jump, toPage}) {
             <div id={"CovenantPage_Logo"}>
                 <img src={logo} width={103} height={85}/>
             </div>
-            <Card sx={{flex:"auto",  position:'relative', width: "90%", height: 160, top: "2%", alignContent: "left" }   } >
+            <Card sx={{flex:"auto",  position:'relative', width: "90%", height: 420, top: "2%", alignContent: "left" }   } >
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "left"}}>
                     <Typography variant="h4" color={"primary"}> The Covenant </Typography>
                     <Typography variant="h6" >Your New Ride or Die</Typography>

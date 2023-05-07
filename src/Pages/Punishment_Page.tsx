@@ -11,6 +11,7 @@ import sockhands from './Souvenirs/sockhands.jpg'
 import {useState} from "react";
 import Background from "../Components/Background";
 import "./Punishment_Page.css"
+import Avatar_and_points from "../Components/avatar_and_points";
 // @ts-ignore
 export default function Punishment({ jump, toPage }) {
     const loser_player = "Guy";
@@ -29,12 +30,15 @@ export default function Punishment({ jump, toPage }) {
     // @ts-ignore
     // @ts-ignore
     return (
-        <div className={"punishment_page_component"}>
-            <h1>It's punishment time</h1>
+        <Container className={"punishment_page_component"}>
+            <Avatar_and_points name={"Maya"} points={430} />
+
             <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+
                 <Card sx={{ width: 370, height: 410 }}>
-                    <CardContent sx={{ display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
-                        <Typography  sx={{lineHeight: '20px'}} variant={"h6"} color="#F78585" >
+                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
+                        <Typography variant="h5" color={"secondary"}> <b> It's punishment time</b></Typography>
+                        <Typography  sx={{lineHeight: '20px'}} variant={"h6"} >
                             You lost, sucks to suck. <br/><br/>
                             You got one shot,<br/> don't miss your chance to blow <br/><br/>
                             You gotta freestyle,<br/> put on a good show <br/><br/>
@@ -87,6 +91,6 @@ export default function Punishment({ jump, toPage }) {
                 bottom: 0,
                 right: 0,
             }} >Next</Button>
-        </div>
+        </Container>
     )
 }

@@ -4,8 +4,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-Content: space-evenly;
-    height: 130vh;
+    justify-Content: space-around;
+    height: 100vh;
     padding: 2%;
     /*width: 100%;*/
     gap: 30px;
