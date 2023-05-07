@@ -9,7 +9,7 @@ import * as React from "react";
 import {ImageList, ImageListItem} from "@mui/material";
 import sockhands from './Souvenirs/sockhands.jpg'
 import {useState} from "react";
-import Background from "../Components/Background";
+import Background_loser from "../Components/Background-loser";
 import "./Punishment_Page.css"
 import Avatar_and_points from "../Components/avatar_and_points";
 // @ts-ignore
@@ -30,16 +30,17 @@ export default function Punishment({ jump, toPage }) {
     // @ts-ignore
     // @ts-ignore
     return (
-        <Container className={"punishment_page_component"}>
+<Background_loser>
+    <Container className={"punishment_page_component"}>
             <Avatar_and_points name={"Maya"} points={430} />
 
             <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
 
-                <Card sx={{ width: 370, height: 410 }}>
+                <Card sx={{ width: 370, height: 370 }}>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
                         <Typography variant="h5" color={"secondary"}> <b> It's punishment time</b></Typography>
                         <Typography  sx={{lineHeight: '20px'}} variant={"h6"} >
-                            You lost, sucks to suck. <br/><br/>
+                            <br/>You lost, sucks to suck. <br/><br/>
                             You got one shot,<br/> don't miss your chance to blow <br/><br/>
                             You gotta freestyle,<br/> put on a good show <br/><br/>
                             But if too many verses, <br/> dont manage to land <br/><br/>
@@ -59,17 +60,17 @@ export default function Punishment({ jump, toPage }) {
                 </Card>
             </Container>
 
-            <div style={{ height: 20 }}></div>
+            {/*<div style={{ height: 20 }}></div>*/}
 
             <Timer_Component timerLimit={30} />
 
-            <div style={{ height: 20 }}></div>
+            {/*<div style={{ height: 20 }}></div>*/}
 
-            <h2>Loser - take a Loser photo </h2>
+            <Typography variant={"h5"}> <br></br>Loser - take a Loser photo </Typography>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-                <Button onClick={forTheDemo} variant="contained" startIcon={<AddAPhotoIcon />}>Take a disgraceful Picture</Button>
-            </div>
+            {/*<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>*/}
+                <Button onClick={forTheDemo} variant="contained" color={"secondary"} startIcon={<AddAPhotoIcon />}>Take a disgraceful Picture</Button>
+            {/*</div>*/}
 
             <ImageList variant="masonry" cols={2} gap={8} sx={{ display: 'flex', justifyContent: 'center' }}>
                 {itemData.map((item) => (
@@ -85,12 +86,12 @@ export default function Punishment({ jump, toPage }) {
                 ))}
             </ImageList>
 
-            <Button onClick={next} variant="contained" color="primary" size={"medium"} sx={{
-                mb: 2,
-                position: 'fixed',
-                bottom: 0,
-                right: 0,
+            <Button onClick={next} variant="contained"  size={"medium"} sx={{
+                mb: 2
+                // position: 'fixed',
+
             }} >Next</Button>
         </Container>
+</Background_loser>
     )
 }
