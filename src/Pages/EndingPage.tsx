@@ -31,7 +31,7 @@ function EndingPage({jump, toPage}) {
          <div className={"Ending_page_component"}>
              {/*<Typography variant="h4" sx={{p:2}}> Summary</Typography>*/}
 <Container sx={{p:3}}>
-    <Typography variant="h3" > Achsaf wins!</Typography>
+    <Typography variant="h3" color={"primary"}><b> Achsaf wins!</b></Typography>
     <Typography variant="h5" > He gets 500 extra points!</Typography>
 </Container>
                 <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
@@ -41,9 +41,9 @@ function EndingPage({jump, toPage}) {
                 </Container>
 
 
-<Container>
-                 <Typography variant="h3"><br/> Souvenirs</Typography>
-                 <Typography variant="h5"> Wow what an adventure we had together!</Typography>
+<Container >
+                 <Typography variant="h4" color={"primary"}><br/>Souvenirs</Typography>
+                 <Typography variant="h6"> Wow what an adventure we had!</Typography>
 </Container>
                 <ImageList sx={{ width: 350 }}
                            cols={2} variant="masonry" gap={10} >
@@ -72,13 +72,13 @@ function EndingPage({jump, toPage}) {
              </Container>
 
 
-                    <Typography variant="h3"> <br></br>So What now?</Typography>
-                    <Typography variant="h5">We are ready for the next step!</Typography>
+                    <Typography variant="h4" color={"primary"}> <br></br>So What now?</Typography>
+                    <Typography variant="h6">We are ready for the next step!</Typography>
                     <Container sx={{ display: 'flex', justifyContent: "center", alignItems: "center", gap: '15px',p:2}}>
                         <Button onClick={next} variant="contained">New adventure</Button>
                         <Button variant="contained">Bonus mission</Button>
                     </Container>
-                        <Typography variant="h5"><br/><br/>That's all for today</Typography>
+                        <Typography variant="h6"><br/><br/>That's all for today</Typography>
              <Container sx={{ display: 'flex', justifyContent:"center",alignItems: "center", gap: '15px',p:2}}>
                  <Button  variant="contained" >Save & exit</Button>
              </Container>
