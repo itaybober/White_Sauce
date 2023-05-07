@@ -13,7 +13,7 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import {useState} from "react";
 import {Container, ImageList, ImageListItem} from "@mui/material";
 import friends from "./Souvenirs/tangled.jpg"
-
+import "./GroupMission.css"
 // we need to add the stepper here later
 
 // function  winner_list_update({name,points,bg}){
@@ -36,9 +36,10 @@ export default function GroupMission({jump, toPage}) {
     }
 
     return (
-            <Container className={"survival_page_component"}>
+            <Container className={"group_mission_component"}>
+
                 <Avatar_and_points name={"Maya"} points={600}/>
-                <Card sx={{ width: 370, height: 530 }   }>
+                <Card sx={{ width: 330, height: 330 }   }>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
                         <Typography variant="h5" color={"primary"}>The Human Pretzel</Typography>
 
@@ -76,7 +77,7 @@ export default function GroupMission({jump, toPage}) {
                     ))}
                 </ImageList>
                 <Button onClick={next} variant="contained" color="primary" size={"medium"} sx={{
-                    mb: 10,
+                    mb: 3,
                 }} >Next</Button>
             </Container>
     );
