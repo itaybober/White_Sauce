@@ -9,6 +9,8 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import CardContent from "@mui/material/CardContent";
+import logo from "./images/step-1_logo.svg";
+import Container from "@mui/material/Container";
 
 
 // TODO determined by number of players in firebase
@@ -28,7 +30,10 @@ function CovenantPage({jump, toPage}) {
 
 
     return(
-        <div id={"CovenantPage_Background"}>
+        <Container id={"CovenantPage_Background"}>
+            <div id={"CovenantPage_Logo"}>
+                <img src={logo} width={103} height={85}/>
+            </div>
             <Card sx={{flex:"auto",  position:'relative', width: "90%", height: 160, top: "2%", alignContent: "left" }   } >
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "left"}}>
                     <Typography variant="h4" color={"primary"}> The Covenant </Typography>
@@ -40,7 +45,7 @@ function CovenantPage({jump, toPage}) {
                         each idea more exciting than the last, they knew they were in for an uplifting and
                         unforgettable experience.
                     </Typography>
-                    <Typography variant="subtitle2" ><br/>Press your finger to the square, but remeber...<br/> No Backsies</Typography>
+                    <Typography variant="body1" ><br/>Press your finger to the square, but remeber...<br/> No Backsies</Typography>
 
                 </CardContent>
             </Card>
@@ -48,7 +53,7 @@ function CovenantPage({jump, toPage}) {
             <div id={"CovenantPage_ChwaziContainer"} onTouchStart={startGame} onTouchEnd={startGame} onTouchMove={startGame} >
                 <Chwazi setNumFingers={setNumFingers}/>
             </div>
-        </div>
+        </Container>
     )
 }
 

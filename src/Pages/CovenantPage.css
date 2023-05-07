@@ -4,8 +4,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    justify-Content: space-evenly;
+    height: 130vh;
+    padding: 2%;
     /*width: 100%;*/
+    gap: 30px;
+}
+#CovenantPage_Logo {
+    position: relative;
+    top: 3%;
 }
 
 #CovenantPage_ChwaziContainer{
