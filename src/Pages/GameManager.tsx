@@ -10,6 +10,7 @@ import GroupMission from "./GroupMission";
 import Punishment from "./Punishment_page";
 import EndingPage from "./EndingPage";
 import Chwazi from "../Components/Chwazi";
+import Main_Page from "./Main_Page";
 
 
 
@@ -23,6 +24,7 @@ const IDGROUP = 6;
 const IDSURV = 7;
 const IDPUN = 8;
 const IDEND = 9;
+const IDAUTH = 10;
 
 /*
     0 - debug
@@ -47,18 +49,18 @@ const IDEND = 9;
  */
 function GameManager() {
 
-    const [curPage, setPage] = useState(IDEND)
+    const [curPage, setPage] = useState(IDAUTH)
 
     let page;
 
     console.log(curPage)
 
     switch (curPage) {
-
         case IDEBUG:
             // For debug and testing
             page = <Survival_mission jump={setPage} toPage={null}/>;
             break;
+
         case IDSTART:
             page = <Start_Page jump={setPage} toPage={IDJOIN}/>;
             break;
@@ -83,6 +85,8 @@ function GameManager() {
         case IDEND:
             page = <EndingPage jump={setPage} toPage={IDSTART}/>
             break;
+        case IDAUTH:
+            page = <Main_Page jump={setPage} toPage={IDSTART}/>;
     }
 
 
