@@ -1,82 +1,101 @@
+import {IconButton, LinearProgress, TextField} from "@mui/material";
+
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import { deepOrange, deepPurple } from '@mui/material/colors';
+import CircularProgress, {
+    CircularProgressProps,
+} from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Container from "@mui/material/Container";
-import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import Timer_Component from "../Components/Timer_Component";
-import * as React from "react";
-import {ImageList, ImageListItem} from "@mui/material";
-import sockhands from './Souvenirs/sockhands.jpg'
-import {useState} from "react";
+import CameraIcon from '@mui/icons-material/Camera';
+// import Dugma from "./Dugma";
 
-// @ts-ignore
-export default function Punishment({ jump, toPage }) {
-    const loser_player = "Guy";
 
-    const [itemData, setItemData] = useState([]);
 
-    function next(){
-        jump(toPage)
-    }
 
-    function forTheDemo(){
-        // @ts-ignore
-        setItemData([sockhands]);
-    }
+function punishment() {
 
-    // @ts-ignore
-    // @ts-ignore
     return (
         <div>
-            <h1>It's punishment time</h1>
-            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <Card sx={{ width: 370, height: 410 }}>
-                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
-                        <Typography variant={"h6"} color="#F78585" >
-                            Well, well, well, look who we have here - the ultimate loser! As punishment,
-                            you must chug a beer in 30 seconds.
-                            We have another treat for you! You must wear your socks
-                            on your hands until the end of the evening - wait, what's that? You don't have socks?
-                            Well, looks like you'll have to borrow a pair from another contestant!
-                            Don't worry, they won't mind. After all, sharing is caring!
-                        </Typography>
-                    </CardContent>
-                </Card>
-            </Container>
+            )
+            // LinearProgress- head of the page
+            <LinearProgress color="secondary"/>
+            <LinearProgress color="success"/>
+            <LinearProgress color="inherit"/>
 
-            <div style={{ height: 20 }}></div>
+            // Avatar- head of the page
+            <Avatar sx={{ bgcolor: deepOrange[500] }}>MS</Avatar>
 
-            <Timer_Component timerLimit={30} />
+            // the content of the mission
+            // box=the bg
+            <Box
+                sx={{
+                    width: 360,
+                    height: 182,
+                    backgroundColor: 'primary.dark'}}/>
 
-            <div style={{ height: 20 }}></div>
+                <Typography variant="h4" >It's punishment time</Typography>
+                <Typography variant="subtitle2" >Lorem ipsum dolor sit amet, consec
+                    tetur adipiscing elit
+                    dcvndknv
+                    klcnjxvnxknvkcvc </Typography>
 
-            <h2>Loser - take a Loser photo </h2>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-                <Button onClick={forTheDemo} variant="contained" startIcon={<AddAPhotoIcon />}>Take a disgraceful Picture</Button>
-            </div>
+            <IconButton aria-label="photo_camera" size="large">
+                <CameraIcon fontSize="small" />
+                </IconButton>
 
-            <ImageList variant="masonry" cols={2} gap={8} sx={{ display: 'flex', justifyContent: 'center' }}>
-                {itemData.map((item) => (
-                    <ImageListItem key={item}>
-                        <img
-                            src={`${item}?w=248&fit=crop&auto=format`}
-                            srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                            alt={item}
-                            loading="lazy"
-                            style={{ backgroundColor: 'gray', width: 200, height: 200, margin: 'auto' }}
-                        />
-                    </ImageListItem>
-                ))}
-            </ImageList>
-
-                <Button onClick={next} variant="contained" color="primary" size={"medium"} sx={{
-                    mb: 2,
-                    position: 'fixed',
-                    bottom: 0,
-                    right: 0,
-                }} >Next</Button>
+            //button in the bottom part
+            <Button variant="contained" color="primary" size={"medium"} >I finished</Button>
         </div>
     )
 }
+
+export default punishment
+
+// timer-bottom of the page
+// function CircularProgressWithLabel(
+//     props: CircularProgressProps & { value: number },
+// ) {
+//     return (
+//         <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+//             <CircularProgress variant="determinate" {...props} />
+//             <Box
+//                 sx={{
+//                     top: 0,
+//                     left: 0,
+//                     bottom: 0,
+//                     right: 0,
+//                     position: 'absolute',
+//                     display: 'flex',
+//                     alignItems: 'center',
+//                     justifyContent: 'center',
+//                 }}
+//             >
+//                 <Typography
+//                     variant="caption"
+//                     component="div"
+//                     color="text.secondary"
+//                 >{`${Math.round(props.value)}%`}</Typography>
+//             </Box>
+//         </Box>
+//     );
+// }
+//
+// export default function CircularStatic() {
+//     const [progress, setProgress] = React.useState(10);
+//
+//     React.useEffect(() => {
+//         const timer = setInterval(() => {
+//             setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
+//         }, 800);
+//         return () => {
+//             clearInterval(timer);
+//         };
+//     }, []);
+//
+//     return <CircularProgressWithLabel value={progress} />;
+// }
