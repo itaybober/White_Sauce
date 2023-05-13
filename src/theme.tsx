@@ -59,10 +59,10 @@ const theme = createTheme({
     palette: {
         mode:"dark",
         primary: {
-            contrastText: '#1e1f22',
-            main: '#90ece4',
-            light: '#9fd2cc',
-            dark: '#508c86',
+            contrastText: '#f8faf8',
+            main: '#60a9a2',
+            light: '#5b5f62',
+            dark: '#344044',
 
         },
         secondary: {
@@ -74,11 +74,11 @@ const theme = createTheme({
         background: {
 
             default: 'rgb(30,31,34)',
-            paper: '#1e1f22',
+            paper: '#ffffff',
         },
         text: {
-            secondary: '#afbdbb',
-            disabled: '#b6cbc8',
+            secondary: '#ffffff',
+            disabled: '#ffffff',
             primary: '#ffffff',
 
         },
@@ -94,6 +94,8 @@ const theme = createTheme({
 
     },
     typography : {
+
+
         // fontFamily: 'Didact Gothic',
 
 
@@ -105,14 +107,15 @@ const theme = createTheme({
         },
 
         h2: {
-            // fontFamily: "Didactic",
 
+            // fontFamily: "Didactic",
         },
         h3: {
             // fontFamily: "Calibre",
 
         },
         h4: {
+
             // fontFamily: "Calibre",
 
         },
@@ -156,6 +159,16 @@ const theme = createTheme({
                     text: 'primary'
                 },
             },
+        },
+        MuiButton: {
+                styleOverrides: {
+                    root: {
+                        size: 2,
+                        background: '#37454d',
+                        borderRadius: '10px'
+
+                    },
+                },
         },
 
             },

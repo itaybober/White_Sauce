@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import Button from "@mui/material/Button";
 
-export default function Timer_Component({timerLimit = 15}) {
+interface TimerProps {
+    timerLimit?: number;
+}
+
+export default function Timer_Component({timerLimit = 15}: TimerProps) {
     const [timeLeft, setTimeLeft] = useState(timerLimit);
     const [timerStarted, setTimerStarted] = useState(false);
 
@@ -27,6 +31,11 @@ export default function Timer_Component({timerLimit = 15}) {
         return `${minutes}:${seconds}`;
     };
 
+    const timeStyle = {
+        fontSize: timerStarted ? "4rem" : "1rem", // increase font size if timer has started
+        cursor: "pointer",
+    };
+
     return (
         <>
             <Button
@@ -38,7 +47,7 @@ export default function Timer_Component({timerLimit = 15}) {
                 Start Timer
             </Button>{" "}
             {timerStarted && (
-                <span style={{ cursor: "pointer" }} onClick={startTimer}>
+                <span style={timeStyle} onClick={startTimer}>
                     {formatTime(timeLeft)}
                 </span>
             )}

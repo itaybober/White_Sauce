@@ -1,18 +1,15 @@
-
-
-.survival_page_component {
+.punishment_page_component {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     gap: 30px;
-    /*position: relative;*/
-    text-justify: auto;
-    /*top: 50px;*/
-
-
-    /*width: 100vw;*/
+    padding: 2%;
 
 }
 
 
+
+#fuckBR{
+    line-height: 1.5;
+}

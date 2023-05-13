@@ -5,12 +5,15 @@ import Survival_mission from "./Pages/Survival_mission";
 import {ThemePage} from "./Pages/Theme_page";
 import GameManager from "./Pages/GameManager";
 import EndingPage from "./Pages/EndingPage";
+import Background from "./Components/Background";
 
 
 function App() {
-  return (
+    return (
     <div className="App">
-        <GameManager/>
+        <Background>
+            <GameManager/>
+        </Background>
     </div>
   );
 }

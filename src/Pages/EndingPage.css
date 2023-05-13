@@ -1,0 +1,15 @@
+
+.Ending_page_component {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /*text-align: start;*/
+    gap: 15px;
+    padding: 2%;
+
+}
+
+.button-container {
+    padding: 20px;
+}
