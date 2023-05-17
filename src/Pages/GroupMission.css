@@ -1,0 +1,20 @@
+
+
+.group_mission_component {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 30px;
+    /*position: relative;*/
+    text-justify: auto;
+    padding: 2%;
+    min-height: 844px;
+    /*top: 50px;*/
+
+
+    /*width: 100vw;*/
+
+}
+
+

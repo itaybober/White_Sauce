@@ -1,0 +1,117 @@
+
+.container_filters_col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2em;
+}
+
+.container_filters_row {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: normal;
+
+}
+
+.logo_container {
+    display: flex;
+    align-items: center;
+    /*height: 150px;*/
+    position: relative;
+    top: 50px;
+
+}
+    /*padding: 2em;*/
+/*}*/
+
+.text_container {
+    display: flex;
+    justify-content: center;
+}
+
+.card_container {
+    width: 162px;
+    height: 161px;
+    /*background: #FFFFFF;*/
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.card_media {
+    width: 45%;
+    height: 45%;
+    left: 44px;
+    top: 225px;
+    display: flex;
+    margin: auto;
+
+    justify-content: space-evenly;
+}
+
+#drinks {
+    margin: auto;
+    width: 44%;
+    height: 44%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.typo_card {
+    width: 120px;
+    padding: 5px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 22px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #011B3D;
+}
+
+.cards_container {
+    /*position: absolute;*/
+    width: 340px;
+    height: 10%;
+    /*left: 38px;*/
+    top: 360px;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+
+
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 30px;
+
+
+
+}
+
+.go_button {
+    width: 247px;
+    height: 42px;
+    color: black;
+    background: #FFFFFF;
+    border-radius: 15px;
+    margin: 30px;
+}
+.go_button:hover {
+    background: black;
+    color: #FFFFFF;
+}

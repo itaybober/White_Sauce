@@ -1,24 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+// import App from './App';
+// import reactTutorial from "./Itay_Folder/react tutorial";
+// import main_page from "./Pages/main_page";
 import reportWebVitals from './reportWebVitals';
-import FirebaseTest from "./Achsaf_Folder/FirebaseTest";
-import Chwazi from "./Achsaf_Folder/Chwazi";
-import Demo from "./Achsaf_Folder/Demo";
-import Dugma from "./Pages/Dugma";
-import Background from "./Components/Background";
+// import FirebaseTest from "./Achsaf_Folder/FirebaseTest";
+// import Chwazi from "./Achsaf_Folder/Chwazi";
+// import Demo from "./Achsaf_Folder/Demo";
+// import Dugma from "./Pages/Dugma";
+// import Survival_mission from "./Pages/Survival_mission";
+import { StyledEngineProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
+import Filters from "./Pages/Filters";
+import Mainpage from "./Pages/main_page";
+import App from "./App";
+
+
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 
 root.render(
+
   <React.StrictMode>
-      <Background>
-        <Dugma />
-      </Background>
-      {/*<App />*/}
+      <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <App/>
+          </ThemeProvider>
+      </StyledEngineProvider>
   </React.StrictMode>
 );
 

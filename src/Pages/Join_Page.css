@@ -1,0 +1,30 @@
+
+
+
+#JoinPage_Background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+#JoinPage_Logo {
+    position: relative;
+    top: 5%;
+
+}
+
+#JoinPage_Title{
+    position: relative;
+    top: 25%;
+    width: 80%;
+    text-justify: auto;
+}
+
+#JoinPage_Input {
+    position: relative;
+    top: 30%;
+}
+
+
