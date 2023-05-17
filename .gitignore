@@ -18,8 +18,9 @@
 .env.test.local
 .env.production.local
 package-lock.json
-package.json
-tsconfig.json
+*.xml
+*.iml
+
 
 
 npm-debug.log*
