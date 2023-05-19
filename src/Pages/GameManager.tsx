@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Start_Page from "./Start_Page";
 import Join_Page from "./Join_Page";
 import Filters from "./Filters";
@@ -10,7 +10,8 @@ import GroupMission from "./GroupMission";
 import Punishment from "./Punishment_Page";
 import EndingPage from "./EndingPage";
 import Chwazi from "../Components/Chwazi";
-
+import { db } from "../Achsaf_Folder/firebase-config"
+import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 
 const PAGES = {
      DEBUG : 0,
@@ -45,20 +46,34 @@ const PAGES = {
     9 - Ending
  */
 
-
+function generateRandomNumber() {
+    const min = 1000;
+    const max = 9999;
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    return randomNumber;
+}
 function GameManager() {
 
-    const [curPage, setPage] = useState(PAGES.GROUP)
+    useEffect(() => {
+         setGameId(generateRandomNumber());
+    }, []);
+
+
+
+    const [curPage, setPage] = useState(PAGES.DEBUG)
+    const [gameId, setGameId] = useState(0)
 
     let page = <div/>;
 
-    console.log(curPage)
+    // console.log(curPage)
+    // console.log(gameId)
 
     switch (curPage) {
 
         case PAGES.DEBUG:
             // For debug and testing
-            page = <Survival_mission jump={setPage} toPage={null}/>;
+            // @ts-ignore
+            page = <FirebaseTest id={gameId}/>;
             break;
         case PAGES.START:
             page = <Start_Page jump={setPage} toPage={PAGES.JOIN}/>;
