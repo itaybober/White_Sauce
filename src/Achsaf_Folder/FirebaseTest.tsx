@@ -1,50 +1,41 @@
-
-import './FireBaseTest.css';
-
-
-import { useState } from "react";
-import { db } from "./firebase-config";
-import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore"
-
-// TODO for this to work run "npm install firebase" in the terminal
+import { useEffect } from 'react';
+import { db } from './firebase-config';
+import { doc, setDoc, addDoc, collection } from 'firebase/firestore';
+import {Game} from "../Components/Classes"
+// import firebase from "firebase/compat";
+// import Timestamp = firebase.firestore.Timestamp;
 
 
 
-function FirebaseTest() {
 
-    const docRef = doc(db, "DataBase", "Counter");
+// @ts-ignore
+function FirebaseTest( {id}) {
 
-    const [count, setCount] = useState(0)
 
-    onSnapshot(docRef, (docSnap) => {
-        if (docSnap.exists()) {
-            setCount(docSnap.data().Value);
-        }
-    });
-    async function add() {
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            await setDoc(docRef, {Value: (docSnap.data().Value + 1)})
-        }
+
+
+
+
+
+    async function newGame() {
+        await setDoc(doc(db, 'Games', 'ID: ' + id.toString()), {
+            ID: id.toString(),
+            Players: 'CA',
+            country: 'USA',
+        });
     }
-    async function sub() {
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            await setDoc(docRef, {Value: (docSnap.data().Value - 1)})
+    const game = new Game();
+
+    useEffect( () => {
+        return () => {
+            const game = new Game()
+            Game.addGameToFirestore(game)
         }
-    }
+    },[])
 
 
-
-    return (
-        <div id={"container"}>
-        <button id={"plus"} className={"bute"} onClick={add}>+</button>
-        <span className={"bute"}>{count}</span>
-        <button id={"minus"} className={"bute"} onClick={sub}>-</button>
-        </div>
-    );
-
-
+    // addGameToFirestore(game)
+    return <div></div>;
 }
 
 export default FirebaseTest;

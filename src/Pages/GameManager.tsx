@@ -7,12 +7,24 @@ import Background from "../Components/Background";
 import CovenantPage from "./CovenantPage";
 import Survival_mission from "./Survival_mission"
 import GroupMission from "./GroupMission";
-import Punishment from "./Punishment_page";
+import Punishment from "./Punishment_Page";
 import EndingPage from "./EndingPage";
 import Chwazi from "../Components/Chwazi";
-import Main_Page from "./Main_Page";
+import { db } from "../Achsaf_Folder/firebase-config"
+import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 
-
+const PAGES = {
+     DEBUG : 0,
+     SIGNUP : 1,
+     START : 2,
+     JOIN : 3,
+     FILTERS : 4,
+     COVEN : 5,
+     GROUP : 6,
+     SURV : 7,
+     PUN : 8,
+     END : 9
+}
 
 const IDEBUG = 0;
 const IDSIGNUP = 1;
@@ -42,60 +54,67 @@ const IDAUTH = 10;
     8 - punishment
     //
 
-
     9 - Ending
-
-
  */
+
+function generateRandomNumber() {
+    const min = 1000;
+    const max = 9999;
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    return randomNumber;
+}
 function GameManager() {
 
-    const [curPage, setPage] = useState(IDAUTH)
+    useEffect(() => {
+         setGameId(generateRandomNumber());
+    }, []);
 
-    let page;
+
+
+    const [curPage, setPage] = useState(PAGES.DEBUG)
+    const [gameId, setGameId] = useState(0)
+
+    let page = <div/>;
 
     console.log(curPage)
 
     switch (curPage) {
-        case IDEBUG:
-            // For debug and testing
-            page = <Survival_mission jump={setPage} toPage={null}/>;
-            break;
 
-        case IDSTART:
-            page = <Start_Page jump={setPage} toPage={IDJOIN}/>;
+        case PAGES.DEBUG:
+            // For debug and testing
+            // @ts-ignore
+            page = <FirebaseTest id={gameId}/>;
             break;
-        case IDJOIN:
-            page = <Join_Page jump={setPage} toPage={IDFILTERS}/>
+        case PAGES.START:
+            page = <Start_Page jump={setPage} toPage={PAGES.JOIN}/>;
             break;
-        case IDFILTERS:
-            page = <Filters jump={setPage} toPage={IDCOVEN}/>
+        case PAGES.JOIN:
+            page = <Join_Page jump={setPage} toPage={PAGES.FILTERS}/>
             break;
-        case IDCOVEN:
-            page = <CovenantPage jump={setPage} toPage={IDSURV}/>
+        case PAGES.FILTERS:
+            page = <Filters jump={setPage} toPage={PAGES.COVEN}/>
             break;
-        case IDGROUP:
-            page = <GroupMission jump={setPage} toPage={IDEND}/>
+        case PAGES.COVEN:
+            page = <CovenantPage jump={setPage} toPage={PAGES.SURV}/>
             break;
-        case IDSURV:
-            page = <Survival_mission jump={setPage} toPage={IDPUN}/>
+        case PAGES.GROUP:
+            page = <GroupMission jump={setPage} toPage={PAGES.END}/>
             break;
-        case IDPUN:
-            page = <Punishment jump={setPage} toPage={IDGROUP}/>
+        case PAGES.SURV:
+            page = <Survival_mission jump={setPage} toPage={PAGES.PUN}/>
             break;
-        case IDEND:
-            page = <EndingPage jump={setPage} toPage={IDSTART}/>
+        case PAGES.PUN:
+            page = <Punishment jump={setPage} toPage={PAGES.GROUP}/>
+            break;
+        case PAGES.END:
+            page = <EndingPage jump={setPage} toPage={PAGES.START}/>
             break;
         case IDAUTH:
             page = <Main_Page jump={setPage} toPage={IDSTART}/>;
     }
 
 
-    return(
-        <div style={{height: "100vh", width : "100vw"}}>
-            {page}
-        </div>
-
-    )
+    return(page)
 
 }
 
