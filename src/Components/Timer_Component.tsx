@@ -6,18 +6,18 @@ interface TimerProps {
 }
 
 export default function Timer_Component({timerLimit = 15}: TimerProps) {
-    const [timeLeft, setTimeLeft] = useState(timerLimit);
+    const [timeElapsed, setTimeElapsed] = useState(0);
     const [timerStarted, setTimerStarted] = useState(false);
 
     useEffect(() => {
         let timer: NodeJS.Timeout | undefined;
-        if (timerStarted && timeLeft > 0) {
-            timer = setTimeout(() => {
-                setTimeLeft(timeLeft - 1);
+        if (timerStarted) {
+            timer = setInterval(() => {
+                setTimeElapsed((prevTime) => prevTime + 1);
             }, 1000);
         }
-        return () => clearTimeout(timer!);
-    }, [timerStarted, timeLeft]);
+        return () => clearInterval(timer!);
+    }, [timerStarted]);
 
     const startTimer = () => {
         setTimerStarted((prev) => !prev);
@@ -44,11 +44,11 @@ export default function Timer_Component({timerLimit = 15}: TimerProps) {
                 onClick={startTimer}
                 disabled={timerStarted}
             >
-                Start Timer
+                Start Clock
             </Button>{" "}
             {timerStarted && (
                 <span style={timeStyle} onClick={startTimer}>
-                    {formatTime(timeLeft)}
+                    {formatTime(timeElapsed)}
                 </span>
             )}
         </>
