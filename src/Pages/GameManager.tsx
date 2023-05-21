@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Start_Page from "./Start_Page";
 import Join_Page from "./Join_Page";
 import Filters from "./Filters";
@@ -7,11 +7,15 @@ import Background from "../Components/Background";
 import CovenantPage from "./CovenantPage";
 import Survival_mission from "./Survival_mission"
 import GroupMission from "./GroupMission";
-import Punishment from "./Punishment_Page";
+// import Punishment from "./Punishment_Page";
 import EndingPage from "./EndingPage";
 import Chwazi from "../Components/Chwazi";
-import { db } from "../Achsaf_Folder/firebase-config"
-import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
+// import { db } from "../Achsaf_Folder/firebase-config"
+// import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
+import { db } from "../config/firebase"
+import Main_Page from "./Main_Page";
+import Punishment from "./PunishmentPage";
+
 
 const PAGES = {
      DEBUG : 0,
@@ -23,20 +27,10 @@ const PAGES = {
      GROUP : 6,
      SURV : 7,
      PUN : 8,
-     END : 9
+     END : 9,
+    AUTH: 10
 }
 
-const IDEBUG = 0;
-const IDSIGNUP = 1;
-const IDSTART = 2;
-const IDJOIN = 3;
-const IDFILTERS = 4;
-const IDCOVEN = 5;
-const IDGROUP = 6;
-const IDSURV = 7;
-const IDPUN = 8;
-const IDEND = 9;
-const IDAUTH = 10;
 
 /*
     0 - debug
@@ -71,7 +65,7 @@ function GameManager() {
 
 
 
-    const [curPage, setPage] = useState(PAGES.DEBUG)
+    const [curPage, setPage] = useState(PAGES.AUTH)
     const [gameId, setGameId] = useState(0)
 
     let page = <div/>;
@@ -83,7 +77,7 @@ function GameManager() {
         case PAGES.DEBUG:
             // For debug and testing
             // @ts-ignore
-            page = <FirebaseTest id={gameId}/>;
+            // page = <FirebaseTest id={gameId}/>;
             break;
         case PAGES.START:
             page = <Start_Page jump={setPage} toPage={PAGES.JOIN}/>;
@@ -109,8 +103,8 @@ function GameManager() {
         case PAGES.END:
             page = <EndingPage jump={setPage} toPage={PAGES.START}/>
             break;
-        case IDAUTH:
-            page = <Main_Page jump={setPage} toPage={IDSTART}/>;
+        case PAGES.AUTH:
+            page = <Main_Page jump={setPage} toPage={PAGES.START}/>;
     }
 
 
