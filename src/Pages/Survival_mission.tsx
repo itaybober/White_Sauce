@@ -39,6 +39,8 @@ import {ImageList, ImageListItem} from "@mui/material";
 import Container from "@mui/material/Container";
 import {db} from '../config/firebase'
 import {getDocs, collection} from 'firebase/firestore'
+import "../Components/Flippable_card"
+import Flippable_card from "../Components/Flippable_card";
 // import axios from 'axios';
 // we need to add the stepper here later
 
@@ -83,8 +85,9 @@ export default function Survival({jump, toPage}) {
 
     return (
         <Container className={"survival_page_component"} sx={{p:2}} >
-            <Avatar_and_points name={"Maya"} points={430} />
 
+            <Avatar_and_points name={"Maya"} points={430} />
+            <Flippable_card/>
             <Card sx={{ width: 330, height: 390 }   } >
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
                     <Typography variant="h5" color={"primary"}> <b> Seek And Ye Shall Find</b></Typography>
