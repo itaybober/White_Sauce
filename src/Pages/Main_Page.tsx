@@ -3,15 +3,21 @@ import React from 'react';
 // import Button from "@mui/material/Button";
 // import Box from '@mui/material/Box';
 import logo from './step-1_logo.svg'
-import './main_page.css'
+import './Main_Page.css'
+import {Auth} from "../Components/auth";
 
 
+// @ts-ignore
+export default function Main_Page({jump, toPage}) {
 
-function Mainpage() {
+
+    function next(){
+        jump(toPage)
+    }
     return(
         <div className={"mainFrame"}>
             <div>
-                <img src={logo} width={278} height={255.5}/>
+                <img src={logo} width={100} height={100}/>
             </div>
             <h2 className={"step1"}>step-1</h2>
             <h1 className={"journey"}>
@@ -19,11 +25,10 @@ function Mainpage() {
            <br />
                 your journey begins
             </h1>
-            <button className={"sign_in"}>Sing in </button>
-            <p></p>
-            <button className={"create_account"}>Create Account </button>
+            <Auth/>
+            <button onClick={next} className={"go_button"}>continue </button>
+            {/*<button className={"go_button"}>Create Account </button>*/}
         </div>
     );
 }
 
-export default Mainpage;

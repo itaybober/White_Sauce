@@ -5,21 +5,27 @@ interface TimerProps {
     timerLimit?: number;
 }
 
-export default function Timer_Component({timerLimit = 15}: TimerProps) {
-    const [timeLeft, setTimeLeft] = useState(timerLimit);
+export default function Timer_Component({ timerLimit = 15 }: TimerProps) {
+    const [timeElapsed, setTimeElapsed] = useState(0);
     const [timerStarted, setTimerStarted] = useState(false);
+    const [stopTime, setStopTime] = useState<number | null>(null);
 
     useEffect(() => {
         let timer: NodeJS.Timeout | undefined;
-        if (timerStarted && timeLeft > 0) {
-            timer = setTimeout(() => {
-                setTimeLeft(timeLeft - 1);
+        if (timerStarted) {
+            timer = setInterval(() => {
+                setTimeElapsed((prevTime) => prevTime + 1);
             }, 1000);
+        } else {
+            clearInterval(timer!); // Stop the timer when timerStarted is false
         }
-        return () => clearTimeout(timer!);
-    }, [timerStarted, timeLeft]);
+        return () => clearInterval(timer!);
+    }, [timerStarted]);
 
-    const startTimer = () => {
+    const toggleTimer = () => {
+        if (timerStarted) {
+            setStopTime(timeElapsed); // Save the stop time as elapsed time
+        }
         setTimerStarted((prev) => !prev);
     };
 
@@ -39,16 +45,20 @@ export default function Timer_Component({timerLimit = 15}: TimerProps) {
     return (
         <>
             <Button
-                variant="contained"
-                color="primary"
-                onClick={startTimer}
-                disabled={timerStarted}
+                variant={timerStarted ? "contained" : "outlined"} // Use "outlined" variant when timer is started
+                color={timerStarted ? "secondary" : "primary"} // Change button color based on timer state
+                onClick={toggleTimer} // Rename onClick handler
             >
-                Start Timer
+                {timerStarted ? "Stop Clock" : "Start Clock"} {/* Change button text based on timer state */}
             </Button>{" "}
             {timerStarted && (
-                <span style={timeStyle} onClick={startTimer}>
-                    {formatTime(timeLeft)}
+                <span style={timeStyle} onClick={toggleTimer}>
+                    {formatTime(timeElapsed)}
+                </span>
+            )}
+            {!timerStarted && stopTime !== null && (
+                <span style={timeStyle}>
+                    {formatTime(stopTime)}
                 </span>
             )}
         </>

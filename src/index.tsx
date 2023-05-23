@@ -15,7 +15,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import Filters from "./Pages/Filters";
-import Mainpage from "./Pages/main_page";
+import Mainpage from "./Pages/Main_Page";
 import App from "./App";
 
 

@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState, useEffect} from "react";
 import Start_Page from "./Start_Page";
 import Join_Page from "./Join_Page";
 import Filters from "./Filters";
@@ -12,6 +12,9 @@ import EndingPage from "./EndingPage";
 import Chwazi from "../Components/Chwazi";
 import { db } from "../Achsaf_Folder/firebase-config"
 import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
+import Main_Page from "./Main_Page";
+
+
 
 const PAGES = {
      DEBUG : 0,
@@ -23,7 +26,8 @@ const PAGES = {
      GROUP : 6,
      SURV : 7,
      PUN : 8,
-     END : 9
+     END : 9,
+     AUTH: 10
 }
 
 /**
@@ -128,6 +132,8 @@ function GameManager() {
         case PAGES.END:
             page = <EndingPage jump={setPage} toPage={PAGES.START}/>
             break;
+        case PAGES.AUTH:
+            page = <Main_Page jump={setPage} toPage={PAGES.START}/>;
     }
 
 

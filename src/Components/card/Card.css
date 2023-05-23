@@ -1,0 +1,37 @@
+.card{
+    height: 100%;
+    width: 100%;
+
+    transform-style: preserve-3d;
+    position: relative;
+
+    border-radius: 15px;
+    border: 2px solid #65666b;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.8);
+
+    user-select: none;
+    cursor: pointer;
+}
+
+.card_back, .card_front{
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.card_front{
+background-color: #37464e;
+}
+
+.card_back{
+background-color: #37464e;
+    transform: rotateY(180deg);
+}
