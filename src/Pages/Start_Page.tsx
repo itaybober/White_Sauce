@@ -5,12 +5,15 @@ import Box from "@mui/material/Box";
 import Typography from '@mui/material/Typography';
 import logo from "./images/step-1_logo.svg";
 import React from "react";
+import {Game} from "../Components/Classes";
 // @ts-ignore
 function Start_Page({jump, toPage}) {
 
 
     function startPage(){
-    //     TODO startpage
+        const game = new Game()
+        game.addGameToFirestore()
+    //     TODO Need to jump to relevant page with the game Id
     //     jump(whatever)
     }
     function joinPage(){

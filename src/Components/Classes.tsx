@@ -1,4 +1,4 @@
-import {collection, doc, setDoc} from "firebase/firestore";
+import {collection, doc, setDoc, getDoc} from "firebase/firestore";
 import {db} from "../Achsaf_Folder/firebase-config";
 
 
@@ -14,6 +14,30 @@ class Mission{
     public _minNumOfPlayers: number;
     public _maxNumOfPlayers: number;
 
+
+    /**
+     * A constructor for building a new mission. Each parameter will be saved into the new mission object.
+     *
+     * This functions like __init__ in python
+     *
+     * ex.      let newMission = new Mission(
+     *              "Rescue Mission",                             // Title
+     *              "Rescue the hostages from the enemy base.",    // Description
+     *              ["rescue", "action", "adventure"],             // Tags
+     *              "group",                                      // Type
+     *              ["night vision goggles", "rope"],              // Extras
+     *              3,                                            // Minimum number of players
+     *              6                                             // Maximum number of players
+     *             );
+     *
+     * @param title
+     * @param description
+     * @param tags
+     * @param type
+     * @param extras
+     * @param minNumOfPlayers
+     * @param maxNumOfPlayers
+     */
     constructor(
         title = "", description = "", tags = [], type = "", extras = [],
         minNumOfPlayers = -1, maxNumOfPlayers = -1 ) {
@@ -79,10 +103,11 @@ class Mission{
 class Player{
     public _playerID: number;
     public _points: number;
-
+    public _curPage: number;
     constructor(ID = 0) {
         this._playerID = ID;
         this._points = 0;
+        this._curPage = 0;
     }
 
     /**
@@ -116,6 +141,7 @@ class Player{
         const playerData = {
             playerID: player._playerID,
             points: player._points,
+            curPage: player._curPage
         };
 
         try {
@@ -131,14 +157,17 @@ class Game{
     public _id: number;
     public _curPage: number;
     public _missions: Mission[];
+    public _filters: string[];
     public _players: Player[];
 
     constructor() {
         this._id = Game.generateRandomNumber();
         this._curPage = 0;
         this._missions = [];
+        this._filters = []
         this._players = [];
     }
+
 
     /**
      * Adds a single player to the list of players in a game
@@ -207,6 +236,7 @@ class Game{
                 players: game._players.map((player) => ({
                     playerID: player._playerID,
                     points: player._points,
+                    curPage: player._curPage
                 })),
                 curPage: game._curPage,
                 missions: game._missions.map((mission) => ({
@@ -218,6 +248,7 @@ class Game{
                     minNumOfPlayers: mission._minNumOfPlayers,
                     maxNumOfPlayers: mission._maxNumOfPlayers,
                 })),
+                filters: game._filters.map((filter) => filter)
                 // createdAt: Timestamp.now(), // Optional: Include a timestamp for when the game was created
             };
 
@@ -225,6 +256,52 @@ class Game{
             console.log('Game added to Firestore with ID:', game._id);
         } catch (error) {
             console.error('Error adding game to Firestore:', error);
+        }
+    }
+
+    static async getGameFromFirestore(gameId: number) {
+        try {
+            const gameDocRef = doc(db, "Games", gameId.toString());
+            const gameDocSnapshot = await getDoc(gameDocRef);
+
+            if (gameDocSnapshot.exists()) {
+                const gameData = gameDocSnapshot.data();
+                const game = new Game();
+
+                // Set the properties of the game object based on the retrieved data
+                game._id = gameData.id;
+                game._curPage = gameData.curPage;
+
+                // Create Player objects and add them to the game
+                gameData.players.forEach((playerData: any) => {
+                    const player = new Player();
+                    player._playerID = playerData.playerID;
+                    player._points = playerData.points;
+                    player._curPage = playerData.curPage;
+                    game.addPlayer(player);
+                });
+
+                // Create Mission objects and add them to the game
+                gameData.missions.forEach((missionData: any) => {
+                    const mission = new Mission();
+                    mission._title = missionData.title;
+                    mission._description = missionData.description;
+                    mission._tags = missionData.tags;
+                    mission._type = missionData.type;
+                    mission._extras = missionData.extras;
+                    mission._minNumOfPlayers = missionData.minNumOfPlayers;
+                    mission._maxNumOfPlayers = missionData.maxNumOfPlayers;
+                    game.addMission(mission);
+                });
+
+                return game;
+            } else {
+                console.log("Game does not exist in Firestore.");
+                return null;
+            }
+        } catch (error) {
+            console.error("Error retrieving game from Firestore:", error);
+            return null;
         }
     }
 

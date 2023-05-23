@@ -1,41 +1,33 @@
-import { useEffect } from 'react';
-import { db } from './firebase-config';
-import { doc, setDoc, addDoc, collection } from 'firebase/firestore';
+import {useEffect, useState} from 'react';
+import {db} from './firebase-config';
+import {doc, setDoc, addDoc, collection} from 'firebase/firestore';
 import {Game} from "../Components/Classes"
 // import firebase from "firebase/compat";
 // import Timestamp = firebase.firestore.Timestamp;
 
 
-
-
 // @ts-ignore
-function FirebaseTest( {id}) {
+function FirebaseTest({id}) {
 
+    const curGameID = 4644
+    const [gameID, setGameID] = useState(null);
+    const [curPage, setCurPage] = useState(null);
 
+    // let fetchGame = Game.getGameFromFirestore(curGameID)
 
+    // fetchGame
+    //     .then((game) => {
+    //         if (game != null) { // @ts-ignore
+    //             setGameID(game._id)
+    //             // @ts-ignore
+    //             setCurPage(game._curPage)
+    //         }
+    //     })
 
-
-
-
-    async function newGame() {
-        await setDoc(doc(db, 'Games', 'ID: ' + id.toString()), {
-            ID: id.toString(),
-            Players: 'CA',
-            country: 'USA',
-        });
-    }
-    const game = new Game();
-
-    useEffect( () => {
-        return () => {
-            const game = new Game()
-            Game.addGameToFirestore(game)
-        }
-    },[])
-
-
-    // addGameToFirestore(game)
-    return <div></div>;
+    // @ts-ignore
+    return (
+        <div></div>
+    );
 }
 
 export default FirebaseTest;
