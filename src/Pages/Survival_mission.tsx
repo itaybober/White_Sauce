@@ -111,10 +111,6 @@ export default function Survival({jump, toPage}) {
 
 
 
-
-
-
-
             }/>
 
 

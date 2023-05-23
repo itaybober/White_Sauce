@@ -14,6 +14,7 @@ import {useState} from "react";
 import {Container, ImageList, ImageListItem} from "@mui/material";
 import friends from "./Souvenirs/tangled.jpg"
 import "./GroupMission.css"
+import Flippable_card from "../Components/Flippable_card";
 // we need to add the stepper here later
 
 // function  winner_list_update({name,points,bg}){
@@ -39,10 +40,10 @@ export default function GroupMission({jump, toPage}) {
             <Container className={"group_mission_component"}>
 
                 <Avatar_and_points name={"Maya"} points={600}/>
-                <Card sx={{ width: 330, height: 330 }   }>
+                <Flippable_card
+                    back_content={
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
                         <Typography variant="h5" color={"primary"}>The Human Pretzel</Typography>
-
                         <Typography variant="h6">
                             Gather round in a circle and face each other. Each one must grab two friends at random,
                             you must untangle yourselves without letting go. <br/><br/>
@@ -57,9 +58,20 @@ export default function GroupMission({jump, toPage}) {
                             {/*your hands without letting go of each others hands. The task is complete when you all stand*/}
                             {/*in a circle with no crossed hands among you.*/}
                         </Typography>
-
                     </CardContent>
-                </Card>
+                }
+
+
+                front_content={
+                    <div>
+                        <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
+                            <Typography variant={"h5"}> An amazing picture that illustrates the task and a funny and short caption</Typography>
+                        </CardContent>
+                    </div>
+                                }
+
+
+                ></Flippable_card>
 
                 <Button onClick={addPhoto}  startIcon={<AddAPhotoIcon />} variant="contained" size={"medium"}>Proof Of Concept</Button>
 

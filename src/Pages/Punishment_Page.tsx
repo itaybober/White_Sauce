@@ -12,6 +12,7 @@ import {useState} from "react";
 import Background_loser from "../Components/Background-loser";
 import "./Punishment_Page.css"
 import Avatar_and_points from "../Components/avatar_and_points";
+import Flippable_card from "../Components/Flippable_card";
 // @ts-ignore
 export default function Punishment({ jump, toPage }) {
     const loser_player = "Guy";
@@ -33,10 +34,9 @@ export default function Punishment({ jump, toPage }) {
         <Background_loser>
             <Container className={"punishment_page_component"}>
                 <Avatar_and_points name={"Maya"} points={430} />
-
-                <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-
-                    <Card sx={{ width: 370, height: 370 }}>
+                {/* eslint-disable-next-line react/jsx-pascal-case */}
+                <Flippable_card back_content={
+                    <div>
                         <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
                             <Typography variant="h5" color={"secondary"}> <b> It's punishment time</b></Typography>
                             <Typography  sx={{lineHeight: '20px'}} variant={"h6"} >
@@ -57,8 +57,19 @@ export default function Punishment({ jump, toPage }) {
 
                             </Typography>
                         </CardContent>
-                    </Card>
-                </Container>
+                    </div>
+
+
+                    }
+                    front_content={
+                    <div>
+                        <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center" ,textAlign: "justify" }}>
+                            <Typography variant={"h4"}> A horrifying picture of punishment</Typography>
+                        </CardContent>
+                    </div>
+                    }
+                    />
+
 
                 {/*<div style={{ height: 20 }}></div>*/}
 
