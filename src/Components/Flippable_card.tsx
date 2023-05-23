@@ -3,7 +3,8 @@ import Card from "./card/Card";
 import {CSSTransition} from "react-transition-group";
 import {useState} from "react";
 import "../Components/card/Flip_transition.css";
-function Flippable_card(){
+// @ts-ignore
+function Flippable_card({back_content, front_content}){
 const [showFront,setShowFront] = useState(true);
     return(
         <div className={"flippable_card_container"}>
@@ -13,7 +14,7 @@ const [showFront,setShowFront] = useState(true);
 
                 <Card onClick={() => {
                     setShowFront((v) => !v);
-                } }/>
+                } } back_continer={back_content} front_continer={front_content}/>
             </CSSTransition>
 
         </div>

@@ -41,6 +41,7 @@ import {db} from '../config/firebase'
 import {getDocs, collection} from 'firebase/firestore'
 import "../Components/Flippable_card"
 import Flippable_card from "../Components/Flippable_card";
+
 // import axios from 'axios';
 // we need to add the stepper here later
 
@@ -85,22 +86,37 @@ export default function Survival({jump, toPage}) {
 
     return (
         <Container className={"survival_page_component"} sx={{p:2}} >
-
             <Avatar_and_points name={"Maya"} points={430} />
-            <Flippable_card/>
-            <Card sx={{ width: 330, height: 390 }   } >
-                <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
-                    <Typography variant="h5" color={"primary"}> <b> Seek And Ye Shall Find</b></Typography>
-                    <Typography variant="h6">Your goal: <span style={{ color: 'pink' }}>{itemList.length > 0 && (<span>{itemList[Math.floor(Math.random() * itemList.length)].name}</span>)}
+            <Flippable_card back_content={
+                <div>
+                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
+                        <Typography variant="h5" color={"primary"}> <b> Seek And Ye Shall Find</b></Typography>
+                        <Typography variant="h6">Your goal: <span style={{ color: 'pink' }}>{itemList.length > 0 && (<span>{itemList[Math.floor(Math.random() * itemList.length)].name}</span>)}
                     </span></Typography>
-                    <Typography variant="h6">
-                        The faster you find your object the more you gain.
-                        Anyone who doesn't find their object by the end of the timer must participate in the penalty.
-                        May the odds be ever in your favor.
-                    </Typography>
+                        <Typography variant="h6">
+                            The faster you find your object the more you gain.
+                            Anyone who doesn't find their object by the end of the timer must participate in the penalty.
+                            May the odds be ever in your favor.
+                        </Typography>
                         <Typography variant="h6" display="block"><br/>Take a photo of yourself with your new spirit object.</Typography>
-                </CardContent>
-            </Card>
+                    </CardContent>
+                </div>
+            }
+                            front_content={
+                <div>
+                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
+                    <Typography variant={"h5"}> An amazing picture that illustrates the task and a funny and short caption</Typography>
+                    </CardContent>
+                    </div>
+
+
+
+
+
+
+
+            }/>
+
 
             <Timer_Component timerLimit={60}/>
 
