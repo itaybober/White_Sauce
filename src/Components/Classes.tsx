@@ -5,7 +5,7 @@ import {db} from "../config/firebase";
 /**
  * Represents a single mission with all of its relevant information and capabilities
  */
-class Mission{
+class Mission {
     public _title: string;
     public _description: string;
     public _tags: string[];
@@ -40,7 +40,7 @@ class Mission{
      */
     constructor(
         title = "", description = "", tags = [], type = "", extras = [],
-        minNumOfPlayers = -1, maxNumOfPlayers = -1 ) {
+        minNumOfPlayers = -1, maxNumOfPlayers = -1) {
         this._title = title;
         this._description = description;
         this._tags = tags;
@@ -48,6 +48,30 @@ class Mission{
         this._extras = extras;
         this._minNumOfPlayers = minNumOfPlayers;
         this._maxNumOfPlayers = maxNumOfPlayers;
+        // this._pointFunction = this.addPointFunction();
+    }
+
+    /**
+     * these 3 functions will get a Player object, and update his
+     * points attribute
+     *
+     */
+    public survivalPointSystem(player: Player, time: number) {
+        // calculate number of points to add to a player
+        player._points += 1;
+        return;
+    }
+
+    public groupPointSystem(player: Player, time: number) {
+        // calculate number of points to add to a player
+        player._points += 1;
+        return;
+    }
+
+    public punishmentPointSystem(player: Player, time: number) {
+        // calculate number of points to add to a player
+        player._points += 1;
+        return;
     }
 
 
@@ -61,7 +85,7 @@ class Mission{
      *
      * "myMission" is an instance of the Mission class
      */
-    public async addMissionToFireStore(){
+    public async addMissionToFireStore() {
         Mission.addMissionToFirestore(this);
     }
 
@@ -165,6 +189,7 @@ class Game{
     public _missions: Mission[];
     public _filters: string[];
     public _players: Player[];
+    public _curMission: Mission;
 
     constructor() {
         this._id = Game.generateRandomNumber();
@@ -172,7 +197,28 @@ class Game{
         this._missions = [];
         this._filters = []
         this._players = [];
+        this._curMission = new Mission()
     }
+
+    /**
+     * this function gets a single Player object and time (you should call this
+     * function from survival / group / punishment page) this function calls the
+     * relevant function that will update the player's points.
+     * @param player
+     * @param time
+     */
+    public addPointsSinglePlayer(player: Player, time: number) {
+        if (this._curMission._type === "survival") {
+            this._curMission.survivalPointSystem(player,time);
+        }
+        else if (this._curMission._type === "group") {
+            this._curMission.groupPointSystem(player, time);
+            }
+         else if (this._curMission._type === "punishment") {
+            this._curMission.punishmentPointSystem(player, time);
+            }
+        }
+
 
 
     /**
@@ -310,7 +356,8 @@ class Game{
             return null;
         }
     }
-
 }
+
+
 
 export {Mission, Player, Game}
