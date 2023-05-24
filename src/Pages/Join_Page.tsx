@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Background from "../Components/Background";
 import logo from "./images/step-1_logo.svg";
 import React from "react";
+import { auth } from "../config/firebase";
 
 // @ts-ignore
 function Join_Page( {jump, toPage} ) {
@@ -18,7 +19,7 @@ function Join_Page( {jump, toPage} ) {
             ev.preventDefault();
         }
     }
-
+console.log(auth.currentUser)
     return (
 
         <div id={"JoinPage_Background"}>
@@ -31,6 +32,7 @@ function Join_Page( {jump, toPage} ) {
                placeholder={"PIN"} sx={{ textAlign: 'center', position:'relative', top:'50%' }}  variant="outlined" />
             </div>
             </div>
+
     )
 }
 
