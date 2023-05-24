@@ -101,10 +101,16 @@ class Mission{
  * Represents a player with all of their relevant information and capabilities
  */
 class Player{
+    public _name: string;
+    public _avatar: undefined;
     public _playerID: number;
     public _points: number;
     public _curPage: number;
-    constructor(ID = 0) {
+
+
+
+    constructor(ID = 0,name = "") {
+        this._name = name;
         this._playerID = ID;
         this._points = 0;
         this._curPage = 0;
