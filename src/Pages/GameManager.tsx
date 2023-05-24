@@ -92,20 +92,22 @@ function GameManager() {
     let page = <div/>;
 
 
-
-
-    useEffect(
-        () => {
-            console.log("currentuser: " + auth.currentUser?.displayName)
-
-            return () => {
-
-                // TODO if user signed in connect to relevant game
-                //  else
-                //  start a new game
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in
+                console.log('Current user:', user.displayName);
+            } else {
+                // User is signed out
+                console.log('User is signed out');
             }
-        }
-    ,[] );
+        });
+        // return () => {
+        //     // Unsubscribe from the onAuthStateChanged listener when component unmounts
+        //     unsubscribe();
+        // };
+    }, []);
+
 
     switch (curPage) {
 

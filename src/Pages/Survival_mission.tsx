@@ -73,11 +73,11 @@ export default function Survival({jump, toPage}) {
         getItemList();
     }, [])
 
-
     const [itemData, setItemData] = useState([])
     function next(){
         jump(toPage)
     }
+
 
     function addPhoto() {
         // @ts-ignore
