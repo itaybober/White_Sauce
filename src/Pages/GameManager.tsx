@@ -10,7 +10,7 @@ import GroupMission from "./GroupMission";
 import Punishment from "./Punishment_Page";
 import EndingPage from "./EndingPage";
 import Chwazi from "../Components/Chwazi";
-import { db, auth } from "../Achsaf_Folder/firebase-config"
+import { db, auth } from "../config/firebase"
 import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 import Main_Page from "./Main_Page";
 import {Player} from "../Components/Classes";
@@ -86,25 +86,20 @@ function generateRandomNumber() {
 }
 function GameManager() {
 
-    const [curPage, setPage] = useState(PAGES.DEBUG)
+    const [curPage, setPage] = useState(PAGES.AUTH)
     const [gameId, setGameId] = useState(0)
 
     let page = <div/>;
 
 
 
-    let Player1 = new Player()
-    let Player2 = new Player(2)
-    let Player3 = new Player(1)
-
-
-    const players = [Player1, Player2, Player3];
-
-    players[2]._playerID;
 
     useEffect(
         () => {
+            console.log("currentuser: " + auth.currentUser?.displayName)
+
             return () => {
+
                 // TODO if user signed in connect to relevant game
                 //  else
                 //  start a new game
@@ -145,6 +140,7 @@ function GameManager() {
             break;
         case PAGES.AUTH:
             page = <Main_Page jump={setPage} toPage={PAGES.START}/>;
+            break;
     }
 
 

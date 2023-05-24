@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {db} from './firebase-config';
+import {db} from '../config/firebase';
 import {doc, setDoc, addDoc, collection} from 'firebase/firestore';
 import {Game} from "../Components/Classes"
 // import firebase from "firebase/compat";

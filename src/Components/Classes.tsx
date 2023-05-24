@@ -1,5 +1,5 @@
 import {collection, doc, setDoc, getDoc} from "firebase/firestore";
-import {db} from "../Achsaf_Folder/firebase-config";
+import {db} from "../config/firebase";
 
 
 /**
