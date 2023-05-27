@@ -25,8 +25,8 @@
 // @ts-ignore
 function Background({children, className = "", id = "", angle = 125 , colors = "#254848,#232A3D,#232B3E,#254648"} ) {
 
-console.log("angle: ", angle);
-console.log("colors: ", colors);
+// console.log("angle: ", angle);
+// console.log("colors: ", colors);
 
 const gradient = "linear-gradient("+angle+"deg, "+colors+")";
 

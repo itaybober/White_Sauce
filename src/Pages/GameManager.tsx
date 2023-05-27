@@ -7,14 +7,13 @@ import Background from "../Components/Background";
 import CovenantPage from "./CovenantPage";
 import Survival_mission from "./Survival_mission"
 import GroupMission from "./GroupMission";
-// import Punishment from "./Punishment_Page";
+import Punishment from "./Punishment_Page";
 import EndingPage from "./EndingPage";
 import Chwazi from "../Components/Chwazi";
-// import { db } from "../Achsaf_Folder/firebase-config"
-// import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
-import { db } from "../config/firebase"
+import { db, auth } from "../config/firebase"
+import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 import Main_Page from "./Main_Page";
-import Punishment from "./PunishmentPage";
+import {Player} from "../Components/Classes";
 
 
 const PAGES = {
@@ -28,27 +27,55 @@ const PAGES = {
      SURV : 7,
      PUN : 8,
      END : 9,
-    AUTH: 10
+     AUTH: 10
 }
 
-
-/*
-    0 - debug
-
-    1 - sign up
-    2 - start page
-    3 - join page
-    4 - filters
-    5 - covenant
-
-
-    // Firebase the relevant page??
-    6 - group
-    7 - survival
-    8 - punishment
-    //
-
-    9 - Ending
+/**
+ *
+ *
+ * GameManager:
+ *      Next Mission
+ *              function who gets filters from the current game and returns the next game from firebase
+ *
+ *      check sign-in:
+ *              if user logged in => connect to relevant game
+ *              if user not logged in => login process and start a new game
+ *
+ *
+ *
+ * Pages:
+ *
+ *      Leader Board Component --
+ *      A component that receives an array of Player objects and displays all their relevant information according
+ *      to who is in the lead
+ *
+ *      Relevant information --
+ *      Each mission component will receive a mission object (defined in ./Components/Classes).
+ *      This object will hold all the relevant information to be displayed (i.e. name, description, points, etc)
+ *      Use the object information to fill in all the relevant fields for all missions (group,survival,punishment)
+ *      If more information is needed you can add it to the class
+ *      There is an example of how to use the class where it is defined.
+ *
+ *      Waiting Pages --
+ *      We need a page for people to see while they are waiting for things to happen:
+ *          - Connected page: a page that will show everyone who is connected to the current page, will remain this
+ *                            on this page until everyone has placed a finger on the covenant page
+ *                            Will receive an array of Player objects that have already joined
+ *
+ *          - Non-punishment page: a page for people to see random stats while they wait for the loser to finish
+ *                                 their punishment
+ *                                 Will receive an array of all Players in place.
+ *
+ *
+ *      Random filter --
+ *      A filter that has a random tag each round
+ *
+ *      Missions DataBase --
+ *      Start filling the mission database, there are two ways of doing this:
+ *              1) Directly in the site (we will show you)
+ *              2) defining a new mission and adding it to the firebase, there is an example of each of these
+ *                 actions in the Mission class definition.
+ *
  */
 
 function generateRandomNumber() {
@@ -59,25 +86,35 @@ function generateRandomNumber() {
 }
 function GameManager() {
 
-    useEffect(() => {
-         setGameId(generateRandomNumber());
-    }, []);
-
-
-
     const [curPage, setPage] = useState(PAGES.AUTH)
     const [gameId, setGameId] = useState(0)
 
     let page = <div/>;
 
-    console.log(curPage)
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in
+                console.log('Current user:', user.displayName);
+            } else {
+                // User is signed out
+                console.log('User is signed out');
+            }
+        });
+        // return () => {
+        //     // Unsubscribe from the onAuthStateChanged listener when component unmounts
+        //     unsubscribe();
+        // };
+    }, []);
+
 
     switch (curPage) {
 
         case PAGES.DEBUG:
             // For debug and testing
             // @ts-ignore
-            // page = <FirebaseTest id={gameId}/>;
+            page = <FirebaseTest />;
             break;
         case PAGES.START:
             page = <Start_Page jump={setPage} toPage={PAGES.JOIN}/>;
@@ -105,6 +142,7 @@ function GameManager() {
             break;
         case PAGES.AUTH:
             page = <Main_Page jump={setPage} toPage={PAGES.START}/>;
+            break;
     }
 
 
