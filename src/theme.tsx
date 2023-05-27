@@ -86,7 +86,7 @@ const theme = createTheme({
             main: '#ed3202',
         },
         info: {
-            main: '#0176b5',
+            main: '#425157',
         },
         success: {
             main: '#29832d',
@@ -95,7 +95,7 @@ const theme = createTheme({
     },
     typography : {
 
-
+        fontFamily: '"Didact Gothic", sans-serif !important',
         // fontFamily: 'Didact Gothic',
 
 
