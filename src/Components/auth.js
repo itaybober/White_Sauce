@@ -1,5 +1,5 @@
 import { auth, googleProvider} from "../config/firebase";
-import { createUserWithEmailAndPassword, signInWithPopup, signOut, signInAnonymously } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithPopup, signOut, signInAnonymously, updateProfile } from "firebase/auth"
 import {useState} from "react";
 import {collection} from "firebase/firestore";
 import {db} from "../Achsaf_Folder/firebase-config";
@@ -12,7 +12,7 @@ export const Auth = () => {
         try {
             await createUserWithEmailAndPassword(auth, email, password);
         } catch (err) {
-            console.error()
+            console.error(err)
         }
     }
     const signInWithGoogle = async () => {
@@ -31,7 +31,9 @@ export const Auth = () => {
     }
     const signInAnonymous = async () => {
         try {
+
             await signInAnonymously(auth);
+            updateProfile(auth.currentUser, {displayName: email})
         } catch (err) {
             console.error()
         }
