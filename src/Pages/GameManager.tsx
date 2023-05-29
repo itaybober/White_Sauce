@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import Start_Page from "./Start_Page";
 import Join_Page from "./Join_Page";
 import Filters from "./Filters";
@@ -13,21 +13,27 @@ import Chwazi from "../Components/Chwazi";
 import { db, auth } from "../config/firebase"
 import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 import Main_Page from "./Main_Page";
-import {Player} from "../Components/Classes";
+import {Game, Player} from "../Components/Classes";
+import {wait} from "@testing-library/user-event/dist/utils";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {doc, DocumentReference, getDoc, onSnapshot, setDoc, deleteDoc } from "firebase/firestore";
+import logo from "./step-1_logo.svg";
 
 
-const PAGES = {
-     DEBUG : 0,
-     SIGNUP : 1,
-     START : 2,
-     JOIN : 3,
-     FILTERS : 4,
-     COVEN : 5,
-     GROUP : 6,
-     SURV : 7,
-     PUN : 8,
-     END : 9,
-     AUTH: 10
+
+export const PAGES = {
+    DEBUG : 0,
+    SIGNUP : 1,
+    START : 2,
+    JOIN : 3,
+    FILTERS : 4,
+    COVEN : 5,
+    GROUP : 6,
+    SURV : 7,
+    PUN : 8,
+    END : 9,
+    AUTH: 10,
+    WAIT: 11
 }
 
 /**
@@ -37,7 +43,7 @@ const PAGES = {
  *      Next Mission
  *              function who gets filters from the current game and returns the next game from firebase
  *
- *      check sign-in:
+ *      check sign-in/ starting page flow:
  *              if user logged in => connect to relevant game
  *              if user not logged in => login process and start a new game
  *
@@ -67,8 +73,8 @@ const PAGES = {
  *                                 Will receive an array of all Players in place.
  *
  *
- *      Random filter --
- *      A filter that has a random tag each round
+ *      Filter --
+ *      Filter page will recieve an array of strings to update all the chosen filters
  *
  *      Missions DataBase --
  *      Start filling the mission database, there are two ways of doing this:
@@ -78,34 +84,104 @@ const PAGES = {
  *
  */
 
-function generateRandomNumber() {
-    const min = 1000;
-    const max = 9999;
-    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-    return randomNumber;
+
+
+
+function logOut() {
+    auth.signOut()
+        .then(() => {
+            window.location.reload()
+            console.log('User logged out successfully');
+        })
+        .catch((error) => {
+            console.log('Error logging out:', error);
+        });
 }
+
 function GameManager() {
 
-    const [curPage, setPage] = useState(PAGES.AUTH)
-    const [gameId, setGameId] = useState(0)
+    const [curPage, setPage] = useState(PAGES.WAIT)
+    const [curGame, setCurGame] = useState<Game>()
+    const [curPlayer , setCurPlayer] = useState<Player>()
 
     let page = <div/>;
 
+    // Updates the curPlayer instance every time information in the firestore is changed
+    if (curPlayer && curPlayer._playerRef) {
+        onSnapshot(curPlayer._playerRef, (snapshot) => {
+            const data = snapshot.data()
+            if (typeof data !== 'undefined') {
+                curPlayer.getUpdate(data)
+            }
+            setPage(curPlayer._curPage)
+        })
+    }
 
+    // Updates the curGame instance every time information in the firestore is changed
+    if (curGame && curGame._gameRef) {
+        onSnapshot(curGame._gameRef, (snapshot) => {
+            const data = snapshot.data()
+            if (typeof data !== 'undefined') {
+                curGame.getUpdate(data)
+            }
+        })
+    }
+
+
+    // For debugging, will run whatever command given if any key is pressed
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
+        function handleKeyDown(event: { key: any; }) {
+
+        }
+
+        // Add the event listener when the component mounts
+        window.addEventListener('keydown', handleKeyDown);
+
+        // Clean up the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, []);
+
+    // updates the user's display name
+    onAuthStateChanged(auth, () => {
+        if(curPlayer && auth.currentUser && auth.currentUser.displayName) {
+            curPlayer.setName(auth.currentUser.displayName)
+            console.log("auth state change")
+        }
+    })
+
+    // After login creates a player instance if none exists or connects to firebase if it does.
+    useEffect(() => {
+        console.log("login attempt")
+        const unsubscribe = auth.onAuthStateChanged(  (user) => {
             if (user) {
-                // User is signed in
-                console.log('Current user:', user.displayName);
+                let curUser;
+                const docRef = doc(db, "Active_Players", user.uid)
+                getDoc(docRef)
+                    .then((docSnapshot) => {
+                        curUser = new Player(user.uid, user.displayName)
+                        if (docSnapshot.exists()) {
+                            console.log("Player exists");
+                        } else {
+                            Player.addPlayerToFirestore(curUser);
+                            if (curPlayer){
+                                setPage(curPlayer._curPage)
+                            }
+                            console.log("Creating new player: " + curUser._name);
+                        }
+                        setCurPlayer(curUser)
+                    })
             } else {
-                // User is signed out
                 console.log('User is signed out');
+                setPage(PAGES.AUTH);
             }
         });
-        // return () => {
-        //     // Unsubscribe from the onAuthStateChanged listener when component unmounts
-        //     unsubscribe();
-        // };
+
+        // Clean up the listener when the component unmounts
+        return () => {
+            unsubscribe();
+        };
     }, []);
 
 
@@ -117,16 +193,16 @@ function GameManager() {
             page = <FirebaseTest />;
             break;
         case PAGES.START:
-            page = <Start_Page jump={setPage} toPage={PAGES.JOIN}/>;
+            page = <Start_Page curPlayer={curPlayer}/>;
             break;
         case PAGES.JOIN:
-            page = <Join_Page jump={setPage} toPage={PAGES.FILTERS}/>
+            page = <Join_Page curPlayer={curPlayer}/>
             break;
         case PAGES.FILTERS:
-            page = <Filters jump={setPage} toPage={PAGES.COVEN}/>
+            page = <Filters curPlayer={curPlayer} setCurGame={setCurGame}/>
             break;
         case PAGES.COVEN:
-            page = <CovenantPage jump={setPage} toPage={PAGES.SURV}/>
+            page = <CovenantPage jump={setPage} curPlayer={curPlayer} toPage={PAGES.SURV}/>
             break;
         case PAGES.GROUP:
             page = <GroupMission jump={setPage} toPage={PAGES.END}/>
@@ -143,10 +219,21 @@ function GameManager() {
         case PAGES.AUTH:
             page = <Main_Page jump={setPage} toPage={PAGES.START}/>;
             break;
+        case PAGES.WAIT:
+            page = <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>
+                   </div>
+            break;
     }
 
 
-    return(page)
+    return(
+        <div>
+            <button onClick={logOut}> X </button>
+            {page}
+        </div>
+
+    )
 
 }
 

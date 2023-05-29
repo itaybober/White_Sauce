@@ -6,18 +6,17 @@ import Typography from '@mui/material/Typography';
 import logo from "./images/step-1_logo.svg";
 import React from "react";
 import {Game} from "../Components/Classes";
+import firebase from "firebase/compat";
+import {auth} from "../config/firebase"
+import {PAGES} from "./GameManager";
 // @ts-ignore
-function Start_Page({jump, toPage}) {
-
+function Start_Page({curPlayer}) {
 
     function startPage(){
-        const game = new Game()
-        game.addGameToFirestore()
-    //     TODO Need to jump to relevant page with the game Id
-    //     jump(whatever)
+        curPlayer.setCurPage(PAGES.FILTERS)
     }
     function joinPage(){
-        jump(toPage);
+        curPlayer.setCurPage(PAGES.JOIN);
     }
 
 

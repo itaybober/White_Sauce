@@ -11,19 +11,21 @@ import * as React from "react";
 import CardContent from "@mui/material/CardContent";
 import logo from "./images/step-1_logo.svg";
 import Container from "@mui/material/Container";
+import {setDoc} from "firebase/firestore";
 
 
 // TODO determined by number of players in firebase
 const NUM_OF_PLAYERS = 1;
 
 // @ts-ignore
-function CovenantPage({jump, toPage}) {
+function CovenantPage({jump, toPage, curPlayer}) {
 
     const [numFingers, setNumFingers] = useState(0);
 
     function startGame(){
         // TODO get from firebase
         if (numFingers === NUM_OF_PLAYERS){
+            setDoc(curPlayer._playerRef, {curPage: toPage})
             jump(toPage);
         }
     }

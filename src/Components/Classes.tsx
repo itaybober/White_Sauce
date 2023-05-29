@@ -1,5 +1,11 @@
-import {collection, doc, setDoc, getDoc} from "firebase/firestore";
+
+
+
+import {collection, doc, setDoc, getDoc, DocumentReference, DocumentData, updateDoc, arrayUnion, Timestamp} from "firebase/firestore";
 import {db} from "../config/firebase";
+import {PAGES} from "../Pages/GameManager";
+// import firebase from "firebase/compat";
+// import DocumentReference = firebase.firestore.DocumentReference;
 
 
 /**
@@ -102,6 +108,16 @@ class Mission {
      * @param mission
      */
     static async addMissionToFirestore(mission: Mission): Promise<void> {
+        const missionData = Mission.getMissionData(mission)
+        try {
+            await setDoc(doc(db, "Missions", mission._title), missionData);
+            console.log("Mission added to Firestore");
+        } catch (error) {
+            console.error("Error adding mission to Firestore:", error);
+        }
+    }
+
+    public static getMissionData(mission: Mission){
         const missionData = {
             title: mission._title,
             description: mission._description,
@@ -111,13 +127,7 @@ class Mission {
             minNumOfPlayers: mission._minNumOfPlayers,
             maxNumOfPlayers: mission._maxNumOfPlayers,
         };
-
-        try {
-            await setDoc(doc(db, "Missions", mission._title), missionData);
-            console.log("Mission added to Firestore");
-        } catch (error) {
-            console.error("Error adding mission to Firestore:", error);
-        }
+        return missionData;
     }
 }
 
@@ -125,19 +135,38 @@ class Mission {
  * Represents a player with all of their relevant information and capabilities
  */
 class Player{
-    public _name: string;
-    public _avatar: undefined;
-    public _playerID: number;
+    public _name: string  ;
+    public _playerID: string;
     public _points: number;
     public _curPage: number;
+    public _gameRef: DocumentReference;
+    public _playerRef: DocumentReference;
 
 
-
-    constructor(ID = 0,name = "") {
-        this._name = name;
-        this._playerID = ID;
+    constructor(UID: string = "null", name: string | null = "", gameRef: DocumentReference = doc(db, "Games", "0000")) {
+        if (name === null){
+            this._name = "";
+        } else {
+            this._name = name;
+        }
+        this._playerID = UID;
         this._points = 0;
-        this._curPage = 0;
+        this._curPage = PAGES.START;
+        this._playerRef = doc(db, "Active_Players", UID);
+        this._gameRef = gameRef;
+    }
+
+    public async setName(name: string) {
+        await updateDoc(this._playerRef, {name: name})
+    }
+
+    public async setCurPage(newPage: number) {
+        await updateDoc(this._playerRef, {curPage: newPage})
+        // setDoc(this._playerRef, {curPage: number}, { merge: true })
+    }
+
+    public setGameRef(gameRef:DocumentReference){
+        setDoc(this._playerRef, {gameReference: gameRef}, { merge: true })
     }
 
     /**
@@ -168,36 +197,54 @@ class Player{
      */
 
     static async addPlayerToFirestore(player: Player): Promise<void> {
-        const playerData = {
-            playerID: player._playerID,
-            points: player._points,
-            curPage: player._curPage
-        };
-
+        const playerData = Player.getPlayerDataFromVariable(player);
         try {
-            await setDoc(doc(db, "Players", player._playerID.toString()), playerData);
+            await setDoc(player._playerRef, playerData);
             console.log("Player added to Firestore");
         } catch (error) {
             console.error("Error adding player to Firestore:", error);
         }
     }
+
+    public static getPlayerDataFromVariable(player: Player){
+        const playerData = {
+            name: player._name,
+            playerID: player._playerID,
+            points: player._points,
+            curPage: player._curPage,
+            playerReference: player._playerRef,
+            gameReference: player._gameRef,
+            createdAt: Timestamp.now()
+        };
+        return playerData;
+    }
+
+
+
+
+    public getUpdate(data: DocumentData ) {
+        this._name = data.name;
+        this._playerID = data.playerID;
+        this._points = data.points;
+        this._curPage = data.curPage;
+        this._playerRef = data.playerReference;
+        this._gameRef = data.gameReference
+    }
 }
 
 class Game{
-    public _id: number;
-    public _curPage: number;
-    public _missions: Mission[];
+    public _id: string;
     public _filters: string[];
-    public _players: Player[];
+    public _players: DocumentReference[];
     public _curMission: Mission;
+    public _gameRef;
 
     constructor() {
-        this._id = Game.generateRandomNumber();
-        this._curPage = 0;
-        this._missions = [];
+        this._id = Game.generateRandomNumber().toString();
         this._filters = []
         this._players = [];
-        this._curMission = new Mission()
+        this._curMission = new Mission();
+        this._gameRef = doc(db, "Games", this._id);
     }
 
     /**
@@ -219,31 +266,14 @@ class Game{
             }
         }
 
-
-
     /**
-     * Adds a single player to the list of players in a game
+     * Adds a single player reference to the list of players in a game
      * @param player
      */
-    public addPlayer(player: Player){
-        this._players.push(player);
+    public async addPlayer(playerRef: DocumentReference){
+        await updateDoc(this._gameRef, {players: arrayUnion(playerRef)})
     }
 
-    /**
-     * Adds a single mission to the list of mission to be played throughout the night
-     * @param mission
-     */
-    public addMission(mission: Mission){
-        this._missions.push(mission);
-    }
-
-    /**
-     * Adds multiple missions to the list of missions to be played throughout the night
-     * @param missions
-     */
-    public addMissions(missions: Mission[]){
-        this._missions.concat(missions);
-    }
 
     /**
      * Generates a random four digit number
@@ -256,105 +286,35 @@ class Game{
 
     /**
      * A method for adding the game to firestore.
-     * The signature looks like this:
-     *
-     *       let curGame = new Game(PARAMETERS GO HERE)
-     *
-     *       curGame.addGameToFireStore()
-     *
-     * "curGame" is an instance of the Game class
      */
-    public async addGameToFirestore(){
-        Game.addGameToFirestore(this);
-    }
-
-    /**
-     * static method for adding games to the firestore,
-     * The signature looks like this:
-     *
-     *      let curGame = new Game(PARAMETERS GO HERE)
-     *
-     *      Game.addGameToFireStore(curGame)
-     *
-     * "curGame" is an instance of the Game class
-     * "Game" is the class itself
-     * @param game
-     */
-    static async addGameToFirestore(game : Game) {
+    public async addGameToFirestore() {
+        const gameData = Game.getGameData(this)
         try {
-            const gameCollectionRef = collection(db, 'Games');
-            const gameData = {
-                id: game._id,
-                players: game._players.map((player) => ({
-                    playerID: player._playerID,
-                    points: player._points,
-                    curPage: player._curPage
-                })),
-                curPage: game._curPage,
-                missions: game._missions.map((mission) => ({
-                    title: mission._title,
-                    description: mission._description,
-                    tags: mission._tags,
-                    type: mission._type,
-                    extras: mission._extras,
-                    minNumOfPlayers: mission._minNumOfPlayers,
-                    maxNumOfPlayers: mission._maxNumOfPlayers,
-                })),
-                filters: game._filters.map((filter) => filter)
-                // createdAt: Timestamp.now(), // Optional: Include a timestamp for when the game was created
-            };
-
-            await setDoc(doc(db, "Games", game._id.toString()), gameData);
-            console.log('Game added to Firestore with ID:', game._id);
+            await setDoc(this._gameRef, gameData);
+            console.log('Game added to Firestore with ID:', this._id);
         } catch (error) {
             console.error('Error adding game to Firestore:', error);
         }
     }
 
-    static async getGameFromFirestore(gameId: number) {
-        try {
-            const gameDocRef = doc(db, "Games", gameId.toString());
-            const gameDocSnapshot = await getDoc(gameDocRef);
+    public static getGameData(game: Game){
+        const gameData = {
+            id: game._id,
+            players: game._players.map((player) => (player)),
+            curMission: Mission.getMissionData(game._curMission),
+            filters: game._filters.map((filter) => filter),
+            gameReference: game._gameRef,
+            createdAt: Timestamp.now(), // Optional: Include a timestamp for when the game was created
+        };
+        return gameData;
+    }
 
-            if (gameDocSnapshot.exists()) {
-                const gameData = gameDocSnapshot.data();
-                const game = new Game();
-
-                // Set the properties of the game object based on the retrieved data
-                game._id = gameData.id;
-                game._curPage = gameData.curPage;
-
-                // Create Player objects and add them to the game
-                gameData.players.forEach((playerData: any) => {
-                    const player = new Player();
-                    player._playerID = playerData.playerID;
-                    player._points = playerData.points;
-                    player._curPage = playerData.curPage;
-                    game.addPlayer(player);
-                });
-
-                // Create Mission objects and add them to the game
-                gameData.missions.forEach((missionData: any) => {
-                    const mission = new Mission();
-                    mission._title = missionData.title;
-                    mission._description = missionData.description;
-                    mission._tags = missionData.tags;
-                    mission._type = missionData.type;
-                    mission._extras = missionData.extras;
-                    mission._minNumOfPlayers = missionData.minNumOfPlayers;
-                    mission._maxNumOfPlayers = missionData.maxNumOfPlayers;
-                    game.addMission(mission);
-                });
-
-                return game;
-            } else {
-                console.log("Game does not exist in Firestore.");
-                return null;
-            }
-        } catch (error) {
-            console.error("Error retrieving game from Firestore:", error);
-            return null;
-        }
+    public getUpdate(data: DocumentData ) {
+        this._id = data.id;
+        this._players = data.players.map( (player: DocumentReference) => (player));
+        this._curMission = data.curMission;
+        this._filters = data.filters.map((filter: string) => (filter));
+        this._gameRef = data.gameReference;
     }
 }
 

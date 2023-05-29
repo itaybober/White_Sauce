@@ -6,20 +6,21 @@ import Background from "../Components/Background";
 import logo from "./images/step-1_logo.svg";
 import React from "react";
 import { auth } from "../config/firebase";
+import {PAGES} from "./GameManager";
 
 // @ts-ignore
-function Join_Page( {jump, toPage} ) {
+function Join_Page( {curPlayer} ) {
+
+    console.log(curPlayer)
 
     // @ts-ignore
     function enterValue(ev) {
         if (ev.key === "Enter"){
-
-            // TODO work based on firebase
-            jump(toPage);
+            curPlayer.setCurPage(PAGES.WAIT);
             ev.preventDefault();
         }
     }
-console.log(auth.currentUser)
+
     return (
 
         <div id={"JoinPage_Background"}>

@@ -17,11 +17,25 @@ import waves from './images/waves.svg'
 import bulb from './images/bulb.svg'
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+import {PAGES} from "./GameManager";
+import {Game, Player} from "../Components/Classes";
+import firebase from "firebase/compat";
+import {auth, db} from "../config/firebase"
+import {doc, DocumentReference} from "firebase/firestore";
 
 // @ts-ignore
-export default function Filters({jump, toPage}) {
+export default function Filters({curPlayer, setCurGame}) {
+    console.log(curPlayer)
+
     function next(){
-        jump(toPage)
+        // each player has a ref to their current game thats how we'll connect to the games quickly
+        let newGame = new Game();
+        newGame.addGameToFirestore();
+        // @ts-ignore
+        curPlayer.setCurPage(PAGES.COVEN);
+        curPlayer.setGameRef(newGame._gameRef)
+        newGame.addPlayer(curPlayer._playerRef)
+        setCurGame(newGame)
     }
 
     return(
