@@ -38,14 +38,9 @@ export const PAGES = {
 
 /**
  *
- *
  * GameManager:
  *      Next Mission
  *              function who gets filters from the current game and returns the next game from firebase
- *
- *      check sign-in/ starting page flow:
- *              if user logged in => connect to relevant game
- *              if user not logged in => login process and start a new game
  *
  *
  *
@@ -87,16 +82,7 @@ export const PAGES = {
 
 
 
-function logOut() {
-    auth.signOut()
-        .then(() => {
-            window.location.reload()
-            console.log('User logged out successfully');
-        })
-        .catch((error) => {
-            console.log('Error logging out:', error);
-        });
-}
+
 
 function GameManager() {
 
@@ -105,6 +91,19 @@ function GameManager() {
     const [curPlayer , setCurPlayer] = useState<Player>()
 
     let page = <div/>;
+
+    function logOut() {
+
+        auth.signOut()
+            .then(() => {
+                window.location.reload()
+                console.log('User logged out successfully');
+            })
+            .catch((error) => {
+                console.log('Error logging out:', error);
+            });
+    }
+
 
     // Updates the curPlayer instance every time information in the firestore is changed
     if (curPlayer && curPlayer._playerRef) {
@@ -183,6 +182,7 @@ function GameManager() {
             unsubscribe();
         };
     }, []);
+
 
 
     switch (curPage) {
