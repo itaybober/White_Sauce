@@ -52,7 +52,7 @@ import Flippable_card from "../Components/Flippable_card";
 //
 // }
 // @ts-ignore
-export default function Survival({jump, toPage}) {
+export default function Survival({jump, toPage, mission_object}) {
 
     const [itemList, setItemList] = useState<any | null>([])
     const itemCollectionRef = collection(db, "house_items")
@@ -90,22 +90,24 @@ export default function Survival({jump, toPage}) {
             <Flippable_card back_content={
                 <div>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
-                        <Typography variant="h5" color={"primary"}> <b> Seek And Ye Shall Find</b></Typography>
-                        <Typography variant="h6">Your goal: <span style={{ color: 'pink' }}>{itemList.length > 0 && (<span>{itemList[Math.floor(Math.random() * itemList.length)].name}</span>)}
-                    </span></Typography>
+                        <Typography variant="h5" color={"primary"}> <b> {mission_object._title}</b></Typography>
+                    {/*    <Typography variant="h6">Your goal: <span style={{ color: 'pink' }}>{itemList.length > 0 && (<span>{itemList[Math.floor(Math.random() * itemList.length)].name}</span>)}*/}
+                    {/*</span></Typography>*/}
                         <Typography variant="h6">
-                            The faster you find your object the more you gain.
-                            Anyone who doesn't find their object by the end of the timer must participate in the penalty.
-                            May the odds be ever in your favor.
+                            {mission_object._description}
+                            {/*The faster you find your object the more you gain.*/}
+                            {/*Anyone who doesn't find their object by the end of the timer must participate in the penalty.*/}
+                            {/*May the odds be ever in your favor.*/}
+                        {/*</Typography>*/}
+                        {/*<Typography variant="h6" display="block"><br/>Take a photo of yourself with your new spirit object.</Typography>*/}
                         </Typography>
-                        <Typography variant="h6" display="block"><br/>Take a photo of yourself with your new spirit object.</Typography>
-                    </CardContent>
+                        </CardContent>
                 </div>
             }
                             front_content={
                 <div>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
-                    <Typography variant={"h5"}> An amazing picture that illustrates the task and a funny and short caption</Typography>
+                    <Typography variant={"h5"}> {mission_object._title}</Typography>
                     </CardContent>
                     </div>
 

@@ -202,16 +202,16 @@ function GameManager() {
             page = <Filters curPlayer={curPlayer} setCurGame={setCurGame}/>
             break;
         case PAGES.COVEN:
-            page = <CovenantPage jump={setPage} curPlayer={curPlayer} toPage={PAGES.SURV}/>
+            page = <CovenantPage jump={setPage} curPlayer={curPlayer} toPage={PAGES.SURV} />
             break;
         case PAGES.GROUP:
-            page = <GroupMission jump={setPage} toPage={PAGES.END}/>
+            page = <GroupMission jump={setPage} toPage={PAGES.END} mission_object/>
             break;
         case PAGES.SURV:
-            page = <Survival_mission jump={setPage} toPage={PAGES.PUN}/>
+            page = <Survival_mission jump={setPage} toPage={PAGES.PUN} mission_object/>
             break;
         case PAGES.PUN:
-            page = <Punishment jump={setPage} toPage={PAGES.GROUP}/>
+            page = <Punishment jump={setPage} toPage={PAGES.GROUP} mission_object/>
             break;
         case PAGES.END:
             page = <EndingPage jump={setPage} toPage={PAGES.START}/>

@@ -15,8 +15,11 @@ import {Container, ImageList, ImageListItem} from "@mui/material";
 import friends from "./Souvenirs/tangled.jpg"
 import "./GroupMission.css"
 import Flippable_card from "../Components/Flippable_card";
-// we need to add the stepper here later
 
+import {Game} from "../Components/Classes";
+import {Player} from "../Components/Classes";
+
+// we need to add the stepper here later
 // function  winner_list_update({name,points,bg}){
 //     return(
 //     <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"} name2={"Itay"} points2={240} bg2={"#EFB2B2"} name3={name} points3={points} bg3={bg} />
@@ -24,7 +27,8 @@ import Flippable_card from "../Components/Flippable_card";
 //
 // }
 // @ts-ignore
-export default function GroupMission({jump, toPage}) {
+
+export default function GroupMission({jump, toPage, mission_object}) {
 
     const [itemData, setItemData] = useState([])
     function next(){
@@ -36,6 +40,7 @@ export default function GroupMission({jump, toPage}) {
         setItemData([friends])
     }
 
+
     return (
             <Container className={"group_mission_component"}>
 
@@ -43,11 +48,13 @@ export default function GroupMission({jump, toPage}) {
                 <Flippable_card
                     back_content={
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
-                        <Typography variant="h5" color={"primary"}>The Human Pretzel</Typography>
+                        <Typography variant="h5" color={"primary"}>{mission_object._title}</Typography>
                         <Typography variant="h6">
-                            Gather round in a circle and face each other. Each one must grab two friends at random,
-                            you must untangle yourselves without letting go. <br/><br/>
-                            You win when everyone is as open as their hearts.
+                            {mission_object._description}
+
+                            {/*Gather round in a circle and face each other. Each one must grab two friends at random,*/}
+                            {/*you must untangle yourselves without letting go. <br/><br/>*/}
+                            {/*You win when everyone is as open as their hearts.*/}
 
                             {/*Gather round and stand in a circle facing each other. Reach out a hand*/}
                             {/*and grab a friends hand,*/}
@@ -65,7 +72,7 @@ export default function GroupMission({jump, toPage}) {
                 front_content={
                     <div>
                         <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
-                            <Typography variant={"h5"}> An amazing picture that illustrates the task and a funny and short caption</Typography>
+                            <Typography variant={"h5"}> {mission_object._title}</Typography>
                         </CardContent>
                     </div>
                                 }

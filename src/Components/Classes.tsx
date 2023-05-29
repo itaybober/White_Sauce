@@ -246,6 +246,7 @@ class Game{
     public _curMission: Mission;
     public _gameRef;
 
+
     constructor() {
         this._id = Game.generateRandomNumber().toString();
         this._filters = []
