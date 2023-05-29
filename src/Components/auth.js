@@ -61,18 +61,10 @@ export const Auth = () => {
             <input placeholder="Enter your alias pussy"
                    onChange={(e) => setEmail(e.target.value)}
             />
-            <br/>
-            <input placeholder={'password'}
-                   type = 'password'
-                   onChange={(e) => setPasswrod(e.target.value)}
-            />
-            <br/>
-            <button onClick={singIn} className={"go_button"}>Sign in</button>
+            <button onClick={signInAnonymous} className={"go_button"}>Anonymous sign in</button>
             <br/>
             <button onClick={signInWithGoogle} className={"go_button"}>Sing in with Google</button>
             <br/>
-            <button onClick={logout} className={"go_button"}>Sign Out</button>
-            <button onClick={signInAnonymous} className={"go_button"}>Anonymous sign in</button>
         </div>
     );
 };
