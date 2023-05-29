@@ -62,23 +62,30 @@ class Mission {
      * points attribute
      *
      */
-    public survivalPointSystem(player: Player, time: number) {
+    public survivalPointSystem(player: Player, time: number, succeed = false) {
         // calculate number of points to add to a player
-        player._points += 1;
+        if (succeed) {
+            player._points += 1 / time * 10;
+        }
+        else{
+            player._points -= 50
+        }
         return;
     }
 
     public groupPointSystem(player: Player, time: number) {
         // calculate number of points to add to a player
-        player._points += 1;
+        player._points += 1/time *10 ;
         return;
     }
 
-    public punishmentPointSystem(player: Player, time: number) {
+    public punishmentPointSystem(player: Player, time: number, succeed=false) {
         // calculate number of points to add to a player
-        player._points += 1;
+        if (succeed) {
+            player._points += 50;
+
         return;
-    }
+    }}
 
 
     /**
