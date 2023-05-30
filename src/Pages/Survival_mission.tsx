@@ -154,7 +154,7 @@ export default function Survival({jump, toPage, mission_object}) {
 
             }} >Next</Button>
         </Container>
-
+///
     );
 
 }
