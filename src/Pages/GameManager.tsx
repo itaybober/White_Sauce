@@ -11,7 +11,7 @@ import Punishment from "./Punishment_Page";
 import EndingPage from "./EndingPage";
 import Chwazi from "../Components/Chwazi";
 import { db, auth } from "../config/firebase"
-import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
+// import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 import Main_Page from "./Main_Page";
 import {Game, Player} from "../Components/Classes";
 import {wait} from "@testing-library/user-event/dist/utils";
@@ -175,7 +175,7 @@ function GameManager() {
                 console.log('User is signed out');
                 setPage(PAGES.AUTH);
             }
-        });
+        } );
 
         // Clean up the listener when the component unmounts
         return () => {
@@ -190,7 +190,7 @@ function GameManager() {
         case PAGES.DEBUG:
             // For debug and testing
             // @ts-ignore
-            page = <FirebaseTest />;
+            // page = <FirebaseTest />;
             break;
         case PAGES.START:
             page = <Start_Page curPlayer={curPlayer}/>;
@@ -208,7 +208,7 @@ function GameManager() {
             page = <GroupMission jump={setPage} toPage={PAGES.END}/>
             break;
         case PAGES.SURV:
-            page = <Survival_mission jump={setPage} toPage={PAGES.PUN}/>
+            page = <Survival_mission jump={setPage} toPage={PAGES.PUN} curGame={curGame}/>
             break;
         case PAGES.PUN:
             page = <Punishment jump={setPage} toPage={PAGES.GROUP}/>

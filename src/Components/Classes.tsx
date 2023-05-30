@@ -43,10 +43,12 @@ class Mission {
      * @param extras
      * @param minNumOfPlayers
      * @param maxNumOfPlayers
+     * @param filters
      */
     constructor(
         title = "", description = "", tags = [], type = "", extras = [],
         minNumOfPlayers = -1, maxNumOfPlayers = -1) {
+
         this._title = title;
         this._description = description;
         this._tags = tags;
@@ -54,8 +56,9 @@ class Mission {
         this._extras = extras;
         this._minNumOfPlayers = minNumOfPlayers;
         this._maxNumOfPlayers = maxNumOfPlayers;
-        // this._pointFunction = this.addPointFunction();
     }
+
+
 
     /**
      * these 3 functions will get a Player object, and update his
@@ -243,7 +246,7 @@ class Game{
         this._id = Game.generateRandomNumber().toString();
         this._filters = []
         this._players = [];
-        this._curMission = new Mission();
+        this._curMission = new Mission()
         this._gameRef = doc(db, "Games", this._id);
     }
 
@@ -297,6 +300,15 @@ class Game{
         }
     }
 
+    public async setFilters(filters: string[]) {
+        try {
+            await updateDoc(this._gameRef, {filters: arrayUnion(filters)});
+            console.log("Filters added to Firestore")
+        } catch (err) {
+            console.error("ERROR: filters did NOT added to Firestore:", err);
+        }
+    }
+
     public static getGameData(game: Game){
         const gameData = {
             id: game._id,
@@ -315,6 +327,21 @@ class Game{
         this._curMission = data.curMission;
         this._filters = data.filters.map((filter: string) => (filter));
         this._gameRef = data.gameReference;
+    }
+
+    public getMissionFromDatabase() {
+        if (this._filters[0] === "active") {
+            console.log('chosen mission is active!')
+        }
+        else if (this._filters[0] === "drinks") {
+            console.log('chosen mission is drinks!')
+        }
+        else if (this._filters[0] === "riddles") {
+            console.log('chosen mission is riddles!')
+        }
+        else if (this._filters[0] === "snacks") {
+            console.log('chosen mission is snacks!')
+        }
     }
 }
 

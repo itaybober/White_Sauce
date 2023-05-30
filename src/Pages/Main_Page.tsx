@@ -26,7 +26,7 @@ export default function Main_Page({jump, toPage}) {
                 your journey begins
             </h1>
             <Auth/>
-            <button onClick={next} className={"go_button"}>continue </button>
+            {/*<button onClick={next} className={"go_button"}>continue </button>*/}
             {/*<button className={"go_button"}>Create Account </button>*/}
         </div>
     );

@@ -41,6 +41,10 @@ import {db} from '../config/firebase'
 import {getDocs, collection} from 'firebase/firestore'
 import "../Components/Flippable_card"
 import Flippable_card from "../Components/Flippable_card";
+import { Game } from "../Components/Classes";
+
+import { auth } from "../config/firebase";
+import gameManager from "./GameManager";
 
 // import axios from 'axios';
 // we need to add the stepper here later
@@ -51,13 +55,23 @@ import Flippable_card from "../Components/Flippable_card";
 //     )
 //
 // }
+
+/**
+ * in the future we'll add a game param, that will help us with setting unique display
+ * for each player
+ * @param jump
+ * @param toPage
+ * @constructor
+ */
 // @ts-ignore
-export default function Survival({jump, toPage}) {
+export default function Survival({jump, toPage, curGame}) {
+
+    curGame.getMissionFromDatabase();
 
     const [itemList, setItemList] = useState<any | null>([])
     const itemCollectionRef = collection(db, "house_items")
 
-    useEffect(()=> {
+    useEffect(()=> { //control when things are happening
         const getItemList = async () => {
         // READ DATA FROM DB
             try {
@@ -78,6 +92,7 @@ export default function Survival({jump, toPage}) {
         jump(toPage)
     }
 
+    // const gameData = game._curMission;
 
     function addPhoto() {
         // @ts-ignore
@@ -86,7 +101,7 @@ export default function Survival({jump, toPage}) {
 
     return (
         <Container className={"survival_page_component"} sx={{p:2}} >
-            <Avatar_and_points name={"Maya"} points={430} />
+            <Avatar_and_points name={auth.currentUser?.displayName} points={430} />
             <Flippable_card back_content={
                 <div>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
