@@ -1,7 +1,7 @@
 
 
 
-import {collection, doc, setDoc, getDoc, DocumentReference, DocumentData, updateDoc, arrayUnion, Timestamp} from "firebase/firestore";
+import {    collection, doc, setDoc, getDoc, DocumentReference, DocumentData, updateDoc, arrayUnion, Timestamp, deleteDoc, arrayRemove} from "firebase/firestore";
 import {db} from "../config/firebase";
 import {PAGES} from "../Pages/GameManager";
 // import firebase from "firebase/compat";
@@ -43,10 +43,12 @@ class Mission {
      * @param extras
      * @param minNumOfPlayers
      * @param maxNumOfPlayers
+     * @param filters
      */
     constructor(
         title = "", description = "", tags = [], type = "", extras = [],
         minNumOfPlayers = -1, maxNumOfPlayers = -1) {
+
         this._title = title;
         this._description = description;
         this._tags = tags;
@@ -54,8 +56,9 @@ class Mission {
         this._extras = extras;
         this._minNumOfPlayers = minNumOfPlayers;
         this._maxNumOfPlayers = maxNumOfPlayers;
-        // this._pointFunction = this.addPointFunction();
     }
+
+
 
     /**
      * these 3 functions will get a Player object, and update his
@@ -227,8 +230,6 @@ class Player{
     }
 
 
-
-
     public getUpdate(data: DocumentData ) {
         this._name = data.name;
         this._playerID = data.playerID;
@@ -236,6 +237,22 @@ class Player{
         this._curPage = data.curPage;
         this._playerRef = data.playerReference;
         this._gameRef = data.gameReference
+    }
+
+    public removePlayerFromFireBase() {
+        const playerRef = this._playerRef
+        getDoc(playerRef)
+            .then(async (docSnapshot) => {
+                if (docSnapshot.exists()) {
+                    await deleteDoc(playerRef)
+                    console.log("Removed player: " + this._name)
+                } else {
+                    console.log("No such Player in FireBase")
+                }
+            })
+            .catch( (error) => {
+                console.error('Error getting document:', error);
+            })
     }
 }
 
@@ -246,10 +263,9 @@ class Game{
     public _curMission: Mission;
     public _gameRef;
 
-
     constructor() {
         this._id = Game.generateRandomNumber().toString();
-        this._filters = []
+        this._filters = [];
         this._players = [];
         this._curMission = new Mission();
         this._gameRef = doc(db, "Games", this._id);
@@ -282,7 +298,6 @@ class Game{
         await updateDoc(this._gameRef, {players: arrayUnion(playerRef)})
     }
 
-
     /**
      * Generates a random four digit number
      */
@@ -305,6 +320,15 @@ class Game{
         }
     }
 
+    public async setFilters(filters: string[]) {
+        try {
+            await updateDoc(this._gameRef, {filters: arrayUnion(filters)});
+            console.log("Filters added to Firestore")
+        } catch (err) {
+            console.error("ERROR: filters did NOT added to Firestore:", err);
+        }
+    }
+
     public static getGameData(game: Game){
         const gameData = {
             id: game._id,
@@ -323,6 +347,43 @@ class Game{
         this._curMission = data.curMission;
         this._filters = data.filters.map((filter: string) => (filter));
         this._gameRef = data.gameReference;
+    }
+
+    public removePlayerFromFirebase(playerRef: DocumentReference){
+        getDoc(this._gameRef)
+            .then(async (docSnapshot) => {
+                if (docSnapshot.exists()) {
+                    const data = docSnapshot.data()
+                    if (data.players.length === 1){
+                        await deleteDoc(this._gameRef)
+                        console.log("Removed game: " + this._id)
+                    } else {
+                        await updateDoc(this._gameRef, {players: arrayRemove(playerRef)})
+                        console.log("Removed player "+ playerRef.path+ " from game "  + this._gameRef.path)
+                    }
+                } else {
+                    console.log("No related game in FireBase")
+                }
+            })
+            .catch( (error) => {
+                console.error('Error getting document:', error);
+            })
+    }
+
+
+    public getMissionFromDatabase() {
+        if (this._filters[0] === "active") {
+            console.log('chosen mission is active!')
+        }
+        else if (this._filters[0] === "drinks") {
+            console.log('chosen mission is drinks!')
+        }
+        else if (this._filters[0] === "riddles") {
+            console.log('chosen mission is riddles!')
+        }
+        else if (this._filters[0] === "snacks") {
+            console.log('chosen mission is snacks!')
+        }
     }
 }
 

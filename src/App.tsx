@@ -12,7 +12,6 @@ import Flippable_card from "./Components/Flippable_card";
 function App() {
     return (
     <div className="App">
-
         <Background>
             <GameManager/>
         </Background>
