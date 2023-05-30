@@ -1,70 +1,80 @@
 mainFrame {
     display: flex;
     flex-direction: column;
-}
-
-.step1 {
-    /*position: absolute;*/
-    font-weight: 700;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+    justify-content: space-around;
     align-items: center;
-    color: #FFFFFF;
+    gap: 1000px;
+    padding: 2%;
+    position: relative;
+    text-justify: auto;
+    /*top: 50px;*/
+
+
+    /*width: 100vw;*/
 }
 
-.journey {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 130%;
-    /* or 42px */
+/*.step1 {*/
+/*    !*position: absolute;*!*/
+/*    font-weight: 700;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-content: center;*/
+/*    align-items: center;*/
+/*    color: #FFFFFF;*/
+/*}*/
 
-    letter-spacing: -0.01em;
+/*.journey {*/
+/*    font-style: normal;*/
+/*    font-weight: 700;*/
+/*    font-size: 32px;*/
+/*    line-height: 130%;*/
+/*    !* or 42px *!*/
 
-    color: #FFFFFF;
-    background: none;
+/*    letter-spacing: -0.01em;*/
 
-}
+/*    color: #FFFFFF;*/
+/*    background: none;*/
 
-.sign_in {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 16px;
-    gap: 16px;
+/*}*/
 
-    position: absolute;
-    width: 353px;
-    height: 56px;
-    left: 39px;
-    top: 725px;
+/*.sign_in {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    padding: 0px 16px;*/
+/*    gap: 16px;*/
 
-    background: #FFFFFF;
-    border-radius: 4px;
-}
+/*    position: absolute;*/
+/*    width: 353px;*/
+/*    height: 56px;*/
+/*    left: 39px;*/
+/*    top: 725px;*/
 
-.create_account {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 16px;
-    gap: 16px;
+/*    background: #FFFFFF;*/
+/*    border-radius: 4px;*/
+/*}*/
 
-    position: absolute;
-    width: 353px;
-    height: 56px;
-    left: 39px;
-    top: 813px;
+/*.create_account {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    padding: 0px 16px;*/
+/*    gap: 16px;*/
 
-    background: #2A2A2A;
-    border-radius: 4px;
-}
+/*    position: absolute;*/
+/*    width: 353px;*/
+/*    height: 56px;*/
+/*    left: 39px;*/
+/*    top: 813px;*/
+
+/*    background: #2A2A2A;*/
+/*    border-radius: 4px;*/
+/*}*/
 
 
-button {
-    background: #FFFFFF;
-    border-radius: 4px;
-}
+/*button {*/
+/*    background: #FFFFFF;*/
+/*    border-radius: 4px;*/
+/*}*/

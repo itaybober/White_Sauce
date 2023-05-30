@@ -175,7 +175,7 @@ function GameManager() {
                 console.log('User is signed out');
                 setPage(PAGES.AUTH);
             }
-        } );
+        });
 
         // Clean up the listener when the component unmounts
         return () => {
@@ -205,13 +205,13 @@ function GameManager() {
             page = <CovenantPage jump={setPage} curPlayer={curPlayer} toPage={PAGES.SURV}/>
             break;
         case PAGES.GROUP:
-            page = <GroupMission jump={setPage} toPage={PAGES.END}/>
+            page = <GroupMission jump={setPage} toPage={PAGES.END} mission_object/>
             break;
         case PAGES.SURV:
-            page = <Survival_mission jump={setPage} toPage={PAGES.PUN} curGame={curGame}/>
+            page = <Survival_mission jump={setPage} toPage={PAGES.PUN} mission_object/>
             break;
         case PAGES.PUN:
-            page = <Punishment jump={setPage} toPage={PAGES.GROUP}/>
+            page = <Punishment jump={setPage} toPage={PAGES.GROUP} mission_object/>
             break;
         case PAGES.END:
             page = <EndingPage jump={setPage} toPage={PAGES.START}/>

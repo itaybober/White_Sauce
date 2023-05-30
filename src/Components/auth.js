@@ -4,7 +4,9 @@ import {useState} from "react";
 import {collection} from "firebase/firestore";
 import {db} from "../Achsaf_Folder/firebase-config";
 import { Player } from "./Classes"
-
+import Input from '@mui/material/Input';
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
 export const Auth = () => {
     const [email, setEmail] = useState("")
 
@@ -44,14 +46,17 @@ export const Auth = () => {
     }
 
     return (
-        <div>
-            <input placeholder="Enter your alias pussy"
+        <Container sx={{display: "flex", flexFlow:"column",justifyContent:"space-evenly",alignItems:"center",
+            gap:6,padding: 2,position:"relative",textJustify:"auto" }
+
+        }>
+            <Input placeholder="Enter your alias pussy"
                    onChange={(e) => setEmail(e.target.value)}
             />
-            <button onClick={signInAnonymous} className={"go_button"}>Anonymous sign in</button>
-            <br/>
-            <button onClick={signInWithGoogle} className={"go_button"}>Sing in with Google</button>
-            <br/>
-        </div>
+            <Button onClick={signInAnonymous} >Anonymous sign in</Button>
+
+            <Button onClick={signInWithGoogle}>Sing in with Google</Button>
+
+        </Container>
     );
 };

@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import Timer_Component from "../Components/Timer_Component";
+import Countdown_Component from "../Components/Countdown_Component";
 import * as React from "react";
 import {ImageList, ImageListItem} from "@mui/material";
 import sockhands from './Souvenirs/sockhands.jpg'
@@ -14,7 +14,7 @@ import "./Punishment_Page.css"
 import Avatar_and_points from "../Components/avatar_and_points";
 import Flippable_card from "../Components/Flippable_card";
 // @ts-ignore
-export default function Punishment({ jump, toPage }) {
+export default function Punishment({ jump, toPage, mission_object }) {
     const loser_player = "Guy";
 
     const [itemData, setItemData] = useState([]);
@@ -38,14 +38,16 @@ export default function Punishment({ jump, toPage }) {
                 <Flippable_card back_content={
                     <div>
                         <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
-                            <Typography variant="h5" color={"secondary"}> <b> It's punishment time</b></Typography>
+                            <Typography variant="h5" color={"secondary"}> <b> {mission_object._title}</b></Typography>
                             <Typography  sx={{lineHeight: '20px'}} variant={"h6"} >
                                 <br/>You lost, sucks to suck. <br/><br/>
+                                {mission_object._description}
+                                {/*
                                 You got one shot,<br/> don't miss your chance to blow <br/><br/>
                                 You gotta freestyle,<br/> put on a good show <br/><br/>
                                 But if too many verses, <br/> dont manage to land <br/><br/>
                                 For the rest of the evening, <br/> you must wear socks on your hands
-
+*/}
                                 {/*Well, well, well, look who we have here - the ultimate loser! As punishment,*/}
                                 {/*you must chug a beer in 30 seconds.*/}
                                 {/*We have another treat for you! You must wear your socks*/}
@@ -64,7 +66,7 @@ export default function Punishment({ jump, toPage }) {
                     front_content={
                     <div>
                         <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center" ,textAlign: "justify" }}>
-                            <Typography variant={"h4"}> A horrifying picture of punishment</Typography>
+                            <Typography variant={"h4"}> {mission_object._title}</Typography>
                         </CardContent>
                     </div>
                     }
@@ -73,7 +75,7 @@ export default function Punishment({ jump, toPage }) {
 
                 {/*<div style={{ height: 20 }}></div>*/}
 
-                <Timer_Component timerLimit={30} />
+                <Countdown_Component />
 
                 {/*<div style={{ height: 20 }}></div>*/}
 
