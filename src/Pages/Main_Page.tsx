@@ -5,7 +5,9 @@ import React from 'react';
 import logo from './step-1_logo.svg'
 import './Main_Page.css'
 import {Auth} from "../Components/auth";
-
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 
 // @ts-ignore
 export default function Main_Page({jump, toPage}) {
@@ -15,20 +17,23 @@ export default function Main_Page({jump, toPage}) {
         jump(toPage)
     }
     return(
-        <div className={"mainFrame"}>
+        <Container sx={{display: "flex", flexFlow:"column", justifyContent: "center", alignItems: "center" ,textAlign: "center",gap:3, padding: 3.5}}>
             <div>
                 <img src={logo} width={100} height={100}/>
             </div>
-            <h2 className={"step1"}>step-1</h2>
-            <h1 className={"journey"}>
+
+            <Typography variant="h3" >step-1</Typography>
+            <Typography variant="h5">
                 this is where
            <br />
                 your journey begins
-            </h1>
+            </Typography>
+            <br />
             <Auth/>
-            <button onClick={next} className={"go_button"}>continue </button>
+
+            <Button onClick={next} >continue </Button>
             {/*<button className={"go_button"}>Create Account </button>*/}
-        </div>
+        </Container>
     );
 }
 
