@@ -64,7 +64,7 @@ import gameManager from "./GameManager";
  * @constructor
  */
 // @ts-ignore
-export default function Survival({jump, toPage, curGame}) {
+export default function Survival({jump, toPage, curGame, mission_object}) {
 
     curGame.getMissionFromDatabase();
 
