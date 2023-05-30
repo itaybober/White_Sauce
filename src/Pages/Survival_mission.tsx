@@ -83,6 +83,7 @@ export default function Survival({jump, toPage, curGame}) {
             } catch (err) {
                 console.error(err)
             }
+
         }
         getItemList();
     }, [])
