@@ -25,7 +25,7 @@ import {doc, DocumentReference} from "firebase/firestore";
 
 // @ts-ignore
 export default function Filters({curPlayer, setCurGame}) {
-    console.log(curPlayer)
+
 
     function next(){
         // each player has a ref to their current game thats how we'll connect to the games quickly

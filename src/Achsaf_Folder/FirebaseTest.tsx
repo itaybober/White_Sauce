@@ -1,7 +1,8 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {db} from '../config/firebase';
 import {doc, setDoc, addDoc, collection} from 'firebase/firestore';
 import {Game} from "../Components/Classes"
+import logo from "../Pages/step-1_logo.svg";
 // import firebase from "firebase/compat";
 // import Timestamp = firebase.firestore.Timestamp;
 
@@ -13,20 +14,11 @@ function FirebaseTest({id}) {
     const [gameID, setGameID] = useState(null);
     const [curPage, setCurPage] = useState(null);
 
-    // let fetchGame = Game.getGameFromFirestore(curGameID)
-
-    // fetchGame
-    //     .then((game) => {
-    //         if (game != null) { // @ts-ignore
-    //             setGameID(game._id)
-    //             // @ts-ignore
-    //             setCurPage(game._curPage)
-    //         }
-    //     })
-
     // @ts-ignore
     return (
-        <div></div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>
+        </div>
     );
 }
 

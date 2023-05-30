@@ -39,7 +39,7 @@ export default function GroupMission({jump, toPage}) {
     return (
             <Container className={"group_mission_component"}>
 
-                <Avatar_and_points name={"Maya"} points={600}/>
+                <Avatar_and_points name={"Achsaf"} points={600}/>
                 <Flippable_card
                     back_content={
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>

@@ -87,16 +87,21 @@ export const PAGES = {
 function GameManager() {
 
     const [curPage, setPage] = useState(PAGES.WAIT)
-    const [curGame, setCurGame] = useState<Game>()
+    const [curGame, setCurGame] = useState<Game>(new Game())
     const [curPlayer , setCurPlayer] = useState<Player>()
 
     let page = <div/>;
 
     function logOut() {
-
         auth.signOut()
             .then(() => {
-                window.location.reload()
+                curPlayer?.setCurPage(PAGES.AUTH)
+                if (curPlayer) {
+                    curPlayer.removePlayerFromFireBase()
+                }
+                if (curGame && curPlayer) {
+                    curGame.removePlayerFromFirebase(curPlayer._playerRef)
+                }
                 console.log('User logged out successfully');
             })
             .catch((error) => {
@@ -104,15 +109,14 @@ function GameManager() {
             });
     }
 
-
     // Updates the curPlayer instance every time information in the firestore is changed
     if (curPlayer && curPlayer._playerRef) {
         onSnapshot(curPlayer._playerRef, (snapshot) => {
-            const data = snapshot.data()
-            if (typeof data !== 'undefined') {
-                curPlayer.getUpdate(data)
-            }
-            setPage(curPlayer._curPage)
+                const data = snapshot.data()
+                if (typeof data !== 'undefined') {
+                    curPlayer.getUpdate(data)
+                }
+                setPage(curPlayer._curPage)
         })
     }
 
@@ -125,7 +129,6 @@ function GameManager() {
             }
         })
     }
-
 
     // For debugging, will run whatever command given if any key is pressed
     useEffect(() => {
@@ -146,13 +149,13 @@ function GameManager() {
     onAuthStateChanged(auth, () => {
         if(curPlayer && auth.currentUser && auth.currentUser.displayName) {
             curPlayer.setName(auth.currentUser.displayName)
-            console.log("auth state change")
+            // console.log("auth state change")
         }
     })
 
     // After login creates a player instance if none exists or connects to firebase if it does.
     useEffect(() => {
-        console.log("login attempt")
+        // console.log("login attempt")
         const unsubscribe = auth.onAuthStateChanged(  (user) => {
             if (user) {
                 let curUser;
@@ -171,6 +174,7 @@ function GameManager() {
                         }
                         setCurPlayer(curUser)
                     })
+                    .catch((error) => {console.log("Couldn't get User doc: " + error)})
             } else {
                 console.log('User is signed out');
                 setPage(PAGES.AUTH);
@@ -196,7 +200,7 @@ function GameManager() {
             page = <Start_Page curPlayer={curPlayer}/>;
             break;
         case PAGES.JOIN:
-            page = <Join_Page curPlayer={curPlayer}/>
+            page = <Join_Page curPlayer={curPlayer} curGame={curGame}/>
             break;
         case PAGES.FILTERS:
             page = <Filters curPlayer={curPlayer} setCurGame={setCurGame}/>

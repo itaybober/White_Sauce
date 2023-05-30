@@ -14,7 +14,7 @@ export  default function Avatar_and_points({name, points}) {
 
     <Container sx={{width: 350, height: 120, display: 'flex', flexDirection: 'row', justifyContent:  "space-between", alignItems: 'center' }   }>
 
-        <Avatar sx={{bgcolor: "#90ece4" ,width: 60, height: 60}}> MS </Avatar>
+        <Avatar sx={{bgcolor: "#90ece4" ,width: 60, height: 60}}> A </Avatar>
         <Container sx={{width: 260, height: 80, display: 'flex', flexDirection: 'column', justifyContent:  "space-between", alignItems: 'flex-start', gap:"10px"}   }>
             <Typography
             variant="h5"> {name} </Typography>
