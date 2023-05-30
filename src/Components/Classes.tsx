@@ -43,10 +43,12 @@ class Mission {
      * @param extras
      * @param minNumOfPlayers
      * @param maxNumOfPlayers
+     * @param filters
      */
     constructor(
         title = "", description = "", tags = [], type = "", extras = [],
         minNumOfPlayers = -1, maxNumOfPlayers = -1) {
+
         this._title = title;
         this._description = description;
         this._tags = tags;
@@ -54,31 +56,39 @@ class Mission {
         this._extras = extras;
         this._minNumOfPlayers = minNumOfPlayers;
         this._maxNumOfPlayers = maxNumOfPlayers;
-        // this._pointFunction = this.addPointFunction();
     }
+
+
 
     /**
      * these 3 functions will get a Player object, and update his
      * points attribute
      *
      */
-    public survivalPointSystem(player: Player, time: number) {
+    public survivalPointSystem(player: Player, time: number, succeed = false) {
         // calculate number of points to add to a player
-        player._points += 1;
+        if (succeed) {
+            player._points += 1 / time * 10;
+        }
+        else{
+            player._points -= 50
+        }
         return;
     }
 
     public groupPointSystem(player: Player, time: number) {
         // calculate number of points to add to a player
-        player._points += 1;
+        player._points += 1/time *10 ;
         return;
     }
 
-    public punishmentPointSystem(player: Player, time: number) {
+    public punishmentPointSystem(player: Player, time: number, succeed=false) {
         // calculate number of points to add to a player
-        player._points += 1;
+        if (succeed) {
+            player._points += 50;
+
         return;
-    }
+    }}
 
 
     /**
@@ -255,7 +265,7 @@ class Game{
 
     constructor() {
         this._id = Game.generateRandomNumber().toString();
-        this._filters = []
+        this._filters = [];
         this._players = [];
         this._curMission = new Mission();
         this._gameRef = doc(db, "Games", this._id);
@@ -310,6 +320,15 @@ class Game{
         }
     }
 
+    public async setFilters(filters: string[]) {
+        try {
+            await updateDoc(this._gameRef, {filters: arrayUnion(filters)});
+            console.log("Filters added to Firestore")
+        } catch (err) {
+            console.error("ERROR: filters did NOT added to Firestore:", err);
+        }
+    }
+
     public static getGameData(game: Game){
         const gameData = {
             id: game._id,
@@ -351,6 +370,21 @@ class Game{
             })
     }
 
+
+    public getMissionFromDatabase() {
+        if (this._filters[0] === "active") {
+            console.log('chosen mission is active!')
+        }
+        else if (this._filters[0] === "drinks") {
+            console.log('chosen mission is drinks!')
+        }
+        else if (this._filters[0] === "riddles") {
+            console.log('chosen mission is riddles!')
+        }
+        else if (this._filters[0] === "snacks") {
+            console.log('chosen mission is snacks!')
+        }
+    }
 }
 
 

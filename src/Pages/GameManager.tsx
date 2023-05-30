@@ -11,7 +11,7 @@ import Punishment from "./Punishment_Page";
 import EndingPage from "./EndingPage";
 import Chwazi from "../Components/Chwazi";
 import { db, auth } from "../config/firebase"
-import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
+// import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 import Main_Page from "./Main_Page";
 import {Game, Player} from "../Components/Classes";
 import {wait} from "@testing-library/user-event/dist/utils";
@@ -194,7 +194,7 @@ function GameManager() {
         case PAGES.DEBUG:
             // For debug and testing
             // @ts-ignore
-            page = <FirebaseTest />;
+            // page = <FirebaseTest />;
             break;
         case PAGES.START:
             page = <Start_Page curPlayer={curPlayer}/>;
@@ -209,13 +209,13 @@ function GameManager() {
             page = <CovenantPage jump={setPage} curPlayer={curPlayer} toPage={PAGES.SURV}/>
             break;
         case PAGES.GROUP:
-            page = <GroupMission jump={setPage} toPage={PAGES.END}/>
+            page = <GroupMission jump={setPage} toPage={PAGES.END} mission_object/>
             break;
         case PAGES.SURV:
-            page = <Survival_mission jump={setPage} toPage={PAGES.PUN}/>
+            page = <Survival_mission jump={setPage} toPage={PAGES.PUN} mission_object/>
             break;
         case PAGES.PUN:
-            page = <Punishment jump={setPage} toPage={PAGES.GROUP}/>
+            page = <Punishment jump={setPage} toPage={PAGES.GROUP} mission_object/>
             break;
         case PAGES.END:
             page = <EndingPage jump={setPage} toPage={PAGES.START}/>

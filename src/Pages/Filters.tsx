@@ -22,20 +22,27 @@ import {Game, Player} from "../Components/Classes";
 import firebase from "firebase/compat";
 import {auth, db} from "../config/firebase"
 import {doc, DocumentReference} from "firebase/firestore";
+import {text} from "stream/consumers";
 
 // @ts-ignore
 export default function Filters({curPlayer, setCurGame}) {
 
+    let chosenFilters : string[] = [];
+
+
+    console.log(curPlayer)
 
     function next(){
         // each player has a ref to their current game thats how we'll connect to the games quickly
         let newGame = new Game();
+        newGame._filters = chosenFilters;
         newGame.addGameToFirestore();
         // @ts-ignore
         curPlayer.setCurPage(PAGES.COVEN);
         curPlayer.setGameRef(newGame._gameRef)
         newGame.addPlayer(curPlayer._playerRef)
         setCurGame(newGame)
+        console.log("filters selected:",newGame._filters);
     }
 
     return(
@@ -50,15 +57,14 @@ export default function Filters({curPlayer, setCurGame}) {
                 looking for?</b></Typography>
 
             <div className={"cards_container"}>
-                <MyCard icon={active_logo} text="active" />
-                <MyCard icon={shopping} text="supplies" />
-                <MyCard icon={snacks} text="snacks" />
-                <MyCard icon={waves} text="get wet" />
-                <MyCard icon={sunshine} text="day time" />
-                <MyCard icon={night} text="night time" />
-                <MyCard icon={bulb} text="riddles" />
-                <MyCard icon={drinks} text="drinks" />
-
+                <MyCard icon={active_logo} text="active" chosenFilters={chosenFilters}/>
+                <MyCard icon={shopping} text="supplies" chosenFilters={chosenFilters}/>
+                <MyCard icon={snacks} text="snacks" chosenFilters={chosenFilters}/>
+                <MyCard icon={waves} text="get wet" chosenFilters={chosenFilters}/>
+                <MyCard icon={sunshine} text="day time" chosenFilters={chosenFilters}/>
+                <MyCard icon={night} text="night time" chosenFilters={chosenFilters}/>
+                <MyCard icon={bulb} text="riddles" chosenFilters={chosenFilters}/>
+                <MyCard icon={drinks} text="drinks" chosenFilters={chosenFilters}/>
             </div>
 
             {/*maya edit:*/}
@@ -75,12 +81,20 @@ export default function Filters({curPlayer, setCurGame}) {
 
 // <Button onClick={next} variant="contained" className={"go_button"}> הגרסה הקודמת
 
-function MyCard(props: React.PropsWithChildren<{ icon: string; text: string }>) {
+function MyCard(props: React.PropsWithChildren<{ icon: string; text: string, chosenFilters: string[] }>) {
     const [isActive, setIsActive] = useState(false);
 
     const handleClick = () => {
         setIsActive(!isActive);
+        if (isActive) {
+            const index = props.chosenFilters.indexOf(props.text);
+            props.chosenFilters.splice(index, 1);
+        } else {
+            props.chosenFilters.push(props.text);
+            console.log(props.text, "added to array")
+        }
     };
+
 
     return (
         <Card
@@ -101,7 +115,6 @@ function MyCard(props: React.PropsWithChildren<{ icon: string; text: string }>) 
                     image={props.icon}
                 />
                 <CardContent>
-                     {/*maya edit:*/}
                     <Typography variant="h5">{props.text}</Typography>
                 </CardContent>
             </CardActionArea>

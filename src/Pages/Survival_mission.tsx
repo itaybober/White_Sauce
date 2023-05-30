@@ -41,6 +41,10 @@ import {db} from '../config/firebase'
 import {getDocs, collection} from 'firebase/firestore'
 import "../Components/Flippable_card"
 import Flippable_card from "../Components/Flippable_card";
+import { Game } from "../Components/Classes";
+
+import { auth } from "../config/firebase";
+import gameManager from "./GameManager";
 
 // import axios from 'axios';
 // we need to add the stepper here later
@@ -51,13 +55,23 @@ import Flippable_card from "../Components/Flippable_card";
 //     )
 //
 // }
+
+/**
+ * in the future we'll add a game param, that will help us with setting unique display
+ * for each player
+ * @param jump
+ * @param toPage
+ * @constructor
+ */
 // @ts-ignore
-export default function Survival({jump, toPage}) {
+export default function Survival({jump, toPage, curGame}) {
+
+    curGame.getMissionFromDatabase();
 
     const [itemList, setItemList] = useState<any | null>([])
     const itemCollectionRef = collection(db, "house_items")
 
-    useEffect(()=> {
+    useEffect(()=> { //control when things are happening
         const getItemList = async () => {
         // READ DATA FROM DB
             try {
@@ -69,6 +83,7 @@ export default function Survival({jump, toPage}) {
             } catch (err) {
                 console.error(err)
             }
+
         }
         getItemList();
     }, [])
@@ -86,26 +101,28 @@ export default function Survival({jump, toPage}) {
 
     return (
         <Container className={"survival_page_component"} sx={{p:2}} >
-            <Avatar_and_points name={"Maya"} points={430} />
+            <Avatar_and_points name={auth.currentUser?.displayName} points={430} />
             <Flippable_card back_content={
                 <div>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
-                        <Typography variant="h5" color={"primary"}> <b> Seek And Ye Shall Find</b></Typography>
-                        <Typography variant="h6">Your goal: <span style={{ color: 'pink' }}>{itemList.length > 0 && (<span>{itemList[Math.floor(Math.random() * itemList.length)].name}</span>)}
-                    </span></Typography>
+                        <Typography variant="h5" color={"primary"}> <b> {mission_object._title}</b></Typography>
+                    {/*    <Typography variant="h6">Your goal: <span style={{ color: 'pink' }}>{itemList.length > 0 && (<span>{itemList[Math.floor(Math.random() * itemList.length)].name}</span>)}*/}
+                    {/*</span></Typography>*/}
                         <Typography variant="h6">
-                            The faster you find your object the more you gain.
-                            Anyone who doesn't find their object by the end of the timer must participate in the penalty.
-                            May the odds be ever in your favor.
+
+                            {mission_object._description}    {/*The faster you find your object the more you gain.*/}
+                            {/*Anyone who doesn't find their object by the end of the timer must participate in the penalty.*/}
+                            {/*May the odds be ever in your favor.*/}
+                        {/*</Typography>*/}
+                        {/*<Typography variant="h6" display="block"><br/>Take a photo of yourself with your new spirit object.</Typography>*/}
                         </Typography>
-                        <Typography variant="h6" display="block"><br/>Take a photo of yourself with your new spirit object.</Typography>
-                    </CardContent>
+                        </CardContent>
                 </div>
             }
                             front_content={
                 <div>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
-                    <Typography variant={"h5"}> An amazing picture that illustrates the task and a funny and short caption</Typography>
+                    <Typography variant={"h5"}> {mission_object._title}</Typography>
                     </CardContent>
                     </div>
 
