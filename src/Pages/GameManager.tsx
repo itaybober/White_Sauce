@@ -40,10 +40,7 @@ export const PAGES = {
  *
  * GameManager:
  *      Next Mission
- *              function who gets filters from the current game and returns the next game from firebase
- *
- *
- *
+ *              function who gets filters from the current game and returns the next game from firebase*
  * Pages:
  *
  *      Leader Board Component --

@@ -139,6 +139,19 @@ class Mission {
         };
         return missionData;
     }
+
+    public static getMissionDataFromVariable(mission: Mission){
+        const playerData = {
+            title: mission._title,
+            description: mission._description,
+            tags: mission._tags,
+            type: mission._type,
+            extras: mission._extras,
+            minNumOfPlayers: mission._minNumOfPlayers,
+            maxNumOfPlayers: mission._maxNumOfPlayers
+        };
+        return playerData;
+    }
 }
 
 /**
@@ -368,6 +381,10 @@ class Game{
             .catch( (error) => {
                 console.error('Error getting document:', error);
             })
+    }
+
+    public async setCurMission(newMission: Mission) {
+        await updateDoc(this._gameRef, {curMission: Mission.getMissionDataFromVariable(newMission)})
     }
 
 
