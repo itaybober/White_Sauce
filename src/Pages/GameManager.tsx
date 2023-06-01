@@ -212,7 +212,7 @@ function GameManager() {
             page = <GroupMission jump={setPage} toPage={PAGES.END} mission_object/>
             break;
         case PAGES.SURV:
-            page = <Survival_mission jump={setPage} toPage={PAGES.PUN} curGame mission_object/>
+            page = <Survival_mission jump={setPage} toPage={PAGES.PUN} curGame={curGame} />
             break;
         case PAGES.PUN:
             page = <Punishment jump={setPage} toPage={PAGES.GROUP} mission_object/>

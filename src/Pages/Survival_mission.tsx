@@ -41,7 +41,7 @@ import {db} from '../config/firebase'
 import {getDocs, collection} from 'firebase/firestore'
 import "../Components/Flippable_card"
 import Flippable_card from "../Components/Flippable_card";
-import { Game } from "../Components/Classes";
+import {Game, Mission} from "../Components/Classes";
 
 import { auth } from "../config/firebase";
 import gameManager from "./GameManager";
@@ -64,8 +64,9 @@ import gameManager from "./GameManager";
  * @constructor
  */
 // @ts-ignore
-export default function Survival({jump, toPage, curGame, mission_object}) {
+export default function Survival({jump, toPage, curGame}) {
 
+    const mission_object=new Mission("Big Maya's House", "Trash the place, just destroy everything. Not even a nail remains on the wall");
     curGame.getMissionFromDatabase();
 
     const [itemList, setItemList] = useState<any | null>([])

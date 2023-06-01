@@ -10,7 +10,11 @@ import Container from "@mui/material/Container";
 
 // @ts-ignore
 export  default function Avatar_and_points({name, points}) {
+    if (name===null) {
+        name="maya"
+    }
     return (
+
 
     <Container sx={{width: 350, height: 120, display: 'flex', flexDirection: 'row', justifyContent:  "space-between", alignItems: 'center' }   }>
 
