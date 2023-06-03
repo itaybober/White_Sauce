@@ -11,9 +11,9 @@ import Container from "@mui/material/Container";
 // @ts-ignore
 export  default function Avatar_and_points({name ,points}) {
     // eslint-disable-next-line no-restricted-globals
-    // if (name===null) {
-    //     name="maya"
-    // }
+    if (name===null) {
+        name="maya"
+    }
     return (
 
 

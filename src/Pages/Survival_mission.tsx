@@ -44,7 +44,7 @@ import Flippable_card from "../Components/Flippable_card";
 import {Game, Mission} from "../Components/Classes";
 
 import { auth } from "../config/firebase";
-import gameManager from "./GameManager";
+import gameManager, {PAGES} from "./GameManager";
 
 // import axios from 'axios';
 // we need to add the stepper here later
@@ -64,12 +64,13 @@ import gameManager from "./GameManager";
  * @constructor
  */
 // @ts-ignore
-export default function Survival({jump, toPage, curGame}) {
+export default function Survival({curPlayer,curGame}) {
 
     curGame.getMissionFromDatabase();
 
+
     console.log(curGame._id)
-    // console.log(curGame._curMission)
+    console.log(curGame._curMission)
 
     const mission_object = curGame._curMission
 
@@ -94,19 +95,19 @@ export default function Survival({jump, toPage, curGame}) {
     }, [])
 
     const [itemData, setItemData] = useState([])
-    function next(){
-        jump(toPage)
-    }
+    // function next(){
+    //     jump(toPage)
+    // }
 
 
     function addPhoto() {
         // @ts-ignore
         setItemData([itay])
     }
-
+console.log(curPlayer.name)
     return (
         <Container className={"survival_page_component"} sx={{p:2}} >
-            <Avatar_and_points name={auth.currentUser?.displayName} points={430} />
+            <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
             <Flippable_card back_content={
                 <div>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
@@ -169,7 +170,7 @@ export default function Survival({jump, toPage, curGame}) {
                 </Card>
 
 
-            <Button onClick={next} variant="contained" color="primary" size={"medium"} sx={{
+            <Button onClick={()=> curPlayer.setCurPage(PAGES.PUN)} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 4,
 
             }} >Next</Button>

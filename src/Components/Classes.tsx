@@ -176,7 +176,7 @@ class Player {
             this._name = name;
         }
         this._playerID = UID;
-        this._points = 0;
+        this._points = -1;
         this._curPage = PAGES.START;
         this._playerRef = doc(db, "Active_Players", UID);
         this._gameRef = gameRef;

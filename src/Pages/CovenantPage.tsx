@@ -12,6 +12,7 @@ import CardContent from "@mui/material/CardContent";
 import logo from "./images/step-1_logo.svg";
 import Container from "@mui/material/Container";
 import {setDoc} from "firebase/firestore";
+import {PAGES} from "./GameManager";
 
 
 // TODO determined by number of players in firebase
@@ -25,8 +26,9 @@ function CovenantPage({jump, toPage, curPlayer}) {
     function startGame(){
         // TODO get from firebase
         if (numFingers === NUM_OF_PLAYERS){
-            setDoc(curPlayer._playerRef, {curPage: toPage})
-            jump(toPage);
+            curPlayer.setCurPage(PAGES.SURV)
+            // setDoc(curPlayer._playerRef, {curPage: toPage})
+            // jump(toPage);
         }
     }
 
