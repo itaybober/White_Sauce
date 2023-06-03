@@ -13,15 +13,19 @@ import Background_loser from "../Components/Background-loser";
 import "./Punishment_Page.css"
 import Avatar_and_points from "../Components/avatar_and_points";
 import Flippable_card from "../Components/Flippable_card";
+import {PAGES} from "./GameManager";
 // @ts-ignore
-export default function Punishment({ jump, toPage, mission_object }) {
+export default function Punishment({curPlayer,curGame}) {
     const loser_player = "Guy";
+
+    curGame.getMissionFromDatabase();
+    const mission_object = curGame._curMission
 
     const [itemData, setItemData] = useState([]);
 
-    function next(){
-        jump(toPage)
-    }
+    // function next(){
+    //     jump(toPage)
+    // }
 
     function forTheDemo(){
         // @ts-ignore
@@ -99,9 +103,8 @@ export default function Punishment({ jump, toPage, mission_object }) {
                     ))}
                 </ImageList>
 
-                <Button onClick={next} variant="contained"  size={"medium"} sx={{
-                    mb: 2
-                    // position: 'fixed',
+                <Button onClick={()=> curPlayer.setCurPage(PAGES.GROUP)} variant="contained" color="primary" size={"medium"} sx={{
+                    mb: 4,
 
                 }} >Next</Button>
             </Container>

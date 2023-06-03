@@ -18,6 +18,7 @@ import Flippable_card from "../Components/Flippable_card";
 
 import {Game} from "../Components/Classes";
 import {Player} from "../Components/Classes";
+import {PAGES} from "./GameManager";
 
 // we need to add the stepper here later
 // function  winner_list_update({name,points,bg}){
@@ -28,12 +29,18 @@ import {Player} from "../Components/Classes";
 // }
 // @ts-ignore
 
-export default function GroupMission({jump, toPage, mission_object}) {
+export default function GroupMission({curPlayer,curGame}) {
 
-    const [itemData, setItemData] = useState([])
-    function next(){
-        jump(toPage)
-    }
+
+
+
+    curGame.getMissionFromDatabase();
+    const mission_object = curGame._curMission
+
+    const [itemData, setItemData] = useState([]);
+    // function next(){
+    //     jump(toPage)
+    // }
 
     function addPhoto() {
         // @ts-ignore
@@ -95,8 +102,9 @@ export default function GroupMission({jump, toPage, mission_object}) {
                         </ImageListItem>
                     ))}
                 </ImageList>
-                <Button onClick={next} variant="contained" color="primary" size={"medium"} sx={{
-                    mb: 3,
+                <Button onClick={()=> curPlayer.setCurPage(PAGES.END)} variant="contained" color="primary" size={"medium"} sx={{
+                    mb: 4,
+
                 }} >Next</Button>
             </Container>
     );

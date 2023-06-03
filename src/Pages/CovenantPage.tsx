@@ -16,6 +16,8 @@ import {PAGES} from "./GameManager";
 
 
 // TODO determined by number of players in firebase
+const NUM_OF_PLAYERS = 1;
+
 // @ts-ignore
 
 function CovenantPage({curGame, curPlayer}) {
@@ -37,11 +39,8 @@ function CovenantPage({curGame, curPlayer}) {
     const [numFingers, setNumFingers] = useState(0);
 
     function startGame(){
-        // TODO get from firebase
         if (numFingers === totalNumOfPlayers){
-            curPlayer.setCurPage(PAGES.SURV)
-            // setDoc(curPlayer._playerRef, {curPage: toPage})
-            // jump(toPage);
+            curGame.updateAllPlayersPages(PAGES.SURV)
         }
     }
 
