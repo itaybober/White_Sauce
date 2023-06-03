@@ -57,14 +57,14 @@ export default function Filters({curPlayer, setCurGame}) {
                 looking for?</b></Typography>
 
             <div className={"cards_container"}>
-                <MyCard icon={active_logo} text="active" chosenFilters={chosenFilters}/>
-                <MyCard icon={shopping} text="supplies" chosenFilters={chosenFilters}/>
-                <MyCard icon={snacks} text="snacks" chosenFilters={chosenFilters}/>
-                <MyCard icon={waves} text="get wet" chosenFilters={chosenFilters}/>
-                <MyCard icon={sunshine} text="day time" chosenFilters={chosenFilters}/>
-                <MyCard icon={night} text="night time" chosenFilters={chosenFilters}/>
-                <MyCard icon={bulb} text="riddles" chosenFilters={chosenFilters}/>
-                <MyCard icon={drinks} text="drinks" chosenFilters={chosenFilters}/>
+                <MyCard icon={active_logo} text="Active" chosenFilters={chosenFilters}/>
+                <MyCard icon={shopping} text="Supplies" chosenFilters={chosenFilters}/>
+                <MyCard icon={snacks} text="Snacks" chosenFilters={chosenFilters}/>
+                <MyCard icon={waves} text="Get wet" chosenFilters={chosenFilters}/>
+                <MyCard icon={sunshine} text="Day time" chosenFilters={chosenFilters}/>
+                <MyCard icon={night} text="Night time" chosenFilters={chosenFilters}/>
+                <MyCard icon={bulb} text="Riddles" chosenFilters={chosenFilters}/>
+                <MyCard icon={drinks} text="Alcohol" chosenFilters={chosenFilters}/>
             </div>
 
             {/*maya edit:*/}

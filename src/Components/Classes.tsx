@@ -1,7 +1,7 @@
 
 
 
-import {    collection, doc, setDoc, getDoc, DocumentReference, DocumentData, updateDoc, arrayUnion, Timestamp, deleteDoc, arrayRemove} from "firebase/firestore";
+import {    collection, doc, setDoc, getDoc,getDocs, DocumentReference, DocumentData, updateDoc, arrayUnion, Timestamp, deleteDoc, arrayRemove, DocumentSnapshot} from "firebase/firestore";
 import {db} from "../config/firebase";
 import {PAGES} from "../Pages/GameManager";
 // import firebase from "firebase/compat";
@@ -59,7 +59,6 @@ class Mission {
     }
 
 
-
     /**
      * these 3 functions will get a Player object, and update his
      * points attribute
@@ -69,8 +68,7 @@ class Mission {
         // calculate number of points to add to a player
         if (succeed) {
             player._points += 1 / time * 10;
-        }
-        else{
+        } else {
             player._points -= 50
         }
         return;
@@ -78,17 +76,18 @@ class Mission {
 
     public groupPointSystem(player: Player, time: number) {
         // calculate number of points to add to a player
-        player._points += 1/time *10 ;
+        player._points += 1 / time * 10;
         return;
     }
 
-    public punishmentPointSystem(player: Player, time: number, succeed=false) {
+    public punishmentPointSystem(player: Player, time: number, succeed = false) {
         // calculate number of points to add to a player
         if (succeed) {
             player._points += 50;
 
-        return;
-    }}
+            return;
+        }
+    }
 
 
     /**
@@ -127,7 +126,11 @@ class Mission {
         }
     }
 
-    public static getMissionData(mission: Mission){
+    public static getMissionObject(data: { title: string | undefined; description: string | undefined; tags: never[] | undefined; type: string | undefined; extras: never[] | undefined; minNumOfPlayers: number | undefined; maxNumOfPlayers: number | undefined; }){
+        return new Mission(data.title, data.description, data.tags, data.type, data.extras, data.minNumOfPlayers, data.maxNumOfPlayers)
+    }
+
+    public static getMissionData(mission: Mission) {
         const missionData = {
             title: mission._title,
             description: mission._description,
@@ -140,7 +143,7 @@ class Mission {
         return missionData;
     }
 
-    public static getMissionDataFromVariable(mission: Mission){
+    public static getMissionDataFromVariable(mission: Mission) {
         const playerData = {
             title: mission._title,
             description: mission._description,
@@ -157,8 +160,8 @@ class Mission {
 /**
  * Represents a player with all of their relevant information and capabilities
  */
-class Player{
-    public _name: string  ;
+class Player {
+    public _name: string;
     public _playerID: string;
     public _points: number;
     public _curPage: number;
@@ -167,7 +170,7 @@ class Player{
 
 
     constructor(UID: string = "null", name: string | null = "", gameRef: DocumentReference = doc(db, "Games", "0000")) {
-        if (name === null){
+        if (name === null) {
             this._name = "";
         } else {
             this._name = name;
@@ -188,8 +191,8 @@ class Player{
         // setDoc(this._playerRef, {curPage: number}, { merge: true })
     }
 
-    public setGameRef(gameRef:DocumentReference){
-        setDoc(this._playerRef, {gameReference: gameRef}, { merge: true })
+    public setGameRef(gameRef: DocumentReference) {
+        setDoc(this._playerRef, {gameReference: gameRef}, {merge: true})
     }
 
     /**
@@ -202,7 +205,7 @@ class Player{
      *
      * "newPlayer" is an instance of the Player class
      */
-    public async addPlayerToFirestore(){
+    public async addPlayerToFirestore() {
         Player.addPlayerToFirestore(this);
     }
 
@@ -229,7 +232,7 @@ class Player{
         }
     }
 
-    public static getPlayerDataFromVariable(player: Player){
+    public static getPlayerDataFromVariable(player: Player) {
         const playerData = {
             name: player._name,
             playerID: player._playerID,
@@ -243,7 +246,7 @@ class Player{
     }
 
 
-    public getUpdate(data: DocumentData ) {
+    public getUpdate(data: DocumentData) {
         this._name = data.name;
         this._playerID = data.playerID;
         this._points = data.points;
@@ -263,13 +266,13 @@ class Player{
                     console.log("No such Player in FireBase")
                 }
             })
-            .catch( (error) => {
+            .catch((error) => {
                 console.error('Error getting document:', error);
             })
     }
 }
 
-class Game{
+class Game {
     public _id: string;
     public _filters: string[];
     public _players: DocumentReference[];
@@ -293,21 +296,19 @@ class Game{
      */
     public addPointsSinglePlayer(player: Player, time: number) {
         if (this._curMission._type === "survival") {
-            this._curMission.survivalPointSystem(player,time);
-        }
-        else if (this._curMission._type === "group") {
+            this._curMission.survivalPointSystem(player, time);
+        } else if (this._curMission._type === "group") {
             this._curMission.groupPointSystem(player, time);
-            }
-         else if (this._curMission._type === "punishment") {
+        } else if (this._curMission._type === "punishment") {
             this._curMission.punishmentPointSystem(player, time);
-            }
         }
+    }
 
     /**
      * Adds a single player reference to the list of players in a game
      * @param player
      */
-    public async addPlayer(playerRef: DocumentReference){
+    public async addPlayer(playerRef: DocumentReference) {
         await updateDoc(this._gameRef, {players: arrayUnion(playerRef)})
     }
 
@@ -342,7 +343,7 @@ class Game{
         }
     }
 
-    public static getGameData(game: Game){
+    public static getGameData(game: Game) {
         const gameData = {
             id: game._id,
             players: game._players.map((player) => (player)),
@@ -354,55 +355,63 @@ class Game{
         return gameData;
     }
 
-    public getUpdate(data: DocumentData ) {
+
+    public getUpdate(data: DocumentData) {
         this._id = data.id;
-        this._players = data.players.map( (player: DocumentReference) => (player));
-        this._curMission = data.curMission;
+        this._players = data.players.map((player: DocumentReference) => (player));
+        this._curMission = Mission.getMissionObject(data.curMission);
         this._filters = data.filters.map((filter: string) => (filter));
         this._gameRef = data.gameReference;
     }
 
-    public removePlayerFromFirebase(playerRef: DocumentReference){
+    public removePlayerFromFirebase(playerRef: DocumentReference) {
         getDoc(this._gameRef)
             .then(async (docSnapshot) => {
                 if (docSnapshot.exists()) {
                     const data = docSnapshot.data()
-                    if (data.players.length === 1){
+                    if (data.players.length === 1) {
                         await deleteDoc(this._gameRef)
                         console.log("Removed game: " + this._id)
                     } else {
                         await updateDoc(this._gameRef, {players: arrayRemove(playerRef)})
-                        console.log("Removed player "+ playerRef.path+ " from game "  + this._gameRef.path)
+                        console.log("Removed player " + playerRef.path + " from game " + this._gameRef.path)
                     }
                 } else {
                     console.log("No related game in FireBase")
                 }
             })
-            .catch( (error) => {
+            .catch((error) => {
                 console.error('Error getting document:', error);
             })
     }
 
-    public async setCurMission(newMission: Mission) {
-        await updateDoc(this._gameRef, {curMission: Mission.getMissionDataFromVariable(newMission)})
+    public async setCurMission(data: DocumentData | undefined) {
+        await updateDoc(this._gameRef, {curMission: data})
+        // await updateDoc(this._gameRef, {curMission: Mission.getMissionDataFromVariable(newMission)})
     }
 
 
-    public getMissionFromDatabase() {
-        if (this._filters[0] === "active") {
-            console.log('chosen mission is active!')
-        }
-        else if (this._filters[0] === "drinks") {
-            console.log('chosen mission is drinks!')
-        }
-        else if (this._filters[0] === "riddles") {
-            console.log('chosen mission is riddles!')
-        }
-        else if (this._filters[0] === "snacks") {
-            console.log('chosen mission is snacks!')
-        }
+    public async getMissionFromDatabase() {
+    //     נבחר פילטר רנדומלי
+    //     לפיו נבחר משימה
+    //     ניבוא את המשימה למשחק
+    //     נשאוב את הפרטים מתוך המשחק
+        const ourFilter= this._filters[this.getRandomNumber(this._filters.length)]
+        console.log(ourFilter)
+        const missions_ref = collection(db, "Missions", ourFilter, ourFilter)
+        const ourMissions = await getDocs(missions_ref)
+        const ourMission = ourMissions.docs[this.getRandomNumber(ourMissions.docs.length)]
+
+        await this.setCurMission(ourMission.data())
+
+    }
+
+    private getRandomNumber(max: number) {
+        return Math.floor(Math.random() * max);
+
     }
 }
+
 
 
 

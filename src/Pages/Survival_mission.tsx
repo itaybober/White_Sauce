@@ -66,8 +66,12 @@ import gameManager from "./GameManager";
 // @ts-ignore
 export default function Survival({jump, toPage, curGame}) {
 
-    const mission_object=new Mission("Big Maya's House", "Trash the place, just destroy everything. Not even a nail remains on the wall");
     curGame.getMissionFromDatabase();
+
+    console.log(curGame._id)
+    // console.log(curGame._curMission)
+
+    const mission_object = curGame._curMission
 
     const [itemList, setItemList] = useState<any | null>([])
     const itemCollectionRef = collection(db, "house_items")
