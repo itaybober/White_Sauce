@@ -11,22 +11,34 @@ import * as React from "react";
 import CardContent from "@mui/material/CardContent";
 import logo from "./images/step-1_logo.svg";
 import Container from "@mui/material/Container";
-import {setDoc} from "firebase/firestore";
+import {onSnapshot, setDoc} from "firebase/firestore";
+import {PAGES} from "./GameManager";
 
 
 // TODO determined by number of players in firebase
-const NUM_OF_PLAYERS = 1;
-
 // @ts-ignore
-function CovenantPage({jump, toPage, curPlayer}) {
 
+function CovenantPage({curGame, curPlayer}) {
+
+
+    let totalNumOfPlayers = curGame._players.length
+
+    // Updates num of players
+    if (curGame && curGame._gameRef) {
+        onSnapshot(curGame._gameRef, (snapshot: { data: () => any; }) => {
+            const data = snapshot.data()
+            if (typeof data !== 'undefined') {
+                totalNumOfPlayers = data.players.length
+            }
+        })
+    }
+
+    console.log("Number of players is: " + totalNumOfPlayers)
     const [numFingers, setNumFingers] = useState(0);
 
     function startGame(){
-        // TODO get from firebase
-        if (numFingers === NUM_OF_PLAYERS){
-            setDoc(curPlayer._playerRef, {curPage: toPage})
-            jump(toPage);
+        if (numFingers === totalNumOfPlayers){
+            setDoc(curPlayer._playerRef, {curPage: PAGES.SURV})
         }
     }
 

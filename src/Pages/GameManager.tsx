@@ -118,14 +118,16 @@ function GameManager() {
     }
 
     // Updates the curGame instance every time information in the firestore is changed
-    if (curGame && curGame._gameRef) {
-        onSnapshot(curGame._gameRef, (snapshot) => {
+    if (curPlayer && curPlayer._gameRef) {
+        onSnapshot(curPlayer._gameRef, (snapshot) => {
             const data = snapshot.data()
             if (typeof data !== 'undefined') {
+                console.log("getting data from: " + curPlayer._gameRef.path)
                 curGame.getUpdate(data)
             }
         })
     }
+
 
     // For debugging, will run whatever command given if any key is pressed
     useEffect(() => {
@@ -203,7 +205,7 @@ function GameManager() {
             page = <Filters curPlayer={curPlayer} setCurGame={setCurGame}/>
             break;
         case PAGES.COVEN:
-            page = <CovenantPage jump={setPage} curPlayer={curPlayer} toPage={PAGES.SURV}/>
+            page = <CovenantPage curPlayer={curPlayer} curGame={curGame}/>
             break;
         case PAGES.GROUP:
             page = <GroupMission jump={setPage} toPage={PAGES.END} mission_object/>

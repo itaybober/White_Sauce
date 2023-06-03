@@ -118,7 +118,7 @@ class Mission {
      * @param mission
      */
     static async addMissionToFirestore(mission: Mission): Promise<void> {
-        const missionData = Mission.getMissionData(mission)
+        const missionData = Mission.getMissionDataFromVariable(mission)
         try {
             await setDoc(doc(db, "Missions", mission._title), missionData);
             console.log("Mission added to Firestore");
@@ -127,18 +127,7 @@ class Mission {
         }
     }
 
-    public static getMissionData(mission: Mission){
-        const missionData = {
-            title: mission._title,
-            description: mission._description,
-            tags: mission._tags,
-            type: mission._type,
-            extras: mission._extras,
-            minNumOfPlayers: mission._minNumOfPlayers,
-            maxNumOfPlayers: mission._maxNumOfPlayers,
-        };
-        return missionData;
-    }
+
 
     public static getMissionDataFromVariable(mission: Mission){
         const playerData = {
@@ -346,7 +335,7 @@ class Game{
         const gameData = {
             id: game._id,
             players: game._players.map((player) => (player)),
-            curMission: Mission.getMissionData(game._curMission),
+            curMission: Mission.getMissionDataFromVariable(game._curMission),
             filters: game._filters.map((filter) => filter),
             gameReference: game._gameRef,
             createdAt: Timestamp.now(), // Optional: Include a timestamp for when the game was created
@@ -357,7 +346,7 @@ class Game{
     public getUpdate(data: DocumentData ) {
         this._id = data.id;
         this._players = data.players.map( (player: DocumentReference) => (player));
-        this._curMission = data.curMission;
+        this._curMission = new Mission(data.curMission);
         this._filters = data.filters.map((filter: string) => (filter));
         this._gameRef = data.gameReference;
     }
