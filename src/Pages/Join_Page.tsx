@@ -46,6 +46,7 @@ function Join_Page( {curPlayer, curGame} ) {
             .catch( (error) => {
                 console.error('Error getting document:', error);
             })
+
     }
 
     // @ts-ignore

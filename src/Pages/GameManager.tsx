@@ -186,7 +186,7 @@ function GameManager() {
         };
     }, []);
 
-
+    console.log(curPlayer)
 
     switch (curPage) {
 
@@ -211,7 +211,7 @@ function GameManager() {
             page = <GroupMission jump={setPage} toPage={PAGES.END} mission_object/>
             break;
         case PAGES.SURV:
-            page = <Survival_mission jump={setPage} toPage={PAGES.PUN} curGame={curGame} />
+            page = <Survival_mission  curPlayer={curPlayer} curGame={curGame}/>
             break;
         case PAGES.PUN:
             page = <Punishment jump={setPage} toPage={PAGES.GROUP} mission_object/>

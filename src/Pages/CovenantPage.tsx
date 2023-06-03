@@ -37,8 +37,11 @@ function CovenantPage({curGame, curPlayer}) {
     const [numFingers, setNumFingers] = useState(0);
 
     function startGame(){
+        // TODO get from firebase
         if (numFingers === totalNumOfPlayers){
-            setDoc(curPlayer._playerRef, {curPage: PAGES.SURV})
+            curPlayer.setCurPage(PAGES.SURV)
+            // setDoc(curPlayer._playerRef, {curPage: toPage})
+            // jump(toPage);
         }
     }
 
