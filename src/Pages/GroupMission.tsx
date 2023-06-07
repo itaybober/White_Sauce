@@ -51,7 +51,7 @@ export default function GroupMission({curPlayer,curGame}) {
     return (
             <Container className={"group_mission_component"}>
 
-                <Avatar_and_points name={"Achsaf"} points={600}/>
+                <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
                 <Flippable_card
                     back_content={
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>

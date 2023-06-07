@@ -66,7 +66,7 @@ import gameManager, {PAGES} from "./GameManager";
 // @ts-ignore
 export default function Survival({curPlayer,curGame}) {
 
-    curGame.getMissionFromDatabase();
+    // curGame.getMissionFromDatabase();
 
 
     console.log(curGame._id)

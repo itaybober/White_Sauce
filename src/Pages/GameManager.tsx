@@ -218,7 +218,7 @@ function GameManager() {
             page = <EndingPage jump={setPage} toPage={PAGES.START}/>
             break;
         case PAGES.AUTH:
-            page = <Main_Page jump={setPage} toPage={PAGES.START}/>;
+            page = <Main_Page/>;
             break;
         case PAGES.WAIT:
             page = <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

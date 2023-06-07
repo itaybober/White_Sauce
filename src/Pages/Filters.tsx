@@ -61,8 +61,6 @@ export default function Filters({curPlayer, setCurGame}) {
                 <MyCard icon={shopping} text="Supplies" chosenFilters={chosenFilters}/>
                 <MyCard icon={snacks} text="Snacks" chosenFilters={chosenFilters}/>
                 <MyCard icon={waves} text="Get wet" chosenFilters={chosenFilters}/>
-                <MyCard icon={sunshine} text="Day time" chosenFilters={chosenFilters}/>
-                <MyCard icon={night} text="Night time" chosenFilters={chosenFilters}/>
                 <MyCard icon={bulb} text="Riddles" chosenFilters={chosenFilters}/>
                 <MyCard icon={drinks} text="Alcohol" chosenFilters={chosenFilters}/>
             </div>

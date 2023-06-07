@@ -7,6 +7,7 @@ import { Player } from "./Classes"
 import Input from '@mui/material/Input';
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+import {useForm} from "react-hook-form";
 export const Auth = () => {
     const [email, setEmail] = useState("")
 
@@ -55,7 +56,7 @@ export const Auth = () => {
             />
             <Button onClick={signInAnonymous} >Anonymous sign in</Button>
 
-            <Button onClick={signInWithGoogle}>Sing in with Google</Button>
+            {/*<Button onClick={signInWithGoogle}>Sing in with Google</Button>*/}
 
         </Container>
     );

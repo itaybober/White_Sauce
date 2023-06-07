@@ -4,6 +4,7 @@ import Background from "../Components/Background";
 import Box from "@mui/material/Box";
 import Typography from '@mui/material/Typography';
 import logo from "./images/step-1_logo.svg";
+import galiLogo from "./images/gali_test_logo.png"
 import React from "react";
 import {Game} from "../Components/Classes";
 import firebase from "firebase/compat";
@@ -25,7 +26,7 @@ function Start_Page({curPlayer}) {
         <div id={"StartPage_Background"}>
             {/*להוסיף קומפוננטה של לוגו*/}
             <div id={"StartPage_Logo"}>
-            <img src={logo} width={103} height={85}/>
+            <img src={galiLogo} width={190} height={200}/>
             </div>
             <div id={"StartPage_Title"}>
                 <Typography variant="h4"> <b>Which Journey is Yours?</b></Typography>

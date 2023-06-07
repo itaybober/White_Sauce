@@ -37,7 +37,7 @@ export default function Punishment({curPlayer,curGame}) {
     return (
         <Background_loser>
             <Container className={"punishment_page_component"}>
-                <Avatar_and_points name={"Maya"} points={430} />
+                <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
                 {/* eslint-disable-next-line react/jsx-pascal-case */}
                 <Flippable_card back_content={
                     <div>
