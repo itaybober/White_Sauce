@@ -79,9 +79,7 @@ function EndingPage({jump, toPage}) {
                         <Button variant="contained">Bonus mission</Button>
                     </Container>
                         <Typography variant="h6"><br/><br/>That's all for today</Typography>
-             <Container sx={{ display: 'flex', justifyContent:"center",alignItems: "center", gap: '15px',p:2}}>
-                 <Button  variant="contained" >Save & exit</Button>
-             </Container>
+
 
 
 

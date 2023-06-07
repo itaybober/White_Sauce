@@ -14,6 +14,7 @@ import "./Punishment_Page.css"
 import Avatar_and_points from "../Components/avatar_and_points";
 import Flippable_card from "../Components/Flippable_card";
 import {PAGES} from "./GameManager";
+import CameraComponent from "../Components/CameraComponent";
 // @ts-ignore
 export default function Punishment({curPlayer,curGame}) {
     const loser_player = "Guy";
@@ -85,23 +86,9 @@ export default function Punishment({curPlayer,curGame}) {
 
                 <Typography variant={"h5"}> <br></br>Loser - take a Loser photo </Typography>
 
-                {/*<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>*/}
-                <Button onClick={forTheDemo} variant="contained" color={"secondary"} startIcon={<AddAPhotoIcon />}>Take a disgraceful Picture</Button>
-                {/*</div>*/}
 
-                <ImageList variant="masonry" cols={2} gap={8} sx={{ display: 'flex', justifyContent: 'center' }}>
-                    {itemData.map((item) => (
-                        <ImageListItem key={item}>
-                            <img
-                                src={`${item}?w=248&fit=crop&auto=format`}
-                                srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                alt={item}
-                                loading="lazy"
-                                style={{borderRadius: '10px', backgroundColor: 'gray', width: 200, height: 200, margin: 'auto' }}
-                            />
-                        </ImageListItem>
-                    ))}
-                </ImageList>
+                <CameraComponent buttonText="Take a disgraceful Picture" />
+
 
                 <Button onClick={()=> curPlayer.setCurPage(PAGES.GROUP)} variant="contained" color="primary" size={"medium"} sx={{
                     mb: 4,

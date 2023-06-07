@@ -43,7 +43,7 @@ import {Game, Mission} from "../Components/Classes";
 
 import { auth } from "../config/firebase";
 import gameManager, {PAGES} from "./GameManager";
-
+import CameraComponent from "../Components/CameraComponent";
 // import axios from 'axios';
 // we need to add the stepper here later
 
@@ -114,12 +114,7 @@ console.log(curPlayer.name)
                     {/*</span></Typography>*/}
                         <Typography variant="h6">
 
-                            {mission_object._description}    {/*The faster you find your object the more you gain.*/}
-                            {/*Anyone who doesn't find their object by the end of the timer must participate in the penalty.*/}
-                            {/*May the odds be ever in your favor.*/}
-                        {/*</Typography>*/}
-                        {/*<Typography variant="h6" display="block"><br/>Take a photo of yourself with your new spirit object.</Typography>*/}
-                        </Typography>
+                            {mission_object._description}   </Typography>
                         </CardContent>
                 </div>
             }
@@ -128,33 +123,19 @@ console.log(curPlayer.name)
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
                     <Typography variant={"h5"}> {mission_object._title}</Typography>
                     </CardContent>
-                    </div>
+                </div>
 
 
 
             }/>
 
 
-            <Timer_Component timerLimit={60}/>
+            <Timer_Component timerLimit={65}/>
 
             <Container sx={{ width: 330, flex: 1 }}  >
                 <Typography variant={"h5"}><br/>To finish your task take a picture<br/><br/></Typography>
-            <Button onClick={addPhoto}  startIcon={<AddAPhotoIcon />} color= {"info"} variant="contained" size={"medium"}>Proof Of Concept</Button>
+                <CameraComponent buttonText="Take a Photo" />
 
-
-            <ImageList variant="masonry" cols={2} gap={8} sx={{ display: 'flex', justifyContent: 'center'  ,flex: 1 }}>
-                {itemData.map((item) => (
-                    <ImageListItem key={item}>
-                        <img
-                            src={`${item}?w=248&fit=crop&auto=format`}
-                            srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                            alt={item}
-                            loading="lazy"
-                            style={{ backgroundColor: 'gray', width: 200, height: 200, margin: 'auto' }}
-                        />
-                    </ImageListItem>
-                ))}
-            </ImageList>
             </Container>
 
 

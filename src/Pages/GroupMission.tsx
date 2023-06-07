@@ -17,6 +17,7 @@ import Flippable_card from "../Components/Flippable_card";
 import {Game} from "../Components/Classes";
 import {Player} from "../Components/Classes";
 import {PAGES} from "./GameManager";
+import CameraComponent from "../Components/CameraComponent";
 
 // we need to add the stepper here later
 // function  winner_list_update({name,points,bg}){
@@ -85,21 +86,9 @@ export default function GroupMission({curPlayer,curGame}) {
 
                 ></Flippable_card>
 
-                <Button onClick={addPhoto}  startIcon={<AddAPhotoIcon />} variant="contained" size={"medium"}>Proof Of Concept</Button>
 
-                <ImageList variant="masonry" cols={2} gap={8} sx={{ display: 'flex', justifyContent: 'center' }}>
-                    {itemData.map((item) => (
-                        <ImageListItem key={item}>
-                            <img
-                                src={`${item}?w=248&fit=crop&auto=format`}
-                                srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                alt={item}
-                                loading="lazy"
-                                style={{ backgroundColor: 'gray', width: 200, height: 200, margin: 'auto' }}
-                            />
-                        </ImageListItem>
-                    ))}
-                </ImageList>
+                <CameraComponent buttonText="Proof Of Concept" />
+
                 <Button onClick={()=> curPlayer.setCurPage(PAGES.END)} variant="contained" color="primary" size={"medium"} sx={{
                     mb: 4,
 
