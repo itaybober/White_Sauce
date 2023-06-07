@@ -1,7 +1,3 @@
-
-
-
-
 import Chwazi from "../Components/Chwazi";
 import "./CovenantPage.css";
 import {useState} from 'react';
@@ -22,8 +18,8 @@ const NUM_OF_PLAYERS = 1;
 
 function CovenantPage({curGame, curPlayer}) {
 
-
     let totalNumOfPlayers = curGame._players.length
+    console.log(curGame)
 
     // Updates num of players
     if (curGame && curGame._gameRef) {
@@ -50,6 +46,9 @@ function CovenantPage({curGame, curPlayer}) {
             <div id={"CovenantPage_Logo"}>
                 <img src={logo} width={103} height={85}/>
             </div>
+            <Typography
+                variant='h5'>Your Game Cypher: {curGame._id}
+            </Typography>
             <Card sx={{flex:"auto",  position:'relative', width: "90%", height: 420, top: "2%", alignContent: "left" }   } >
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "left"}}>
                     <Typography variant="h4" color={"primary"}> The Covenant </Typography>
@@ -59,9 +58,9 @@ function CovenantPage({curGame, curPlayer}) {
                         plan your next adventure. By joining forces, you can tackle
                         any challenge that lays ahead. With excited chatter and lively banter,
                         each idea more exciting than the last, they knew they were in for an uplifting and
-                        unforgettable experience.
+                        unforgettable experience. <br/>
                     </Typography>
-                    <Typography variant="body1" ><br/>Press your finger to the square, but remeber...<br/> No Backsies</Typography>
+                    <Typography variant="h6" >Press your finger to the square, but remeber...<br/> No Backsies</Typography>
 
                 </CardContent>
             </Card>

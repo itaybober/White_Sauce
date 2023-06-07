@@ -358,8 +358,8 @@ class Game {
 
 
     public async updateAllPlayersPages(nextPage: any) {
-        console.log("game players:")
-        console.log(this._players)
+        // console.log("game players:")
+        // console.log(this._players)
         for (const playerRef of this._players) {
             await updateDoc(playerRef, {curPage:nextPage})
         }
