@@ -6,7 +6,7 @@ import {ThemePage} from "./Pages/Theme_page";
 import GameManager from "./Pages/GameManager";
 import EndingPage from "./Pages/EndingPage";
 import Background from "./Components/Background";
-import Flippable_card from "./Components/Flippable_card";
+
 
 
 function App() {

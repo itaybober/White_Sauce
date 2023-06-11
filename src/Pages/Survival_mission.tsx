@@ -21,7 +21,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-
+import survivel from '../Pages/images/cards icons/survivel.png'
 
 import { useTheme } from '@mui/material/styles'
 import theme from "../theme"; //for using the theme in component
@@ -44,6 +44,7 @@ import {Game, Mission} from "../Components/Classes";
 import { auth } from "../config/firebase";
 import gameManager, {PAGES} from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
+
 // import axios from 'axios';
 // we need to add the stepper here later
 
@@ -121,7 +122,8 @@ console.log(curPlayer.name)
                             front_content={
                 <div>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
-                    <Typography variant={"h5"}> {mission_object._title}</Typography>
+                        <img src={survivel} width={200} height={200}/>
+                        <Typography variant={"h5"}> {mission_object._title}</Typography>
                     </CardContent>
                 </div>
 
@@ -139,17 +141,7 @@ console.log(curPlayer.name)
             </Container>
 
 
-            <Card sx={{ width: 330, height: 370 } }>
-                <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
-                <Typography variant="h5" color={"primary"}> <b>You better hurry people are starting to finish...</b></Typography>
-                <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"}
-                             name2={"?"} points2={0} bg2={"#78909C"}
-                             name3={"?"} points3={0} bg3={"#78909C"} />
-                </CardContent>
-                </Card>
-
-
-            <Button onClick={()=> curPlayer.setCurPage(PAGES.PUN)} variant="contained" color="primary" size={"medium"} sx={{
+            <Button onClick={()=> curPlayer.setCurPage(PAGES.POINTS)} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 4,
 
             }} >Next</Button>
