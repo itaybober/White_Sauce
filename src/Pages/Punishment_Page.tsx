@@ -15,6 +15,8 @@ import Avatar_and_points from "../Components/avatar_and_points";
 import Flippable_card from "../Components/Flippable_card";
 import {PAGES} from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
+import logo from "./images/step-1_logo.svg";
+import shield from '../Pages/images/cards icons/shield.png'
 // @ts-ignore
 export default function Punishment({curPlayer,curGame}) {
     const loser_player = "Guy";
@@ -42,6 +44,7 @@ export default function Punishment({curPlayer,curGame}) {
                 {/* eslint-disable-next-line react/jsx-pascal-case */}
                 <Flippable_card back_content={
                     <div>
+
                         <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
                             <Typography variant="h5" color={"secondary"}> <b> {mission_object._title}</b></Typography>
                             <Typography  sx={{lineHeight: '20px'}} variant={"h6"} >
@@ -70,7 +73,8 @@ export default function Punishment({curPlayer,curGame}) {
                     }
                     front_content={
                     <div>
-                        <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center" ,textAlign: "justify" }}>
+                        <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "space-around",alignItems: "center" }}>
+                            <img src={shield} width={200} height={200}/>
                             <Typography variant={"h4"}> {mission_object._title}</Typography>
                         </CardContent>
                     </div>

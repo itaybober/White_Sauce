@@ -18,6 +18,7 @@ import {wait} from "@testing-library/user-event/dist/utils";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {doc, DocumentReference, getDoc, onSnapshot, setDoc, deleteDoc } from "firebase/firestore";
 import logo from "./step-1_logo.svg";
+import PointsPage from "./PointsPage";
 
 
 
@@ -33,7 +34,8 @@ export const PAGES = {
     PUN : 8,
     END : 9,
     AUTH: 10,
-    WAIT: 11
+    WAIT: 11,
+    POINTS:12
 }
 
 /**
@@ -219,6 +221,9 @@ function GameManager() {
             page = <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>
                    </div>
+            break;
+        case PAGES.POINTS:
+            page = <PointsPage curPlayer={curPlayer} curGame={curGame}/>
             break;
     }
 

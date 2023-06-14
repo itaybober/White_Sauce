@@ -18,6 +18,8 @@ import {Game} from "../Components/Classes";
 import {Player} from "../Components/Classes";
 import {PAGES} from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
+import group2 from '../Pages/images/cards icons/group2.png'
+import shield from "./images/cards icons/shield.png";
 
 // we need to add the stepper here later
 // function  winner_list_update({name,points,bg}){
@@ -78,6 +80,7 @@ export default function GroupMission({curPlayer,curGame}) {
                 front_content={
                     <div>
                         <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
+                            <img src={group2} width={200} height={150}/>
                             <Typography variant={"h5"}> {mission_object._title}</Typography>
                         </CardContent>
                     </div>
