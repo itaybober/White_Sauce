@@ -33,6 +33,8 @@ function Background({ children, className = "", id = "", angle = 125, colors = "
             style={{
                 backgroundImage: gradient,
                 minHeight: '100vh',
+                overflowX: 'hidden',
+                overflowY: 'auto',
                 display: 'flex',
                 flexDirection: 'column',
             }}
@@ -43,3 +45,4 @@ function Background({ children, className = "", id = "", angle = 125, colors = "
 }
 
 export default Background;
+
