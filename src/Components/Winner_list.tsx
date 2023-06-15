@@ -5,6 +5,9 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import {text} from "stream/consumers";
+import {Game} from './Classes'
+import {useEffect, useState} from "react";
+import Typography from "@mui/material/Typography";
 
 // let player_dict: Dict<any>={};
 //
@@ -14,40 +17,69 @@ import {text} from "stream/consumers";
 //     player_dict[name]=points
 //     )
 //         }
-
+const getPointData = async (game: { _players: any; getPlayerDataFromRef: (arg0: any) => any; }) => {
+    const listItems = [];
+    for (const playerRef of game._players) {
+        let playerData = await game.getPlayerDataFromRef(playerRef);
+        if (playerData && playerData.name) {
+            listItems.push(playerData);
+        } else {
+            console.log('Name property not found or undefined');
+        }
+    }
+    console.log(listItems);
+    return listItems;
+};
 
 // @ts-ignore
-export default function Winner_list({name1, points1, bg1 ,name2, points2,bg2,name3, points3,bg3}) {
+export default function Winner_list({ game }) {
+    const [listItems, setListItems] = useState([]);
+
+    useEffect(() => {
+        const fetchPointData = async () => {
+            const pointData = await getPointData(game);
+            // @ts-ignore
+            setListItems(pointData);
+        };
+
+        fetchPointData();
+    }, [game]);
+
     return (
-        <List sx={{ width: '100%', maxWidth: 200, color: 'background.paper' }}>
-            <ListItem>
-                <ListItemAvatar>
-                    <Avatar
-                        sx={{ width: 45, height: 45,bgcolor: bg1 }}>
-                        {name1.slice(0, 2)}
-                    </Avatar>
-                </ListItemAvatar>
-                <ListItemText sx={{color: "#ececec" }} primary={name1} secondary={points1} primaryTypographyProps={{ variant: 'h6' }} secondaryTypographyProps={{variant:"h6"}} />
-            </ListItem>
+        <div>
+            <List sx={{ width: '100%', maxWidth: 200, color: 'background.paper' }}>
+                {listItems.map((item:any, index) => (
+                    <ListItem>
+                    <ListItemText key={index}
+                                  primary={
+                                <React.Fragment>
+                                    <Typography
+                                        sx={{ display: 'inline' }}
+                                        variant="h5"
+                                        color="text.primary"
+                                    >
+                                        {item.name}
+                                    </Typography>
+                                </React.Fragment>}
 
-            <ListItem>
-                <ListItemAvatar>
-                    <Avatar
-                        sx={{width: 45, height: 45, bgcolor: bg2  }} sizes={""}>
-                        {name2.slice(0, 2)}
-                    </Avatar>
-                </ListItemAvatar>
-                <ListItemText sx={{ color: "#ececec" }} primary={name2} secondary={points2} primaryTypographyProps={{ variant: 'h6' }} secondaryTypographyProps={{variant:"h6"}}/>
-            </ListItem>
+                                  secondary={<React.Fragment>
+                                      <Typography
+                                          sx={{ display: 'inline' }}
+                                          variant="body2"
+                                          color="text.secondary"
+                                      >
+                                          {item.points}
+                                      </Typography>
+                                  </React.Fragment>}
 
-            <ListItem>
-                <ListItemAvatar>
-                    <Avatar sx={{width: 45, height: 45,bgcolor: bg3}}>
-                        {name3.slice(0, 2)}
-                    </Avatar>
-                </ListItemAvatar>
-                <ListItemText sx={{ color: "#ececec" }} primary={name3} secondary={points3} primaryTypographyProps={{ variant: 'h6' }} secondaryTypographyProps={{variant:"h6"}} />
-            </ListItem>
-        </List>
+                        ></ListItemText>
+                    </ListItem>))
+                }
+                </List>
+        </div>
     );
 }
+
+
+
+

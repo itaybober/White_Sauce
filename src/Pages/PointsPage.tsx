@@ -49,8 +49,8 @@ export default function PointsPage({curPlayer,curGame}) {
         <Container className={"survival_page_component"} sx={{p:2}} >
             <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
             <Card sx={{ width: 330, height: 370 } }>
-                <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
-                    <Typography variant="h5" color={"primary"}> <b>You better hurry people are starting to finish...</b></Typography>
+                <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "center"}}>
+                    <Typography variant="h5" color={"primary"}> <b>Who will be the next chief of the tribe?</b></Typography>
                     <Winner_list game={curGame}/>
                 </CardContent>
             </Card>
