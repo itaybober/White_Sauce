@@ -23,21 +23,26 @@
 
 
 // @ts-ignore
-function Background({children, className = "", id = "", angle = 125 , colors = "#254848,#232A3D,#232B3E,#254648"} ) {
+function Background({ children, className = "", id = "", angle = 125, colors = "#254848,#232A3D,#232B3E,#254648" }) {
+    const gradient = `linear-gradient(${angle}deg, ${colors})`;
 
-// console.log("angle: ", angle);
-// console.log("colors: ", colors);
-
-const gradient = "linear-gradient("+angle+"deg, "+colors+")";
-
-return (
-    <div className={className} id={id} style={{
-        backgroundImage: gradient,
-        minHeight: 'min-content'
-    }} >
-        {children}
-    </div>
-);
+    return (
+        <div
+            className={className}
+            id={id}
+            style={{
+                backgroundImage: gradient,
+                minHeight: '100vh',
+                overflowX: 'hidden',
+                overflowY: 'auto',
+                display: 'flex',
+                flexDirection: 'column',
+            }}
+        >
+            {children}
+        </div>
+    );
 }
 
-export default Background
+export default Background;
+
