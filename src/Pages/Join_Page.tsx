@@ -1,14 +1,11 @@
-import Button from "@mui/material/Button";
 import "./Join_Page.css"
 import {TextField, Box} from '@mui/material';
 import Typography from '@mui/material/Typography';
-import Background from "../Components/Background";
 import logo from "./images/step-1_logo.svg";
 import React, {useState} from "react";
-import {auth, db} from "../config/firebase";
+import { db} from "../config/firebase";
 import {PAGES} from "./GameManager";
 import {doc, getDoc} from "firebase/firestore";
-import {Player} from "../Components/Classes";
 
 
 

@@ -1,25 +1,17 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Avatar_and_points from "../Components/avatar_and_points";
 import "./Survival_mission.css"
-import Timer_Component from "../Components/Timer_Component"
-import Background from "../Components/Background"
-import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import {useState} from "react";
-import {Container, ImageList, ImageListItem} from "@mui/material";
+import {Container} from "@mui/material";
 import friends from "./Souvenirs/tangled.jpg"
 import "./GroupMission.css"
 import Flippable_card from "../Components/Flippable_card";
-
-import {Game} from "../Components/Classes";
-import {Player} from "../Components/Classes";
 import {PAGES} from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
 import group2 from '../Pages/images/cards icons/group2.png'
-import shield from "./images/cards icons/shield.png";
 
 // we need to add the stepper here later
 // function  winner_list_update({name,points,bg}){
@@ -31,9 +23,6 @@ import shield from "./images/cards icons/shield.png";
 // @ts-ignore
 
 export default function GroupMission({curPlayer,curGame}) {
-
-
-
 
     curGame.getMissionFromDatabase();
     const mission_object = curGame._curMission

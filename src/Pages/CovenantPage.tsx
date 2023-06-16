@@ -7,20 +7,20 @@ import * as React from "react";
 import CardContent from "@mui/material/CardContent";
 import logo from "./images/step-1_logo.svg";
 import Container from "@mui/material/Container";
-import {onSnapshot, setDoc} from "firebase/firestore";
+import {onSnapshot} from "firebase/firestore";
 import {PAGES} from "./GameManager";
 
 
-// TODO determined by number of players in firebase
-const NUM_OF_PLAYERS = 1;
 
 // @ts-ignore
-
 function CovenantPage({curGame, curPlayer}) {
 
-    let totalNumOfPlayers = curGame._players.length
-    console.log(curGame)
+    const [numFingers, setNumFingers] = useState(0);
+    const [nowGame, setnowGame] = useState(curGame);
 
+
+
+    let totalNumOfPlayers = curGame._players.length
     // Updates num of players
     if (curGame && curGame._gameRef) {
         onSnapshot(curGame._gameRef, (snapshot: { data: () => any; }) => {
@@ -29,17 +29,15 @@ function CovenantPage({curGame, curPlayer}) {
                 totalNumOfPlayers = data.players.length
             }
         })
+
     }
 
-    console.log("Number of players is: " + totalNumOfPlayers)
-    const [numFingers, setNumFingers] = useState(0);
 
     function startGame(){
         if (numFingers === totalNumOfPlayers){
             curGame.updateAllPlayersPages(PAGES.SURV)
         }
     }
-
 
     return(
         <Container id={"CovenantPage_Background"}>
@@ -49,7 +47,7 @@ function CovenantPage({curGame, curPlayer}) {
             <Typography
                 variant='h5'>Your Game Cypher: {curGame._id}
             </Typography>
-            <Card sx={{flex:"auto",  position:'relative', width: "90%", height: 420, top: "2%", alignContent: "left" }   } >
+            <Card sx={{flex:"auto",  position:'relative', width: "90%", top: "2%", alignContent: "left" }   } >
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "left"}}>
                     <Typography variant="h4" color={"primary"}> The Covenant </Typography>
                     <Typography variant="h6" >Your New Ride or Die</Typography>

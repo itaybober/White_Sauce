@@ -1,4 +1,4 @@
-import {IconButton, ImageList, ImageListItem, LinearProgress, TextField} from "@mui/material";
+import {ImageList, ImageListItem} from "@mui/material";
 import * as React from 'react';
 import Button from "@mui/material/Button";
 import Card from '@mui/material/Card';
@@ -8,15 +8,12 @@ import ShareIcon from '@mui/icons-material/Share';
 import friends from "./Souvenirs/friends hanging out and being buddies.jpg"
 import sock from "./Souvenirs/sockhands.jpg"
 import rock from "./Souvenirs/ultimate rock paper scissors.jpg"
-import itay from "./Souvenirs/criptai.jpg"
 import winning from "./Souvenirs/winning.jpg"
 import tangle from "./Souvenirs/tangled.jpg"
 import tiger from "./Souvenirs/tiger.jpg"
 import comic from "./Souvenirs/comic.jpg"
-import Background from "../Components/Background";
 import "./EndingPage.css"
 import Typography from '@mui/material/Typography';
-import {grey} from "@mui/material/colors";
 
 // @ts-ignore
 function EndingPage({jump, toPage}) {

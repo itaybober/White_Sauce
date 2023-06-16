@@ -1,12 +1,9 @@
 import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Container from "@mui/material/Container";
-import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import Countdown_Component from "../Components/Countdown_Component";
 import * as React from "react";
-import {ImageList, ImageListItem} from "@mui/material";
 import sockhands from './Souvenirs/sockhands.jpg'
 import {useState} from "react";
 import Background_loser from "../Components/Background-loser";
@@ -15,9 +12,9 @@ import Avatar_and_points from "../Components/avatar_and_points";
 import Flippable_card from "../Components/Flippable_card";
 import {PAGES} from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
-import logo from "./images/step-1_logo.svg";
 import shield from '../Pages/images/cards icons/shield.png'
 // @ts-ignore
+
 export default function Punishment({curPlayer,curGame}) {
     const loser_player = "Guy";
 
@@ -25,11 +22,6 @@ export default function Punishment({curPlayer,curGame}) {
     const mission_object = curGame._curMission
 
     const [itemData, setItemData] = useState([]);
-
-    // function next(){
-    //     jump(toPage)
-    // }
-
     function forTheDemo(){
         // @ts-ignore
         setItemData([sockhands]);

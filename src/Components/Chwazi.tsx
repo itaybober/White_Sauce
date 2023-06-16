@@ -1,12 +1,9 @@
 
 import "./Chwazi.css";
 import Circle from "../Achsaf_Folder/Circle";
-import React, { useState} from "react";
-
-
+import React, {useEffect, useRef, useState} from "react";
 
 // @ts-ignore
-
 function Chwazi({radius = 100, setNumFingers }) {
     const [touches, setTouches] = useState([]);
 
@@ -28,10 +25,16 @@ function Chwazi({radius = 100, setNumFingers }) {
         setNumFingers(touches.length)
     }
 
+
+
     // @ts-ignore
-    const renderedTouches = Array.from(touches).map(({clientX, clientY}) => (
-        <Circle color={"#508c86"} radius={radius} x={clientX - (radius/2)} y={clientY - (radius/2)}/>
-    ));
+    const renderedTouches = Array.from(touches).map(({clientX, clientY}) => {
+
+
+        return(
+            <Circle color={"#508c86"} radius={radius} x={clientX - (radius / 2)} y={clientY - (radius / 2)}/>
+        )
+    });
 
     return (
         <div id={"frame"} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onTouchMove={handleTouchMove}>
