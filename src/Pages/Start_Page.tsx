@@ -1,16 +1,11 @@
 import "./Start_Page.css"
 import Button from "@mui/material/Button";
-import Background from "../Components/Background";
-import Box from "@mui/material/Box";
 import Typography from '@mui/material/Typography';
-import logo from "./images/step-1_logo.svg";
 import galiLogo from "./images/gali_test_logo.png"
 import React from "react";
-import {Game} from "../Components/Classes";
-import firebase from "firebase/compat";
-import {auth} from "../config/firebase"
 import {PAGES} from "./GameManager";
 // @ts-ignore
+
 function Start_Page({curPlayer}) {
 
     function startPage(){

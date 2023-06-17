@@ -1,9 +1,14 @@
 
 
 
-import {    collection, doc, setDoc, getDoc,getDocs, DocumentReference, DocumentData, updateDoc, arrayUnion, Timestamp, deleteDoc, arrayRemove, DocumentSnapshot} from "firebase/firestore";
+import {    collection, doc, setDoc, getDoc,getDocs, DocumentReference, DocumentData, updateDoc, arrayUnion, Timestamp, deleteDoc, arrayRemove, DocumentSnapshot,query, where, orderBy} from "firebase/firestore";
 import {db} from "../config/firebase";
 import {PAGES} from "../Pages/GameManager";
+import {colors} from "@mui/material";
+import {useEffect, useState} from "react";
+// import firebase from "firebase/compat";
+
+
 // import firebase from "firebase/compat";
 // import DocumentReference = firebase.firestore.DocumentReference;
 
@@ -90,6 +95,7 @@ class Mission {
     }
 
 
+
     /**
      * A method for adding the mission to firestore.
      * The signature looks like this:
@@ -168,6 +174,7 @@ class Player {
     public _curPage: number;
     public _gameRef: DocumentReference;
     public _playerRef: DocumentReference;
+    public _playerColor: string
 
 
     constructor(UID: string = "null", name: string | null = "", gameRef: DocumentReference = doc(db, "Games", "0000")) {
@@ -181,6 +188,7 @@ class Player {
         this._curPage = PAGES.START;
         this._playerRef = doc(db, "Active_Players", UID);
         this._gameRef = gameRef;
+        this._playerColor= '#60a9a2';
     }
 
     public async setName(name: string) {
@@ -245,6 +253,9 @@ class Player {
         };
         return playerData;
     }
+
+
+
 
 
     public getUpdate(data: DocumentData) {
@@ -361,19 +372,14 @@ class Game {
         // console.log("game players:")
         // console.log(this._players)
         for (const playerRef of this._players) {
-            await updateDoc(playerRef, {curPage:nextPage})
+            await updateDoc(playerRef, {curPage: nextPage})
         }
     }
 
 
-
-
-
-
-
     public getUpdate(data: DocumentData) {
         this._id = data.id;
-        this._players = data.players.map( (player: DocumentReference) => (player));
+        this._players = data.players.map((player: DocumentReference) => (player));
         this._curMission = new Mission(data.curMission);
         this._players = data.players.map((player: DocumentReference) => (player));
         this._curMission = Mission.getMissionObject(data.curMission);
@@ -407,13 +413,21 @@ class Game {
         // await updateDoc(this._gameRef, {curMission: Mission.getMissionDataFromVariable(newMission)})
     }
 
+    public async getActiveMissionOfTypeFromDatabase( type : string) {
+        const ourFilter = "Active"
+        const missions_ref = collection(db, "Missions", ourFilter, ourFilter)
+        const q = query(missions_ref, where("type", "==", type));
+        const ourMissions = await getDocs(q)
+        const ourMission = ourMissions.docs[this.getRandomNumber(ourMissions.docs.length)]
+        await this.setCurMission(ourMission.data())
+    }
 
-    public async getMissionFromDatabase() {
-    //     נבחר פילטר רנדומלי
-    //     לפיו נבחר משימה
-    //     ניבוא את המשימה למשחק
-    //     נשאוב את הפרטים מתוך המשחק
-        const ourFilter= this._filters[this.getRandomNumber(this._filters.length)]
+    public async getRandomMissionFromDatabase() {
+        //     נבחר פילטר רנדומלי
+        //     לפיו נבחר משימה
+        //     ניבוא את המשימה למשחק
+        //     נשאוב את הפרטים מתוך המשחק
+        const ourFilter = this._filters[this.getRandomNumber(this._filters.length)]
         console.log(ourFilter)
         const missions_ref = collection(db, "Missions", ourFilter, ourFilter)
         const ourMissions = await getDocs(missions_ref)
@@ -427,9 +441,54 @@ class Game {
         return Math.floor(Math.random() * max);
 
     }
-}
+
+    //update by maya:
+    async getPlayerDataFromRef(playerRef: any):Promise<any>{
+        const playerData = await getDoc(playerRef);
+        const data : any = await playerData.data();
+        console.log("data name", data.name)
+        return data
+                }
 
 
 
+
+
+
+    // this function update the order of the players list in the game class by there points
+
+
+    public winnerListUpdate() {
+        // const [sortedItems, setSortedItems] = useState<player[]>([]);
+        interface player {
+            id: string;
+            propertyName: number;
+            // Add more properties as needed
+            }
+
+
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+            useEffect(() => {
+                const fetchData = async () => {
+                    try {
+                        const playersRef = collection(db, 'Games', this._id, "players");
+                        const sortedQuery = query(playersRef, orderBy('points'));
+                        const querySnapshot = await getDocs(sortedQuery);
+                        const sortedData: player[] = querySnapshot.docs.map((doc) => doc.data() as player);
+                        console.log (sortedData)
+                        // setSortedItems(sortedData);
+                    } catch (error) {
+                        console.log('Error fetching data:', error);
+                    }
+                };
+                fetchData();
+            }, []);
+
+
+
+
+        }
+
+    }
 
 export {Mission, Player, Game}

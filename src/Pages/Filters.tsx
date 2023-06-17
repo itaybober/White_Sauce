@@ -11,27 +11,17 @@ import active_logo from './images/running.svg'
 import shopping from './images/shopping-cart.svg'
 import snacks from './images/snacks.svg'
 import drinks from './images/drink.svg'
-import night from './images/night.svg'
-import sunshine from './images/sunshine.svg'
 import waves from './images/waves.svg'
 import bulb from './images/bulb.svg'
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import {PAGES} from "./GameManager";
-import {Game, Player} from "../Components/Classes";
-import firebase from "firebase/compat";
-import {auth, db} from "../config/firebase"
-import {doc, DocumentReference} from "firebase/firestore";
-import {text} from "stream/consumers";
+import {Game} from "../Components/Classes";
 
 // @ts-ignore
 export default function Filters({curPlayer, setCurGame}) {
 
     let chosenFilters : string[] = [];
-
-
-
-
     function next(){
         // each player has a ref to their current game thats how we'll connect to the games quickly
         let newGame = new Game();
@@ -44,10 +34,7 @@ export default function Filters({curPlayer, setCurGame}) {
         setCurGame(newGame)
         console.log("filters selected:",newGame._filters);
     }
-
     return(
-
-
         <Container className={"filter"} sx={{p:5}}>
             {/*<div className={"logo_container"}>*/}
                 <img src={logo} width={103} height={85}/>
@@ -64,7 +51,6 @@ export default function Filters({curPlayer, setCurGame}) {
                 <MyCard icon={bulb} text="Riddles" chosenFilters={chosenFilters}/>
                 <MyCard icon={drinks} text="Alcohol" chosenFilters={chosenFilters}/>
             </div>
-
             {/*maya edit:*/}
             <div style={{ padding: '20px' }}>
                 <Button onClick={next} variant="contained">
@@ -92,8 +78,6 @@ function MyCard(props: React.PropsWithChildren<{ icon: string; text: string, cho
             console.log(props.text, "added to array")
         }
     };
-
-
     return (
         <Card
             sx={{
@@ -119,10 +103,3 @@ function MyCard(props: React.PropsWithChildren<{ icon: string; text: string, cho
         </Card>
     );
 }
-
-
-
-
-// className={"typo_card"}
-
-

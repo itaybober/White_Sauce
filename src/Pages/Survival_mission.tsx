@@ -1,59 +1,22 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import {deepOrange, deepPurple, grey} from '@mui/material/colors';
-import CircularProgress, {
-    CircularProgressProps,
-} from '@mui/material/CircularProgress';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Avatar_and_points from "../Components/avatar_and_points";
-import FolderIcon from '@mui/icons-material/Folder';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
 import survivel from '../Pages/images/cards icons/survivel.png'
-
-import { useTheme } from '@mui/material/styles'
-import theme from "../theme"; //for using the theme in component
 import "./Survival_mission.css"
 import Timer_Component from "../Components/Timer_Component"
-import Background from "../Components/Background"
 import itay from './Souvenirs/criptai.jpg'
-import Demo from "../Achsaf_Folder/Demo";
-import Winner_list from "../Components/Winner_list";
-import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import {useEffect, useState} from "react";
-import {ImageList, ImageListItem} from "@mui/material";
 import Container from "@mui/material/Container";
 import {db} from '../config/firebase'
 import {getDocs, collection} from 'firebase/firestore'
 import "../Components/Flippable_card"
 import Flippable_card from "../Components/Flippable_card";
-import {Game, Mission} from "../Components/Classes";
-
-import { auth } from "../config/firebase";
-import gameManager, {PAGES} from "./GameManager";
+import {PAGES} from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
 
-// import axios from 'axios';
-// we need to add the stepper here later
 
-// function  winner_list_update({name,points,bg}){
-//     return(
-//     <Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"} name2={"Itay"} points2={240} bg2={"#EFB2B2"} name3={name} points3={points} bg3={bg} />
-//     )
-//
-// }
 
 /**
  * in the future we'll add a game param, that will help us with setting unique display
@@ -94,10 +57,6 @@ export default function Survival({curPlayer,curGame}) {
     }, [])
 
     const [itemData, setItemData] = useState([])
-    // function next(){
-    //     jump(toPage)
-    // }
-
 
     function addPhoto() {
         // @ts-ignore

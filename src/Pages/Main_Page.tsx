@@ -1,12 +1,7 @@
 import React from 'react';
-// import "./Itay_Testing.css"
-// import Button from "@mui/material/Button";
-// import Box from '@mui/material/Box';
-import logo from './step-1_logo.svg'
 import galiLogo from './images/gali_test_logo.png'
 import './Main_Page.css'
 import {Auth} from "../Components/auth";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 

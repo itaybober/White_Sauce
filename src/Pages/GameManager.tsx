@@ -2,21 +2,16 @@ import React, {useState, useEffect} from "react";
 import Start_Page from "./Start_Page";
 import Join_Page from "./Join_Page";
 import Filters from "./Filters";
-import Theme_page, {ThemePage} from "./Theme_page";
-import Background from "../Components/Background";
 import CovenantPage from "./CovenantPage";
 import Survival_mission from "./Survival_mission"
 import GroupMission from "./GroupMission";
 import Punishment from "./Punishment_Page";
 import EndingPage from "./EndingPage";
-import Chwazi from "../Components/Chwazi";
 import { db, auth } from "../config/firebase"
-// import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 import Main_Page from "./Main_Page";
 import {Game, Player} from "../Components/Classes";
-import {wait} from "@testing-library/user-event/dist/utils";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import {doc, DocumentReference, getDoc, onSnapshot, setDoc, deleteDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
+import {doc, getDoc, onSnapshot } from "firebase/firestore";
 import logo from "./step-1_logo.svg";
 import PointsPage from "./PointsPage";
 
@@ -106,11 +101,11 @@ function GameManager() {
     // Updates the curPlayer instance every time information in the firestore is changed
     if (curPlayer && curPlayer._playerRef) {
         onSnapshot(curPlayer._playerRef, (snapshot) => {
-                const data = snapshot.data()
-                if (typeof data !== 'undefined') {
-                    curPlayer.getUpdate(data)
-                }
-                setPage(curPlayer._curPage)
+            const data = snapshot.data()
+            if (typeof data !== 'undefined') {
+                curPlayer.getUpdate(data)
+            }
+            setPage(curPlayer._curPage)
         })
     }
 
@@ -219,8 +214,8 @@ function GameManager() {
             break;
         case PAGES.WAIT:
             page = <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>
-                   </div>
+                <img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>
+            </div>
             break;
         case PAGES.POINTS:
             page = <PointsPage curPlayer={curPlayer} curGame={curGame}/>
