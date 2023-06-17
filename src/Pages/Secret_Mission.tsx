@@ -19,12 +19,6 @@ export default function Secret_Mission({curPlayer,curGame}) {
 
     const [itemData, setItemData] = useState([]);
 
-
-    function forTheDemo(){
-        // @ts-ignore
-        setItemData([sockhands]);
-    }
-
     // @ts-ignore
     return (
         <Container className={"punishment_page_component"}>
