@@ -19,10 +19,7 @@ function Start_Page({curPlayer}) {
     return(
 
         <div id={"StartPage_Background"}>
-            {/*להוסיף קומפוננטה של לוגו*/}
-            <div id={"StartPage_Logo"}>
-            <img src={galiLogo} width={190} height={200}/>
-            </div>
+
             <div id={"StartPage_Title"}>
                 <Typography variant="h4"> <b>Which Journey is Yours?</b></Typography>
             {/*<h1 id={"StartPage_Title"}>Which Journey is Yours?</h1>*/}

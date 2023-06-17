@@ -14,6 +14,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import {doc, getDoc, onSnapshot } from "firebase/firestore";
 import logo from "./step-1_logo.svg";
 import PointsPage from "./PointsPage";
+import galiLogo from "./images/gali_test_logo.png";
 
 
 
@@ -226,6 +227,9 @@ function GameManager() {
     return(
         <div>
             <button onClick={logOut}> X </button>
+            <br/>
+            <br/>
+            <img src={logo} width={103} height={85}/>
             {page}
         </div>
 

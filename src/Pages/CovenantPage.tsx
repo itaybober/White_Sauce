@@ -9,6 +9,7 @@ import logo from "./images/step-1_logo.svg";
 import Container from "@mui/material/Container";
 import {onSnapshot} from "firebase/firestore";
 import {PAGES} from "./GameManager";
+import Background from "../Components/Background";
 
 
 
@@ -39,10 +40,7 @@ function CovenantPage({curGame, curPlayer}) {
     }
 
     return(
-        <Container id={"CovenantPage_Background"}>
-            <div id={"CovenantPage_Logo"}>
-                <img src={logo} width={103} height={85}/>
-            </div>
+        <Container id={"CovenantPage_Background"} sx={{p:2}} >
             <Typography
                 variant='h5'>Your Game Cypher: {curGame._id}
             </Typography>
@@ -65,6 +63,7 @@ function CovenantPage({curGame, curPlayer}) {
             <div id={"CovenantPage_ChwaziContainer"} onTouchStart={startGame} onTouchEnd={startGame} onTouchMove={startGame} >
                 <Chwazi setNumFingers={setNumFingers}/>
             </div>
+
         </Container>
     )
 }

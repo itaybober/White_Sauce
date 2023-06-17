@@ -1,15 +1,38 @@
-mainFrame {
+
+.mainFrame {
+
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    gap: 1000px;
+    justify-Content: center;
     padding: 2%;
+    /*width: 100%;*/
+    gap: 50px;
+
+}
+
+#JoinPage_Logo {
     position: relative;
-    text-justify: auto;
-    /*top: 50px;*/
+    top: 5%;
 
 
+
+    /*background-image: url("../Pages/images/background/light_background.svg");*/
+    /*background-size: cover;*/
+    /*background-position: center;*/
+    /*min-height: 100vh;*/
+    /*display: flex;*/
+    /*flex-Flow:column;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*text-align: center;*/
+    /*!*gap: 10%;*!*/
+    /*!*padding: 3.5%;*!*/
+    /*!*position: relative;*!*/
+    /*text-justify: auto;*/
+    /*!*top: 50px;*!*/
     /*width: 100vw;*/
 }
 

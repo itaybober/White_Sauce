@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Avatar_and_points from "../Components/avatar_and_points";
-import "./Survival_mission.css"
+import "./PointsPage.css"
 import Winner_list from "../Components/Winner_list";
 import Container from "@mui/material/Container";
 import "../Components/Flippable_card"
@@ -29,7 +29,7 @@ export default function PointsPage({curPlayer,curGame}) {
 
 
     return (
-        <Container className={"survival_page_component"} sx={{p:2}} >
+        <Container className={"points_page_component"} sx={{p:2}} >
             <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
             <Card sx={{ width: 330, height: 370 } }>
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "center"}}>

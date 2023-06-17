@@ -1,4 +1,6 @@
-.punishment_page_component {
+
+
+.points_page_component {
     /*background-image: url("../Pages/images/background/light_background.svg");*/
     /*background-size: cover;*/
     /*background-position: center;*/
@@ -13,10 +15,9 @@
     text-justify: auto;
     /*top: 50px;*/
 
+
+    /*width: 100vw;*/
+
 }
 
 
-
-#fuckBR{
-    line-height: 1.5;
-}

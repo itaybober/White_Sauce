@@ -35,11 +35,8 @@ export default function GroupMission({curPlayer,curGame}) {
         // @ts-ignore
         setItemData([friends])
     }
-
-
     return (
-            <Container className={"group_mission_component"}>
-
+            <Container className={"group_mission_component"} sx={{p:2}}>
                 <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
                 <Flippable_card
                     back_content={
@@ -63,7 +60,6 @@ export default function GroupMission({curPlayer,curGame}) {
                         </Typography>
                     </CardContent>
                 }
-
 
                 front_content={
                     <div>

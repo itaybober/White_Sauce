@@ -58,7 +58,7 @@ function Chwazi({radius = 100, setNumFingers }) {
         const yValue = scrollY + clientY - (radius / 2);
 
         return(
-            <Circle color={"#508c86"} radius={radius} x={xValue} y={yValue}/>
+            <Circle color={"D1B067"} radius={radius} x={xValue} y={yValue}/>
         )
     });
 

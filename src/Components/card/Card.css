@@ -6,8 +6,8 @@
     position: relative;
 
     border-radius: 15px;
-    border: 2px solid #65666b;
-    box-shadow: 0px 0px 15px rgba(0,0,0,0.8);
+    border: 2px solid #34343f;
+    box-shadow: 0px 0px 15px rgb(44, 44, 53);
 
     user-select: none;
     cursor: pointer;
@@ -28,10 +28,10 @@
 }
 
 .card_front{
-background-color: #37464e;
+background-color: rgb(37, 37, 45,0.8);
 }
 
 .card_back{
-background-color: #37464e;
+background-color: rgb(37, 37, 45,0.8);
     transform: rotateY(180deg);
 }

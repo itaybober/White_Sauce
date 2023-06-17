@@ -50,10 +50,10 @@ export const Auth = () => {
             gap:6,padding: 2,position:"relative",textJustify:"auto" }
 
         }>
-            <Input placeholder="Enter your alias pussy"
+            <Input placeholder="Enter your warrior name"
                    onChange={(e) => setEmail(e.target.value)}
             />
-            <Button onClick={signInAnonymous} >Anonymous sign in</Button>
+            <Button onClick={signInAnonymous} >sign in</Button>
 
             {/*<Button onClick={signInWithGoogle}>Sing in with Google</Button>*/}
 

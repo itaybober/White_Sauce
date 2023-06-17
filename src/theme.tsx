@@ -60,9 +60,9 @@ const theme = createTheme({
         mode:"dark",
         primary: {
             contrastText: '#f8faf8',
-            main: '#60a9a2',
-            light: '#5b5f62',
-            dark: '#344044',
+            main: '#D1B067',
+            light: '#393948',
+            dark: '#25252D',
 
         },
         secondary: {
@@ -155,7 +155,7 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     size: 2,
-                    background: '#37464e',
+                    background: 'rgb(37, 37, 45,0.8)',
                     text: 'primary'
                 },
             },
@@ -164,7 +164,7 @@ const theme = createTheme({
                 styleOverrides: {
                     root: {
                         size: 2,
-                        background: '#37454d',
+                        background: '#25252D',
                         borderRadius: '10px'
 
                     },

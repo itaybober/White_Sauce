@@ -1,6 +1,10 @@
 
 
 .survival_page_component {
+    /*background-image: url("../Pages/images/background/light_background.svg");*/
+    /*background-size: cover;*/
+    /*background-position: center;*/
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -15,5 +19,9 @@
     /*width: 100vw;*/
 
 }
+
+
+    /*width: 100vw;*/
+
 
 

@@ -29,7 +29,7 @@ export default function Punishment({curPlayer,curGame}) {
     // @ts-ignore
     // @ts-ignore
     return (
-        <Background_loser>
+        // <Background_loser>
             <Container className={"punishment_page_component"}>
                 <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
                 {/* eslint-disable-next-line react/jsx-pascal-case */}
@@ -90,6 +90,6 @@ export default function Punishment({curPlayer,curGame}) {
 
                 }} >Next</Button>
             </Container>
-        </Background_loser>
+        // </Background_loser>
     )
 }
