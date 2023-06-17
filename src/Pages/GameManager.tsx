@@ -15,7 +15,7 @@ import {doc, getDoc, onSnapshot } from "firebase/firestore";
 import logo from "./step-1_logo.svg";
 import PointsPage from "./PointsPage";
 import galiLogo from "./images/gali_test_logo.png";
-
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 export const PAGES = {
@@ -215,7 +215,8 @@ function GameManager() {
             break;
         case PAGES.WAIT:
             page = <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>
+                <CircularProgress color="primary" />
+                {/*<img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>*/}
             </div>
             break;
         case PAGES.POINTS:
