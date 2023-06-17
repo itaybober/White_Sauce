@@ -29,13 +29,12 @@ function CovenantPage({curGame, curPlayer}) {
                 totalNumOfPlayers = data.players.length
             }
         })
-
     }
 
-
-    function startGame(){
-        if (numFingers === totalNumOfPlayers){
-            curGame.updateAllPlayersPages(PAGES.SURV)
+    async function startGame() {
+        if (numFingers === totalNumOfPlayers) {
+            await curGame.getActiveMissionOfTypeFromDatabase("SURV");
+            curGame.updateAllPlayersPages(PAGES.SURV);
         }
     }
 

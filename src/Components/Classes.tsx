@@ -1,7 +1,7 @@
 
 
 
-import {    collection, doc, setDoc, getDoc,getDocs, DocumentReference, DocumentData, updateDoc, arrayUnion, Timestamp, deleteDoc, arrayRemove, DocumentSnapshot,query, orderBy} from "firebase/firestore";
+import {    collection, doc, setDoc, getDoc,getDocs, DocumentReference, DocumentData, updateDoc, arrayUnion, Timestamp, deleteDoc, arrayRemove, DocumentSnapshot,query, where, orderBy} from "firebase/firestore";
 import {db} from "../config/firebase";
 import {PAGES} from "../Pages/GameManager";
 import {colors} from "@mui/material";
@@ -413,8 +413,16 @@ class Game {
         // await updateDoc(this._gameRef, {curMission: Mission.getMissionDataFromVariable(newMission)})
     }
 
+    public async getActiveMissionOfTypeFromDatabase( type : string) {
+        const ourFilter = "Active"
+        const missions_ref = collection(db, "Missions", ourFilter, ourFilter)
+        const q = query(missions_ref, where("type", "==", type));
+        const ourMissions = await getDocs(q)
+        const ourMission = ourMissions.docs[this.getRandomNumber(ourMissions.docs.length)]
+        await this.setCurMission(ourMission.data())
+    }
 
-    public async getMissionFromDatabase() {
+    public async getRandomMissionFromDatabase() {
         //     נבחר פילטר רנדומלי
         //     לפיו נבחר משימה
         //     ניבוא את המשימה למשחק

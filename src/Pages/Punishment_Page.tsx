@@ -18,7 +18,6 @@ import shield from '../Pages/images/cards icons/shield.png'
 export default function Punishment({curPlayer,curGame}) {
     const loser_player = "Guy";
 
-    curGame.getMissionFromDatabase();
     const mission_object = curGame._curMission
 
     const [itemData, setItemData] = useState([]);

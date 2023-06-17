@@ -24,7 +24,6 @@ import group2 from '../Pages/images/cards icons/group2.png'
 
 export default function GroupMission({curPlayer,curGame}) {
 
-    curGame.getMissionFromDatabase();
     const mission_object = curGame._curMission
 
     const [itemData, setItemData] = useState([]);

@@ -7,7 +7,7 @@ import { Player } from "./Classes"
 import Input from '@mui/material/Input';
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import {useForm} from "react-hook-form";
+
 export const Auth = () => {
     const [email, setEmail] = useState("")
 
@@ -21,9 +21,8 @@ export const Auth = () => {
 
     const signInAnonymous = async () => {
         try {
-
             await signInAnonymously(auth);
-            updateProfile(auth.currentUser, {displayName: email})
+            await updateProfile(auth.currentUser, {displayName: email})
         } catch (err) {
             console.error()
         }
