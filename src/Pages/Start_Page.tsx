@@ -24,8 +24,8 @@ function Start_Page({curPlayer}) {
                 <Typography variant="h4"> <b>Which Journey is Yours?</b></Typography>
             {/*<h1 id={"StartPage_Title"}>Which Journey is Yours?</h1>*/}
             </div>
-            <Button variant={"outlined"} onClick={startPage} id={"StartPage_Button_Start"} >START A CREW</Button>
-            <Button variant={"outlined"} onClick={joinPage} id={"StartPage_Button_Join"} >JOIN A CREW</Button>
+            <Button variant={"outlined"} onClick={startPage} id={"StartPage_Button_Start"} >START A TRIBE</Button>
+            <Button variant={"outlined"} onClick={joinPage} id={"StartPage_Button_Join"} >JOIN A TRIBE</Button>
         </div>
     )
 }
