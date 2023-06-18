@@ -146,6 +146,7 @@ function GameManager() {
                             Player.addPlayerToFirestore(curUser);
                             if (curPlayer){
                                 setPage(curPlayer._curPage)
+
                             }
                             console.log("Creating new player: " + curUser._name);
                         }
