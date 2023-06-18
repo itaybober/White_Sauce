@@ -17,6 +17,7 @@ import PointsPage from "./PointsPage";
 import galiLogo from "./images/gali_test_logo.png";
 import CircularProgress from '@mui/material/CircularProgress';
 import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
+import Typography from "@mui/material/Typography";
 
 export const PAGES = {
     DEBUG : 0,
@@ -198,8 +199,13 @@ function GameManager() {
             page = <Main_Page/>;
             break;
         case PAGES.WAIT:
-            page = <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            page = <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',  flexFlow:"column" }}>
+                <br/>
                 <CircularProgress color="primary" />
+                <br/>
+                <Typography variant={"h5"}>Move to the covenant<br/>in the host screen</Typography>
+                <br/>
+
                 {/*<img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>*/}
             </div>
             break;

@@ -18,7 +18,7 @@ import CameraComponent from "../Components/CameraComponent";
 import Background from "../Components/Background";
 import survivel2 from '../Pages/images/cards icons/card14.png'
 
-
+import arrow from '../Pages/images/cards icons/arrow.png'
 
 /**
  * in the future we'll add a game param, that will help us with setting unique display
@@ -88,6 +88,9 @@ console.log(curPlayer.name)
                         <br/>
                         <Typography variant={"h4"}> <b>survival mission</b></Typography>
                         <Typography variant={"h5"}> {mission_object._title}</Typography>
+                        {/*<div style={{ width: 260, height: 100,display: "flex", flexFlow:"row", justifyContent: "flex-end", alignItems: "flex-end" }}>*/}
+                        {/*<img src={arrow} style={{ width: 20, height: 20, opacity: 0.7}} />*/}
+                        {/*</div>*/}
                     </CardContent>
                 </div>
 
