@@ -18,6 +18,7 @@ import galiLogo from "./images/gali_test_logo.png";
 import CircularProgress from '@mui/material/CircularProgress';
 import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 import Typography from "@mui/material/Typography";
+import Secret_Mission from "./Secret_Mission";
 
 export const PAGES = {
     DEBUG : 0,
@@ -32,7 +33,8 @@ export const PAGES = {
     END : 9,
     AUTH: 10,
     WAIT: 11,
-    POINTS:12
+    POINTS:12,
+    SECRET:13
 }
 
 /**
@@ -182,6 +184,9 @@ function GameManager() {
             break;
         case PAGES.COVEN:
             page = <CovenantPage curPlayer={curPlayer} curGame={curGame}/>
+            break;
+        case PAGES.SECRET:
+            page = <Secret_Mission curPlayer={curPlayer} curGame={curGame}/>
             break;
         case PAGES.GROUP:
             page = <GroupMission curPlayer={curPlayer} curGame={curGame}/>

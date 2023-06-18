@@ -14,7 +14,7 @@ import a from './images/icon/a.png'
 export default function Secret_Mission({curPlayer,curGame}) {
     const loser_player = "Guy";
 
-    curGame.getMissionFromDatabase();
+    curGame.getRandomMissionFromDatabase()
     const mission_object = curGame._curMission
 
     const [itemData, setItemData] = useState([]);
@@ -52,7 +52,7 @@ export default function Secret_Mission({curPlayer,curGame}) {
                             }
             />
 
-            <Button onClick={()=> curPlayer.setCurPage(PAGES.GROUP)} variant="contained" color="primary" size={"medium"} sx={{
+            <Button onClick={()=> curPlayer.setCurPage(PAGES.SURV)} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 4,
 
             }} >Next</Button>
