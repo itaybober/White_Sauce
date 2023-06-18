@@ -6,6 +6,7 @@ import React, {useState} from "react";
 import { db} from "../config/firebase";
 import {PAGES} from "./GameManager";
 import {doc, getDoc} from "firebase/firestore";
+import galiLogo from "./images/gali_test_logo.png";
 
 
 
@@ -56,12 +57,8 @@ function Join_Page( {curPlayer, curGame} ) {
     }
 
     return (
-
-        <div id={"JoinPage_Background"}>
-            <div id={"JoinPage_Logo"}>
-                <img src={logo} width={103} height={85}/>
-            </div>
-            <Typography variant={"h4"} id={"JoinPage_Title"}><b>Enter Cypher</b></Typography>
+    <div id={"JoinPage_Background"}>
+            <Typography variant={"h3"} id={"JoinPage_Title"}><b>Enter Cypher</b></Typography>
             <div id={"JoinPage_Input"}>
             <TextField value={gameToJoin} onChange={handleChange} onKeyDown={enterValue} inputProps={{min: 0, style: { textAlign: 'center' }}}
                placeholder={"PIN"} sx={{ textAlign: 'center', position:'relative', top:'50%' }}  variant="outlined" />

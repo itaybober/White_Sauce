@@ -37,7 +37,7 @@ export default function Filters({curPlayer, setCurGame}) {
     return(
         <Container className={"filter"} sx={{p:5}}>
             {/*<div className={"logo_container"}>*/}
-                <img src={logo} width={103} height={85}/>
+
             {/*</div>*/}
             <Typography variant={"h4"}  className={"text_container"}><b>what are you
                 <br/>
@@ -83,7 +83,7 @@ function MyCard(props: React.PropsWithChildren<{ icon: string; text: string, cho
             sx={{
                 maxWidth: 160,
                 // maya edit:
-                backgroundColor: isActive ? "#058378" : "#54666D",
+                backgroundColor: isActive ? "#d1b067" : "#535369",
             }}
             className={"card_container"}
             onClick={handleClick}

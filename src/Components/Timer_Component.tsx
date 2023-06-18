@@ -46,7 +46,7 @@ export default function Timer_Component({ timerLimit = 15 }: TimerProps) {
         <>
             <Button
                 variant={timerStarted ? "contained" : "outlined"} // Use "outlined" variant when timer is started
-                color={timerStarted ? "secondary" : "primary"} // Change button color based on timer state
+                color={timerStarted ? "primary" : "primary"} // Change button color based on timer state
                 onClick={toggleTimer} // Rename onClick handler
             >
                 {timerStarted ? "Stop Clock" : "Start Clock"} {/* Change button text based on timer state */}

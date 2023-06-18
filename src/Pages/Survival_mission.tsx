@@ -15,6 +15,8 @@ import "../Components/Flippable_card"
 import Flippable_card from "../Components/Flippable_card";
 import {PAGES} from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
+import Background from "../Components/Background";
+import survivel2 from '../Pages/images/cards icons/card14.png'
 
 
 
@@ -63,25 +65,28 @@ export default function Survival({curPlayer,curGame}) {
         setItemData([itay])
     }
 console.log(curPlayer.name)
+    // @ts-ignore
     return (
-        <Container className={"survival_page_component"} sx={{p:2}} >
+
+        <Container className={"survival_page_component"} sx={{p:2}}  >
             <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
             <Flippable_card back_content={
                 <div>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
                         <Typography variant="h5" color={"primary"}> <b> {mission_object._title}</b></Typography>
-                    {/*    <Typography variant="h6">Your goal: <span style={{ color: 'pink' }}>{itemList.length > 0 && (<span>{itemList[Math.floor(Math.random() * itemList.length)].name}</span>)}*/}
-                    {/*</span></Typography>*/}
+                        <br/>
                         <Typography variant="h6">
-
                             {mission_object._description}   </Typography>
                         </CardContent>
                 </div>
             }
                             front_content={
                 <div>
-                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
-                        <img src={survivel} width={200} height={200}/>
+                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center", alignItems: "center" ,textAlign: "center" }}>
+
+                        <img src={survivel2} style={{ width: 260, height: 110, opacity: 0.7 }} />
+                        <br/>
+                        <Typography variant={"h4"}> <b>survival mission</b></Typography>
                         <Typography variant={"h5"}> {mission_object._title}</Typography>
                     </CardContent>
                 </div>
@@ -104,7 +109,9 @@ console.log(curPlayer.name)
                 mb: 4,
 
             }} >Next</Button>
+
         </Container>
+
 ///
     );
 

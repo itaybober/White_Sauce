@@ -12,7 +12,7 @@ import Avatar_and_points from "../Components/avatar_and_points";
 import Flippable_card from "../Components/Flippable_card";
 import {PAGES} from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
-import shield from '../Pages/images/cards icons/shield.png'
+import turtle from '../Pages/images/cards icons/card12.png'
 // @ts-ignore
 
 export default function Punishment({curPlayer,curGame}) {
@@ -29,30 +29,18 @@ export default function Punishment({curPlayer,curGame}) {
     // @ts-ignore
     // @ts-ignore
     return (
-        <Background_loser>
-            <Container className={"punishment_page_component"}>
+        // <Background_loser>
+            <Container className={"punishment_page_component"} sx={{p:2}}>
                 <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
                 {/* eslint-disable-next-line react/jsx-pascal-case */}
                 <Flippable_card back_content={
                     <div>
 
                         <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
-                            <Typography variant="h5" color={"secondary"}> <b> {mission_object._title}</b></Typography>
+                            <Typography variant="h5" color={"primary"}> <b> {mission_object._title}</b></Typography>
                             <Typography  sx={{lineHeight: '20px'}} variant={"h6"} >
                                 <br/>You lost, sucks to suck. <br/><br/>
                                 {mission_object._description}
-                                {/*
-                                You got one shot,<br/> don't miss your chance to blow <br/><br/>
-                                You gotta freestyle,<br/> put on a good show <br/><br/>
-                                But if too many verses, <br/> dont manage to land <br/><br/>
-                                For the rest of the evening, <br/> you must wear socks on your hands
-*/}
-                                {/*Well, well, well, look who we have here - the ultimate loser! As punishment,*/}
-                                {/*you must chug a beer in 30 seconds.*/}
-                                {/*We have another treat for you! You must wear your socks*/}
-                                {/*on your hands until the end of the evening - wait, what's that? You don't have socks?*/}
-                                {/*Well, looks like you'll have to borrow a pair from another contestant!*/}
-                                {/*Don't worry, they won't mind. After all, sharing is caring!*/}
                             </Typography>
                             <Typography>
 
@@ -64,9 +52,11 @@ export default function Punishment({curPlayer,curGame}) {
                     }
                     front_content={
                     <div>
-                        <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "space-around",alignItems: "center" }}>
-                            <img src={shield} width={200} height={200}/>
-                            <Typography variant={"h4"}> {mission_object._title}</Typography>
+                        <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center", alignItems: "center" ,textAlign: "center" }}>
+                            <img src={turtle} style={{ width: 200, height: 200, opacity: 0.7 }}/>
+                            <br/>
+                            <Typography variant={"h4"}> <b>turtle mission</b></Typography>
+                            <Typography variant={"h5"}> {mission_object._title}</Typography>
                         </CardContent>
                     </div>
                     }
@@ -90,6 +80,6 @@ export default function Punishment({curPlayer,curGame}) {
 
                 }} >Next</Button>
             </Container>
-        </Background_loser>
+        // </Background_loser>
     )
 }

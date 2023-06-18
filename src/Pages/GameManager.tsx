@@ -14,8 +14,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import {doc, getDoc, onSnapshot } from "firebase/firestore";
 import logo from "./step-1_logo.svg";
 import PointsPage from "./PointsPage";
-
-
+import galiLogo from "./images/gali_test_logo.png";
+import CircularProgress from '@mui/material/CircularProgress';
+import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 
 export const PAGES = {
     DEBUG : 0,
@@ -119,21 +120,6 @@ function GameManager() {
         })
     }
 
-    // For debugging, will run whatever command given if any key is pressed
-    useEffect(() => {
-        function handleKeyDown(event: { key: any; }) {
-
-        }
-
-        // Add the event listener when the component mounts
-        window.addEventListener('keydown', handleKeyDown);
-
-        // Clean up the event listener when the component unmounts
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-        };
-    }, []);
-
     // updates the user's display name
     onAuthStateChanged(auth, () => {
         if(curPlayer && auth.currentUser && auth.currentUser.displayName) {
@@ -182,8 +168,7 @@ function GameManager() {
 
         case PAGES.DEBUG:
             // For debug and testing
-            // @ts-ignore
-            // page = <FirebaseTest />;
+            page = <FirebaseTest />;
             break;
         case PAGES.START:
             page = <Start_Page curPlayer={curPlayer}/>;
@@ -214,7 +199,8 @@ function GameManager() {
             break;
         case PAGES.WAIT:
             page = <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>
+                <CircularProgress color="primary" />
+                {/*<img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>*/}
             </div>
             break;
         case PAGES.POINTS:
@@ -226,6 +212,9 @@ function GameManager() {
     return(
         <div>
             <button onClick={logOut}> X </button>
+            <br/>
+            <br/>
+            <img src={logo} width={103} height={85}/>
             {page}
         </div>
 

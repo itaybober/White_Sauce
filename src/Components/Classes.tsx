@@ -51,7 +51,7 @@ class Mission {
      * @param filters
      */
     constructor(
-        title = "", description = "", tags = [], type = "", extras = [],
+        title = "", description = "", tags = [""], type = "", extras = [],
         minNumOfPlayers = -1, maxNumOfPlayers = -1) {
 
         this._title = title;
@@ -125,7 +125,9 @@ class Mission {
     static async addMissionToFirestore(mission: Mission): Promise<void> {
         const missionData = Mission.getMissionDataFromVariable(mission)
         try {
-            await setDoc(doc(db, "Missions", mission._title), missionData);
+            mission._tags.map( async (tag) => {
+                await setDoc(doc(db, "Missions", tag, tag, mission._title), missionData);
+            })
             console.log("Mission added to Firestore");
         } catch (error) {
             console.error("Error adding mission to Firestore:", error);
@@ -409,12 +411,13 @@ class Game {
     }
 
     public async setCurMission(data: DocumentData | undefined) {
+        console.log("Data:" + data)
         await updateDoc(this._gameRef, {curMission: data})
         // await updateDoc(this._gameRef, {curMission: Mission.getMissionDataFromVariable(newMission)})
     }
 
-    public async getActiveMissionOfTypeFromDatabase( type : string) {
-        const ourFilter = "Active"
+    public async getRandomMissionFromDatabase( type : string) {
+        const ourFilter = this._filters[this.getRandomNumber(this._filters.length)]
         const missions_ref = collection(db, "Missions", ourFilter, ourFilter)
         const q = query(missions_ref, where("type", "==", type));
         const ourMissions = await getDocs(q)
@@ -422,20 +425,6 @@ class Game {
         await this.setCurMission(ourMission.data())
     }
 
-    public async getRandomMissionFromDatabase() {
-        //     נבחר פילטר רנדומלי
-        //     לפיו נבחר משימה
-        //     ניבוא את המשימה למשחק
-        //     נשאוב את הפרטים מתוך המשחק
-        const ourFilter = this._filters[this.getRandomNumber(this._filters.length)]
-        console.log(ourFilter)
-        const missions_ref = collection(db, "Missions", ourFilter, ourFilter)
-        const ourMissions = await getDocs(missions_ref)
-        const ourMission = ourMissions.docs[this.getRandomNumber(ourMissions.docs.length)]
-
-        await this.setCurMission(ourMission.data())
-
-    }
 
     private getRandomNumber(max: number) {
         return Math.floor(Math.random() * max);

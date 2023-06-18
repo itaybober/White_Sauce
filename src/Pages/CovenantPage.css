@@ -1,6 +1,10 @@
 
 
 #CovenantPage_Background{
+    /*background-image: url("../Pages/images/background/light_background.svg");*/
+    /*background-size: cover;*/
+    /*background-position: center;*/
+    min-height: 50vh;
     display: flex;
     flex-direction: column;
     align-items: center;
