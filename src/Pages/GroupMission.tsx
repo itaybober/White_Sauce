@@ -11,7 +11,7 @@ import "./GroupMission.css"
 import Flippable_card from "../Components/Flippable_card";
 import {PAGES} from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
-import group2 from '../Pages/images/cards icons/group2.png'
+import shield from '../Pages/images/cards icons/card13.png'
 
 // we need to add the stepper here later
 // function  winner_list_update({name,points,bg}){
@@ -42,29 +42,19 @@ export default function GroupMission({curPlayer,curGame}) {
                     back_content={
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
                         <Typography variant="h5" color={"primary"}>{mission_object._title}</Typography>
+                    <br/>
                         <Typography variant="h6">
                             {mission_object._description}
-
-                            {/*Gather round in a circle and face each other. Each one must grab two friends at random,*/}
-                            {/*you must untangle yourselves without letting go. <br/><br/>*/}
-                            {/*You win when everyone is as open as their hearts.*/}
-
-                            {/*Gather round and stand in a circle facing each other. Reach out a hand*/}
-                            {/*and grab a friends hand,*/}
-                            {/*<span style={{ color: 'pink' }}> tight and strong like your friendship</span>.*/}
-                            {/*Got a hand? Good, a hand with, socks?*/}
-                            {/*even better. Now reach*/}
-                            {/*out another hand to a weaker friend with your weaker hand. The goal is simple you must untangle*/}
-                            {/*your hands without letting go of each others hands. The task is complete when you all stand*/}
-                            {/*in a circle with no crossed hands among you.*/}
                         </Typography>
                     </CardContent>
                 }
 
                 front_content={
                     <div>
-                        <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
-                            <img src={group2} width={200} height={150}/>
+                        <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center", alignItems: "center" ,textAlign: "center" }}>
+                            <img src={shield} style={{ width: 200, height: 200, opacity: 0.7 }}/>
+                            <br/>
+                            <Typography variant={"h4"}> <b>tribe mission</b></Typography>
                             <Typography variant={"h5"}> {mission_object._title}</Typography>
                         </CardContent>
                     </div>

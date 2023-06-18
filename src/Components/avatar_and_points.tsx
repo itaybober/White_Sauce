@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Avatar from "@mui/material/Avatar";
 import Container from "@mui/material/Container";
-import mask from '../Pages/images/icon/b.png'
+import mask from '../Pages/images/icon/avatar.png'
 import logo from "../Pages/images/step-1_logo.svg";
 // @ts-ignore
 export  default function Avatar_and_points({name="maya" ,points}) {
@@ -19,7 +19,7 @@ export  default function Avatar_and_points({name="maya" ,points}) {
 
 
     <Container sx={{width: 330, height: 120, display: 'flex', flexDirection: 'row', justifyContent:  "space-between", alignItems: 'center' }   }>
-        <Avatar alt= "mask" src= {mask} sx={{ width: 60, height: 60 }}> </Avatar>
+        <Avatar alt= "mask" src= {mask} sx={{ width: 60, height: 80 }}> </Avatar>
 
         <Container sx={{width:240, height: 80, display: 'flex', flexDirection: 'column', justifyContent:  "space-between", alignItems: 'flex-start', gap:"10px"}   }>
             <Typography
