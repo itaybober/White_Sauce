@@ -45,9 +45,7 @@ export default function Filters({curPlayer, setCurGame}) {
 
             <div className={"cards_container"}>
                 <MyCard icon={active_logo} text="Active" chosenFilters={chosenFilters}/>
-                <MyCard icon={shopping} text="Supplies" chosenFilters={chosenFilters}/>
                 <MyCard icon={snacks} text="Snacks" chosenFilters={chosenFilters}/>
-                <MyCard icon={waves} text="Get wet" chosenFilters={chosenFilters}/>
                 <MyCard icon={bulb} text="Riddles" chosenFilters={chosenFilters}/>
                 <MyCard icon={drinks} text="Alcohol" chosenFilters={chosenFilters}/>
             </div>

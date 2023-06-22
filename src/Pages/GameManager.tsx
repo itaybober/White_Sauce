@@ -157,6 +157,7 @@ function GameManager() {
             } else {
                 console.log('User is signed out');
                 setPage(PAGES.AUTH);
+                // setPage(PAGES.DEBUG);
             }
         });
 
@@ -175,7 +176,7 @@ function GameManager() {
             page = <FirebaseTest />;
             break;
         case PAGES.START:
-            page = <Start_Page curPlayer={curPlayer}/>;
+            page = <Start_Page curPlayer={curPlayer} logOut={logOut}/>;
             break;
         case PAGES.JOIN:
             page = <Join_Page curPlayer={curPlayer} curGame={curGame}/>
@@ -199,7 +200,7 @@ function GameManager() {
             page = <Punishment curPlayer={curPlayer} curGame={curGame}/>
             break;
         case PAGES.END:
-            page = <EndingPage jump={setPage} toPage={PAGES.START}/>
+            page = <EndingPage curPlayer={curPlayer} curGame={curGame}/>
             break;
         case PAGES.AUTH:
             page = <Main_Page/>;
@@ -223,10 +224,8 @@ function GameManager() {
 
     return(
         <div>
-            <button onClick={logOut}> X </button>
             <br/>
             <br/>
-            <img src={logo} width={103} height={85}/>
             {page}
         </div>
 

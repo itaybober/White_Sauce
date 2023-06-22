@@ -15,8 +15,9 @@ import secret from './images/cards icons/card11.png'
 export default function Secret_Mission({curPlayer,curGame}) {
     const loser_player = "Guy";
 
-    curGame.getRandomMissionFromDatabase()
-    const mission_object = curGame._curMission
+    const mission_object = curPlayer._secretMission
+
+    console.log(mission_object)
 
     const [itemData, setItemData] = useState([]);
 
@@ -27,10 +28,10 @@ export default function Secret_Mission({curPlayer,curGame}) {
             <Flippable_card back_content={
                 <div>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
-                        <Typography variant="h5" color={"primary"}> <b> {mission_object._title}</b></Typography>
+                        <Typography variant="h5" color={"primary"}> <b> {mission_object.title}</b></Typography>
                         <br/>
                         <Typography variant="h6">
-                            {mission_object._description}   </Typography>
+                            {mission_object.description}   </Typography>
                     </CardContent>
                 </div>
 
@@ -54,7 +55,7 @@ export default function Secret_Mission({curPlayer,curGame}) {
                 }
         />
 
-            <Button onClick={()=> curPlayer.setCurPage(PAGES.SURV)} variant="contained" color="primary" size={"medium"} sx={{
+            <Button onClick={()=> curGame.updateAllPlayersPages(PAGES.SURV)} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 4,
 
             }} >Next</Button>

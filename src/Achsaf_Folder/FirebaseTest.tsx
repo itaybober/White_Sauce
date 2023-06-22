@@ -6,6 +6,8 @@ import {doc, setDoc, addDoc, collection, onSnapshot} from 'firebase/firestore';
 import {Game, Mission} from "../Components/Classes"
 import logo from "../Pages/step-1_logo.svg";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import Chwazi from "../Components/Chwazi";
+import Circle from "./Circle";
 // import firebase from "firebase/compat";
 // import Timestamp = firebase.firestore.Timestamp;
 
@@ -16,28 +18,20 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 function pushToFirebase(){
 
 
-    const filters = ["Active", "Alcohol",  "Non-Alcohol", "Non-Shopping", "Riddle", "Snacks"]
-    const types = ["Group", "Survival"]
+    for (let i = 0 ; i < 10 ; i++){
+        const mission = new Mission(
+            "Punishment Mission " + i.toString(),
+            "This a punishment that is meant for you",["Punishment"]
+        );
+        mission.addMissionToFireStore()
+    }
 
-    filters.map( (filter) =>{
-        let counter = 1;
-        types.map( (type) => {
-            const mission = new Mission(
-                filter + " Mission " + counter.toString(),
-                "This an "+ filter + " mission that is meant for " + type,
-                [filter],
-                type
-            );
-            counter += 1
-            mission.addMissionToFireStore()
-        } )
-    } )
 }
 
 // @ts-ignore
 function FirebaseTest() {
 
-
+    const [f1,f2] = useState()
 
 
 
@@ -48,7 +42,7 @@ function FirebaseTest() {
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Button style={{width: "50px", height: "50px"}} startIcon={<AddAPhotoIcon/>}
                     onClick={pushToFirebase} />
-            <img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>
+            {/*<img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>*/}
         </div>
     );
 }

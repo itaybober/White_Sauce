@@ -3,9 +3,6 @@ import React from 'react';
 // @ts-ignore
 function Circle({ color, radius = 50, x, y }) {
 
-
-
-
     return (
         <div
             style={{

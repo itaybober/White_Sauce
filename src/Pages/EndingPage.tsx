@@ -14,12 +14,13 @@ import tiger from "./Souvenirs/tiger.jpg"
 import comic from "./Souvenirs/comic.jpg"
 import "./EndingPage.css"
 import Typography from '@mui/material/Typography';
+import {PAGES} from "./GameManager";
 
 // @ts-ignore
-function EndingPage({jump, toPage}) {
+function EndingPage({curPlayer, curGame}) {
 
     function next() {
-        jump(toPage);
+        curPlayer.setCurPage(PAGES.START)
     }
 
 

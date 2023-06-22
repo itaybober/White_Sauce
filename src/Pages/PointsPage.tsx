@@ -39,7 +39,10 @@ export default function PointsPage({curPlayer,curGame}) {
             </Card>
 
 
-            <Button onClick={()=> curPlayer.setCurPage(PAGES.PUN)} variant="contained" color="primary" size={"medium"} sx={{
+            <Button onClick={async ()=> {
+                await curGame.getRandomMissionFromDatabase("Group")
+                await curGame.updateAllPlayersPages(PAGES.GROUP)
+            }} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 4,
 
             }} >Next</Button>

@@ -66,7 +66,9 @@ export default function GroupMission({curPlayer,curGame}) {
 
                 <CameraComponent buttonText="Proof Of Concept" />
 
-                <Button onClick={()=> curPlayer.setCurPage(PAGES.END)} variant="contained" color="primary" size={"medium"} sx={{
+                <Button onClick={()=> {
+                    curGame.updateAllPlayersPages(PAGES.END)
+                }} variant="contained" color="primary" size={"medium"} sx={{
                     mb: 4,
 
                 }} >Next</Button>

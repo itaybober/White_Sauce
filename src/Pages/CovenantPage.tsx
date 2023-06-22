@@ -34,6 +34,7 @@ function CovenantPage({curGame, curPlayer}) {
 
     async function startGame() {
         if (numFingers === totalNumOfPlayers) {
+            await curGame.getSecretMissionsFromDatabase();
             await curGame.getRandomMissionFromDatabase("Survival");
             curGame.updateAllPlayersPages(PAGES.SECRET);
         }

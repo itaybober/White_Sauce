@@ -12,9 +12,9 @@ import Avatar_and_points from "../Components/avatar_and_points";
 import Flippable_card from "../Components/Flippable_card";
 import {PAGES} from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
-import turtle from '../Pages/images/cards icons/card12.png'
-// @ts-ignore
+import turtle from '../Pages/images/cards icons/card12.png';
 
+// @ts-ignore
 export default function Punishment({curPlayer,curGame}) {
     const loser_player = "Guy";
 
@@ -47,9 +47,8 @@ export default function Punishment({curPlayer,curGame}) {
                             </Typography>
                         </CardContent>
                     </div>
-
-
                     }
+
                     front_content={
                     <div>
                         <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center", alignItems: "center" ,textAlign: "center" }}>
@@ -75,7 +74,10 @@ export default function Punishment({curPlayer,curGame}) {
                 <CameraComponent buttonText="Take a disgraceful Picture" />
 
 
-                <Button onClick={()=> curPlayer.setCurPage(PAGES.GROUP)} variant="contained" color="primary" size={"medium"} sx={{
+                <Button onClick={async ()=> {
+                    await curGame.getRandomMissionFromDatabase("Group")
+                    await curGame.updateAllPlayersPages(PAGES.GROUP)
+                }} variant="contained" color="primary" size={"medium"} sx={{
                     mb: 4,
 
                 }} >Next</Button>

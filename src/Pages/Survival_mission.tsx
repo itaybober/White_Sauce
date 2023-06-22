@@ -108,7 +108,11 @@ console.log(curPlayer.name)
             </Container>
 
 
-            <Button onClick={()=> curPlayer.setCurPage(PAGES.POINTS)} variant="contained" color="primary" size={"medium"} sx={{
+            <Button onClick={async ()=> {
+                await curGame.updateAllPlayersPages(PAGES.POINTS)
+                await curGame.getPunishmentFromDataBase()
+                await curPlayer.setCurPage(PAGES.PUN)
+            }} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 4,
 
             }} >Next</Button>

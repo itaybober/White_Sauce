@@ -16,6 +16,14 @@ import {useEffect, useState} from "react";
 /**
  * Represents a single mission with all of its relevant information and capabilities
  */
+
+
+function getRandomNumber(max: number) {
+    return Math.floor(Math.random() * max);
+}
+
+
+
 class Mission {
     public _title: string;
     public _description: string;
@@ -176,7 +184,8 @@ class Player {
     public _curPage: number;
     public _gameRef: DocumentReference;
     public _playerRef: DocumentReference;
-    public _playerColor: string
+    public _playerColor: string;
+    public _secretMission: DocumentReference | null;
 
 
     constructor(UID: string = "null", name: string | null = "", gameRef: DocumentReference = doc(db, "Games", "0000")) {
@@ -191,6 +200,7 @@ class Player {
         this._playerRef = doc(db, "Active_Players", UID);
         this._gameRef = gameRef;
         this._playerColor= '#60a9a2';
+        this._secretMission = null;
     }
 
     public async setName(name: string) {
@@ -206,7 +216,11 @@ class Player {
         setDoc(this._playerRef, {gameReference: gameRef}, {merge: true})
     }
 
-    /**
+    public setSecretMission(data: DocumentData) {
+        setDoc(this._playerRef, {secretMission: data}, {merge: true})
+    }
+
+        /**
      * A method for adding the player to firestore.
      * The signature looks like this:
      *
@@ -251,14 +265,18 @@ class Player {
             curPage: player._curPage,
             playerReference: player._playerRef,
             gameReference: player._gameRef,
-            createdAt: Timestamp.now()
+            createdAt: Timestamp.now(),
+            secretMission: player._secretMission
         };
         return playerData;
     }
 
-
-
-
+    public async getSecretMissionFromDatabase() {
+        const missions_ref = collection(db, "Missions", "Secret", "Secret")
+        const ourMissions = await getDocs(missions_ref)
+        const ourMission = ourMissions.docs[getRandomNumber(ourMissions.docs.length)]
+        await this.setSecretMission(ourMission.data())
+    }
 
     public getUpdate(data: DocumentData) {
         this._name = data.name;
@@ -266,7 +284,8 @@ class Player {
         this._points = data.points;
         this._curPage = data.curPage;
         this._playerRef = data.playerReference;
-        this._gameRef = data.gameReference
+        this._gameRef = data.gameReference;
+        this._secretMission = data.secretMission;
     }
 
     public removePlayerFromFireBase() {
@@ -417,19 +436,30 @@ class Game {
     }
 
     public async getRandomMissionFromDatabase( type : string) {
-        const ourFilter = this._filters[this.getRandomNumber(this._filters.length)]
+        const ourFilter = this._filters[getRandomNumber(this._filters.length)]
         const missions_ref = collection(db, "Missions", ourFilter, ourFilter)
         const q = query(missions_ref, where("type", "==", type));
         const ourMissions = await getDocs(q)
-        const ourMission = ourMissions.docs[this.getRandomNumber(ourMissions.docs.length)]
+        const ourMission = ourMissions.docs[getRandomNumber(ourMissions.docs.length)]
+        await this.setCurMission(ourMission.data())
+    }
+
+    public async getSecretMissionsFromDatabase() {
+        this._players.map( (playerRef) => {
+            let player = new Player()
+            player._playerRef = playerRef
+            player.getSecretMissionFromDatabase()
+        } )
+    }
+
+    public async getPunishmentFromDataBase() {
+        const missions_ref = collection(db, "Missions", "Punishment", "Punishment")
+        const ourMissions = await getDocs(missions_ref)
+        const ourMission = ourMissions.docs[getRandomNumber(ourMissions.docs.length)]
         await this.setCurMission(ourMission.data())
     }
 
 
-    private getRandomNumber(max: number) {
-        return Math.floor(Math.random() * max);
-
-    }
 
     //update by maya:
     async getPlayerDataFromRef(playerRef: any):Promise<any>{

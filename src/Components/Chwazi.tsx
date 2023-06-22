@@ -18,6 +18,7 @@ function Chwazi({radius = 100, setNumFingers }) {
 
     // @ts-ignore
     function handleTouchEnd(event) {
+
         setTouches(event.touches);
         setScrollY(window.scrollY);
         setNumFingers(touches.length - 1)
@@ -25,16 +26,16 @@ function Chwazi({radius = 100, setNumFingers }) {
 
     // @ts-ignore
     function handleTouchMove(event) {
-        const newTouches: Touch[] = Array.from(event.touches);
-        const newFilteredTouches: Touch[] = newTouches.filter(touch => true
-            // touch.clientY < frameEdges[0] + scrollY
-            // touch.clientY > frameEdges[1] + scrollY &&
-            // touch.clientX > frameEdges[2]  &&
-            // touch.clientX < frameEdges[3]
-        );
+        // const newTouches: Touch[] = Array.from(event.touches);
+        // const newFilteredTouches: Touch[] = newTouches.filter(touch => true
+        //     touch.clientY < frameEdges[0] + scrollY
+        //     touch.clientY > frameEdges[1] + scrollY &&
+        //     touch.clientX > frameEdges[2]  &&
+        //     touch.clientX < frameEdges[3]
+        // );
         // console.log(newTouches)
         // console.log(frameEdges[0] - scrollY)
-        setTouches(newFilteredTouches);
+        setTouches(event.touches);
         setScrollY(window.scrollY);
         setNumFingers(touches.length)
     }
@@ -53,18 +54,16 @@ function Chwazi({radius = 100, setNumFingers }) {
 
     // @ts-ignore
     const renderedTouches = Array.from(touches).map(({clientX, clientY}) => {
-
         const xValue = clientX - (radius / 2);
         const yValue = scrollY + clientY - (radius / 2);
 
         return(
-            <Circle color={"D1B067"} radius={radius} x={xValue} y={yValue}/>
+            <Circle color={"#D1B067"} radius={radius} x={xValue} y={yValue}/>
         )
     });
 
     return (
-        <div id={"frame"} ref={updateFrameLoc} onTouchStart={handleTouchStart}
-                                                            onTouchEnd={handleTouchEnd} onTouchMove={handleTouchMove}>
+        <div id={"frame"} onTouchStart={handleTouchStart}  onTouchEnd={handleTouchEnd} onTouchMove={handleTouchMove}>
                 {renderedTouches}
         </div>
     );
