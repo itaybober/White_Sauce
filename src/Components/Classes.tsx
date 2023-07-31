@@ -104,6 +104,7 @@ class Mission {
 
 
 
+
     /**
      * A method for adding the mission to firestore.
      * The signature looks like this:

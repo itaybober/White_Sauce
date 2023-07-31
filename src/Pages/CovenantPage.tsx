@@ -40,6 +40,7 @@ function CovenantPage({curGame, curPlayer}) {
         }
     }
 
+
     return(
         <Container id={"CovenantPage_Background"} sx={{p:2}} >
             <Typography

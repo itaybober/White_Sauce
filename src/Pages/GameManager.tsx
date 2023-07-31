@@ -77,6 +77,7 @@ export const PAGES = {
  *
  */
 
+
 function GameManager() {
 
     const [curPage, setPage] = useState(PAGES.WAIT)
