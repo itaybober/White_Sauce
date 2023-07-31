@@ -78,27 +78,30 @@ class Mission {
     public survivalPointSystem(player: Player, time: number, succeed = false) {
         // calculate number of points to add to a player
         if (succeed) {
-            player._points += 1 / time * 10;
+            player._points += Math.floor(60000 / time);
         } else {
-            player._points -= 50
+            player._points -= 500
         }
         return;
     }
 
-    public groupPointSystem(player: Player, time: number) {
+    public groupPointSystem(player: Player, time: number, succeed:boolean = false) {
         // calculate number of points to add to a player
-        player._points += 1 / time * 10;
+        if (succeed) {
+            player._points += Math.floor(600000 / time);
+        }
         return;
     }
+
 
     public punishmentPointSystem(player: Player, time: number, succeed = false) {
         // calculate number of points to add to a player
-        if (succeed) {
-            player._points += 50;
+
+            player._points += Math.floor(600000 / time);
+
 
             return;
         }
-    }
 
 
 
@@ -220,7 +223,7 @@ class Player {
         setDoc(this._playerRef, {secretMission: data}, {merge: true})
     }
 
-        /**
+    /**
      * A method for adding the player to firestore.
      * The signature looks like this:
      *
@@ -467,7 +470,7 @@ class Game {
         const data : any = await playerData.data();
         console.log("data name", data.name)
         return data
-                }
+    }
 
 
 
@@ -483,31 +486,31 @@ class Game {
             id: string;
             propertyName: number;
             // Add more properties as needed
-            }
+        }
 
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-            useEffect(() => {
-                const fetchData = async () => {
-                    try {
-                        const playersRef = collection(db, 'Games', this._id, "players");
-                        const sortedQuery = query(playersRef, orderBy('points'));
-                        const querySnapshot = await getDocs(sortedQuery);
-                        const sortedData: player[] = querySnapshot.docs.map((doc) => doc.data() as player);
-                        console.log (sortedData)
-                        // setSortedItems(sortedData);
-                    } catch (error) {
-                        console.log('Error fetching data:', error);
-                    }
-                };
-                fetchData();
-            }, []);
+        useEffect(() => {
+            const fetchData = async () => {
+                try {
+                    const playersRef = collection(db, 'Games', this._id, "players");
+                    const sortedQuery = query(playersRef, orderBy('points'));
+                    const querySnapshot = await getDocs(sortedQuery);
+                    const sortedData: player[] = querySnapshot.docs.map((doc) => doc.data() as player);
+                    console.log (sortedData)
+                    // setSortedItems(sortedData);
+                } catch (error) {
+                    console.log('Error fetching data:', error);
+                }
+            };
+            fetchData();
+        }, []);
 
 
 
-
-        }
 
     }
+
+}
 
 export {Mission, Player, Game}

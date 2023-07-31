@@ -5,7 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Avatar_and_points from "../Components/avatar_and_points";
 import "./PointsPage.css"
-import Winner_list from "../Components/Winner_list";
+import WinnerList from "../Components/WinnerList";
 import Container from "@mui/material/Container";
 import "../Components/Flippable_card"
 import {PAGES} from "./GameManager";
@@ -34,7 +34,7 @@ export default function PointsPage({curPlayer,curGame}) {
             <Card sx={{ width: 330, height: 370 } }>
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "center"}}>
                     <Typography variant="h5" color={"primary"}> <b>Who will be the next chief of the tribe?</b></Typography>
-                    <Winner_list game={curGame}/>
+                    <WinnerList game={curGame}/>
                 </CardContent>
             </Card>
 
