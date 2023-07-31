@@ -6,9 +6,10 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 interface CameraComponentProps {
     buttonText: string;
+    onPictureUpload: () => void;
 }
 
-const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText }) => {
+const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText, onPictureUpload }) => {
     const [itemData, setItemData] = useState<string[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -28,6 +29,8 @@ const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText }) => {
             };
             reader.readAsDataURL(file);
         }
+        // Invoke the onPictureUpload function when the user uploads a picture
+        onPictureUpload();
     };
 
     return (

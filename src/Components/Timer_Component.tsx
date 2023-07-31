@@ -3,9 +3,10 @@ import Button from "@mui/material/Button";
 
 interface TimerProps {
     timerLimit?: number;
+    isPictureUploaded: boolean;
 }
 
-export default function Timer_Component({ timerLimit = 15 }: TimerProps) {
+export default function Timer_Component({ timerLimit = 15, isPictureUploaded }: TimerProps) {
     const [timeElapsed, setTimeElapsed] = useState(0);
     const [timerStarted, setTimerStarted] = useState(false);
     const [stopTime, setStopTime] = useState<number | null>(null);
@@ -16,11 +17,15 @@ export default function Timer_Component({ timerLimit = 15 }: TimerProps) {
             timer = setInterval(() => {
                 setTimeElapsed((prevTime) => prevTime + 1);
             }, 1000);
+            if (isPictureUploaded) {
+                clearInterval(timer!);
+                setTimeElapsed(stopTime !== null ? stopTime : timeElapsed);
+            }
         } else {
             clearInterval(timer!); // Stop the timer when timerStarted is false
         }
         return () => clearInterval(timer!);
-    }, [timerStarted]);
+    }, [timerStarted, isPictureUploaded]);
 
     const toggleTimer = () => {
         if (timerStarted) {

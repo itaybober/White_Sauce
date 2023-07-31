@@ -40,6 +40,11 @@ export default function Survival({curPlayer,curGame}) {
 
     const [itemList, setItemList] = useState<any | null>([])
     const itemCollectionRef = collection(db, "house_items")
+    const [isPictureUploaded, setIsPictureUploaded] = useState(false);
+
+    const handlePictureUpload = ()=> {
+        setIsPictureUploaded(true);
+    }
 
     useEffect(()=> { //control when things are happening
         const getItemList = async () => {
@@ -99,11 +104,16 @@ console.log(curPlayer.name)
             }/>
 
 
-            <Timer_Component timerLimit={65}/>
+            <Timer_Component timerLimit={65} isPictureUploaded={isPictureUploaded}
+                             // TimerClick={() => curGame._curMission._extras[0] += 1
+
+
+            />
 
             <Container sx={{ width: 330, flex: 1 }}  >
                 <Typography variant={"h5"}><br/>To finish your task take a picture<br/><br/></Typography>
-                <CameraComponent buttonText="Take a Photo" />
+                {/*<CameraComponent buttonText="Take a Photo" />*/}
+                <CameraComponent buttonText="Take a Photo" onPictureUpload={handlePictureUpload} />
 
             </Container>
 

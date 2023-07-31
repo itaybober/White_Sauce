@@ -27,9 +27,12 @@ export default function GroupMission({curPlayer,curGame}) {
     const mission_object = curGame._curMission
 
     const [itemData, setItemData] = useState([]);
-    // function next(){
-    //     jump(toPage)
-    // }
+    const [isPictureUploaded, setIsPictureUploaded] = useState(false);
+
+    const handlePictureUpload = ()=> {
+        setIsPictureUploaded(true);
+    }
+
 
     function addPhoto() {
         // @ts-ignore
@@ -64,7 +67,7 @@ export default function GroupMission({curPlayer,curGame}) {
                 ></Flippable_card>
 
 
-                <CameraComponent buttonText="Proof Of Concept" />
+                <CameraComponent buttonText="Proof Of Concept" onPictureUpload={handlePictureUpload}/>
 
                 <Button onClick={()=> {
                     curGame.updateAllPlayersPages(PAGES.END)

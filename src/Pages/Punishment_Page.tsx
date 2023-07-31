@@ -21,6 +21,10 @@ export default function Punishment({curPlayer,curGame}) {
     const mission_object = curGame._curMission
 
     const [itemData, setItemData] = useState([]);
+    const [isPictureUploaded, setIsPictureUploaded] = useState(false);
+    const handlePictureUpload = ()=> {
+            setIsPictureUploaded(true);
+        }
     function forTheDemo(){
         // @ts-ignore
         setItemData([sockhands]);
@@ -71,7 +75,7 @@ export default function Punishment({curPlayer,curGame}) {
                 <Typography variant={"h5"}> <br></br>Loser - take a Loser photo </Typography>
 
 
-                <CameraComponent buttonText="Take a disgraceful Picture" />
+                <CameraComponent buttonText="Take a disgraceful Picture" onPictureUpload={handlePictureUpload}/>
 
 
                 <Button onClick={async ()=> {
