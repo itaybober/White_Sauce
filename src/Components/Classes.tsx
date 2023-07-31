@@ -1,6 +1,4 @@
 
-
-
 import {    collection, doc, setDoc, getDoc,getDocs, DocumentReference, DocumentData, updateDoc, arrayUnion, Timestamp, deleteDoc, arrayRemove, DocumentSnapshot,query, where, orderBy} from "firebase/firestore";
 import {db} from "../config/firebase";
 import {PAGES} from "../Pages/GameManager";
@@ -147,6 +145,7 @@ class Mission {
     public static getMissionObject(data: { title: string | undefined; description: string | undefined; tags: never[] | undefined; type: string | undefined; extras: never[] | undefined; minNumOfPlayers: number | undefined; maxNumOfPlayers: number | undefined; }){
         return new Mission(data.title, data.description, data.tags, data.type, data.extras, data.minNumOfPlayers, data.maxNumOfPlayers)
     }
+    //
 
     public static getMissionData(mission: Mission) {
         const missionData = {
