@@ -37,6 +37,9 @@ export const PAGES = {
     SECRET:13
 }
 
+export const PAGESMISSIONS = [PAGES.GROUP, PAGES.SURV, PAGES.GROUP]
+
+
 /**
  *
  * GameManager:
@@ -83,6 +86,8 @@ function GameManager() {
     const [curPage, setPage] = useState(PAGES.WAIT)
     const [curGame, setCurGame] = useState<Game>(new Game())
     const [curPlayer , setCurPlayer] = useState<Player>()
+    const [nextMiss, setNextMiss] = useState(0)
+    const [isGameOver, setIsGameOver] = useState(false)
 
     let page = <div/>;
 
@@ -128,9 +133,27 @@ function GameManager() {
     onAuthStateChanged(auth, () => {
         if(curPlayer && auth.currentUser && auth.currentUser.displayName) {
             curPlayer.setName(auth.currentUser.displayName)
-            // console.log("auth state change")
+            console.log("auth state change")
         }
     })
+
+    // Event listener for key press
+    // @ts-ignore
+    const handleKeyPress = (event) => {
+        // Check if the Ctrl, Alt, and L keys are pressed
+        if (event.ctrlKey && event.altKey && event.key.toLowerCase() === 'l') {
+            logOut(); // Call the logout function if the combination is detected
+        }
+    };
+
+    // Adding event listener when the component mounts
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyPress);
+        return () => {
+            // Clean up the event listener when the component unmounts
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, []);
 
     // After login creates a player instance if none exists or connects to firebase if it does.
     useEffect(() => {
@@ -148,7 +171,6 @@ function GameManager() {
                             Player.addPlayerToFirestore(curUser);
                             if (curPlayer){
                                 setPage(curPlayer._curPage)
-
                             }
                             console.log("Creating new player: " + curUser._name);
                         }
@@ -192,7 +214,7 @@ function GameManager() {
             page = <Secret_Mission curPlayer={curPlayer} curGame={curGame}/>
             break;
         case PAGES.GROUP:
-            page = <GroupMission curPlayer={curPlayer} curGame={curGame}/>
+            page = <GroupMission curPlayer={curPlayer} curGame={curGame} isGameOver={isGameOver}/>
             break;
         case PAGES.SURV:
             page = <Survival_mission  curPlayer={curPlayer} curGame={curGame}/>
@@ -218,10 +240,10 @@ function GameManager() {
             </div>
             break;
         case PAGES.POINTS:
-            page = <PointsPage curPlayer={curPlayer} curGame={curGame}/>
+            page = <PointsPage curPlayer={curPlayer} curGame={curGame} setNextMiss={setNextMiss} nextMiss={nextMiss}
+                                                                                        setIsGameOver={setIsGameOver}/>
             break;
     }
-
 
     return(
         <div>
