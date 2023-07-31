@@ -3,9 +3,10 @@ import Button from "@mui/material/Button";
 
 interface CountdownProps {
     timerLimit?: number;
+    isPictureUploaded: boolean;
 }
 
-export default function Countdown_Component({ timerLimit = 60 }: CountdownProps) {
+export default function Countdown_Component({ timerLimit = 60, isPictureUploaded }: CountdownProps) {
     const [timeRemaining, setTimeRemaining] = useState(timerLimit);
     const [timerStarted, setTimerStarted] = useState(false);
 
@@ -15,11 +16,15 @@ export default function Countdown_Component({ timerLimit = 60 }: CountdownProps)
             timer = setInterval(() => {
                 setTimeRemaining((prevTime) => prevTime - 1);
             }, 1000);
+
+            if (isPictureUploaded) {
+                clearInterval(timer!);
+            }
         } else {
             clearInterval(timer!); // Stop the timer when timerStarted is false or timeRemaining reaches 0
         }
         return () => clearInterval(timer!);
-    }, [timerStarted, timeRemaining]);
+    }, [timerStarted, timeRemaining, isPictureUploaded]);
 
     const toggleTimer = () => {
         setTimerStarted((prev) => !prev);

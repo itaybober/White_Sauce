@@ -68,7 +68,7 @@ export default function Punishment({curPlayer,curGame}) {
 
                 {/*<div style={{ height: 20 }}></div>*/}
 
-                <Countdown_Component />
+                <Countdown_Component isPictureUploaded={isPictureUploaded}/>
 
                 {/*<div style={{ height: 20 }}></div>*/}
 
