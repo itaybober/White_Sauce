@@ -7,7 +7,8 @@ import GameManager from "./Pages/GameManager";
 import EndingPage from "./Pages/EndingPage";
 import Background from "./Components/Background";
 import galiLogo from "./Pages/images/gali_test_logo.png";
-
+import Flippable_card from "./Components/Flippable_card";
+import AddMissionForm from "./Pages/AddMissionForm";
 
 
 function App() {

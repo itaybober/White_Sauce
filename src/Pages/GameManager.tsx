@@ -16,7 +16,7 @@ import logo from "./step-1_logo.svg";
 import PointsPage from "./PointsPage";
 import galiLogo from "./images/gali_test_logo.png";
 import CircularProgress from '@mui/material/CircularProgress';
-import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
+// import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 import Typography from "@mui/material/Typography";
 import Secret_Mission from "./Secret_Mission";
 
@@ -171,10 +171,10 @@ function GameManager() {
 
     switch (curPage) {
 
-        case PAGES.DEBUG:
-            // For debug and testing
-            page = <FirebaseTest />;
-            break;
+        // case PAGES.DEBUG:
+        //     // For debug and testing
+        //     page = <FirebaseTest />;
+        //     break;
         case PAGES.START:
             page = <Start_Page curPlayer={curPlayer} logOut={logOut}/>;
             break;
