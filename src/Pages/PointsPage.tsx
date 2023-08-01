@@ -18,6 +18,7 @@ const NEXT: {[key:number]: string} ={
 }
 
 
+
 /**
  * in the future we'll add a game param, that will help us with setting unique display
  * for each player
@@ -34,6 +35,7 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
     // console.log(curGame._id)
     // console.log(curGame._curMission)
 
+    curGame.winnerListUpdate()
 
     return (
         <Container className={"points_page_component"} sx={{p:2}} >
