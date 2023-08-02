@@ -10,6 +10,8 @@ export default function Timer_Component({ timerLimit = 15, isPictureUploaded }: 
     const [timeElapsed, setTimeElapsed] = useState(0);
     const [timerStarted, setTimerStarted] = useState(false);
     const [stopTime, setStopTime] = useState<number | null>(null);
+    const [showStartButton, setShowStartButton] = useState(true); // State to control the start button visibility
+    const [countdown, setCountdown] = useState(15); // Countdown value
 
     useEffect(() => {
         let timer: NodeJS.Timeout | undefined;
@@ -27,12 +29,21 @@ export default function Timer_Component({ timerLimit = 15, isPictureUploaded }: 
         return () => clearInterval(timer!);
     }, [timerStarted, isPictureUploaded]);
 
-    const toggleTimer = () => {
-        if (timerStarted) {
-            setStopTime(timeElapsed); // Save the stop time as elapsed time
+    useEffect(() => {
+        if (countdown > 0 && showStartButton) {
+            // Start the countdown timer
+            const countdownTimer = setInterval(() => {
+                setCountdown((prevCountdown) => prevCountdown - 1);
+            }, 1000);
+
+            // Clear the countdown timer after 10 seconds
+            setTimeout(() => {
+                clearInterval(countdownTimer);
+                setShowStartButton(false); // Hide the start button after the countdown
+                setTimerStarted(true); // Start the timer automatically after the countdown
+            }, 10000);
         }
-        setTimerStarted((prev) => !prev);
-    };
+    }, [countdown, showStartButton]);
 
     const formatTime = (timeInSeconds: number) => {
         const minutes = Math.floor(timeInSeconds / 60)
@@ -49,22 +60,28 @@ export default function Timer_Component({ timerLimit = 15, isPictureUploaded }: 
 
     return (
         <>
-            <Button
-                variant={timerStarted ? "contained" : "outlined"} // Use "outlined" variant when timer is started
-                color={timerStarted ? "primary" : "primary"} // Change button color based on timer state
-                onClick={toggleTimer} // Rename onClick handler
-            >
-                {timerStarted ? "Stop Clock" : "Start Clock"} {/* Change button text based on timer state */}
-            </Button>{" "}
-            {timerStarted && (
-                <span style={timeStyle} onClick={toggleTimer}>
-                    {formatTime(timeElapsed)}
-                </span>
-            )}
-            {!timerStarted && stopTime !== null && (
-                <span style={timeStyle}>
-                    {formatTime(stopTime)}
-                </span>
+            {showStartButton ? (
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => setShowStartButton(false)}
+                    style={{ fontSize: "1.5rem", color: "#D1B067"}}
+                >
+                    Get ready! As soon as the timer appears you start
+                </Button>
+            ) : (
+                <>
+                    {timerStarted && (
+                        <span style={timeStyle}>
+                            {formatTime(timeElapsed)}
+                        </span>
+                    )}
+                    {!timerStarted && stopTime !== null && (
+                        <span style={timeStyle}>
+                            {formatTime(stopTime)}
+                        </span>
+                    )}
+                </>
             )}
         </>
     );

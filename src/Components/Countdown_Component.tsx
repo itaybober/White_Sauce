@@ -1,34 +1,44 @@
 import { useState, useEffect } from 'react';
 import Button from "@mui/material/Button";
 
-interface CountdownProps {
+interface TimerProps {
     timerLimit?: number;
     isPictureUploaded: boolean;
 }
 
-export default function Countdown_Component({ timerLimit = 60, isPictureUploaded }: CountdownProps) {
-    const [timeRemaining, setTimeRemaining] = useState(timerLimit);
+export default function Timer_Component({ timerLimit = 15, isPictureUploaded }: TimerProps) {
+    const [timeElapsed, setTimeElapsed] = useState(0);
     const [timerStarted, setTimerStarted] = useState(false);
+    const [stopTime, setStopTime] = useState<number | null>(null);
+    const [showStartButton, setShowStartButton] = useState(true); // State to control the start button visibility
 
     useEffect(() => {
         let timer: NodeJS.Timeout | undefined;
-        if (timerStarted && timeRemaining > 0) {
-            timer = setInterval(() => {
-                setTimeRemaining((prevTime) => prevTime - 1);
-            }, 1000);
 
+        // Start the countdown timer after 15 seconds
+        const countdownTimer = setTimeout(() => {
+            setShowStartButton(false);
+            setTimerStarted(true);
+        }, 15000);
+
+        return () => clearTimeout(countdownTimer);
+    }, []);
+
+    useEffect(() => {
+        let timer: NodeJS.Timeout | undefined;
+        if (timerStarted) {
+            timer = setInterval(() => {
+                setTimeElapsed((prevTime) => prevTime + 1);
+            }, 1000);
             if (isPictureUploaded) {
                 clearInterval(timer!);
+                setTimeElapsed(stopTime !== null ? stopTime : timeElapsed);
             }
         } else {
-            clearInterval(timer!); // Stop the timer when timerStarted is false or timeRemaining reaches 0
+            clearInterval(timer!); // Stop the timer when timerStarted is false
         }
         return () => clearInterval(timer!);
-    }, [timerStarted, timeRemaining, isPictureUploaded]);
-
-    const toggleTimer = () => {
-        setTimerStarted((prev) => !prev);
-    };
+    }, [timerStarted, isPictureUploaded]);
 
     const formatTime = (timeInSeconds: number) => {
         const minutes = Math.floor(timeInSeconds / 60)
@@ -45,17 +55,28 @@ export default function Countdown_Component({ timerLimit = 60, isPictureUploaded
 
     return (
         <>
-            <Button
-                variant={timerStarted ? "contained" : "outlined"} // Use "outlined" variant when timer is started
-                color={timerStarted ? "primary" : "primary"} // Change button color based on timer state
-                onClick={toggleTimer} // Rename onClick handler
-            >
-                {timerStarted ? "Stop Timer" : "Start Timer"} {/* Change button text based on timer state */}
-            </Button>{" "}
-            {timerStarted && (
-                <span style={timeStyle} onClick={toggleTimer}>
-                    {formatTime(timeRemaining)}
-                </span>
+            {showStartButton ? (
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => setShowStartButton(false)} // Start the countdown when the button is clicked
+                    style={{ fontSize: "1.5rem", color: "#D1B067" }}
+                >
+                    Get ready! As soon as the counter appears you start
+                </Button>
+            ) : (
+                <>
+                    {timerStarted && (
+                        <span style={timeStyle}>
+                            {formatTime(timeElapsed)}
+                        </span>
+                    )}
+                    {!timerStarted && stopTime !== null && (
+                        <span style={timeStyle}>
+                            {formatTime(stopTime)}
+                        </span>
+                    )}
+                </>
             )}
         </>
     );
