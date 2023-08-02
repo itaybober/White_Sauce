@@ -95,18 +95,22 @@ function GameManager() {
     function logOut() {
         auth.signOut()
             .then(async () => {
+
+
+
+
                 curPlayer?.setCurPage(PAGES.AUTH)
                 if (curPlayer) {
                     curPlayer.removePlayerFromFireBase()
                 }
                 if (curGame && curPlayer) {
                     curGame.removePlayerFromFirebase(curPlayer._playerRef)
-                    listAll(ref(storage, `${curGame._id}/`)).then( (response) => {
-                        response.items.forEach( (item) => {
-                            deleteObject(item)
+                    listAll(ref(storage, `${curGame._id}/`))
+                        .then( (response) => {
+                            response.items.forEach( (fileRef) => {
+                                deleteObject(fileRef)
+                            })
                         })
-                    })
-
                 }
                 console.log('User logged out successfully');
             })
