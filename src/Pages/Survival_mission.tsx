@@ -28,53 +28,33 @@ import arrow from '../Pages/images/cards icons/arrow.png'
  * @constructor
  */
 // @ts-ignore
-export default function Survival({curPlayer,curGame}) {
+export default function Survival({ curPlayer, curGame }) {
 
     // curGame.getMissionFromDatabase();
 
-
-    // console.log(curGame._id)
-    // console.log(curGame._curMission)
-
-    const mission_object = curGame._curMission
-
-    const [itemList, setItemList] = useState<any | null>([])
-    const itemCollectionRef = collection(db, "house_items")
+    const mission_object = curGame._curMission;
     const [isPictureUploaded, setIsPictureUploaded] = useState(false);
+    const [missionTime, setMissionTime] = useState(0);
+
 
     const handlePictureUpload = ()=> {
         setIsPictureUploaded(true);
     }
 
-    useEffect(()=> { //control when things are happening
-        const getItemList = async () => {
-        // READ DATA FROM DB
-            try {
-                const data = await getDocs(itemCollectionRef);
-                const filteredData = data.docs.map(
-                    (doc)=>({...doc.data()}))
-                // setItemList(filteredData);
-                // console.log(filteredData)
-            } catch (err) {
-                console.error(err)
-            }
-
+    const handleTimerStopped = (stopTime: number | null, timeElapsed: number) => {
+        const missionDurationInSeconds = (stopTime !== null ? stopTime : timeElapsed);
+        setMissionTime(missionDurationInSeconds);
+        if (missionTime > 0) {
+            curGame.addPointsSinglePlayer(curPlayer, missionTime);
         }
-        getItemList();
-    }, [])
-
-    const [itemData, setItemData] = useState([])
-
-    function addPhoto() {
-        // @ts-ignore
-        setItemData([itay])
     }
-// console.log(curPlayer.name)
+
     // @ts-ignore
     return (
 
         <Container className={"survival_page_component"} sx={{p:2}}  >
-            <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
+            <Avatar_and_points name={curPlayer._name}
+                               points={curPlayer._points}/>
             <Flippable_card back_content={
                 <div>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
@@ -104,7 +84,7 @@ export default function Survival({curPlayer,curGame}) {
             }/>
 
 
-            <Timer_Component timerLimit={65} isPictureUploaded={isPictureUploaded}
+            <Timer_Component timerLimit={65} isPictureUploaded={isPictureUploaded} onTimerStopped={handleTimerStopped}
                              // TimerClick={() => curGame._curMission._extras[0] += 1
 
 
