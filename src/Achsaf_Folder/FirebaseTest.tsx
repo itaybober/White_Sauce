@@ -16,16 +16,13 @@ import Circle from "./Circle";
 
 
 function pushToFirebase(){
-
-
-    for (let i = 0 ; i < 10 ; i++){
+    for (let i = 6 ; i < 10 ; i++){
         const mission = new Mission(
-            "Punishment Mission " + i.toString(),
-            "This a punishment that is meant for you",["Punishment"]
+            "Snack Mission " + i.toString(),
+            "Achsaf change things here",["Snacks"], "Group"
         );
         mission.addMissionToFireStore()
     }
-
 }
 
 // @ts-ignore

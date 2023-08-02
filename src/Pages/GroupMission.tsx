@@ -15,10 +15,9 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 
 // @ts-ignore
-export default function GroupMission({ curPlayer, curGame }) {
+export default function GroupMission({ curPlayer, curGame, isGameOver }) {
     const mission_object = curGame._curMission;
     const [itemData, setItemData] = useState([]);
-    const [showMissionCard, setShowMissionCard] = useState(false); // State to control the card visibility
     const [isPictureUploaded, setIsPictureUploaded] = useState(false);
 
     const handlePictureUpload = ()=> {
@@ -56,7 +55,7 @@ export default function GroupMission({ curPlayer, curGame }) {
 
             <CameraComponent buttonText="Proof Of Concept" onPictureUpload={handlePictureUpload}/>
 
-            {showMissionCard ? (
+            {isGameOver ? (
                 <Card sx={{ mb: 4 }}>
                     <CardContent>
                         <Typography variant="h6">
@@ -90,7 +89,7 @@ export default function GroupMission({ curPlayer, curGame }) {
             ) : (
                 <Button
                     onClick={() => {
-                        setShowMissionCard(true); // Show the mission card when the "Next" button is clicked
+                        curGame.updateAllPlayersPages(PAGES.POINTS)
                     }}
                     variant="contained"
                     color="primary"

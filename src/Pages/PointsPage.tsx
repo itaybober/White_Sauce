@@ -8,7 +8,15 @@ import "./PointsPage.css"
 import WinnerList from "../Components/WinnerList";
 import Container from "@mui/material/Container";
 import "../Components/Flippable_card"
-import {PAGES} from "./GameManager";
+import {PAGES, PAGESMISSIONS} from "./GameManager";
+
+
+
+const NEXT: {[key:number]: string} ={
+    6 : "Group",
+    7 : "Survival"
+}
+
 
 
 /**
@@ -19,14 +27,15 @@ import {PAGES} from "./GameManager";
  * @constructor
  */
 // @ts-ignore
-export default function PointsPage({curPlayer,curGame}) {
+export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, setIsGameOver}) {
 
     // curGame.getMissionFromDatabase();
 
 
-    console.log(curGame._id)
-    console.log(curGame._curMission)
+    // console.log(curGame._id)
+    // console.log(curGame._curMission)
 
+    curGame.winnerListUpdate()
 
     return (
         <Container className={"points_page_component"} sx={{p:2}} >
@@ -40,8 +49,11 @@ export default function PointsPage({curPlayer,curGame}) {
 
 
             <Button onClick={async ()=> {
-                await curGame.getRandomMissionFromDatabase("Group")
-                await curGame.updateAllPlayersPages(PAGES.GROUP)
+                await curGame.getRandomMissionFromDatabase(NEXT[PAGESMISSIONS[nextMiss]])
+                await curGame.updateAllPlayersPages(PAGESMISSIONS[nextMiss])
+                setNextMiss((nextMiss+1))
+                if (nextMiss === 2)
+                    setIsGameOver(true)
             }} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 4,
 

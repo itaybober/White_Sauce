@@ -80,7 +80,7 @@ export default function Punishment({curPlayer,curGame}) {
 
                 <Button onClick={async ()=> {
                     await curGame.getRandomMissionFromDatabase("Group")
-                    await curGame.updateAllPlayersPages(PAGES.GROUP)
+                    await curPlayer.setCurPage(PAGES.POINTS)
                 }} variant="contained" color="primary" size={"medium"} sx={{
                     mb: 4,
 
