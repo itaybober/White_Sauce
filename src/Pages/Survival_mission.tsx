@@ -33,8 +33,8 @@ export default function Survival({curPlayer,curGame}) {
     // curGame.getMissionFromDatabase();
 
 
-    console.log(curGame._id)
-    console.log(curGame._curMission)
+    // console.log(curGame._id)
+    // console.log(curGame._curMission)
 
     const mission_object = curGame._curMission
 
@@ -53,8 +53,8 @@ export default function Survival({curPlayer,curGame}) {
                 const data = await getDocs(itemCollectionRef);
                 const filteredData = data.docs.map(
                     (doc)=>({...doc.data()}))
-                setItemList(filteredData);
-                console.log(filteredData)
+                // setItemList(filteredData);
+                // console.log(filteredData)
             } catch (err) {
                 console.error(err)
             }
@@ -69,7 +69,7 @@ export default function Survival({curPlayer,curGame}) {
         // @ts-ignore
         setItemData([itay])
     }
-console.log(curPlayer.name)
+// console.log(curPlayer.name)
     // @ts-ignore
     return (
 
@@ -113,7 +113,7 @@ console.log(curPlayer.name)
             <Container sx={{ width: 330, flex: 1 }}  >
                 <Typography variant={"h5"}><br/>To finish your task take a picture<br/><br/></Typography>
                 {/*<CameraComponent buttonText="Take a Photo" />*/}
-                <CameraComponent buttonText="Take a Photo" onPictureUpload={handlePictureUpload} />
+                <CameraComponent buttonText="Take a Photo" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>
 
             </Container>
 

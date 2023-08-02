@@ -7,7 +7,7 @@ import Survival_mission from "./Survival_mission"
 import GroupMission from "./GroupMission";
 import Punishment from "./Punishment_Page";
 import EndingPage from "./EndingPage";
-import { db, auth } from "../config/firebase"
+import {db, auth, storage} from "../config/firebase"
 import Main_Page from "./Main_Page";
 import {Game, Player} from "../Components/Classes";
 import { onAuthStateChanged } from "firebase/auth";
@@ -19,6 +19,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 // import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 import Typography from "@mui/material/Typography";
 import Secret_Mission from "./Secret_Mission";
+import {ref, deleteObject, listAll, getDownloadURL} from "firebase/storage";
 
 export const PAGES = {
     DEBUG : 0,
@@ -93,13 +94,19 @@ function GameManager() {
 
     function logOut() {
         auth.signOut()
-            .then(() => {
+            .then(async () => {
                 curPlayer?.setCurPage(PAGES.AUTH)
                 if (curPlayer) {
                     curPlayer.removePlayerFromFireBase()
                 }
                 if (curGame && curPlayer) {
                     curGame.removePlayerFromFirebase(curPlayer._playerRef)
+                    listAll(ref(storage, `${curGame._id}/`)).then( (response) => {
+                        response.items.forEach( (item) => {
+                            deleteObject(item)
+                        })
+                    })
+
                 }
                 console.log('User logged out successfully');
             })

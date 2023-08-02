@@ -9,9 +9,10 @@ import {ref, uploadBytes, getDownloadURL} from "firebase/storage";
 interface CameraComponentProps {
     buttonText: string;
     onPictureUpload: () => void;
+    curGameNum: string
 }
 
-const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText, onPictureUpload }) => {
+const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText, onPictureUpload, curGameNum }) => {
     const [itemData, setItemData] = useState<string[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
     const [imageUpload, setImageUpload] = useState(null)
@@ -36,11 +37,9 @@ const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText, onPicture
     }
 
     const uploadImage = () => {
-        console.log("uploading image2")
         if (imageUpload === null) return;
-        console.log("uploading image3")
         // @ts-ignore
-        const imageRef = ref(storage, `images/${imageUpload.name}`)
+        const imageRef = ref(storage, `${curGameNum}/${imageUpload.name}`)
         uploadBytes(imageRef, imageUpload).then(() => console.log("Uploaded Image"))
     }
 

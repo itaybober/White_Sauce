@@ -75,7 +75,7 @@ export default function Punishment({curPlayer,curGame}) {
                 <Typography variant={"h5"}> <br></br>Loser - take a Loser photo </Typography>
 
 
-                <CameraComponent buttonText="Take a disgraceful Picture" onPictureUpload={handlePictureUpload}/>
+                <CameraComponent buttonText="Take a disgraceful Picture" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>
 
 
                 <Button onClick={async ()=> {

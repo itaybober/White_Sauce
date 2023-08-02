@@ -53,7 +53,7 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
                 }
             ></Flippable_card>
 
-            <CameraComponent buttonText="Proof Of Concept" onPictureUpload={handlePictureUpload}/>
+            <CameraComponent buttonText="Proof Of Concept" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>
 
             {isGameOver ? (
                 <Card sx={{ mb: 4 }}>

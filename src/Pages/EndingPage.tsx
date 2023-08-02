@@ -20,28 +20,45 @@ import WinnerList from "../Components/WinnerList";
 import CardContent from "@mui/material/CardContent";
 import {useEffect, useState} from "react";
 import mask from '../Pages/images/icon/avatar.png'
+import {ref, listAll, getDownloadURL} from "firebase/storage"
 import {wait} from "@testing-library/user-event/dist/utils";
 import Avatar from "@mui/material/Avatar";
+import {storage} from "../config/firebase";
+
 // @ts-ignore
 function EndingPage({ curPlayer, curGame }: EndingPageProps) {
     const [winner, setWinner] = useState<string | null>(null);
     const [isDancing, setIsDancing] = useState(false); // Track dancing state
+    const [imageList, setImageList] = useState(new Set<string>())
     function next() {
         curPlayer.setCurPage(PAGES.START)
     }
 
 
 
+    const fetchWinnerName = async () => {
+        const winnerNameResult = await winnerName(curGame);
+        setWinner(winnerNameResult);
+        setIsDancing(true); // Start dancing after winner's name is fetched
+    };
+
+
+    // TODO fetch images should return relevant game pics
+    const fetchImages = () => {
+        listAll(ref(storage, `${curGame._id}/`)).then( (response) => {
+            response.items.forEach( (item) => {
+                getDownloadURL(item).then((url) => {
+                    // @ts-ignore
+                    setImageList((prev) => new Set<string>([...prev, url]))
+                })
+            })
+        })
+    }
+
     useEffect(() => {
-        const fetchWinnerName = async () => {
-            const winnerNameResult = await winnerName(curGame);
-            setWinner(winnerNameResult);
-            setIsDancing(true); // Start dancing after winner's name is fetched
-        };
-
         fetchWinnerName();
+        fetchImages();
     }, [curGame]);
-
 
 
     const winnerName = async (game: any) => {
@@ -105,20 +122,24 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
             {/*</Container>*/}
             <Typography sx={{textAlign: "center"}} variant="h4" color={"primary"}><br/>Souvenirs</Typography>
             <Typography variant="h6"> Wow what an adventure we had!</Typography>
+            {/*{imageList.map((url) => {*/}
+            {/*    return <img src={url}/>*/}
+            {/*})}*/}
+
+
             <ImageList sx={{width: 350}}
                        cols={2} variant="masonry" gap={10}>
-                {itemData.map((item) => (
-                    <ImageListItem key={item}>
+                {Array.from(imageList).map((url) => (
+                    <ImageListItem key={url}>
                         <img
-                            src={`${item}?w=248&fit=crop&auto=format`}
-                            srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                            alt={item}
+                            src={url}
                             loading="lazy"
                             style={{borderRadius: '10px'}}
                         />
                     </ImageListItem>
                 ))}
             </ImageList>
+
             <Container sx={{display: 'flex', justifyContent: "center", alignItems: "center", gap: '15px'}}>
                 <Button variant="contained" startIcon={<GetAppIcon/>} style={{borderRadius: '10px'}}>Download</Button>
                 <Button variant="contained" startIcon={<ShareIcon/>} style={{borderRadius: '10px'}}>Share</Button>
