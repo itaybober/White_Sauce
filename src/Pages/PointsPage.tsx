@@ -30,8 +30,6 @@ const NEXT: {[key:number]: string} ={
 export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, setIsGameOver}) {
 
     // curGame.getMissionFromDatabase();
-
-
     // console.log(curGame._id)
     // console.log(curGame._curMission)
 
@@ -46,8 +44,6 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
                     <WinnerList game={curGame}/>
                 </CardContent>
             </Card>
-
-
             <Button onClick={async ()=> {
                 await curGame.getRandomMissionFromDatabase(NEXT[PAGESMISSIONS[nextMiss]])
                 await curGame.updateAllPlayersPages(PAGESMISSIONS[nextMiss])

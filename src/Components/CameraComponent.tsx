@@ -1,8 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import Button from "@mui/material/Button";
 import { ImageList, ImageListItem } from "@mui/material";
 import Container from "@mui/material/Container";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import {storage} from "../config/firebase";
+import {ref, uploadBytes, getDownloadURL} from "firebase/storage";
 
 interface CameraComponentProps {
     buttonText: string;
@@ -12,6 +14,8 @@ interface CameraComponentProps {
 const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText, onPictureUpload }) => {
     const [itemData, setItemData] = useState<string[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
+    const [imageUpload, setImageUpload] = useState(null)
+
 
     const handleTakePhoto = () => {
         if (inputRef.current) {
@@ -19,19 +23,35 @@ const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText, onPicture
         }
     };
 
-    const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (file) {
+
+    const displayImage = () => {
+        if (imageUpload) {
             const reader = new FileReader();
             reader.onload = () => {
                 const dataUri = reader.result as string;
                 setItemData([dataUri]);
             };
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(imageUpload);
         }
+    }
+
+    const uploadImage = () => {
+        console.log("uploading image2")
+        if (imageUpload === null) return;
+        console.log("uploading image3")
+        // @ts-ignore
+        const imageRef = ref(storage, `images/${imageUpload.name}`)
+        uploadBytes(imageRef, imageUpload).then(() => console.log("Uploaded Image"))
+    }
+
+    // uploads and displays the selected image
+    useEffect(() => {
+        displayImage();
+        uploadImage()
         // Invoke the onPictureUpload function when the user uploads a picture
         onPictureUpload();
-    };
+    }, [imageUpload])
+
 
     return (
         <Container className="camera_component" sx={{ p: 2 }}>
@@ -51,7 +71,10 @@ const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText, onPicture
                 accept="image/*"
                 capture="environment"
                 style={{ display: "none" }}
-                onChange={handleFileInputChange}
+                onChange={(event) => {
+                    // @ts-ignore
+                    setImageUpload(event.target.files[0]);
+                }}
             />
 
             <ImageList
