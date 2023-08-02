@@ -15,7 +15,7 @@ export default function Secret_Point({ curPlayer, curGame }) {
             className="punishment_page_component"
             style={{ overflowX: 'hidden', height: '100%' }}
         >
-            <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
+            <Avatar_and_points name={curPlayer._name} points={curPlayer._points} avatarName={curPlayer._avatar} avatarRef={curPlayer._avatarRef}/>
 
             <Typography
                 variant="h6"

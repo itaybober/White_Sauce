@@ -20,6 +20,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Typography from "@mui/material/Typography";
 import Secret_Mission from "./Secret_Mission";
 import {ref, deleteObject, listAll, getDownloadURL} from "firebase/storage";
+import Button from "@mui/material/Button";
 
 export const PAGES = {
     DEBUG : 0,
@@ -260,6 +261,7 @@ function GameManager() {
 
     return(
         <div>
+            <Button onClick={logOut}></Button>
             <br/>
             <br/>
             {page}

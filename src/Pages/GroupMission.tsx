@@ -33,7 +33,7 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
 
     return (
         <Container className={"group_mission_component"} sx={{ p: 2 }}>
-            <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
+            <Avatar_and_points name={curPlayer._name} points={curPlayer._points} avatarName={curPlayer._avatar} avatarRef={curPlayer._avatarRef}/>
             <Flippable_card
                 back_content={
                     <CardContent sx={{ display: "flex", flexFlow: "column", justifyContent: "flex-start", alignItems: "flex-start", textAlign: "justify" }}>

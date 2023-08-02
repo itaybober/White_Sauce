@@ -1,12 +1,15 @@
 
 import {    collection, doc, setDoc, getDoc,getDocs, DocumentReference, DocumentData, updateDoc, arrayUnion, Timestamp, deleteDoc, arrayRemove, DocumentSnapshot,query, where, orderBy} from "firebase/firestore";
-import {db} from "../config/firebase";
+import {db, storage} from "../config/firebase";
 import {PAGES} from "../Pages/GameManager";
 import {colors} from "@mui/material";
 import {useEffect, useState} from "react";
 import {Simulate} from "react-dom/test-utils";
 import play = Simulate.play;
 // import firebase from "firebase/compat";
+import avatar1 from "../Pages/images/icon/avatar.png"
+import {getDownloadURL, listAll, ref} from "firebase/storage";
+
 
 
 // import firebase from "firebase/compat";
@@ -204,6 +207,8 @@ class Player {
     public _playerRef: DocumentReference;
     public _playerColor: string;
     public _secretMission: DocumentReference | null;
+    public _avatar: string;
+    public _avatarRef: string
 
 
     constructor(UID: string = "null", name: string | null = "", gameRef: DocumentReference = doc(db, "Games", "0000")) {
@@ -219,6 +224,8 @@ class Player {
         this._gameRef = gameRef;
         this._playerColor= '#60a9a2';
         this._secretMission = null;
+        this._avatar="avatar"
+        this._avatarRef="avatarRef"
     }
 
     public async setName(name: string) {
@@ -241,6 +248,7 @@ class Player {
     public setPoints(newTotal: number) {
         setDoc(this._playerRef, {points: newTotal}, {merge: true})
     }
+
 
     /**
      * A method for adding the player to firestore.
@@ -288,7 +296,9 @@ class Player {
             playerReference: player._playerRef,
             gameReference: player._gameRef,
             createdAt: Timestamp.now(),
-            secretMission: player._secretMission
+            secretMission: player._secretMission,
+            avatar: player._avatar,
+            avatarRef: player._avatarRef
         };
         return playerData;
     }
@@ -308,6 +318,8 @@ class Player {
         this._playerRef = data.playerReference;
         this._gameRef = data.gameReference;
         this._secretMission = data.secretMission;
+        this._avatar=data.avatar
+        this._avatarRef=data.avatarRef
     }
 
     public removePlayerFromFireBase() {
@@ -483,7 +495,7 @@ class Game {
     }
 
 
-
+    //A function that assigns each player an avatar
     //update by maya:
     async getPlayerDataFromRef(playerRef: any):Promise<any>{
         const playerData = await getDoc(playerRef);
@@ -491,7 +503,37 @@ class Game {
         console.log("data name", data.name)
         return data
     }
+    public async assignsAvatar() {
+            // const avatars: any[] = []
+            // listAll(ref(storage, `avatars/`)).then( (response) => {
+            //     response.items.forEach( (item) => {
+            //         getDownloadURL(item).then((url) => {
+            //             avatars.push(url)
+            //             // console.log("url=", url)
+            //         })
+            //     })
+            //
+            // })
 
+            // console.log("avatar[0]: ", avatars[0])
+            // let avatar_list=["avatar1"]
+            let avatarRef_list=["https://firebasestorage.googleapis.com/v0/b/white-sauce.appspot.com/o/avatars%2Favatar.png?alt=media&token=cd3b92cf-c590-45a3-90a8-99003210bd7d",
+                "https://firebasestorage.googleapis.com/v0/b/white-sauce.appspot.com/o/avatars%2F1.png?alt=media&token=fcb18d13-9c0b-41ea-83ef-c340cf49a196",
+                "https://firebasestorage.googleapis.com/v0/b/white-sauce.appspot.com/o/avatars%2F3.png?alt=media&token=e7cb9eed-3e3f-4220-8859-f7ad2721fc6e",
+            "https://firebasestorage.googleapis.com/v0/b/white-sauce.appspot.com/o/avatars%2F4.png?alt=media&token=875a5bb4-db87-4e10-a3bd-33e3e45d07b3",
+            "https://firebasestorage.googleapis.com/v0/b/white-sauce.appspot.com/o/avatars%2F5.png?alt=media&token=800ad5c1-0a01-4eb9-83c4-d4ae4145f708",
+            "https://firebasestorage.googleapis.com/v0/b/white-sauce.appspot.com/o/avatars%2F6.png?alt=media&token=53020bfe-e66c-4b4e-9dde-4991b832bfc7",
+            "https://firebasestorage.googleapis.com/v0/b/white-sauce.appspot.com/o/avatars%2F7.png?alt=media&token=6b18b590-e242-49e9-8ab1-ca63b12e20c0",
+            "https://firebasestorage.googleapis.com/v0/b/white-sauce.appspot.com/o/avatars%2F8.png?alt=media&token=5690b378-580b-4f53-8a1d-b3ba39b45c70",
+            "https://firebasestorage.googleapis.com/v0/b/white-sauce.appspot.com/o/avatars%2F9.png?alt=media&token=ec2f95b6-2da3-4c18-8f2c-502e53e7d78b",
+            "https://firebasestorage.googleapis.com/v0/b/white-sauce.appspot.com/o/avatars%2Fimage%204.png?alt=media&token=3943d3b8-83e3-4c9c-80ab-c8bdadc00128"]
+            let i=0
+            for (const playerRef of this._players) {
+                // await updateDoc(playerRef, {avatar: avatar_list[i]})
+                await updateDoc(playerRef, {avatarRef:avatarRef_list[i] })
+                i+=1
+        }
+    }
 
     // this function update the order of the players list in the game class by there points
 

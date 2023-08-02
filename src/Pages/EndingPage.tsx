@@ -34,13 +34,13 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
         curPlayer.setCurPage(PAGES.START)
     }
 
-
-
     const fetchWinnerName = async () => {
         const winnerNameResult = await winnerName(curGame);
         setWinner(winnerNameResult);
-        setIsDancing(true); // Start dancing after winner's name is fetched
+        // setIsDancing(true); // Start dancing after winner's name is fetched
     };
+
+
 
 
     // TODO fetch images should return relevant game pics
@@ -85,22 +85,32 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
     return (
 
         <Container className={"Ending_page_component"} sx={{p: 2}}>
-            <Typography variant="h5" >And the next chief is...</Typography>
-            {/*<Avatar alt= "mask" src= {mask} sx={{ width: 60, height: 80 }}> </Avatar>*/}
 
-            <Typography variant="h3" color="primary">
-                        {/*// className={winner && isDancing ? 'dancing-winner' : ''}>*/}
-                   <b> {winner}! </b> </Typography>
-            {/*<Typography variant="h5"> <br/>Nice try everyone..</Typography>*/}
+            <Typography variant="h5" >And the next chief is...</Typography>
+
+            {/*<Avatar alt= "mask" src= {mask} sx={{ width: 60, height: 80 }}> </Avatar>*/}
+            {/* Wave animation */}
+            {/* Wave animation for each letter */}
             {winner && (
-                <img
-                    width={60}
-                    height={80}
-                    src={mask}
-                    alt="mask"
-                    className={winner && isDancing ? 'swinging-image' : ''}
-                />
+                <Typography variant="h2" color="primary">
+
+                    {winner.split('').map((letter, index) => (
+                        <span
+                            key={index}
+                            style={{
+                                display: 'inline-block',
+                                animation: `${winner && winner.length ? 'wave' : ''} 1s ease-in-out infinite ${
+                                    index * 0.1
+                                }s`,
+                            }}
+                        ><b>
+                            {letter}</b>
+            </span>
+                    ))}
+                </Typography>
             )}
+
+
 <br/>
 
             <Card sx={{width: 330, height: 370}}>
@@ -153,7 +163,7 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
             <Typography variant="h6">We are ready for the next step!</Typography>
             <Container sx={{display: 'flex', justifyContent: "center", alignItems: "center", gap: '15px', p: 2}}>
                 <Button onClick={next} variant="contained">New adventure</Button>
-                <Button variant="contained">Bonus mission</Button>
+
 
             </Container>
             <br/>
