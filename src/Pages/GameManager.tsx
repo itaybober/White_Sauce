@@ -235,6 +235,7 @@ function GameManager() {
             break;
         case PAGES.PUN:
             page = <Punishment curPlayer={curPlayer} curGame={curGame}/>
+            // logOut()
             break;
         case PAGES.END:
             page = <EndingPage curPlayer={curPlayer} curGame={curGame}/>
@@ -256,6 +257,7 @@ function GameManager() {
         case PAGES.POINTS:
             page = <PointsPage curPlayer={curPlayer} curGame={curGame} setNextMiss={setNextMiss} nextMiss={nextMiss}
                                                                                         setIsGameOver={setIsGameOver}/>
+            // logOut()
             break;
     }
 

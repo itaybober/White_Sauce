@@ -101,11 +101,7 @@ console.log(curPlayer.name)
             }/>
 
 
-            <Timer_Component timerLimit={65} isPictureUploaded={isPictureUploaded} onTimerStopped={handleTimerStopped}
-                             // TimerClick={() => curGame._curMission._extras[0] += 1
-
-
-            />
+            <Timer_Component/>
 
             <Container sx={{ width: 330, flex: 1 }}  >
                 <Typography variant={"h5"}><br/>To finish your task take a picture<br/><br/></Typography>

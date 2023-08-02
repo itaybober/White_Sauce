@@ -362,6 +362,7 @@ class Game {
      * @param time
      */
     public addPointsSinglePlayer(player: Player, time: number) {
+        console.log("point system trigger")
         if (this._curMission._type === "Survival") {
             this._curMission.survivalPointSystem(player, time);
         } else if (this._curMission._type === "Group") {
@@ -426,7 +427,7 @@ class Game {
 
     public async updateAllPlayersPages(nextPage: any) {
         // console.log("game players:")
-        // console.log(this._players)
+        console.log(this._players)
         for (const playerRef of this._players) {
             await updateDoc(playerRef, {curPage: nextPage})
         }

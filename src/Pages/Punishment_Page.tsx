@@ -75,7 +75,9 @@ export default function Punishment({curPlayer,curGame}) {
 
                 {/*<div style={{ height: 20 }}></div>*/}
 
-                <Timer_Component isPictureUploaded={isPictureUploaded} onTimerStopped={handleTimerStopped}/>
+                <Timer_Component
+                    // isPictureUploaded={isPictureUploaded} onTimerStopped={handleTimerStopped}
+                />
 
                 {/*<div style={{ height: 20 }}></div>*/}
 

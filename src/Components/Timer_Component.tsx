@@ -1,95 +1,57 @@
-import { useState, useEffect } from 'react';
-import Button from "@mui/material/Button";
-
-interface TimerProps {
-    timerLimit?: number;
-    isPictureUploaded: boolean;
-    onTimerStopped: (stopTime: number | null, timeElapsed: number) => void; // Callback function
-}
-
-export default function Timer_Component({ timerLimit = 15, isPictureUploaded, onTimerStopped }: TimerProps) {
+import React, { useState, useEffect } from 'react';
+import Typography from '@mui/material/Typography';
+const Timer_Component: React.FC = () => {
+    const [showCountdown, setShowCountdown] = useState(true);
+    const [showClock, setShowClock] = useState(false);
+    const [count, setCount] = useState(10);
     const [timeElapsed, setTimeElapsed] = useState(0);
-    const [timerStarted, setTimerStarted] = useState(false);
-    const [stopTime, setStopTime] = useState<number | null>(null);
-    const [showStartButton, setShowStartButton] = useState(true); // State to control the start button visibility
-    const [countdown, setCountdown] = useState(15); // Countdown value
-    const [isTimerRunning, setIsTimerRunning] = useState(false);
 
     useEffect(() => {
-        let timer: NodeJS.Timeout | undefined;
-        if (timerStarted) {
-            timer = setInterval(() => {
+        let countdownInterval: NodeJS.Timeout;
+
+        if (showCountdown) {
+            countdownInterval = setInterval(() => {
+                setCount((prevCount) => prevCount - 1);
+            }, 1000);
+        }
+
+        return () => clearInterval(countdownInterval);
+    }, [showCountdown]);
+
+    useEffect(() => {
+        if (count === 0) {
+            setShowCountdown(false);
+            setShowClock(true);
+        }
+    }, [count]);
+
+    useEffect(() => {
+        let clockInterval: NodeJS.Timeout;
+
+        if (showClock) {
+            clockInterval = setInterval(() => {
                 setTimeElapsed((prevTime) => prevTime + 1);
-                setIsTimerRunning(true);
             }, 1000);
-            if (isPictureUploaded) {
-                clearInterval(timer!);
-                setTimeElapsed(stopTime !== null ? stopTime : timeElapsed);
-                onTimerStopped(stopTime, timeElapsed);
-            }
-        } else {
-            clearInterval(timer!); // Stop the timer when timerStarted is false
-            if (!isTimerRunning) {
-                onTimerStopped(stopTime, timeElapsed);
-            }
         }
-        return () => clearInterval(timer!);
-    }, [timerStarted, isPictureUploaded, onTimerStopped, isTimerRunning, timeElapsed, stopTime]);
 
-    useEffect(() => {
-        if (countdown > 0 && showStartButton) {
-            // Start the countdown timer
-            const countdownTimer = setInterval(() => {
-                setCountdown((prevCountdown) => prevCountdown - 1);
-            }, 1000);
-
-            // Clear the countdown timer after 10 seconds
-            setTimeout(() => {
-                clearInterval(countdownTimer);
-                setShowStartButton(false); // Hide the start button after the countdown
-                setTimerStarted(true); // Start the timer automatically after the countdown
-            }, 10000);
-        }
-    }, [countdown, showStartButton]);
+        return () => clearInterval(clockInterval);
+    }, [showClock]);
 
     const formatTime = (timeInSeconds: number) => {
-        const minutes = Math.floor(timeInSeconds / 60)
-            .toString()
-            .padStart(2, '0');
-        const seconds = (timeInSeconds % 60).toString().padStart(2, '0');
-        return `${minutes}:${seconds}`;
-    };
-
-    const timeStyle = {
-        fontSize: timerStarted ? "4rem" : "1rem", // increase font size if timer has started
-        cursor: "pointer",
+        const minutes = Math.floor(timeInSeconds / 60);
+        const seconds = timeInSeconds % 60;
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
 
     return (
-        <>
-            {showStartButton ? (
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => setShowStartButton(false)}
-                    style={{ fontSize: "1.5rem", color: "#D1B067"}}
-                >
-                    Get ready! As soon as the timer appears you start
-                </Button>
-            ) : (
-                <>
-                    {timerStarted && (
-                        <span style={timeStyle}>
-                            {formatTime(timeElapsed)}
-                        </span>
-                    )}
-                    {!timerStarted && stopTime !== null && (
-                        <span style={timeStyle}>
-                            {formatTime(stopTime)}
-                        </span>
-                    )}
-                </>
-            )}
-        </>
+        <div>
+            {showCountdown ? (
+                <Typography variant="h5" color={"primary"}><strong>THE MISSION WILL BEGIN AUTOMATICALLY IN {count} SECONDS</strong></Typography>
+            ) : showClock ? (
+                <Typography variant={"h4"}><strong>Mission Started!<br></br> {formatTime(timeElapsed)}</strong></Typography>
+            ) : null}
+        </div>
     );
-}
+};
+
+export default Timer_Component;
