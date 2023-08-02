@@ -4,30 +4,37 @@ import Button from "@mui/material/Button";
 interface TimerProps {
     timerLimit?: number;
     isPictureUploaded: boolean;
+    onTimerStopped: (stopTime: number | null, timeElapsed: number) => void; // Callback function
 }
 
-export default function Timer_Component({ timerLimit = 15, isPictureUploaded }: TimerProps) {
+export default function Timer_Component({ timerLimit = 15, isPictureUploaded, onTimerStopped }: TimerProps) {
     const [timeElapsed, setTimeElapsed] = useState(0);
     const [timerStarted, setTimerStarted] = useState(false);
     const [stopTime, setStopTime] = useState<number | null>(null);
     const [showStartButton, setShowStartButton] = useState(true); // State to control the start button visibility
     const [countdown, setCountdown] = useState(15); // Countdown value
+    const [isTimerRunning, setIsTimerRunning] = useState(false);
 
     useEffect(() => {
         let timer: NodeJS.Timeout | undefined;
         if (timerStarted) {
             timer = setInterval(() => {
                 setTimeElapsed((prevTime) => prevTime + 1);
+                setIsTimerRunning(true);
             }, 1000);
             if (isPictureUploaded) {
                 clearInterval(timer!);
                 setTimeElapsed(stopTime !== null ? stopTime : timeElapsed);
+                onTimerStopped(stopTime, timeElapsed);
             }
         } else {
             clearInterval(timer!); // Stop the timer when timerStarted is false
+            if (!isTimerRunning) {
+                onTimerStopped(stopTime, timeElapsed);
+            }
         }
         return () => clearInterval(timer!);
-    }, [timerStarted, isPictureUploaded]);
+    }, [timerStarted, isPictureUploaded, onTimerStopped, isTimerRunning, timeElapsed, stopTime]);
 
     useEffect(() => {
         if (countdown > 0 && showStartButton) {

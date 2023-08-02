@@ -203,12 +203,13 @@ function GameManager() {
             break;
         case PAGES.JOIN:
             page = <Join_Page curPlayer={curPlayer} curGame={curGame}/>
-            break;
+;            break;
         case PAGES.FILTERS:
             page = <Filters curPlayer={curPlayer} setCurGame={setCurGame}/>
             break;
         case PAGES.COVEN:
             page = <CovenantPage curPlayer={curPlayer} curGame={curGame}/>
+            // logOut()
             break;
         case PAGES.SECRET:
             page = <Secret_Mission curPlayer={curPlayer} curGame={curGame}/>
@@ -218,6 +219,7 @@ function GameManager() {
             break;
         case PAGES.SURV:
             page = <Survival_mission  curPlayer={curPlayer} curGame={curGame}/>
+            // logOut();
             break;
         case PAGES.PUN:
             page = <Punishment curPlayer={curPlayer} curGame={curGame}/>

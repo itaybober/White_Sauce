@@ -9,12 +9,17 @@ import Avatar from "@mui/material/Avatar";
 import Container from "@mui/material/Container";
 import mask from '../Pages/images/icon/avatar.png'
 import logo from "../Pages/images/step-1_logo.svg";
+import {useEffect} from "react";
+
+
 // @ts-ignore
-export  default function Avatar_and_points({name="maya" ,points}) {
+export default function Avatar_and_points({name="maya" ,points}) {
     // eslint-disable-next-line no-restricted-globals
     if (name===null) {
         name="maya"
     }
+
+
     return (
 
 

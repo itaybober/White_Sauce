@@ -10,11 +10,13 @@ import Flippable_card from "../Components/Flippable_card";
 import { PAGES } from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
 import shield from '../Pages/images/cards icons/card13.png'
+import {log} from "util";
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 
-// @ts-ignore
+
+    // @ts-ignore
 export default function GroupMission({ curPlayer, curGame, isGameOver }) {
     const mission_object = curGame._curMission;
     const [itemData, setItemData] = useState([]);
@@ -22,6 +24,7 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
 
     const handlePictureUpload = ()=> {
         setIsPictureUploaded(true);
+        curGame.addPointsSinglePlayer(curPlayer, 0);
     }
     function addPhoto() {
         // @ts-ignore
@@ -41,6 +44,7 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
                         </Typography>
                     </CardContent>
                 }
+
                 front_content={
                     <div>
                         <CardContent sx={{ display: "flex", flexFlow: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
@@ -103,4 +107,7 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
             )}
         </Container>
     );
+
 }
+
+

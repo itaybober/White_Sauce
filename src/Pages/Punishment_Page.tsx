@@ -13,18 +13,25 @@ import Flippable_card from "../Components/Flippable_card";
 import {PAGES} from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
 import turtle from '../Pages/images/cards icons/card12.png';
+import Timer_Component from "../Components/Timer_Component";
 
 // @ts-ignore
 export default function Punishment({curPlayer,curGame}) {
     const loser_player = "Guy";
-
     const mission_object = curGame._curMission
-
-    const [itemData, setItemData] = useState([]);
     const [isPictureUploaded, setIsPictureUploaded] = useState(false);
+    const [missionTime, setMissionTime] = useState(0);
+
     const handlePictureUpload = ()=> {
             setIsPictureUploaded(true);
         }
+    const handleTimerStopped = (stopTime: number | null, timeElapsed: number) => {
+        const missionDurationInSeconds = (stopTime !== null ? stopTime : timeElapsed);
+        setMissionTime(missionDurationInSeconds);
+        if (missionTime > 0) {
+            curGame.addPointsSinglePlayer(curPlayer, missionTime);
+        }
+    }
     function forTheDemo(){
         // @ts-ignore
         setItemData([sockhands]);
@@ -35,7 +42,7 @@ export default function Punishment({curPlayer,curGame}) {
     return (
         // <Background_loser>
             <Container className={"punishment_page_component"} sx={{p:2}}>
-                <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
+                <Avatar_and_points name={curPlayer._name} points={curPlayer._points}/>
                 {/* eslint-disable-next-line react/jsx-pascal-case */}
                 <Flippable_card back_content={
                     <div>
@@ -68,7 +75,7 @@ export default function Punishment({curPlayer,curGame}) {
 
                 {/*<div style={{ height: 20 }}></div>*/}
 
-                <Countdown_Component isPictureUploaded={isPictureUploaded}/>
+                <Timer_Component isPictureUploaded={isPictureUploaded} onTimerStopped={handleTimerStopped}/>
 
                 {/*<div style={{ height: 20 }}></div>*/}
 

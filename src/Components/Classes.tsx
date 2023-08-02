@@ -4,6 +4,8 @@ import {db} from "../config/firebase";
 import {PAGES} from "../Pages/GameManager";
 import {colors} from "@mui/material";
 import {useEffect, useState} from "react";
+import {Simulate} from "react-dom/test-utils";
+import play = Simulate.play;
 // import firebase from "firebase/compat";
 
 
@@ -75,34 +77,47 @@ class Mission {
      * points attribute
      *
      */
-    public survivalPointSystem(player: Player, time: number, succeed = false) {
+    public survivalPointSystem(player: Player, time: number, succeed = true) {
         // calculate number of points to add to a player
         if (succeed) {
-            player._points += Math.floor(60000 / time);
+            if ((player._points + 6000 / time) > 800) {
+                const newTotal = player._points + 800;
+                player.setPoints(newTotal);
+            }
+            else {
+                const newTotal = Math.ceil(player._points + 60000 / time);
+                player.setPoints(newTotal);
+            }
         } else {
-            player._points -= 500
+            const newTotal = player._points - 500;
+            player.setPoints(newTotal);
         }
         return;
     }
 
-    public groupPointSystem(player: Player, time: number, succeed:boolean = false) {
+    public groupPointSystem(player: Player, time: number, succeed:boolean = true) {
         // calculate number of points to add to a player
         if (succeed) {
-            player._points += Math.floor(600000 / time);
+            const newTotal = Math.ceil(player._points + 600000 / time);
+            player.setPoints(newTotal)
         }
         return;
     }
 
 
-    public punishmentPointSystem(player: Player, time: number, succeed = false) {
+    public punishmentPointSystem(player: Player, time: number, succeed = true) {
         // calculate number of points to add to a player
-
-            player._points += Math.floor(600000 / time);
-
-
-            return;
+        if (succeed) {
+            if ((player._points + 60000 / time) > 500) {
+                const newTotal = player._points + 500;
+                player.setPoints(newTotal);
+            } else {
+                const newTotal = Math.ceil(player._points + 60000 / time);
+                player.setPoints(newTotal);
+            }
         }
-
+        return;
+        }
 
 
 
@@ -198,7 +213,7 @@ class Player {
             this._name = name;
         }
         this._playerID = UID;
-        this._points = -1;
+        this._points = 0;
         this._curPage = PAGES.START;
         this._playerRef = doc(db, "Active_Players", UID);
         this._gameRef = gameRef;
@@ -221,6 +236,10 @@ class Player {
 
     public setSecretMission(data: DocumentData) {
         setDoc(this._playerRef, {secretMission: data}, {merge: true})
+    }
+
+    public setPoints(newTotal: number) {
+        setDoc(this._playerRef, {points: newTotal}, {merge: true})
     }
 
     /**
@@ -331,13 +350,14 @@ class Game {
      * @param time
      */
     public addPointsSinglePlayer(player: Player, time: number) {
-        if (this._curMission._type === "survival") {
+        if (this._curMission._type === "Survival") {
             this._curMission.survivalPointSystem(player, time);
-        } else if (this._curMission._type === "group") {
+        } else if (this._curMission._type === "Group") {
             this._curMission.groupPointSystem(player, time);
-        } else if (this._curMission._type === "punishment") {
+        } else {
             this._curMission.punishmentPointSystem(player, time);
         }
+        console.log("mission type: ", this._curMission._type)
     }
 
     /**
@@ -471,10 +491,6 @@ class Game {
         console.log("data name", data.name)
         return data
     }
-
-
-
-
 
 
     // this function update the order of the players list in the game class by there points
