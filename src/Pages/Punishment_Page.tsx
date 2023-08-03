@@ -42,7 +42,7 @@ export default function Punishment({curPlayer,curGame}) {
     return (
         // <Background_loser>
             <Container className={"punishment_page_component"} sx={{p:2}}>
-                <Avatar_and_points name={curPlayer._name} points={curPlayer._points}/>
+                <Avatar_and_points name={curPlayer._name} points={curPlayer._points} avatarName={curPlayer._avatar} avatarRef={curPlayer._avatarRef}/>
                 {/* eslint-disable-next-line react/jsx-pascal-case */}
                 <Flippable_card back_content={
                     <div>
@@ -75,7 +75,9 @@ export default function Punishment({curPlayer,curGame}) {
 
                 {/*<div style={{ height: 20 }}></div>*/}
 
-                <Timer_Component isPictureUploaded={isPictureUploaded} onTimerStopped={handleTimerStopped}/>
+                <Timer_Component
+                    // isPictureUploaded={isPictureUploaded} onTimerStopped={handleTimerStopped}
+                />
 
                 {/*<div style={{ height: 20 }}></div>*/}
 

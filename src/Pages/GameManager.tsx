@@ -20,6 +20,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Typography from "@mui/material/Typography";
 import Secret_Mission from "./Secret_Mission";
 import {ref, deleteObject, listAll, getDownloadURL} from "firebase/storage";
+import Button from "@mui/material/Button";
 
 export const PAGES = {
     DEBUG : 0,
@@ -95,18 +96,22 @@ function GameManager() {
     function logOut() {
         auth.signOut()
             .then(async () => {
+
+
+
+
                 curPlayer?.setCurPage(PAGES.AUTH)
                 if (curPlayer) {
                     curPlayer.removePlayerFromFireBase()
                 }
                 if (curGame && curPlayer) {
                     curGame.removePlayerFromFirebase(curPlayer._playerRef)
-                    listAll(ref(storage, `${curGame._id}/`)).then( (response) => {
-                        response.items.forEach( (item) => {
-                            deleteObject(item)
+                    listAll(ref(storage, `${curGame._id}/`))
+                        .then( (response) => {
+                            response.items.forEach( (fileRef) => {
+                                deleteObject(fileRef)
+                            })
                         })
-                    })
-
                 }
                 console.log('User logged out successfully');
             })
@@ -230,6 +235,7 @@ function GameManager() {
             break;
         case PAGES.PUN:
             page = <Punishment curPlayer={curPlayer} curGame={curGame}/>
+            // logOut()
             break;
         case PAGES.END:
             page = <EndingPage curPlayer={curPlayer} curGame={curGame}/>
@@ -251,11 +257,13 @@ function GameManager() {
         case PAGES.POINTS:
             page = <PointsPage curPlayer={curPlayer} curGame={curGame} setNextMiss={setNextMiss} nextMiss={nextMiss}
                                                                                         setIsGameOver={setIsGameOver}/>
+            // logOut()
             break;
     }
 
     return(
         <div>
+            <Button onClick={logOut}></Button>
             <br/>
             <br/>
             {page}

@@ -33,6 +33,16 @@ export default function Survival({ curPlayer, curGame }) {
     // curGame.getMissionFromDatabase();
 
     const mission_object = curGame._curMission;
+
+    console.log(curGame._id)
+    console.log(curGame._curMission)
+
+    // const mission_object = curGame._curMission
+        // const avatarName = await avatarName
+        // const avatarRef_new = await avatarRef
+
+    const [itemList, setItemList] = useState<any | null>([])
+    const itemCollectionRef = collection(db, "house_items")
     const [isPictureUploaded, setIsPictureUploaded] = useState(false);
     const [missionTime, setMissionTime] = useState(0);
 
@@ -49,12 +59,19 @@ export default function Survival({ curPlayer, curGame }) {
         }
     }
 
+    const [itemData, setItemData] = useState([])
+
+    function addPhoto() {
+        // @ts-ignore
+        setItemData([itay])
+    }
+console.log(curPlayer.name)
+
     // @ts-ignore
     return (
 
         <Container className={"survival_page_component"} sx={{p:2}}  >
-            <Avatar_and_points name={curPlayer._name}
-                               points={curPlayer._points}/>
+            <Avatar_and_points name={curPlayer._name} points={curPlayer._points} avatarName={curPlayer._avatar} avatarRef={curPlayer._avatarRef}/>
             <Flippable_card back_content={
                 <div>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
@@ -84,11 +101,7 @@ export default function Survival({ curPlayer, curGame }) {
             }/>
 
 
-            <Timer_Component timerLimit={65} isPictureUploaded={isPictureUploaded} onTimerStopped={handleTimerStopped}
-                             // TimerClick={() => curGame._curMission._extras[0] += 1
-
-
-            />
+            <Timer_Component/>
 
             <Container sx={{ width: 330, flex: 1 }}  >
                 <Typography variant={"h5"}><br/>To finish your task take a picture<br/><br/></Typography>

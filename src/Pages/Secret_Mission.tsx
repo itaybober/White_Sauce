@@ -18,13 +18,15 @@ export default function Secret_Mission({curPlayer,curGame}) {
     const mission_object = curPlayer._secretMission
 
     console.log(mission_object)
-
+    console.log("avatar-" ,  curPlayer._avatar)
+    console.log("name-" ,  curPlayer._name)
+    console.log("avatarRef-" , curPlayer._avatarRef)
     const [itemData, setItemData] = useState([]);
 
     // @ts-ignore
     return (
         <Container className={"punishment_page_component"}>
-            <Avatar_and_points name={curPlayer._name} points={curPlayer._points} />
+            <Avatar_and_points name={curPlayer._name} points={curPlayer._points} avatarName={curPlayer._avatar} avatarRef={curPlayer._avatarRef}/>
             <Flippable_card back_content={
                 <div>
                     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>

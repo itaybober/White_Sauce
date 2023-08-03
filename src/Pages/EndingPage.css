@@ -13,34 +13,37 @@
     /*top: 50px;*/
 
 }
-
-@keyframes swing {
+@keyframes wave {
     0%, 100% {
-        transform: rotate(-10deg);
-    }
-    25% {
-        transform: rotate(10deg);
+        transform: translateY(0);
     }
     50% {
-        transform: rotate(-10deg);
-    }
-    75% {
-        transform: rotate(10deg);
+        transform: translateY(-10px);
     }
 }
 
-.dancing-winner {
-    animation: swing 2s infinite;
-}
+/*@keyframes swing {*/
+/*    0%, 100% {*/
+/*        transform: rotate(-10deg);*/
+/*    }*/
+/*    25% {*/
+/*        transform: rotate(10deg);*/
+/*    }*/
+/*    50% {*/
+/*        transform: rotate(-10deg);*/
+/*    }*/
+/*    75% {*/
+/*        transform: rotate(10deg);*/
+/*    }*/
+/*}*/
 
-.swinging-image {
-    animation: swing 1s infinite;
-}
+/*.dancing-winner {*/
+/*    animation: swing 2s infinite;*/
+/*}*/
 
-
-
-
-
+/*.swinging-image {*/
+/*    animation: swing 1s infinite;*/
+/*}*/
 
 /*.button-container {*/
 /*    padding: 20px;*/
