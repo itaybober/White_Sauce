@@ -30,42 +30,33 @@ import arrow from '../Pages/images/cards icons/arrow.png'
 // @ts-ignore
 export default function Survival({ curPlayer, curGame }) {
 
-    // curGame.getMissionFromDatabase();
 
     const mission_object = curGame._curMission;
-
-    console.log(curGame._id)
-    console.log(curGame._curMission)
-
-    // const mission_object = curGame._curMission
-        // const avatarName = await avatarName
-        // const avatarRef_new = await avatarRef
-
-    const [itemList, setItemList] = useState<any | null>([])
-    const itemCollectionRef = collection(db, "house_items")
     const [isPictureUploaded, setIsPictureUploaded] = useState(false);
-    const [missionTime, setMissionTime] = useState(0);
+    const [timeElapsed, setTimeElapsed] = useState(0);
+    const [showClock, setShowClock] = useState(true);
 
+
+    useEffect(() => {
+        let clockInterval: NodeJS.Timeout;
+        clockInterval = setInterval(() => {
+            setTimeElapsed((prevTime) => prevTime + 1);
+        }, 1000);
+
+        return () => clearInterval(clockInterval);
+    }, []);
 
     const handlePictureUpload = ()=> {
         setIsPictureUploaded(true);
-    }
-
-    const handleTimerStopped = (stopTime: number | null, timeElapsed: number) => {
-        const missionDurationInSeconds = (stopTime !== null ? stopTime : timeElapsed);
-        setMissionTime(missionDurationInSeconds);
-        if (missionTime > 0) {
-            curGame.addPointsSinglePlayer(curPlayer, missionTime);
+        const missionDurationInSeconds = timeElapsed - 10;
+        console.log("sec:" ,missionDurationInSeconds);
+        setShowClock(false);
+        if (missionDurationInSeconds > 0) {
+            curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds);
         }
     }
 
-    const [itemData, setItemData] = useState([])
 
-    function addPhoto() {
-        // @ts-ignore
-        setItemData([itay])
-    }
-console.log(curPlayer.name)
 
     // @ts-ignore
     return (
@@ -101,7 +92,7 @@ console.log(curPlayer.name)
             }/>
 
 
-            <Timer_Component/>
+            {showClock && <Timer_Component/>}
 
             <Container sx={{ width: 330, flex: 1 }}  >
                 <Typography variant={"h5"}><br/>To finish your task take a picture<br/><br/></Typography>
@@ -111,14 +102,14 @@ console.log(curPlayer.name)
             </Container>
 
 
-            <Button onClick={async ()=> {
+            {isPictureUploaded && <Button onClick={async ()=> {
                 await curGame.updateAllPlayersPages(PAGES.POINTS)
                 await curGame.getPunishmentFromDataBase()
                 await curPlayer.setCurPage(PAGES.PUN)
             }} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 4,
 
-            }} >Next</Button>
+            }} >Finish!</Button>}
 
         </Container>
 

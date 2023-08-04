@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
+
 const Timer_Component: React.FC = () => {
     const [showCountdown, setShowCountdown] = useState(true);
     const [showClock, setShowClock] = useState(false);
@@ -8,7 +9,6 @@ const Timer_Component: React.FC = () => {
 
     useEffect(() => {
         let countdownInterval: NodeJS.Timeout;
-
         if (showCountdown) {
             countdownInterval = setInterval(() => {
                 setCount((prevCount) => prevCount - 1);

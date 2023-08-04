@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 import Countdown_Component from "../Components/Countdown_Component";
 import * as React from "react";
 import sockhands from './Souvenirs/sockhands.jpg'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Background_loser from "../Components/Background-loser";
 import "./Punishment_Page.css"
 import Avatar_and_points from "../Components/avatar_and_points";
@@ -20,21 +20,26 @@ export default function Punishment({curPlayer,curGame}) {
     const loser_player = "Guy";
     const mission_object = curGame._curMission
     const [isPictureUploaded, setIsPictureUploaded] = useState(false);
-    const [missionTime, setMissionTime] = useState(0);
+    const [timeElapsed, setTimeElapsed] = useState(0);
+    const [showClock, setShowClock] = useState(true);
+
+    useEffect(() => {
+        let clockInterval: NodeJS.Timeout;
+        clockInterval = setInterval(() => {
+            setTimeElapsed((prevTime) => prevTime + 1);
+        }, 1000);
+
+        return () => clearInterval(clockInterval);
+    }, []);
 
     const handlePictureUpload = ()=> {
-            setIsPictureUploaded(true);
+        setIsPictureUploaded(true);
+        const missionDurationInSeconds = timeElapsed - 10;
+        console.log("sec:" ,missionDurationInSeconds);
+        setShowClock(false);
+        if (missionDurationInSeconds > 0) {
+            curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds);
         }
-    const handleTimerStopped = (stopTime: number | null, timeElapsed: number) => {
-        const missionDurationInSeconds = (stopTime !== null ? stopTime : timeElapsed);
-        setMissionTime(missionDurationInSeconds);
-        if (missionTime > 0) {
-            curGame.addPointsSinglePlayer(curPlayer, missionTime);
-        }
-    }
-    function forTheDemo(){
-        // @ts-ignore
-        setItemData([sockhands]);
     }
 
     // @ts-ignore
@@ -75,25 +80,24 @@ export default function Punishment({curPlayer,curGame}) {
 
                 {/*<div style={{ height: 20 }}></div>*/}
 
-                <Timer_Component
-                    // isPictureUploaded={isPictureUploaded} onTimerStopped={handleTimerStopped}
-                />
+                {showClock && <Timer_Component/>}
 
                 {/*<div style={{ height: 20 }}></div>*/}
 
-                <Typography variant={"h5"}> <br></br>Loser - take a Loser photo </Typography>
+                {!isPictureUploaded && <Typography variant={"h5"}> <br></br>Loser - take a Loser photo </Typography>}
+                {isPictureUploaded && <Typography variant={"h5"}> <br></br> a Loser photo: </Typography>}
 
 
                 <CameraComponent buttonText="Take a disgraceful Picture" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>
 
 
-                <Button onClick={async ()=> {
+                {isPictureUploaded && <Button onClick={async ()=> {
                     await curGame.getRandomMissionFromDatabase("Group")
                     await curPlayer.setCurPage(PAGES.POINTS)
                 }} variant="contained" color="primary" size={"medium"} sx={{
                     mb: 4,
 
-                }} >Next</Button>
+                }} >Finish!</Button>}
             </Container>
         // </Background_loser>
     )

@@ -41,6 +41,8 @@ const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText, onPicture
         // @ts-ignore
         const imageRef = ref(storage, `${curGameNum}/${imageUpload.name}`)
         uploadBytes(imageRef, imageUpload).then(() => console.log("Uploaded Image"))
+        onPictureUpload();
+
     }
 
     // uploads and displays the selected image
@@ -48,7 +50,6 @@ const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText, onPicture
         displayImage();
         uploadImage()
         // Invoke the onPictureUpload function when the user uploads a picture
-        onPictureUpload();
     }, [imageUpload])
 
 
