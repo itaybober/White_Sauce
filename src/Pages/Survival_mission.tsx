@@ -109,8 +109,9 @@ export default function Survival({ curPlayer, curGame }) {
             }} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 4,
 
-
+// re-upload
             }} >Finish!</Button>}
+
 
         </Container>
 
