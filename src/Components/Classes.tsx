@@ -88,7 +88,7 @@ class Mission {
                 player.setPoints(newTotal);
             }
             else {
-                const newTotal = Math.ceil(player._points + 60000 / time);
+                const newTotal =player._points + Math.ceil(60000 / time);
                 player.setPoints(newTotal);
             }
         } else {
