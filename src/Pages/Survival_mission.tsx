@@ -52,7 +52,7 @@ export default function Survival({ curPlayer, curGame }) {
         console.log("sec:" ,missionDurationInSeconds);
         setShowClock(false);
         if (missionDurationInSeconds > 0) {
-            curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds);
+            curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds, "Survival");
         }
     }
 
@@ -95,9 +95,9 @@ export default function Survival({ curPlayer, curGame }) {
             {showClock && <Timer_Component/>}
 
             <Container sx={{ width: 330, flex: 1 }}  >
-                <Typography variant={"h5"}><br/>To finish your task take a picture<br/><br/></Typography>
+                {timeElapsed > 10 && <Typography variant={"h5"}><br/>To finish your task take a picture<br/><br/></Typography>}
                 {/*<CameraComponent buttonText="Take a Photo" />*/}
-                <CameraComponent buttonText="Take a Photo" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>
+                {timeElapsed > 10 && <CameraComponent buttonText="Take a Photo" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>}
 
             </Container>
 
@@ -108,14 +108,8 @@ export default function Survival({ curPlayer, curGame }) {
                 await curPlayer.setCurPage(PAGES.PUN)
             }} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 4,
-// re-upload
             }} >Finish!</Button>}
-
-
-
         </Container>
-
-///
     );
 
 }

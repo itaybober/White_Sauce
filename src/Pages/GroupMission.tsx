@@ -24,7 +24,7 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
 
     const handlePictureUpload = ()=> {
         setIsPictureUploaded(true);
-        curGame.addPointsSinglePlayer(curPlayer, 0);
+        curGame.addPointsSinglePlayer(curPlayer, 0, "Group");
     }
     function addPhoto() {
         // @ts-ignore
@@ -73,6 +73,7 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
                             size="medium"
                             onClick={ () => {
                                 console.log("clicked")
+                                curGame.addPointsSinglePlayer(curPlayer, 0, "Secret");
                                 curGame.updateAllPlayersPages(PAGES.END); // Transition to the next page
                             }}
                         >
@@ -84,6 +85,8 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
                             size="medium"
                             onClick={() => {
                                 curGame.updateAllPlayersPages(PAGES.END); // Transition to the next page
+                                curGame.addPointsSinglePlayer(curPlayer, 0, "Secret", false);
+
                             }}
                         >
                             No

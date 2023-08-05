@@ -38,8 +38,13 @@ export default function Punishment({curPlayer,curGame}) {
         console.log("sec:" ,missionDurationInSeconds);
         setShowClock(false);
         if (missionDurationInSeconds > 0) {
-            curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds);
+            curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds, "Punishment");
         }
+    }
+
+    const moveToNextPage = async () => {
+        await curGame.getRandomMissionFromDatabase("Group");
+        await curPlayer.setCurPage(PAGES.POINTS);
     }
 
     // @ts-ignore
@@ -84,20 +89,25 @@ export default function Punishment({curPlayer,curGame}) {
 
                 {/*<div style={{ height: 20 }}></div>*/}
 
-                {!isPictureUploaded && <Typography variant={"h5"}> <br></br>Loser - take a Loser photo </Typography>}
+                {!isPictureUploaded && timeElapsed > 10 && <Typography variant={"h5"}> <br></br>Loser - take a Loser photo </Typography>}
                 {isPictureUploaded && <Typography variant={"h5"}> <br></br> a Loser photo: </Typography>}
 
 
-                <CameraComponent buttonText="Take a disgraceful Picture" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>
+                {timeElapsed > 10 && <CameraComponent buttonText="Take a disgraceful Picture" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>}
+                {!isPictureUploaded && <Button onClick={moveToNextPage}
+                                               variant="contained"
+                                               color="primary"
+                                               size={"medium"}
+                                               sx={{mb: 4}}
+                >Forfeit</Button>}
 
 
-                {isPictureUploaded && <Button onClick={async ()=> {
-                    await curGame.getRandomMissionFromDatabase("Group")
-                    await curPlayer.setCurPage(PAGES.POINTS)
-                }} variant="contained" color="primary" size={"medium"} sx={{
-                    mb: 4,
-
-                }} >Finish!</Button>}
+                {isPictureUploaded && <Button onClick={moveToNextPage}
+                                              variant="contained"
+                                              color="primary"
+                                              size={"medium"}
+                                              sx={{mb: 4}}
+                >Finish!</Button> }
             </Container>
         // </Background_loser>
     )

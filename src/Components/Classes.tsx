@@ -83,7 +83,7 @@ class Mission {
     public survivalPointSystem(player: Player, time: number, succeed = true) {
         // calculate number of points to add to a player
         if (succeed) {
-            if ((player._points + 6000 / time) > 800) {
+            if ((60000 / time) > 800) {
                 const newTotal = player._points + 800;
                 player.setPoints(newTotal);
             }
@@ -120,6 +120,14 @@ class Mission {
             }
         }
         return;
+        }
+
+        public secretPointSystem(player: Player, succeed = true) {
+            if (succeed) {
+                const newTotal = player._points + 1500;
+                player.setPoints(newTotal);
+            }
+            return;
         }
 
 
@@ -363,16 +371,19 @@ class Game {
      * @param player
      * @param time
      */
-    public addPointsSinglePlayer(player: Player, time: number) {
+    public addPointsSinglePlayer(player: Player, time: number, type: string, sucseed = true) {
         console.log("point system trigger")
-        if (this._curMission._type === "Survival") {
+        if (type === "Survival") {
             this._curMission.survivalPointSystem(player, time);
-        } else if (this._curMission._type === "Group") {
+        } else if (type === "Group") {
             this._curMission.groupPointSystem(player, time);
-        } else {
+        } else if (type === "Punishment") {
             this._curMission.punishmentPointSystem(player, time);
         }
-        console.log("mission type: ", this._curMission._type)
+        else if (type === "Secret") {
+            this._curMission.secretPointSystem(player, sucseed);
+        }
+        console.log("mission type: ", type)
     }
 
     /**

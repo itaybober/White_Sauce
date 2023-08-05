@@ -31,7 +31,8 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
     const [isDancing, setIsDancing] = useState(false); // Track dancing state
     const [imageList, setImageList] = useState(new Set<string>())
     function next() {
-        curPlayer.setCurPage(PAGES.START)
+        curPlayer.setPoints(0);
+        curPlayer.setCurPage(PAGES.START);
     }
 
     const fetchWinnerName = async () => {
