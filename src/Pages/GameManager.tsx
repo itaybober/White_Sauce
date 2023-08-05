@@ -92,12 +92,14 @@ function GameManager() {
     const [nextMiss, setNextMiss] = useState(0)
     const [isGameOver, setIsGameOver] = useState(false)
 
+
     let page = <div/>;
 
     function logOut() {
         auth.signOut()
             .then(async () => {
-
+                setNextMiss(0)
+                setIsGameOver(false)
                 curPlayer?.setCurPage(PAGES.AUTH)
                 if (curGame && curPlayer) {
                     curGame.removePlayerFromFirebase(curPlayer._playerRef)

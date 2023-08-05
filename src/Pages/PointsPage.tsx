@@ -37,20 +37,21 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
     const handleNext = async ()=> {
         await curGame.getRandomMissionFromDatabase(NEXT[PAGESMISSIONS[nextMiss]])
         await curGame.updateAllPlayersPages(PAGESMISSIONS[nextMiss])
-        setNextMiss((nextMiss+1))
+        setNextMiss(nextMiss+1)
         // this checks if we are on the last page or not
-        if (nextMiss === 2)
+        if (nextMiss === PAGESMISSIONS.length - 1)
             setIsGameOver(true)
     }
 
 
     const handleToggle = async () => {
-        setSelected(!selected);
         if (!selected) {
             await curGame.incrementReady()
         } else {
             await curGame.decrementReady()
         }
+
+        setSelected(!selected);
 
         let totalNumOfPlayers = 0;
         await getDoc(curGame._gameRef).then((docSnapshot) => {
@@ -61,8 +62,8 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
         })
         if (totalNumOfPlayers === curGame._players.length){
         //     advance all
+            await handleNext()
             curGame.setReady(0)
-            handleNext()
         }
     }
 
