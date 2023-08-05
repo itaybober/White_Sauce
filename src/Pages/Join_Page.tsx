@@ -7,13 +7,7 @@ import { db} from "../config/firebase";
 import {PAGES} from "./GameManager";
 import {doc, getDoc} from "firebase/firestore";
 import galiLogo from "./images/gali_test_logo.png";
-
-
-
-
-
-
-
+import Button from "@mui/material/Button";
 
 // @ts-ignore
 
@@ -63,6 +57,10 @@ function Join_Page( {curPlayer, curGame} ) {
             <TextField value={gameToJoin} onChange={handleChange} onKeyDown={enterValue} inputProps={{min: 0, style: { textAlign: 'center' }}}
                placeholder={"PIN"} sx={{ textAlign: 'center', position:'relative', top:'50%' }}  variant="outlined" />
             </div>
+        <div className={"buttons"}>
+            <Button id={"Enter"}>Enter</Button>
+            <Button id={"goBack"}>go back</Button>
+        </div>
             </div>
 
     )
