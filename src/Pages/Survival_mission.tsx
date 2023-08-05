@@ -47,7 +47,6 @@ export default function Survival({ curPlayer, curGame }) {
     }, []);
 
     const handleFinishClick = async ()=> {
-        await curGame.incrementDone()
 
         let totalNumOfPlayers = 0;
         await getDoc(curGame._gameRef).then((docSnapshot) => {
@@ -57,9 +56,6 @@ export default function Survival({ curPlayer, curGame }) {
             }
         })
 
-        console.log("players finished: " + totalNumOfPlayers)
-        console.log("total players: " + curGame._players.length)
-        console.log(totalNumOfPlayers === curGame._players.length)
 
         if (totalNumOfPlayers === curGame._players.length) {
         //     go to punishment
@@ -73,6 +69,8 @@ export default function Survival({ curPlayer, curGame }) {
     }
 
     const handlePictureUpload = ()=> {
+        if (!isPictureUploaded)
+            curGame.incrementDone()
         setIsPictureUploaded(true);
         const missionDurationInSeconds = timeElapsed - 10;
         console.log("sec:" ,missionDurationInSeconds);
