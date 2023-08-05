@@ -76,7 +76,7 @@ export default function Survival({ curPlayer, curGame }) {
         console.log("sec:" ,missionDurationInSeconds);
         setShowClock(false);
         if (missionDurationInSeconds > 0) {
-            curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds, "Survival");
+            curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds, curGame, "Survival");
         }
     }
 

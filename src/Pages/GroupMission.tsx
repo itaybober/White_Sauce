@@ -24,7 +24,7 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
 
     const handlePictureUpload = ()=> {
         setIsPictureUploaded(true);
-        curGame.addPointsSinglePlayer(curPlayer, 0, "Group");
+        curGame.addPointsSinglePlayer(curPlayer, curGame, 0, "Group");
     }
     function addPhoto() {
         // @ts-ignore
@@ -95,8 +95,7 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
                 </Card>
             ) : (
                 <Button
-                    onClick={() => {
-                        curGame.updateAllPlayersPages(PAGES.POINTS)
+                    onClick={() => {curGame.updateAllPlayersPages(PAGES.WAIT)
                     }}
                     variant="contained"
                     color="primary"

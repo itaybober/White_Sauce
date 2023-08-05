@@ -30,13 +30,14 @@
 #JoinPage_Input {
     position: relative;
     top: 30%;
-    margin-bottom: 70px;
+    /*margin-bottom: 30px;*/
 }
 
 .buttons {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    justify-content: center;
+    gap: 26px;
 }
 
 #Enter {

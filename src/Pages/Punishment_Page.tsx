@@ -38,7 +38,7 @@ export default function Punishment({curPlayer,curGame}) {
         console.log("sec:" ,missionDurationInSeconds);
         setShowClock(false);
         if (missionDurationInSeconds > 0) {
-            curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds, "Punishment");
+            curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds, curGame, "Punishment");
         }
     }
 

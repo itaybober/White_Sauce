@@ -7,12 +7,13 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import logo from './images/step-1_logo.svg'
-import active_logo from './images/running.svg'
+import active_logo from '../Itay_Folder/images/sports-shoes-1-svgrepo-com.svg'
 import shopping from './images/shopping-cart.svg'
-import snacks from './images/snacks.svg'
+import snacks from '../Itay_Folder/images/sandwich-svgrepo-com.svg'
 import drinks from './images/drink.svg'
+import beer from '../Itay_Folder/images/alcohol-beer-drink-glass-wine-svgrepo-com.svg'
 import waves from './images/waves.svg'
-import bulb from './images/bulb.svg'
+import bulb from '../Itay_Folder/images/light-bulb-svgrepo-com.svg'
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import {PAGES} from "./GameManager";
@@ -47,11 +48,14 @@ export default function Filters({curPlayer, setCurGame}) {
                 <MyCard icon={active_logo} text="Active" chosenFilters={chosenFilters}/>
                 <MyCard icon={snacks} text="Snacks" chosenFilters={chosenFilters}/>
                 <MyCard icon={bulb} text="Riddles" chosenFilters={chosenFilters}/>
-                <MyCard icon={drinks} text="Alcohol" chosenFilters={chosenFilters}/>
+                <MyCard icon={beer} text="Alcohol" chosenFilters={chosenFilters}/>
             </div>
             {/*maya edit:*/}
             <div style={{ padding: '20px' }}>
-                <Button onClick={next} variant="contained">
+                <Button className={"go-btn"}
+                        onClick={next}
+                        variant={"contained"}
+                        size={"large"}>
                     let's goooo
                 </Button>
 
@@ -65,6 +69,7 @@ export default function Filters({curPlayer, setCurGame}) {
 
 function MyCard(props: React.PropsWithChildren<{ icon: string; text: string, chosenFilters: string[] }>) {
     const [isActive, setIsActive] = useState(false);
+    const iconSize = props.text === "Alcohol" ? 80 : 80;
 
     const handleClick = () => {
         setIsActive(!isActive);
@@ -81,18 +86,17 @@ function MyCard(props: React.PropsWithChildren<{ icon: string; text: string, cho
             sx={{
                 maxWidth: 160,
                 // maya edit:
-                backgroundColor: isActive ? "#d1b067" : "#535369",
+                backgroundColor: isActive ? "#d1b067" : "#74748a",
             }}
             className={"card_container"}
             onClick={handleClick}
         >
-            <CardActionArea>
+            <CardActionArea className={"cardAction"}>
                 <CardMedia
                     className={"card_media"}
                     component="img"
-                    height="161"
-                    width="161"
                     image={props.icon}
+                    style={{ width: iconSize, height: iconSize }}
                 />
                 <CardContent>
                     <Typography variant="h5">{props.text}</Typography>

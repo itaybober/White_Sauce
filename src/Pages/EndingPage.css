@@ -1,7 +1,7 @@
 
 .Ending_page_component {
 
-    min-height: 100vh;
+    /*min-height: 100vh;*/
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -22,29 +22,10 @@
     }
 }
 
-/*@keyframes swing {*/
-/*    0%, 100% {*/
-/*        transform: rotate(-10deg);*/
-/*    }*/
-/*    25% {*/
-/*        transform: rotate(10deg);*/
-/*    }*/
-/*    50% {*/
-/*        transform: rotate(-10deg);*/
-/*    }*/
-/*    75% {*/
-/*        transform: rotate(10deg);*/
-/*    }*/
-/*}*/
-
-/*.dancing-winner {*/
-/*    animation: swing 2s infinite;*/
-/*}*/
-
-/*.swinging-image {*/
-/*    animation: swing 1s infinite;*/
-/*}*/
-
-/*.button-container {*/
-/*    padding: 20px;*/
-/*}*/
+.new-btn {
+    margin-top: 10px;
+    background-color: #D1B067;
+    color: #282c34;
+    padding: 8px 40px;
+    font-size: 20px;
+}

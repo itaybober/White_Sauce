@@ -95,12 +95,11 @@ class Mission {
         return;
     }
 
-    public groupPointSystem(player: Player, time: number, succeed:boolean = true) {
+    public groupPointSystem(game: Game, time: number, succeed:boolean = true) {
         // calculate number of points to add to a player
         if (succeed) {
-            const newTotal = Math.ceil(player._points + 600000 / time);
-            player.setPoints(newTotal)
-        }
+            game.updateAllPlayerPoints(500);
+            }
         return;
     }
 
@@ -370,19 +369,22 @@ class Game {
      * function from survival / group / punishment page) this function calls the
      * relevant function that will update the player's points.
      * @param player
+     * @param game
      * @param time
+     * @param type
+     * @param succeed
      */
-    public addPointsSinglePlayer(player: Player, time: number, type: string, sucseed = true) {
+    public addPointsSinglePlayer(player: Player, game: Game, time: number, type: string, succeed = true) {
         console.log("point system trigger")
         if (type === "Survival") {
             this._curMission.survivalPointSystem(player, time);
         } else if (type === "Group") {
-            this._curMission.groupPointSystem(player, time);
+            this._curMission.groupPointSystem(game, time);
         } else if (type === "Punishment") {
             this._curMission.punishmentPointSystem(player, time);
         }
         else if (type === "Secret") {
-            this._curMission.secretPointSystem(player, sucseed);
+            this._curMission.secretPointSystem(player, succeed);
         }
         console.log("mission type: ", type)
     }
@@ -492,6 +494,18 @@ class Game {
         console.log(this._players)
         for (const playerRef of this._players) {
             await updateDoc(playerRef, {curPage: nextPage})
+        }
+    }
+
+    public async updateAllPlayerPoints(points: number) {
+        for (const playerRef of this._players) {
+            await getDoc(playerRef).then((docSnapshot) => {
+                if (docSnapshot.exists()) {
+                    //@ts-ignore
+                    points = docSnapshot.data().points;
+                }
+            })
+            await updateDoc(playerRef, {points: 500 + points})
         }
     }
 

@@ -50,6 +50,15 @@ function Join_Page( {curPlayer, curGame} ) {
         }
     }
 
+    const handleEnterPress = () => {
+        connectToGame(gameToJoin)
+        setGameToJoin("")
+    }
+
+    const goToPrevPage = () => {
+        curPlayer.setCurPage(PAGES.START);
+    }
+
     return (
     <div id={"JoinPage_Background"}>
             <Typography variant={"h3"} id={"JoinPage_Title"}><b>Enter Cypher</b></Typography>
@@ -58,8 +67,8 @@ function Join_Page( {curPlayer, curGame} ) {
                placeholder={"PIN"} sx={{ textAlign: 'center', position:'relative', top:'50%' }}  variant="outlined" />
             </div>
         <div className={"buttons"}>
-            <Button id={"Enter"}>Enter</Button>
-            <Button id={"goBack"}>go back</Button>
+            <Button id={"Enter"} onClick={handleEnterPress}>Enter</Button>
+            {/*<Button id={"goBack"} onClick={goToPrevPage}>go back</Button>*/}
         </div>
             </div>
 

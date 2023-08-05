@@ -1,103 +1,29 @@
 
 .mainFrame {
 
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-Content: center;
-    padding: 2%;
-    /*width: 100%;*/
-    gap: 50px;
+    justify-Content: space-evenly;
+    gap: 15px;
 
 }
 
-#JoinPage_Logo {
-    position: relative;
-    top: 5%;
-
-
-
-    /*background-image: url("../Pages/images/background/light_background.svg");*/
-    /*background-size: cover;*/
-    /*background-position: center;*/
-    /*min-height: 100vh;*/
-    /*display: flex;*/
-    /*flex-Flow:column;*/
-    /*flex-direction: column;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
-    /*text-align: center;*/
-    /*!*gap: 10%;*!*/
-    /*!*padding: 3.5%;*!*/
-    /*!*position: relative;*!*/
-    /*text-justify: auto;*/
-    /*!*top: 50px;*!*/
-    /*width: 100vw;*/
+@keyframes floatAnimation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
-/*.step1 {*/
-/*    !*position: absolute;*!*/
-/*    font-weight: 700;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-content: center;*/
-/*    align-items: center;*/
-/*    color: #FFFFFF;*/
-/*}*/
+.logo {
+    margin-top: 20px;
+    width: 100px;
+    animation: floatAnimation 3s infinite;
+}
 
-/*.journey {*/
-/*    font-style: normal;*/
-/*    font-weight: 700;*/
-/*    font-size: 32px;*/
-/*    line-height: 130%;*/
-/*    !* or 42px *!*/
-
-/*    letter-spacing: -0.01em;*/
-
-/*    color: #FFFFFF;*/
-/*    background: none;*/
-
-/*}*/
-
-/*.sign_in {*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    padding: 0px 16px;*/
-/*    gap: 16px;*/
-
-/*    position: absolute;*/
-/*    width: 353px;*/
-/*    height: 56px;*/
-/*    left: 39px;*/
-/*    top: 725px;*/
-
-/*    background: #FFFFFF;*/
-/*    border-radius: 4px;*/
-/*}*/
-
-/*.create_account {*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    padding: 0px 16px;*/
-/*    gap: 16px;*/
-
-/*    position: absolute;*/
-/*    width: 353px;*/
-/*    height: 56px;*/
-/*    left: 39px;*/
-/*    top: 813px;*/
-
-/*    background: #2A2A2A;*/
-/*    border-radius: 4px;*/
-/*}*/
-
-
-/*button {*/
-/*    background: #FFFFFF;*/
-/*    border-radius: 4px;*/
-/*}*/
+.text {
+    margin-top: 50px;
+}

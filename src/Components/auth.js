@@ -46,14 +46,24 @@ export const Auth = () => {
 
     return (
         <Container sx={{display: "flex", flexFlow:"column",justifyContent:"space-evenly",alignItems:"center",
-            gap:6,padding: 2,position:"relative",textJustify:"auto" }
+            gap: "30px",position:"relative",textJustify:"auto", marginTop: "30px" }
 
         }>
             <Input placeholder="Enter your warrior name"
                    onChange={(e) => setEmail(e.target.value)}
+                   sx={{fontSize: "24px",
+                        color: "white"}}
                    onKeyPress={handleKeyPress}
             />
-            <Button  onClick={signInAnonymous} >sign in</Button>
+            <Button  onClick={signInAnonymous}
+                     variant={"contained"}
+                     sx={{
+                         background: "#D1B067",
+                         color: "#282c34",
+                         padding: "4px 45px",
+                         fontSize: "20px"
+                     }}
+            >you son of a bitch <br/>I'm in</Button>
 
             {/*<Button onClick={signInWithGoogle}>Sing in with Google</Button>*/}
 

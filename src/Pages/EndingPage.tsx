@@ -152,18 +152,21 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
             </ImageList>
 
             <Container sx={{display: 'flex', justifyContent: "center", alignItems: "center", gap: '15px'}}>
-                <Button variant="contained" startIcon={<GetAppIcon/>} style={{borderRadius: '10px'}}>Download</Button>
-                <Button variant="contained" startIcon={<ShareIcon/>} style={{borderRadius: '10px'}}>Share</Button>
+                <Button variant="contained" startIcon={<GetAppIcon/>} style={{borderRadius: '10px',
+                    color: "#D1B067", background: '#282c34'
+                }}>Download</Button>
+                <Button variant="contained" startIcon={<ShareIcon/>} style={{borderRadius: '10px',
+                    color: "#D1B067", background: '#282c34'}}>Share</Button>
             </Container>
 
 
-            <Typography variant="h5"> <br></br><br/><i> "A wonderful journey begins with <b>one step" </b>
+            <Typography className={"journey-txt"} variant="h5"> <br></br><br/><i> "A wonderful journey begins with <b>one step" </b>
                 And you just did it!</i></Typography>
 
-            <Typography variant="h4" color={"primary"}> <br></br>So what now?</Typography>
-            <Typography variant="h6">We are ready for the next step!</Typography>
+            {/*<Typography variant="h4" color={"primary"}> <br></br>another round?</Typography>*/}
+            {/*<Typography variant="h6">We are ready for the next step!</Typography>*/}
             <Container sx={{display: 'flex', justifyContent: "center", alignItems: "center", gap: '15px', p: 2}}>
-                <Button onClick={next} variant="contained">New adventure</Button>
+                <Button className={"new-btn"} onClick={next} variant="contained">New adventure</Button>
 
 
             </Container>
