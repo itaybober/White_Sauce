@@ -91,9 +91,6 @@ class Mission {
                 const newTotal =player._points + Math.ceil(60000 / time);
                 player.setPoints(newTotal);
             }
-        } else {
-            const newTotal = player._points - 500;
-            player.setPoints(newTotal);
         }
         return;
     }
@@ -110,6 +107,8 @@ class Mission {
 
     public punishmentPointSystem(player: Player, time: number, succeed = true) {
         // calculate number of points to add to a player
+        const newTotal = player._points - 500;
+        player.setPoints(newTotal);
         if (succeed) {
             if ((player._points + 60000 / time) > 500) {
                 const newTotal = player._points + 500;
