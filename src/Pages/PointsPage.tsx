@@ -35,6 +35,7 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
     const [selected, setSelected] = useState(false);
 
     const handleNext = async ()=> {
+        console.log(PAGESMISSIONS[nextMiss])
         await curGame.getRandomMissionFromDatabase(NEXT[PAGESMISSIONS[nextMiss]])
         await curGame.updateAllPlayersPages(PAGESMISSIONS[nextMiss])
         setNextMiss((nextMiss+1))
@@ -45,12 +46,13 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
 
 
     const handleToggle = async () => {
-        setSelected(!selected);
         if (!selected) {
             await curGame.incrementReady()
         } else {
             await curGame.decrementReady()
         }
+
+        setSelected(!selected);
 
         let totalNumOfPlayers = 0;
         await getDoc(curGame._gameRef).then((docSnapshot) => {
@@ -61,8 +63,8 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
         })
         if (totalNumOfPlayers === curGame._players.length){
         //     advance all
+            await handleNext()
             curGame.setReady(0)
-            handleNext()
         }
     }
 

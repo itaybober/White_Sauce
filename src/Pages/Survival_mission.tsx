@@ -10,7 +10,7 @@ import itay from './Souvenirs/criptai.jpg'
 import {useEffect, useState} from "react";
 import Container from "@mui/material/Container";
 import {db} from '../config/firebase'
-import {getDocs, collection} from 'firebase/firestore'
+import {getDocs, collection, getDoc} from 'firebase/firestore'
 import "../Components/Flippable_card"
 import Flippable_card from "../Components/Flippable_card";
 import {PAGES} from "./GameManager";
@@ -45,6 +45,32 @@ export default function Survival({ curPlayer, curGame }) {
 
         return () => clearInterval(clockInterval);
     }, []);
+
+    const handleFinishClick = async ()=> {
+        await curGame.incrementDone()
+
+        let totalNumOfPlayers = 0;
+        await getDoc(curGame._gameRef).then((docSnapshot) => {
+            if (docSnapshot.exists()){
+                // @ts-ignore
+                totalNumOfPlayers = docSnapshot.data().done
+            }
+        })
+
+        console.log("players finished: " + totalNumOfPlayers)
+        console.log("total players: " + curGame._players.length)
+        console.log(totalNumOfPlayers === curGame._players.length)
+
+        if (totalNumOfPlayers === curGame._players.length) {
+        //     go to punishment
+            curGame.setDone(0)
+            await curGame.getPunishmentFromDataBase()
+            await curPlayer.setCurPage(PAGES.PUN)
+        } else {
+            // go to leaderboard
+            await curPlayer.setCurPage(PAGES.POINTS)
+        }
+    }
 
     const handlePictureUpload = ()=> {
         setIsPictureUploaded(true);
@@ -102,11 +128,7 @@ export default function Survival({ curPlayer, curGame }) {
             </Container>
 
 
-            {isPictureUploaded && <Button onClick={async ()=> {
-                await curGame.updateAllPlayersPages(PAGES.POINTS)
-                await curGame.getPunishmentFromDataBase()
-                await curPlayer.setCurPage(PAGES.PUN)
-            }} variant="contained" color="primary" size={"medium"} sx={{
+            {isPictureUploaded && <Button onClick={handleFinishClick} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 4,
 // re-upload
             }} >Finish!</Button>}

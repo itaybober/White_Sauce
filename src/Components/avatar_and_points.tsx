@@ -20,9 +20,7 @@ export default function Avatar_and_points({name = "maya", points, avatarName, av
     if (name === null) {
         name = "maya"
     }
-    console.log("typof avatarName:" , typeof avatarName)
-    console.log("typof avatarRef:" , typeof avatarRef)
-    console.log(" avatarRef:" , avatarRef)
+
     const avatarName_new =  avatarName
     const avatarRef_new = avatarRef
 

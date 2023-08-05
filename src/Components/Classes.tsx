@@ -346,6 +346,7 @@ class Game {
     public _curMission: Mission;
     public _gameRef;
     public _ready: number;
+    public _done: number;
 
     constructor() {
         this._id = Game.generateRandomNumber().toString();
@@ -354,6 +355,7 @@ class Game {
         this._curMission = new Mission();
         this._gameRef = doc(db, "Games", this._id);
         this._ready = 0;
+        this._done = 0;
     }
 
     /**
@@ -391,10 +393,24 @@ class Game {
     }
 
     /**
+     * Increases done by one. Made for synchronization of pages
+     */
+    public async incrementDone() {
+        await updateDoc(this._gameRef, {done: this._done + 1})
+    }
+
+    /**
      * Decreases ready by one. Made for synchronization of pages
      */
     public async decrementReady() {
         await updateDoc(this._gameRef, {ready: this._ready - 1})
+    }
+
+    /**
+     * Decreases done by one. Made for synchronization of pages
+     */
+    public async decrementDone() {
+        await updateDoc(this._gameRef, {done: this._done - 1})
     }
 
     /**
@@ -404,6 +420,15 @@ class Game {
 
     public async setReady(newReady: number){
         await updateDoc(this._gameRef, {ready: newReady})
+    }
+
+    /**
+     * Sets done to be whatever the given parameter is.
+     * @param newDone
+     */
+
+    public async setDone(newDone: number){
+        await updateDoc(this._gameRef, {done: newDone})
     }
 
     /**
@@ -445,6 +470,7 @@ class Game {
             filters: game._filters.map((filter) => filter),
             gameReference: game._gameRef,
             ready: game._ready,
+            done: game._done,
             createdAt: Timestamp.now(), // Optional: Include a timestamp for when the game was created
         };
         return gameData;
@@ -469,6 +495,7 @@ class Game {
         this._filters = data.filters.map((filter: string) => (filter));
         this._gameRef = data.gameReference;
         this._ready = data.ready;
+        this._done = data.done;
     }
 
     public removePlayerFromFirebase(playerRef: DocumentReference) {
