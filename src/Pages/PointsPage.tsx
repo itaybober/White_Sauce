@@ -35,12 +35,11 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
     const [selected, setSelected] = useState(false);
 
     const handleNext = async ()=> {
-        console.log(PAGESMISSIONS[nextMiss])
         await curGame.getRandomMissionFromDatabase(NEXT[PAGESMISSIONS[nextMiss]])
         await curGame.updateAllPlayersPages(PAGESMISSIONS[nextMiss])
-        setNextMiss((nextMiss+1))
+        setNextMiss(nextMiss+1)
         // this checks if we are on the last page or not
-        if (nextMiss === 2)
+        if (nextMiss === PAGESMISSIONS.length - 1)
             setIsGameOver(true)
     }
 
