@@ -108,7 +108,6 @@ export default function Survival({ curPlayer, curGame }) {
                 await curPlayer.setCurPage(PAGES.PUN)
             }} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 4,
-
 // re-upload
             }} >Finish!</Button>}
 
