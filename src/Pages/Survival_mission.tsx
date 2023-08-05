@@ -112,6 +112,7 @@ export default function Survival({ curPlayer, curGame }) {
             }} >Finish!</Button>}
 
 
+
         </Container>
 
 ///
