@@ -9,6 +9,9 @@ import WinnerList from "../Components/WinnerList";
 import Container from "@mui/material/Container";
 import "../Components/Flippable_card"
 import {PAGES, PAGESMISSIONS} from "./GameManager";
+import ToggleButton from "@mui/material/ToggleButton";
+import {useState} from "react";
+import {getDoc, onSnapshot} from "firebase/firestore";
 
 
 
@@ -29,6 +32,40 @@ const NEXT: {[key:number]: string} ={
 // @ts-ignore
 export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, setIsGameOver}) {
 
+    const [selected, setSelected] = useState(false);
+
+    const handleNext = async ()=> {
+        await curGame.getRandomMissionFromDatabase(NEXT[PAGESMISSIONS[nextMiss]])
+        await curGame.updateAllPlayersPages(PAGESMISSIONS[nextMiss])
+        setNextMiss((nextMiss+1))
+        // this checks if we are on the last page or not
+        if (nextMiss === 2)
+            setIsGameOver(true)
+    }
+
+
+    const handleToggle = async () => {
+        setSelected(!selected);
+        if (!selected) {
+            await curGame.incrementReady()
+        } else {
+            await curGame.decrementReady()
+        }
+
+        let totalNumOfPlayers = 0;
+        await getDoc(curGame._gameRef).then((docSnapshot) => {
+            if (docSnapshot.exists()){
+                // @ts-ignore
+                totalNumOfPlayers = docSnapshot.data().ready
+            }
+        })
+        if (totalNumOfPlayers === curGame._players.length){
+        //     advance all
+            curGame.setReady(0)
+            handleNext()
+        }
+    }
+
     // curGame.getMissionFromDatabase();
     // console.log(curGame._id)
     // console.log(curGame._curMission)
@@ -44,16 +81,16 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
                     <WinnerList game={curGame}/>
                 </CardContent>
             </Card>
-            <Button onClick={async ()=> {
-                await curGame.getRandomMissionFromDatabase(NEXT[PAGESMISSIONS[nextMiss]])
-                await curGame.updateAllPlayersPages(PAGESMISSIONS[nextMiss])
-                setNextMiss((nextMiss+1))
-                if (nextMiss === 2)
-                    setIsGameOver(true)
-            }} variant="contained" color="primary" size={"medium"} sx={{
-                mb: 4,
 
-            }} >Next</Button>
+
+            <ToggleButton
+                value="check"
+                selected={selected}
+                onChange={handleToggle}
+            >
+                {selected ? "Waiting" : "Ready"}
+            </ToggleButton>
+
         </Container>
 ///
     );

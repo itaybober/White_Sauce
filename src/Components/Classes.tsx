@@ -345,6 +345,7 @@ class Game {
     public _players: DocumentReference[];
     public _curMission: Mission;
     public _gameRef;
+    public _ready: number;
 
     constructor() {
         this._id = Game.generateRandomNumber().toString();
@@ -352,6 +353,7 @@ class Game {
         this._players = [];
         this._curMission = new Mission();
         this._gameRef = doc(db, "Games", this._id);
+        this._ready = 0;
     }
 
     /**
@@ -379,6 +381,29 @@ class Game {
      */
     public async addPlayer(playerRef: DocumentReference) {
         await updateDoc(this._gameRef, {players: arrayUnion(playerRef)})
+    }
+
+    /**
+     * Increases ready by one. Made for synchronization of pages
+     */
+    public async incrementReady() {
+        await updateDoc(this._gameRef, {ready: this._ready + 1})
+    }
+
+    /**
+     * Decreases ready by one. Made for synchronization of pages
+     */
+    public async decrementReady() {
+        await updateDoc(this._gameRef, {ready: this._ready - 1})
+    }
+
+    /**
+     * Sets ready to be whatever the given parameter is.
+     * @param newReady
+     */
+
+    public async setReady(newReady: number){
+        await updateDoc(this._gameRef, {ready: newReady})
     }
 
     /**
@@ -419,6 +444,7 @@ class Game {
             curMission: Mission.getMissionDataFromVariable(game._curMission),
             filters: game._filters.map((filter) => filter),
             gameReference: game._gameRef,
+            ready: game._ready,
             createdAt: Timestamp.now(), // Optional: Include a timestamp for when the game was created
         };
         return gameData;
@@ -442,6 +468,7 @@ class Game {
         this._curMission = Mission.getMissionObject(data.curMission);
         this._filters = data.filters.map((filter: string) => (filter));
         this._gameRef = data.gameReference;
+        this._ready = data.ready;
     }
 
     public removePlayerFromFirebase(playerRef: DocumentReference) {

@@ -11,13 +11,12 @@ import Container from "@mui/material/Container";
 export const Auth = () => {
     const [email, setEmail] = useState("")
 
-    const signInWithGoogle = async () => {
-        try {
-            await signInWithPopup(auth, googleProvider);
-        } catch (err) {
-            console.error()
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            // Call your function here
+            signInAnonymous();
         }
-    }
+    };
 
     const signInAnonymous = async () => {
         try {
@@ -52,8 +51,9 @@ export const Auth = () => {
         }>
             <Input placeholder="Enter your warrior name"
                    onChange={(e) => setEmail(e.target.value)}
+                   onKeyPress={handleKeyPress}
             />
-            <Button onClick={signInAnonymous} >sign in</Button>
+            <Button  onClick={signInAnonymous} >sign in</Button>
 
             {/*<Button onClick={signInWithGoogle}>Sing in with Google</Button>*/}
 

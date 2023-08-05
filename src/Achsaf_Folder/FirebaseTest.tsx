@@ -1,6 +1,7 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
 import Button from "@mui/material/Button";
-
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
+import ToggleButton from "@mui/material/ToggleButton"
 import {db} from '../config/firebase';
 import {doc, setDoc, addDoc, collection, onSnapshot} from 'firebase/firestore';
 import {Game, Mission} from "../Components/Classes"
@@ -15,33 +16,32 @@ import Circle from "./Circle";
 
 
 
-function pushToFirebase(){
-    for (let i = 6 ; i < 10 ; i++){
-        const mission = new Mission(
-            "Snack Mission " + i.toString(),
-            "Achsaf change things here",["Snacks"], "Group"
-        );
-        mission.addMissionToFireStore()
-    }
-}
+// function pushToFirebase(){
+//     for (let i = 6 ; i < 10 ; i++){
+//         const mission = new Mission(
+//             "Snack Mission " + i.toString(),
+//             "Achsaf change things here",["Snacks"], "Group"
+//         );
+//         mission.addMissionToFireStore()
+//     }
+// }
 
 // @ts-ignore
 function FirebaseTest() {
+    const [selected, setSelected] = React.useState(false);
 
-    const [f1,f2] = useState()
-
-
-
-
-
-    // @ts-ignore
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Button style={{width: "50px", height: "50px"}} startIcon={<AddAPhotoIcon/>}
-                    onClick={pushToFirebase} />
-            {/*<img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>*/}
-        </div>
+        <ToggleButton
+            value="check"
+            selected={selected}
+            onChange={() => {
+                setSelected(!selected);
+            }}
+        >
+            {selected ? "Waiting" : "Ready"}
+        </ToggleButton>
     );
+
 }
 
 export default FirebaseTest;

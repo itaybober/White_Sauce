@@ -20,6 +20,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Typography from "@mui/material/Typography";
 import Secret_Mission from "./Secret_Mission";
 import {ref, deleteObject, listAll, getDownloadURL} from "firebase/storage";
+import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 import Button from "@mui/material/Button";
 
 export const PAGES = {
@@ -97,13 +98,7 @@ function GameManager() {
         auth.signOut()
             .then(async () => {
 
-
-
-
                 curPlayer?.setCurPage(PAGES.AUTH)
-                if (curPlayer) {
-                    curPlayer.removePlayerFromFireBase()
-                }
                 if (curGame && curPlayer) {
                     curGame.removePlayerFromFirebase(curPlayer._playerRef)
                     listAll(ref(storage, `${curGame._id}/`))
@@ -112,6 +107,9 @@ function GameManager() {
                                 deleteObject(fileRef)
                             })
                         })
+                }
+                if (curPlayer) {
+                    curPlayer.removePlayerFromFireBase()
                 }
                 console.log('User logged out successfully');
             })
@@ -131,6 +129,7 @@ function GameManager() {
         })
     }
 
+
     // Updates the curGame instance every time information in the firestore is changed
     if (curGame && curGame._gameRef) {
         onSnapshot(curGame._gameRef, (snapshot) => {
@@ -140,6 +139,7 @@ function GameManager() {
             }
         })
     }
+
 
     // updates the user's display name
     onAuthStateChanged(auth, () => {
@@ -206,10 +206,10 @@ function GameManager() {
 
     switch (curPage) {
 
-        // case PAGES.DEBUG:
-        //     // For debug and testing
-        //     page = <FirebaseTest />;
-        //     break;
+        case PAGES.DEBUG:
+            // For debug and testing
+            page = <FirebaseTest />;
+            break;
         case PAGES.START:
             page = <Start_Page curPlayer={curPlayer} logOut={logOut}/>;
             break;
@@ -221,7 +221,6 @@ function GameManager() {
             break;
         case PAGES.COVEN:
             page = <CovenantPage curPlayer={curPlayer} curGame={curGame}/>
-            // logOut()
             break;
         case PAGES.SECRET:
             page = <Secret_Mission curPlayer={curPlayer} curGame={curGame}/>
@@ -231,11 +230,9 @@ function GameManager() {
             break;
         case PAGES.SURV:
             page = <Survival_mission  curPlayer={curPlayer} curGame={curGame}/>
-            // logOut();
             break;
         case PAGES.PUN:
             page = <Punishment curPlayer={curPlayer} curGame={curGame}/>
-            // logOut()
             break;
         case PAGES.END:
             page = <EndingPage curPlayer={curPlayer} curGame={curGame}/>
@@ -257,7 +254,6 @@ function GameManager() {
         case PAGES.POINTS:
             page = <PointsPage curPlayer={curPlayer} curGame={curGame} setNextMiss={setNextMiss} nextMiss={nextMiss}
                                                                                         setIsGameOver={setIsGameOver}/>
-            // logOut()
             break;
     }
 
