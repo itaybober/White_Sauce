@@ -70,13 +70,13 @@ function Start_Page({ curPlayer, logOut }) {
     };
 
     const buttonContainerStyle: React.CSSProperties = {
-        marginTop: "10px",
+        marginTop: "-10px",
         marginBottom: "20px", // Move the buttons a little above the bottom of the card
     };
 
     const nextButtonStyle: React.CSSProperties = {
         width: "200px",
-        backgroundColor: "#fff", // Set the button color to white
+        backgroundColor: showInstructions ? "rgba(0, 0, 0, 0.87)" : "#fff", // Set the button color based on showInstructions
     };
 
     return (
@@ -89,7 +89,6 @@ function Start_Page({ curPlayer, logOut }) {
                 <Button variant={"outlined"} onClick={handleLearnHowToPlay} id={"StartPage_Button_Learn"}>HOW TO PLAY?</Button>
                 <Button variant={"outlined"} onClick={startPage} id={"StartPage_Button_Start"}>START A TRIBE</Button>
                 <Button variant={"outlined"} onClick={joinPage} id={"StartPage_Button_Join"}>JOIN A TRIBE <br/></Button>
-
             </div>
 
             {showInstructions && (
@@ -99,11 +98,11 @@ function Start_Page({ curPlayer, logOut }) {
                     </CardContent>
                     <div style={buttonContainerStyle}>
                         {currentImageIndex < imageArray.length - 1 ? (
-                            <Button variant="outlined" onClick={handleNextImage} disabled={currentImageIndex === imageArray.length - 1} style={nextButtonStyle} disableElevation>
+                            <Button variant="outlined" onClick={handleNextImage} disabled={currentImageIndex === imageArray.length - 1} style={{ ...nextButtonStyle }} disableElevation>
                                 Next
                             </Button>
                         ) : (
-                            <Button variant="outlined" onClick={handleDone} style={nextButtonStyle} disableElevation>
+                            <Button variant="outlined" onClick={handleDone} style={{ ...nextButtonStyle }} disableElevation>
                                 Done!
                             </Button>
                         )}
