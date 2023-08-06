@@ -89,9 +89,6 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
 
             <Typography variant="h5" >And the next chief is...</Typography>
 
-            {/*<Avatar alt= "mask" src= {mask} sx={{ width: 60, height: 80 }}> </Avatar>*/}
-            {/* Wave animation */}
-            {/* Wave animation for each letter */}
             {winner && (
                 <Typography variant="h2" color="primary">
 
@@ -126,16 +123,10 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
                     <WinnerList game={curGame}/>
                 </CardContent>
             </Card>
-            {/*<Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>*/}
-            {/*    <Card sx={{ width: 350, height: 250 }}>*/}
-            {/*        <img src={winning} width={350} height={250}  style={{ borderRadius: '10px' }}/>*/}
-            {/*    </Card>*/}
-            {/*</Container>*/}
+
             <Typography sx={{textAlign: "center"}} variant="h4" color={"primary"}><br/>Souvenirs</Typography>
             <Typography variant="h6"> Wow what an adventure we had!</Typography>
-            {/*{imageList.map((url) => {*/}
-            {/*    return <img src={url}/>*/}
-            {/*})}*/}
+
 
 
             <ImageList sx={{width: 350}}
@@ -151,27 +142,43 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
                 ))}
             </ImageList>
 
-            <Container sx={{display: 'flex', justifyContent: "center", alignItems: "center", gap: '15px'}}>
-                <Button variant="contained" startIcon={<GetAppIcon/>} style={{borderRadius: '10px',
-                    color: "#D1B067", background: '#282c34'
-                }}>Download</Button>
-                <Button variant="contained" startIcon={<ShareIcon/>} style={{borderRadius: '10px',
-                    color: "#D1B067", background: '#282c34'}}>Share</Button>
+            <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px' }}>
+                <Button
+                    variant="contained"
+                    startIcon={<GetAppIcon />}
+                    sx={{
+                        borderRadius: '10px',
+                        color: '#D1B067',
+                        background: '#282c34',
+                        width: '40%', // Adjust the width as needed
+                    }}
+                >
+                    Download
+                </Button>
+                <Button
+                    variant="contained"
+                    startIcon={<ShareIcon />}
+                    sx={{
+                        borderRadius: '10px',
+                        color: '#D1B067',
+                        background: '#282c34',
+                        width: '40%', // Adjust the width as needed
+                    }}
+                >
+                    Share
+                </Button>
             </Container>
 
 
             <Typography className={"journey-txt"} variant="h5"> <br></br><br/><i> "A wonderful journey begins with <b>one step" </b>
                 And you just did it!</i></Typography>
 
-            {/*<Typography variant="h4" color={"primary"}> <br></br>another round?</Typography>*/}
-            {/*<Typography variant="h6">We are ready for the next step!</Typography>*/}
             <Container sx={{display: 'flex', justifyContent: "center", alignItems: "center", gap: '15px', p: 2}}>
                 <Button className={"new-btn"} onClick={next} variant="contained">New adventure</Button>
 
 
             </Container>
             <br/>
-            {/*<Typography variant="h6"><br/><br/>That's all for today</Typography>*/}
         </Container>
 
     )
