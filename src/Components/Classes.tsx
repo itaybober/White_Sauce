@@ -81,13 +81,11 @@ class Mission {
      */
     public async survivalPointSystem(player: Player, time: number, succeed = true) {
         // calculate number of points to add to a player
-        console.log(3)
         if (succeed) {
             if ((60000 / time) > 800) {
                 const newTotal = player._points + 800;
                 await player.setPoints(newTotal);
             } else {
-                console.log(4)
                 const newTotal = player._points + Math.ceil(60000 / time);
                 await player.setPoints(newTotal);
             }

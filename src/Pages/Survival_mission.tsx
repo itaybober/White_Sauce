@@ -47,7 +47,6 @@ export default function Survival({ curPlayer, curGame }) {
     }, []);
 
     const handleFinishClick = async ()=> {
-
         if (sendToPun) {
         //     go to punishment
             curGame.setDone(0)
@@ -68,7 +67,6 @@ export default function Survival({ curPlayer, curGame }) {
             console.log("sec:", missionDurationInSeconds);
             setShowClock(false);
             if (missionDurationInSeconds > 0) {
-                console.log(1)
                 curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds, curGame, "Survival");
             }
 
