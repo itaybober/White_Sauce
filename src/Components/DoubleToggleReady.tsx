@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import {getDoc, onSnapshot} from "firebase/firestore";
 import ToggleButton from "@mui/material/ToggleButton";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
 
 
 
@@ -45,8 +47,17 @@ export default function ToggleReady({curGame,handleNext,handleYes,handleNo}) {
                     }}>Yes</Button>
                 </div>
             ) : (
-                <div>
-                    Now We wait
+                <div style={{ display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexFlow:"column",
+                    padding: "30px" }}>
+                    <br/>
+                    <CircularProgress color="primary" />
+                    <br/>
+                    <Typography variant={"h5"}>now we wait...<br/></Typography>
+                    <br/>
+
                 </div>
             )}
 

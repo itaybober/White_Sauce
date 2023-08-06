@@ -23,7 +23,6 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
 
     const handlePictureUpload = ()=> {
         setIsPictureUploaded(true);
-        curGame.addPointsSinglePlayer(curPlayer, curGame, 0, "Group");
     }
     function addPhoto() {
         // @ts-ignore
