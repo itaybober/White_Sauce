@@ -11,7 +11,7 @@ import { PAGES } from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
 import shield from '../Pages/images/cards icons/card13.png';
 import {log} from "util";
-import AlertDialog from "../Components/dialog";
+// import AlertDialog from "../Components/dialog";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 
@@ -58,7 +58,7 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
 
             <CameraComponent buttonText="Proof Of Concept" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>
 
-        <AlertDialog></AlertDialog>
+        {/*<AlertDialog></AlertDialog>*/}
 
             {/*{isGameOver ? (*/}
             {/*    <Card sx={{ mb: 4 }}>*/}
