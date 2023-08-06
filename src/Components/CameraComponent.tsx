@@ -64,7 +64,7 @@ const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText, onPicture
             >
                 {buttonText}
             </Button>
-
+            <br/>
             <input
                 ref={inputRef}
                 type="file"
@@ -94,7 +94,8 @@ const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText, onPicture
                                     backgroundColor: 'gray',
                                     width: 200,
                                     height: 200,
-                                    margin: 'auto'
+                                    margin: 'auto',
+                                    borderRadius: 20
                                 }}
                             />
                         )}

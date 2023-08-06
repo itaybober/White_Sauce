@@ -1,17 +1,18 @@
-import "./Join_Page.css"
-import {TextField, Box} from '@mui/material';
+import "./Join_Page.css";
+import { TextField, Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import logo from "./images/step-1_logo.svg";
-import React, {useState} from "react";
-import { db} from "../config/firebase";
-import {PAGES} from "./GameManager";
-import {doc, getDoc} from "firebase/firestore";
+import React, { useState } from "react";
+import { db } from "../config/firebase";
+import { PAGES } from "./GameManager";
+import { doc, getDoc } from "firebase/firestore";
 import galiLogo from "./images/gali_test_logo.png";
 import Button from "@mui/material/Button";
+import arrow from './images/arrow.png';
 
 // @ts-ignore
 
-function Join_Page( {curPlayer, curGame} ) {
+function Join_Page({ curPlayer, curGame }) {
 
     const [gameToJoin, setGameToJoin] = useState<string>("");
 
@@ -19,11 +20,11 @@ function Join_Page( {curPlayer, curGame} ) {
         setGameToJoin(event.target.value)
     }
 
-    function connectToGame(gameID: string){
+    function connectToGame(gameID: string) {
         const gameRef = doc(db, "Games", gameID);
         getDoc(gameRef)
             .then((docSnapshot) => {
-                if (docSnapshot.exists()){
+                if (docSnapshot.exists()) {
                     // TODO this is the idea
                     console.log("Connecting to game: " + gameID)
                     curPlayer.setGameRef(gameRef)
@@ -35,7 +36,7 @@ function Join_Page( {curPlayer, curGame} ) {
                     console.log("No such game")
                 }
             })
-            .catch( (error) => {
+            .catch((error) => {
                 console.error('Error getting document:', error);
             })
 
@@ -43,7 +44,7 @@ function Join_Page( {curPlayer, curGame} ) {
 
     // @ts-ignore
     function enterValue(ev) {
-        if (ev.key === "Enter"){
+        if (ev.key === "Enter") {
             connectToGame(gameToJoin)
             setGameToJoin("")
             ev.preventDefault();
@@ -60,20 +61,20 @@ function Join_Page( {curPlayer, curGame} ) {
     }
 
     return (
-    <div id={"JoinPage_Background"}>
+        <div id={"JoinPage_Background"}>
+            <Button onClick={goToPrevPage} id={"ArrowButton"} sx={{ position: 'absolute', left: '10px', top: '10px', width: '32px', height: '32px' }}>
+                <img src={arrow} alt="Arrow" style={{ width: '600%', height: '600%', objectFit: 'contain' }} />
+            </Button>
             <Typography variant={"h3"} id={"JoinPage_Title"}><b>Enter Cypher</b></Typography>
             <div id={"JoinPage_Input"}>
-            <TextField value={gameToJoin} onChange={handleChange} onKeyDown={enterValue} inputProps={{min: 0, style: { textAlign: 'center' }}}
-               placeholder={"PIN"} sx={{ textAlign: 'center', position:'relative', top:'50%' }}  variant="outlined" />
+                <TextField value={gameToJoin} onChange={handleChange} onKeyDown={enterValue} inputProps={{ min: 0, style: { textAlign: 'center' } }}
+                           placeholder={"PIN"} sx={{ textAlign: 'center', position: 'relative', top: '50%' }} variant="outlined" />
             </div>
-        <div className={"buttons"}>
-            <Button id={"Enter"} onClick={handleEnterPress}>Enter</Button>
-            {/*<Button id={"goBack"} onClick={goToPrevPage}>go back</Button>*/}
+            <div className={"buttons"}>
+                <Button id={"Enter"} onClick={handleEnterPress}>Enter</Button>
+            </div>
         </div>
-            </div>
-
     )
-
 }
 
-export default Join_Page
+export default Join_Page;
