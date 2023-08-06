@@ -9,12 +9,11 @@ import friends from "./Souvenirs/tangled.jpg"
 import Flippable_card from "../Components/Flippable_card";
 import { PAGES } from "./GameManager";
 import CameraComponent from "../Components/CameraComponent";
-import shield from '../Pages/images/cards icons/card13.png'
+import shield from '../Pages/images/cards icons/card13.png';
 import {log} from "util";
-
+import AlertDialog from "../Components/dialog";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
-
 
     // @ts-ignore
 export default function GroupMission({ curPlayer, curGame, isGameOver }) {
@@ -59,54 +58,55 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
 
             <CameraComponent buttonText="Proof Of Concept" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>
 
-            {isGameOver ? (
-                <Card sx={{ mb: 4 }}>
-                    <CardContent>
-                        <Typography variant="h6">
-                            Did you succeed in the secret mission?
-                        </Typography>
-                    </CardContent>
-                    <CardActions sx={{ justifyContent: 'center' }}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            size="medium"
-                            onClick={ () => {
-                                console.log("clicked")
-                                curGame.addPointsSinglePlayer(curPlayer, 0, "Secret");
-                                curGame.updateAllPlayersPages(PAGES.END); // Transition to the next page
-                            }}
-                        >
-                            Yes
-                        </Button>
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            size="medium"
-                            onClick={() => {
-                                curGame.updateAllPlayersPages(PAGES.END); // Transition to the next page
-                                curGame.addPointsSinglePlayer(curPlayer, 0, "Secret", false);
+        <AlertDialog></AlertDialog>
 
-                            }}
-                        >
-                            No
-                        </Button>
-                    </CardActions>
-                </Card>
-            ) : (
-                <Button
-                    onClick={() => {curGame.updateAllPlayersPages(PAGES.WAIT)
-                    }}
-                    variant="contained"
-                    color="primary"
-                    size="medium"
-                    sx={{
-                        mb: 4,
-                    }}
-                >
-                    Next
-                </Button>
-            )}
+            {/*{isGameOver ? (*/}
+            {/*    <Card sx={{ mb: 4 }}>*/}
+            {/*        <CardContent>*/}
+            {/*            <Typography variant="h6">*/}
+            {/*                Did you succeed in the secret mission?*/}
+            {/*            </Typography>*/}
+            {/*        </CardContent>*/}
+            {/*        <CardActions sx={{ justifyContent: 'center' }}>*/}
+            {/*            <Button*/}
+            {/*                variant="contained"*/}
+            {/*                color="primary"*/}
+            {/*                size="medium"*/}
+            {/*                onClick={ () => {*/}
+            {/*                    console.log("clicked")*/}
+            {/*                    curGame.addPointsSinglePlayer(curPlayer, 0, "Secret");*/}
+            {/*                    curGame.updateAllPlayersPages(PAGES.END); // Transition to the next page*/}
+            {/*                }}*/}
+            {/*            >*/}
+            {/*                Yes*/}
+            {/*            </Button>*/}
+            {/*            <Button*/}
+            {/*                variant="contained"*/}
+            {/*                color="secondary"*/}
+            {/*                size="medium"*/}
+            {/*                onClick={() => {*/}
+            {/*                    curGame.updateAllPlayersPages(PAGES.END); // Transition to the next page*/}
+            {/*                    curGame.addPointsSinglePlayer(curPlayer, 0, "Secret", false);*/}
+
+            {/*                }}*/}
+            {/*            >*/}
+            {/*                No*/}
+            {/*            </Button>*/}
+            {/*        </CardActions>*/}
+            {/*    </Card>*/}
+            {/*) : (*/}
+            {/*    <Button*/}
+            {/*        onClick={() => {curGame.updateAllPlayersPages(PAGES.END)*/}
+            {/*        }}*/}
+            {/*        variant="contained"*/}
+            {/*        color="primary"*/}
+            {/*        size="medium"*/}
+            {/*        sx={{*/}
+            {/*            mb: 4,*/}
+            {/*        }}*/}
+            {/*    >*/}
+            {/*        Next*/}
+            {/*    </Button>*/}
         </Container>
     );
 

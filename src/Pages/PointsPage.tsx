@@ -32,7 +32,8 @@ const NEXT: {[key:number]: string} ={
  */
 // @ts-ignore
 export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, setIsGameOver}) {
-    // curGame.winnerListUpdate()
+    curGame.winnerListUpdate()
+
     const [selected, setSelected] = useState(false);
 
     const handleNext = async ()=> {
@@ -42,6 +43,7 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
         // this checks if we are on the last page or not
         if (nextMiss === PAGESMISSIONS.length - 1)
             setIsGameOver(true)
+
     }
 
 
