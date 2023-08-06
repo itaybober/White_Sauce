@@ -64,9 +64,8 @@ export default function Punishment({curPlayer,curGame}) {
                                 <br/>You lost, sucks to suck. <br/><br/>
                                 {mission_object._description}
                             </Typography>
-                            <Typography>
+                                <Typography variant={"h6"} color={"primary"}>Click to reveal</Typography>
 
-                            </Typography>
                         </CardContent>
                     </div>
                     }
