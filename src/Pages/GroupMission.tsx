@@ -30,6 +30,9 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
         setItemData([friends]);
     }
 
+    console.log(curGame._players.length)
+
+
     return (
         <Container className={"survival_page_component"} sx={{ p: 2 }}>
             <Avatar_and_points name={curPlayer._name} points={curPlayer._points} avatarName={curPlayer._avatar} avatarRef={curPlayer._avatarRef}/>
@@ -60,7 +63,7 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
 
             <CameraComponent buttonText="Proof Of Concept" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>
 
-        <AlertDialog curPlayer={curPlayer} curGame={curGame}></AlertDialog>
+        <AlertDialog curPlayer={curPlayer} curGame={curGame}/>
 
             {/*{isGameOver ? (*/}
             {/*    <Card sx={{ mb: 4 }}>*/}

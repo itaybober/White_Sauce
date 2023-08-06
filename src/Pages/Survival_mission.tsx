@@ -79,6 +79,8 @@ export default function Survival({ curPlayer, curGame }) {
                     totalNumOfPlayers = docSnapshot.data().done
                 }
             })
+            console.log("totalNumOfPlayers: ", totalNumOfPlayers)
+            console.log("curGame._players.length: ", curGame._players.length)
             if (totalNumOfPlayers === curGame._players.length - 1) {
                 setSendToPun(true)
             }

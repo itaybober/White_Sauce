@@ -35,6 +35,10 @@ const getPointData = async (game: { _players: any; getPlayerDataFromRef: (arg0: 
 export default function WinnerList({ game }) {
     const [listItems, setListItems] = useState([]);
 
+
+
+
+
     useEffect(() => {
         const fetchPointData = async () => {
             const pointData = await getPointData(game);

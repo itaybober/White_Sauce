@@ -7,28 +7,35 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {PAGES} from "../Pages/GameManager";
 import {Game, Player} from "../Components/Classes";
+import DoubleToggleReady from './DoubleToggleReady';
 
 
 export default function AlertDialog({ curPlayer, curGame }: any) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
-        curGame.addPointsSinglePlayer(curPlayer, curGame, 0, "Secret")
         setOpen(true);
         // Transition to the next page
     };
 
     const handleClose = () => {
-        curGame.addPointsSinglePlayer(curPlayer, curGame, 0, "Secret", false)
         setOpen(false);
 
     };
 
+    const handleYes = () => {
+        curPlayer.setPoints(curPlayer._points + 1500)
+    }
+    const handleNo = () => {}
+
+    const handleNext = () => {
+        curGame.updateAllPlayersPages(PAGES.END)
+    }
+
+
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                finish?
-            </Button>
+            <Button onClick={handleClickOpen} variant="contained" color="primary" size={"medium"} sx={{mb: 4}} >Finish!</Button>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -52,10 +59,7 @@ export default function AlertDialog({ curPlayer, curGame }: any) {
                 {/*    </DialogContentText>*/}
                 {/*</DialogContent>*/}
                 <DialogActions>
-                    <Button variant={"outlined"} onClick={handleClose}>No</Button>
-                    <Button variant={"outlined"} onClick={handleClose} autoFocus>
-                        Yes
-                    </Button>
+                    <DoubleToggleReady curGame={curGame} handleNext={handleNext} handleYes={handleYes} handleNo={handleNo}/>
                 </DialogActions>
             </Dialog>
         </div>

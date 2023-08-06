@@ -22,6 +22,7 @@ import Secret_Mission from "./Secret_Mission";
 import {ref, deleteObject, listAll, getDownloadURL} from "firebase/storage";
 import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
 import Button from "@mui/material/Button";
+import AlertDialog from "../Components/dialog";
 
 export const PAGES = {
     DEBUG : 0,
@@ -131,7 +132,6 @@ function GameManager() {
         })
     }
 
-
     // Updates the curGame instance every time information in the firestore is changed
     if (curGame && curGame._gameRef) {
         onSnapshot(curGame._gameRef, (snapshot) => {
@@ -210,7 +210,7 @@ function GameManager() {
 
         case PAGES.DEBUG:
             // For debug and testing
-            page = <FirebaseTest />;
+            page = <AlertDialog curPlayer={new Player()} curGame={new Game()} />;
             break;
         case PAGES.START:
             page = <Start_Page curPlayer={curPlayer} logOut={logOut}/>;
