@@ -9,13 +9,11 @@ import Avatar_and_points from "../Components/avatar_and_points";
 import Flippable_card from "../Components/Flippable_card";
 import {PAGES} from "./GameManager";
 import secret from './images/cards icons/card11.png'
-import {getDoc} from "firebase/firestore";
-import ToggleButton from "@mui/material/ToggleButton";
+import ToggleReady from "../Components/ToggleReady";
 // import survivel2 from "./images/cards icons/card14.png";
 
 // @ts-ignore
 export default function Secret_Mission({curPlayer,curGame}) {
-    const [selected, setSelected] = useState(false);
 
     const [itemData, setItemData] = useState([]);
 
@@ -28,27 +26,7 @@ export default function Secret_Mission({curPlayer,curGame}) {
 
     const handleNext = ()=> curGame.updateAllPlayersPages(PAGES.SURV)
 
-    const handleToggle = async () => {
-        setSelected(!selected);
-        if (!selected) {
-            await curGame.incrementReady()
-        } else {
-            await curGame.decrementReady()
-        }
 
-        let totalNumOfPlayers = 0;
-        await getDoc(curGame._gameRef).then((docSnapshot) => {
-            if (docSnapshot.exists()){
-                // @ts-ignore
-                totalNumOfPlayers = docSnapshot.data().ready
-            }
-        })
-        if (totalNumOfPlayers === curGame._players.length){
-            //     advance all
-            curGame.setReady(0)
-            handleNext()
-        }
-    }
 
     // @ts-ignore
     return (
@@ -84,15 +62,8 @@ export default function Secret_Mission({curPlayer,curGame}) {
                     </div>
                 }
         />
-            <ToggleButton
-                color={"primary"}
-                value="check"
-                selected={selected}
-                onChange={handleToggle}
-            >
-                {selected ? "Waiting" : "Ready"}
-            </ToggleButton>
 
+        <ToggleReady curGame={curGame} handleNext={handleNext}/>
 
         </Container>
     )

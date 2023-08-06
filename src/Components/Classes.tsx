@@ -1,5 +1,5 @@
-
-import {    collection, doc, setDoc, getDoc,getDocs, DocumentReference, DocumentData, updateDoc, arrayUnion, Timestamp, deleteDoc, arrayRemove, DocumentSnapshot,query, where, orderBy} from "firebase/firestore";
+import firebase from "firebase/app"
+import {runTransaction ,collection, doc, setDoc, getDoc,getDocs, DocumentReference, DocumentData, updateDoc, arrayUnion, Timestamp, deleteDoc, arrayRemove, DocumentSnapshot,query, where, orderBy} from "@firebase/firestore";
 import {db, storage} from "../config/firebase";
 import {PAGES} from "../Pages/GameManager";
 import {colors} from "@mui/material";
@@ -9,7 +9,6 @@ import play = Simulate.play;
 // import firebase from "firebase/compat";
 import avatar1 from "../Pages/images/icon/avatar.png"
 import {getDownloadURL, listAll, ref} from "firebase/storage";
-
 
 
 // import firebase from "firebase/compat";
@@ -401,28 +400,67 @@ class Game {
      * Increases ready by one. Made for synchronization of pages
      */
     public async incrementReady() {
-        await updateDoc(this._gameRef, {ready: this._ready + 1})
+        await runTransaction(db, async (transaction) => {
+            const game = await transaction.get(this._gameRef);
+            if (game.exists()) {
+                const increment = game.data().ready + 1;
+                transaction.update(this._gameRef, {ready: increment});
+            }
+        });
+        // await updateDoc(this._gameRef, {
+        //     ready: FieldValue.increment(1)
+        // });
+        // await updateDoc(this._gameRef, FieldValue.increment(1))
     }
+
+
+
 
     /**
      * Increases done by one. Made for synchronization of pages
      */
     public async incrementDone() {
-        await updateDoc(this._gameRef, {done: this._done + 1})
+        await runTransaction(db, async (transaction) => {
+            const game = await transaction.get(this._gameRef);
+            if (game.exists()) {
+                const increment = game.data().done + 1;
+                transaction.update(this._gameRef, {done: increment});
+            }
+        });
+
+        // await updateDoc(this._gameRef, {done: this._done + 1})
     }
 
     /**
      * Decreases ready by one. Made for synchronization of pages
      */
     public async decrementReady() {
-        await updateDoc(this._gameRef, {ready: this._ready - 1})
+        await runTransaction(db, async (transaction) => {
+            const game = await transaction.get(this._gameRef);
+            if (game.exists()) {
+                let decrement = game.data().ready - 1;
+                if (decrement < 0)
+                    decrement = 0
+                transaction.update(this._gameRef, {ready: decrement});
+            }
+        });
+        // await updateDoc(this._gameRef, {ready: this._ready - 1})
     }
 
     /**
      * Decreases done by one. Made for synchronization of pages
      */
     public async decrementDone() {
-        await updateDoc(this._gameRef, {done: this._done - 1})
+        await runTransaction(db, async (transaction) => {
+            const game = await transaction.get(this._gameRef);
+            if (game.exists()) {
+                let decrement = game.data().done - 1;
+                if (decrement < 0)
+                    decrement = 0
+                transaction.update(this._gameRef, {done: decrement});
+            }
+        });
+        // await updateDoc(this._gameRef, {done: this._done - 1})
     }
 
     /**

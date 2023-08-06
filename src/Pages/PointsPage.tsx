@@ -12,6 +12,7 @@ import {PAGES, PAGESMISSIONS} from "./GameManager";
 import ToggleButton from "@mui/material/ToggleButton";
 import {useState} from "react";
 import {getDoc, onSnapshot} from "firebase/firestore";
+import ToggleReady from "../Components/ToggleReady";
 
 
 
@@ -44,33 +45,6 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
     }
 
 
-    const handleToggle = async () => {
-        if (!selected) {
-            await curGame.incrementReady()
-        } else {
-            await curGame.decrementReady()
-        }
-
-        setSelected(!selected);
-
-        let totalNumOfPlayers = 0;
-        await getDoc(curGame._gameRef).then((docSnapshot) => {
-            if (docSnapshot.exists()){
-                // @ts-ignore
-                totalNumOfPlayers = docSnapshot.data().ready
-            }
-        })
-        if (totalNumOfPlayers === curGame._players.length){
-        //     advance all
-            await handleNext()
-            curGame.setReady(0)
-        }
-    }
-
-    // curGame.getMissionFromDatabase();
-    // console.log(curGame._id)
-    // console.log(curGame._curMission)
-
 
 
     return (
@@ -84,14 +58,7 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
             </Card>
 
 
-            <ToggleButton
-                value="check"
-                selected={selected}
-                onChange={handleToggle}
-            >
-                {selected ? "Waiting" : "Ready"}
-            </ToggleButton>
-
+            <ToggleReady curGame={curGame} handleNext={handleNext}/>
         </Container>
 ///
     );
