@@ -63,7 +63,8 @@ export const Auth = () => {
                          padding: "4px 45px",
                          fontSize: "20px"
                      }}
-            >you son of a bitch <br/>I'm in</Button>
+            >Embrace The Quest
+              </Button>
 
             {/*<Button onClick={signInWithGoogle}>Sing in with Google</Button>*/}
 
