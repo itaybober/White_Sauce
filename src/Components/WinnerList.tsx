@@ -34,20 +34,23 @@ const getPointData = async (game: { _players: any; getPlayerDataFromRef: (arg0: 
 // @ts-ignore
 export default function WinnerList({ game }) {
     const [listItems, setListItems] = useState([]);
-
-
-
-
+    const compareByPoints = (a: { points: any; }, b: { points: any; }) => {
+        const pointsA = a.points;
+        const pointsB = b.points;
+        return pointsB - pointsA; // Sort in descending order (highest to lowest points)
+    };
 
     useEffect(() => {
         const fetchPointData = async () => {
             const pointData = await getPointData(game);
+            const sortedPointData = pointData.sort(compareByPoints);
             // @ts-ignore
-            setListItems(pointData);
+            setListItems(sortedPointData);
         };
 
         fetchPointData();
     }, [game]);
+    console.log("list item", listItems)
 
     return (
         <div>

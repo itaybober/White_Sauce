@@ -657,36 +657,20 @@ class Game {
     // this function update the order of the players list in the game class by there points
 
 
-    public winnerListUpdate() {
-        // const [sortedItems, setSortedItems] = useState<player[]>([]);
-        interface player {
-            id: string;
-            propertyName: number;
-            // Add more properties as needed
+    async winnerListUpdate() {
+        try {
+            const playersRef = collection(db, 'Games', this._id, 'players');
+            const sortedQuery = query(playersRef, orderBy('points'));
+            const querySnapshot = await getDocs(sortedQuery);
+            // this._players = querySnapshot.docs.map((doc) => ({
+            //     id: doc.id,
+            //     ...doc.data(),
+            // })) as Player[]; // Map the data and set the correct type
+
+            console.log('the sorted data is-', this._players);
+        } catch (error) {
+            console.log('Error fetching data:', error);
         }
-
-
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        useEffect(() => {
-            const fetchData = async () => {
-                try {
-                    const playersRef = collection(db, 'Games', this._id, "players");
-                    const sortedQuery = query(playersRef, orderBy('points'));
-                    const querySnapshot = await getDocs(sortedQuery);
-                    const sortedData: player[] = querySnapshot.docs.map((doc) => doc.data() as player);
-                    // setSortedItems(sortedData);
-                } catch (error) {
-                    console.log('Error fetching data:', error);
-                }
-            };
-            fetchData();
-        }, []);
-
-
-
-
     }
-
 }
-
 export {Mission, Player, Game}
