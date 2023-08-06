@@ -35,7 +35,7 @@ export default function Survival({ curPlayer, curGame }) {
     const [isPictureUploaded, setIsPictureUploaded] = useState(false);
     const [timeElapsed, setTimeElapsed] = useState(0);
     const [showClock, setShowClock] = useState(true);
-
+    const [sendToPun, setSendToPun] = useState(false)
 
     useEffect(() => {
         let clockInterval: NodeJS.Timeout;
@@ -48,16 +48,7 @@ export default function Survival({ curPlayer, curGame }) {
 
     const handleFinishClick = async ()=> {
 
-        let totalNumOfPlayers = 0;
-        await getDoc(curGame._gameRef).then((docSnapshot) => {
-            if (docSnapshot.exists()){
-                // @ts-ignore
-                totalNumOfPlayers = docSnapshot.data().done
-            }
-        })
-
-
-        if (totalNumOfPlayers === curGame._players.length) {
+        if (sendToPun) {
         //     go to punishment
             curGame.setDone(0)
             await curGame.getPunishmentFromDataBase()
@@ -68,16 +59,32 @@ export default function Survival({ curPlayer, curGame }) {
         }
     }
 
-    const handlePictureUpload = ()=> {
-        if (!isPictureUploaded)
+    const handlePictureUpload = async ()=> {
+        if (!isPictureUploaded){
             curGame.incrementDone()
-        setIsPictureUploaded(true);
-        const missionDurationInSeconds = timeElapsed - 10;
-        console.log("sec:" ,missionDurationInSeconds);
-        setShowClock(false);
-        if (missionDurationInSeconds > 0) {
-            curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds, curGame, "Survival");
+
+            // adds points
+            const missionDurationInSeconds = timeElapsed - 10;
+            console.log("sec:" ,missionDurationInSeconds);
+            setShowClock(false);
+            if (missionDurationInSeconds > 0) {
+                console.log(1)
+                await curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds, curGame, "Survival");
+            }
+
+            // Checks to see if this player should be sent to the punishment
+            let totalNumOfPlayers = 0;
+            getDoc(curGame._gameRef).then((docSnapshot) => {
+                if (docSnapshot.exists()){
+                    // @ts-ignore
+                    totalNumOfPlayers = docSnapshot.data().done
+                }
+            })
+            if (totalNumOfPlayers === curGame._players.length){
+                setSendToPun(true)
+            }
         }
+        setIsPictureUploaded(true);
     }
 
 

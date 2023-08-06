@@ -32,7 +32,7 @@ const NEXT: {[key:number]: string} ={
  */
 // @ts-ignore
 export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, setIsGameOver}) {
-    curGame.winnerListUpdate()
+    // curGame.winnerListUpdate()
     const [selected, setSelected] = useState(false);
 
     const handleNext = async ()=> {

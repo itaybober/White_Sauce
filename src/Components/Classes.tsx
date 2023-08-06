@@ -79,16 +79,17 @@ class Mission {
      * points attribute
      *
      */
-    public survivalPointSystem(player: Player, time: number, succeed = true) {
+    public async survivalPointSystem(player: Player, time: number, succeed = true) {
         // calculate number of points to add to a player
+        console.log(3)
         if (succeed) {
             if ((60000 / time) > 800) {
                 const newTotal = player._points + 800;
-                player.setPoints(newTotal);
-            }
-            else {
-                const newTotal =player._points + Math.ceil(60000 / time);
-                player.setPoints(newTotal);
+                await player.setPoints(newTotal);
+            } else {
+                console.log(4)
+                const newTotal = player._points + Math.ceil(60000 / time);
+                await player.setPoints(newTotal);
             }
         }
         return;
@@ -250,8 +251,8 @@ class Player {
         setDoc(this._playerRef, {secretMission: data}, {merge: true})
     }
 
-    public setPoints(newTotal: number) {
-        setDoc(this._playerRef, {points: newTotal}, {merge: true})
+    public async setPoints(newTotal: number) {
+        await setDoc(this._playerRef, {points: newTotal}, {merge: true})
     }
 
 
@@ -373,16 +374,16 @@ class Game {
      * @param type
      * @param succeed
      */
-    public addPointsSinglePlayer(player: Player, game: Game, time: number, type: string, succeed = true) {
+    public async addPointsSinglePlayer(player: Player, game: Game, time: number, type: string, succeed = true) {
+        console.log(2)
         console.log("point system trigger")
         if (type === "Survival") {
-            this._curMission.survivalPointSystem(player, time);
+            await this._curMission.survivalPointSystem(player, time);
         } else if (type === "Group") {
             this._curMission.groupPointSystem(game, time);
         } else if (type === "Punishment") {
             this._curMission.punishmentPointSystem(player, time);
-        }
-        else if (type === "Secret") {
+        } else if (type === "Secret") {
             this._curMission.secretPointSystem(player, succeed);
         }
         console.log("mission type: ", type)
@@ -617,7 +618,6 @@ class Game {
     async getPlayerDataFromRef(playerRef: any):Promise<any>{
         const playerData = await getDoc(playerRef);
         const data : any = await playerData.data();
-        console.log("data name", data.name)
         return data
     }
     public async assignsAvatar() {

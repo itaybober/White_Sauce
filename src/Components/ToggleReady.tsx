@@ -10,8 +10,9 @@ export default function ToggleReady({curGame,handleNext}) {
 
 
     onSnapshot(curGame._gameRef, (snapshot: { data: () => any; }) => {
+        if (!curGame || !snapshot || !snapshot.data())
+            return
         const data = snapshot.data().ready
-        console.log("ready checked")
         if (typeof data !== 'undefined') {
             if (data === curGame._players.length){
                 //     advance all
