@@ -37,8 +37,6 @@ export default function Survival({ curPlayer, curGame }) {
     const [showClock, setShowClock] = useState(true);
     const [sendToPun, setSendToPun] = useState(false)
 
-
-
     useEffect(() => {
         let clockInterval: NodeJS.Timeout;
         clockInterval = setInterval(() => {
@@ -52,8 +50,8 @@ export default function Survival({ curPlayer, curGame }) {
         if (sendToPun) {
         //     go to punishment
             const newTotal = curPlayer._points - 500;
-            curPlayer.setPoints(newTotal);
-            curGame.setDone(0)
+            await curPlayer.setPoints(newTotal);
+            await curGame.setDone(0)
             await curGame.getPunishmentFromDataBase()
             await curPlayer.setCurPage(PAGES.PUN)
         } else {
