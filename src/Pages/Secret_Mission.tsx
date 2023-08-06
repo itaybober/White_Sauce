@@ -60,7 +60,8 @@ export default function Secret_Mission({curPlayer,curGame}) {
                         <Typography variant="h5" color={"primary"}> <b> {mission_object.title}</b></Typography>
                         <br/>
                         <Typography variant="h6">
-                            {mission_object.description}   </Typography>
+                            {/*/!*{mission_object.description}*/}
+                               </Typography>
                     </CardContent>
                 </div>
 
@@ -84,6 +85,7 @@ export default function Secret_Mission({curPlayer,curGame}) {
                 }
         />
             <ToggleButton
+                color={"primary"}
                 value="check"
                 selected={selected}
                 onChange={handleToggle}
