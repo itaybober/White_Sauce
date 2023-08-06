@@ -4,7 +4,7 @@ import './Main_Page.css'
 import {Auth} from "../Components/auth";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import logo from '../Itay_Folder/images/step-1_logo.svg'
+import logo from "./step-1_logo.svg";
 import background from "../Pages/images/background/long_background.svg"
 
 // @ts-ignore
