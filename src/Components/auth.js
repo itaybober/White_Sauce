@@ -53,6 +53,9 @@ export const Auth = () => {
                    onChange={(e) => setEmail(e.target.value)}
                    sx={{fontSize: "24px",
                         color: "white"}}
+                   inputProps={{
+                       maxLength: 12 // Set the maximum length to 12 characters
+                   }}
                    onKeyPress={handleKeyPress}
             />
             <Button  onClick={signInAnonymous}

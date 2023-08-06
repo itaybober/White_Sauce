@@ -37,6 +37,8 @@ export default function Survival({ curPlayer, curGame }) {
     const [showClock, setShowClock] = useState(true);
     const [sendToPun, setSendToPun] = useState(false)
 
+
+
     useEffect(() => {
         let clockInterval: NodeJS.Timeout;
         clockInterval = setInterval(() => {
@@ -49,6 +51,8 @@ export default function Survival({ curPlayer, curGame }) {
     const handleFinishClick = async ()=> {
         if (sendToPun) {
         //     go to punishment
+            const newTotal = curPlayer._points - 500;
+            curPlayer.setPoints(newTotal);
             curGame.setDone(0)
             await curGame.getPunishmentFromDataBase()
             await curPlayer.setCurPage(PAGES.PUN)
@@ -64,7 +68,6 @@ export default function Survival({ curPlayer, curGame }) {
 
             // adds points
             const missionDurationInSeconds = timeElapsed - 10;
-            console.log("sec:", missionDurationInSeconds);
             setShowClock(false);
             if (missionDurationInSeconds > 0) {
                 curGame.addPointsSinglePlayer(curPlayer, curGame, missionDurationInSeconds,"Survival");
@@ -84,6 +87,7 @@ export default function Survival({ curPlayer, curGame }) {
             }
         }
         setIsPictureUploaded(true);
+
     }
 
 
