@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
+import Container from "@mui/material/Container";
 
 const Timer_Component: React.FC = () => {
     const [showCountdown, setShowCountdown] = useState(true);
@@ -44,13 +46,17 @@ const Timer_Component: React.FC = () => {
     };
 
     return (
-        <div>
+        // <Card>
+        <Container sx={{width: 350}}>
             {showCountdown ? (
-                <Typography variant="h5" color={"primary"}><strong>THE MISSION WILL BEGIN AUTOMATICALLY IN {count} SECONDS</strong></Typography>
+                <Typography variant="h4" color={"primary"}><strong>The mission will begin in {count} seconds
+                    </strong></Typography>
+
             ) : showClock ? (
                 <Typography variant={"h4"}><strong>Mission Started!<br></br> {formatTime(timeElapsed)}</strong></Typography>
             ) : null}
-        </div>
+            </Container>
+        // </Card>
     );
 };
 

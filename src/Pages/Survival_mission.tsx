@@ -93,7 +93,8 @@ export default function Survival({ curPlayer, curGame }) {
                         <Typography variant="h5" color={"primary"}> <b> {mission_object._title}</b></Typography>
                         <br/>
                         <Typography variant="h6">
-                            {mission_object._description}   </Typography>
+                            {mission_object._description}
+                        </Typography>
                         </CardContent>
                 </div>
             }
@@ -103,8 +104,11 @@ export default function Survival({ curPlayer, curGame }) {
 
                         <img src={survivel2} style={{ width: 260, height: 110, opacity: 0.7 }} />
                         <br/>
-                        <Typography variant={"h4"}> <b>survival mission</b></Typography>
-                        <Typography variant={"h5"}> {mission_object._title}</Typography>
+                        <Typography variant={"h4"}> <b>Survival mission</b></Typography>
+                        <Typography variant={"h5"}>
+                            {mission_object._title}
+                        </Typography>
+                        <Typography variant={"h6"} color={"primary"}>Click to reveal</Typography>
                         {/*<div style={{ width: 260, height: 100,display: "flex", flexFlow:"row", justifyContent: "flex-end", alignItems: "flex-end" }}>*/}
                         {/*<img src={arrow} style={{ width: 20, height: 20, opacity: 0.7}} />*/}
                         {/*</div>*/}
@@ -114,12 +118,13 @@ export default function Survival({ curPlayer, curGame }) {
 
 
             }/>
+            <br/>
 
 
             {showClock && <Timer_Component/>}
-
+<br/>
             <Container sx={{ width: 330, flex: 1 }}  >
-                {timeElapsed > 10 && <Typography variant={"h5"}><br/>To finish your task take a picture<br/><br/></Typography>}
+                {timeElapsed > 10 && <Typography variant={"h5"}>To finish your task take a picture<br/><br/></Typography>}
                 {/*<CameraComponent buttonText="Take a Photo" />*/}
                 {timeElapsed > 10 && <CameraComponent buttonText="Take a Photo" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>}
 
