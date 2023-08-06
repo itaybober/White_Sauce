@@ -11,7 +11,7 @@ import background from "../Pages/images/background/long_background.svg"
 export default function Main_Page() {
 
 
-    return(
+     return(
 
 
         <Container className={"mainFrame"}>
