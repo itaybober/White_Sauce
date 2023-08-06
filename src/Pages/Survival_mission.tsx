@@ -60,27 +60,27 @@ export default function Survival({ curPlayer, curGame }) {
     }
 
     const handlePictureUpload = ()=> {
-        if (!isPictureUploaded)
+        if (!isPictureUploaded) {
             curGame.incrementDone()
 
             // adds points
             const missionDurationInSeconds = timeElapsed - 10;
-            console.log("sec:" ,missionDurationInSeconds);
+            console.log("sec:", missionDurationInSeconds);
             setShowClock(false);
             if (missionDurationInSeconds > 0) {
                 console.log(1)
-                await curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds, curGame, "Survival");
+                curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds, curGame, "Survival");
             }
 
             // Checks to see if this player should be sent to the punishment
             let totalNumOfPlayers = 0;
             getDoc(curGame._gameRef).then((docSnapshot) => {
-                if (docSnapshot.exists()){
+                if (docSnapshot.exists()) {
                     // @ts-ignore
                     totalNumOfPlayers = docSnapshot.data().done
                 }
             })
-            if (totalNumOfPlayers === curGame._players.length){
+            if (totalNumOfPlayers === curGame._players.length) {
                 setSendToPun(true)
             }
         }
@@ -125,7 +125,6 @@ export default function Survival({ curPlayer, curGame }) {
 
 
             }/>
-
 
 
             {showClock && <Timer_Component/>}
