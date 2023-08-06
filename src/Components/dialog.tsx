@@ -8,10 +8,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 import {PAGES} from "../Pages/GameManager";
 import {Game, Player} from "../Components/Classes";
 import DoubleToggleReady from './DoubleToggleReady';
+import {useState} from "react";
 
 
 export default function AlertDialog({ curPlayer, curGame }: any) {
     const [open, setOpen] = React.useState(false);
+    const [userAnswer, setUserAnswer] = useState(false)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -24,9 +26,15 @@ export default function AlertDialog({ curPlayer, curGame }: any) {
     };
 
     const handleYes = () => {
+        setUserAnswer(true);
         curPlayer.setPoints(curPlayer._points + 1500)
+        curGame.addPointsSinglePlayer(curPlayer, curGame, 0, "Group");
+
     }
-    const handleNo = () => {}
+    const handleNo = () => {
+        setUserAnswer(true);
+        curGame.addPointsSinglePlayer(curPlayer, curGame, 0, "Group");
+    }
 
     const handleNext = () => {
         curGame.updateAllPlayersPages(PAGES.END)
@@ -49,9 +57,9 @@ export default function AlertDialog({ curPlayer, curGame }: any) {
                     },
                 }}
             >
-                <DialogTitle id="alert-dialog-title">
+                {!userAnswer &&<DialogTitle id="alert-dialog-title">
                     {" Did you succeed in the secret mission?"}
-                </DialogTitle>
+                </DialogTitle>}
                 {/*<DialogContent>*/}
                 {/*    <DialogContentText id="alert-dialog-description">*/}
                 {/*        Let Google help apps determine location. This means sending anonymous*/}
