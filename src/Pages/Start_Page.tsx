@@ -52,7 +52,7 @@ function Start_Page({ curPlayer, logOut }) {
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        maxWidth: "80%", // Reduce the maximum width of the card
+        maxWidth: "73%", // Reduce the maximum width of the card
         width: 400, // Reduce the card width
         backgroundColor: "rgba(255, 255, 255, 0.7)",
         marginTop: "20px",
