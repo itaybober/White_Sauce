@@ -45,12 +45,14 @@ function CovenantPage({curGame, curPlayer}) {
     return(
         <Container id={"CovenantPage_Background"} sx={{p:2}} >
             <Typography
-                variant='h5'>Your Game Cypher: {curGame._id}
+                variant='h6'>Your game cypher : </Typography>
+            <Typography variant={"h3"}><strong> {curGame._id}</strong>
             </Typography>
             <Card sx={{flex:"auto",  position:'relative', width: "90%", top: "2%", alignContent: "left" }   } >
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "left"}}>
-                    <Typography variant="h4" color={"primary"}> The Covenant </Typography>
-                    <Typography variant="h6" >Your New Ride or Die</Typography>
+                    <Typography variant="h4" color={"primary"}>The Covenant</Typography>
+
+                    <Typography variant="h6" >Read out loud - Your New Ride or Die</Typography>
                     <Typography variant="h6">
                         The anticipation is palpable.<br/> You have all gathered here together in order to
                         plan your next adventure. By joining forces, you can tackle

@@ -634,7 +634,7 @@ class Game {
                     const sortedQuery = query(playersRef, orderBy('points'));
                     const querySnapshot = await getDocs(sortedQuery);
                     const sortedData: player[] = querySnapshot.docs.map((doc) => doc.data() as player);
-                    console.log (sortedData)
+                    console.log ("the sorted data is- " , sortedData)
                     // setSortedItems(sortedData);
                 } catch (error) {
                     console.log('Error fetching data:', error);

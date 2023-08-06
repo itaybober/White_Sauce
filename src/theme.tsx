@@ -163,6 +163,8 @@ const theme = createTheme({
         MuiButton: {
                 styleOverrides: {
                     root: {
+                        padding:"8px 30px",
+                        fontSize: "16px",
                         size: 2,
                         background: '#25252D',
                         borderRadius: '10px'
@@ -170,6 +172,25 @@ const theme = createTheme({
                     },
                 },
         },
+
+        /////
+        MuiToggleButton: {
+            styleOverrides: {
+                root: {
+                    padding:"8px 30px",
+                    fontSize: "16px",
+                    size: 2,
+                    // background:" #D1B067",
+                    // opacity: "80%" ,
+                    borderRadius: '10px'
+
+                },
+            },
+        },
+
+
+
+
 
             },
 

@@ -85,9 +85,12 @@ function Start_Page({ curPlayer, logOut }) {
             <div id={"StartPage_Title"}>
                 <Typography variant="h4"> <b>Which Journey is Yours?</b></Typography>
             </div>
-            <Button variant={"outlined"} onClick={startPage} id={"StartPage_Button_Start"}>START A TRIBE</Button>
-            <Button variant={"outlined"} onClick={joinPage} id={"StartPage_Button_Join"}>JOIN A TRIBE</Button>
-            <Button variant={"outlined"} onClick={handleLearnHowToPlay} id={"StartPage_Button_Join"}>LEARN HOW TO PLAY!</Button>
+            <div className={"buttons"}>
+                <Button variant={"outlined"} onClick={handleLearnHowToPlay} id={"StartPage_Button_Learn"}>HOW TO PLAY?</Button>
+                <Button variant={"outlined"} onClick={startPage} id={"StartPage_Button_Start"}>START A TRIBE</Button>
+                <Button variant={"outlined"} onClick={joinPage} id={"StartPage_Button_Join"}>JOIN A TRIBE <br/></Button>
+
+            </div>
 
             {showInstructions && (
                 <Card style={cardStyle}>
