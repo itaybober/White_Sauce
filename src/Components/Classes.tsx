@@ -81,14 +81,15 @@ class Mission {
      */
     public async survivalPointSystem(player: Player, time: number, succeed = true) {
         // calculate number of points to add to a player
-        console.log(3)
         if (succeed) {
-            if ((60000 / time) > 800) {
+            if (time < 15) {
                 const newTotal = player._points + 800;
                 await player.setPoints(newTotal);
+            } else if (time >= 15 && time < 30) {
+                const newTotal = player._points + 500;
+                await player.setPoints(newTotal);
             } else {
-                console.log(4)
-                const newTotal = player._points + Math.ceil(60000 / time);
+                const newTotal = player._points + 300;
                 await player.setPoints(newTotal);
             }
         }
@@ -106,14 +107,15 @@ class Mission {
 
     public punishmentPointSystem(player: Player, time: number, succeed = true) {
         // calculate number of points to add to a player
-        const newTotal = player._points - 500;
-        player.setPoints(newTotal);
         if (succeed) {
-            if ((player._points + 60000 / time) > 500) {
+            if (time < 15) {
                 const newTotal = player._points + 500;
                 player.setPoints(newTotal);
+            } else if (time >= 15 && time < 30) {
+                const newTotal = player._points + 250;
+                player.setPoints(newTotal);
             } else {
-                const newTotal = Math.ceil(player._points + 60000 / time);
+                const newTotal = player._points + 100;
                 player.setPoints(newTotal);
             }
         }

@@ -87,7 +87,6 @@ export default function Survival({ curPlayer, curGame }) {
             }
         }
         setIsPictureUploaded(true);
-
     }
 
 
