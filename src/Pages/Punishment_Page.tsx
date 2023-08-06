@@ -38,7 +38,7 @@ export default function Punishment({curPlayer,curGame}) {
         console.log("sec:" ,missionDurationInSeconds);
         setShowClock(false);
         if (missionDurationInSeconds > 0) {
-            curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds, curGame, "Punishment");
+            curGame.addPointsSinglePlayer(curPlayer, curGame, missionDurationInSeconds, "Punishment");
         }
     }
 
@@ -77,6 +77,7 @@ export default function Punishment({curPlayer,curGame}) {
                             <br/>
                             <Typography variant={"h4"}> <b>turtle mission</b></Typography>
                             <Typography variant={"h5"}> {mission_object._title}</Typography>
+                            <Typography variant={"h6"} color={"primary"}>Click to reveal</Typography>
                         </CardContent>
                     </div>
                     }
