@@ -67,7 +67,7 @@ export default function Survival({ curPlayer, curGame }) {
             console.log("sec:", missionDurationInSeconds);
             setShowClock(false);
             if (missionDurationInSeconds > 0) {
-                curGame.addPointsSinglePlayer(curPlayer, missionDurationInSeconds, curGame, "Survival");
+                curGame.addPointsSinglePlayer(curPlayer, curGame, missionDurationInSeconds,"Survival");
             }
 
             // Checks to see if this player should be sent to the punishment
