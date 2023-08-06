@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/step-one/static/css/main.740dcf47.css",
-    "main.js": "/step-one/static/js/main.115f6ae3.js",
+    "main.css": "/step-one/static/css/main.8391ecbd.css",
+    "main.js": "/step-one/static/js/main.1b85b5f6.js",
     "static/js/787.3861a96c.chunk.js": "/step-one/static/js/787.3861a96c.chunk.js",
     "static/media/light_background.svg": "/step-one/static/media/light_background.0047e312fb1eff204495b68d2397536c.svg",
     "static/media/comic.jpg": "/step-one/static/media/comic.52726c33a948b6e0f2bb.jpg",
     "static/media/tiger.jpg": "/step-one/static/media/tiger.34d957493020fca41f25.jpg",
     "static/media/friends hanging out and being buddies.jpg": "/step-one/static/media/friends hanging out and being buddies.1c22b999c16205703e85.jpg",
-    "static/media/page3.png": "/step-one/static/media/page3.ccb15771e0d7cb8c2535.png",
-    "static/media/page7.png": "/step-one/static/media/page7.7673c526fb66ee2ec1b4.png",
-    "static/media/page6.png": "/step-one/static/media/page6.0715a7079bcab2cd1f5c.png",
-    "static/media/page4.png": "/step-one/static/media/page4.736831a9355882612d87.png",
+    "static/media/page3.png": "/step-one/static/media/page3.342a4cc9ef5b60b9a982.png",
+    "static/media/page7.png": "/step-one/static/media/page7.2b1fd0d03812d9db507c.png",
+    "static/media/page6.png": "/step-one/static/media/page6.de1669b39daef65caa82.png",
+    "static/media/page4.png": "/step-one/static/media/page4.52f46572a6bca18c1883.png",
     "static/media/sockhands.jpg": "/step-one/static/media/sockhands.9355b00d582bd7add39f.jpg",
-    "static/media/page2.png": "/step-one/static/media/page2.73faf7be85b95981a643.png",
-    "static/media/page8.png": "/step-one/static/media/page8.2feefd7646dcd79b5470.png",
-    "static/media/page5.png": "/step-one/static/media/page5.8ea85a5ce4eec0e4c1d1.png",
-    "static/media/page1.png": "/step-one/static/media/page1.9ad28e2f76ec6da3e4b5.png",
+    "static/media/page5.png": "/step-one/static/media/page5.6ebf0eb8c95528818f13.png",
+    "static/media/page2.png": "/step-one/static/media/page2.57e098f7c85248255fc6.png",
+    "static/media/page8.png": "/step-one/static/media/page8.c1074e4fbc06f2db896e.png",
+    "static/media/shield.png": "/step-one/static/media/shield.dbdf3c4f165c40905cd8.png",
+    "static/media/page1.png": "/step-one/static/media/page1.1b59e745326a6cff6115.png",
     "static/media/roboto-all-500-normal.woff": "/step-one/static/media/roboto-all-500-normal.0ab669b7a0d19b178f57.woff",
     "static/media/roboto-all-700-normal.woff": "/step-one/static/media/roboto-all-700-normal.a457fde362a540fcadff.woff",
     "static/media/roboto-all-400-normal.woff": "/step-one/static/media/roboto-all-400-normal.c5d001fa922fa66a147f.woff",
@@ -61,12 +62,12 @@
     "static/media/roboto-greek-ext-700-normal.woff2": "/step-one/static/media/roboto-greek-ext-700-normal.bd9854c751441ccc1a70.woff2",
     "static/media/light-bulb-svgrepo-com.svg": "/step-one/static/media/light-bulb-svgrepo-com.55920b328ecfcfcc5c795b219d0e6561.svg",
     "index.html": "/step-one/index.html",
-    "main.740dcf47.css.map": "/step-one/static/css/main.740dcf47.css.map",
-    "main.115f6ae3.js.map": "/step-one/static/js/main.115f6ae3.js.map",
+    "main.8391ecbd.css.map": "/step-one/static/css/main.8391ecbd.css.map",
+    "main.1b85b5f6.js.map": "/step-one/static/js/main.1b85b5f6.js.map",
     "787.3861a96c.chunk.js.map": "/step-one/static/js/787.3861a96c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.740dcf47.css",
-    "static/js/main.115f6ae3.js"
+    "static/css/main.8391ecbd.css",
+    "static/js/main.1b85b5f6.js"
   ]
 }
