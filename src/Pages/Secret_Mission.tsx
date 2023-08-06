@@ -44,24 +44,24 @@ export default function Secret_Mission({curPlayer,curGame}) {
                 </div>
 
             }
-                front_content={
-                    <div>
-                        <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center", alignItems: "center" ,textAlign: "center" }}>
-                            <img src={secret} style={{ width: 180, height: 200, opacity: 0.7 }} />
-                            <br/>
-                            <Typography variant={"h4"}> <b>Secret Mission</b></Typography>
-                            <Typography variant={"h6"}> Make sure no one is peeking, then click to reveal your secret mission</Typography>
-                            {/*<Typography variant={"h4"} >Secret Mission</Typography>*/}
-                            {/*<div style={{ maxWidth: '100%', maxHeight: '100%', overflow: 'hidden' }}>*/}
-                            {/*    <img src={secret} alt="a" style={{ maxWidth: '30%', maxHeight: '30%', objectFit: 'contain' }} />*/}
-                            {/*</div>*/}
-                            {/*/!*<div style={{ marginTop: "auto" }}>*!/*/}
-                            {/*    <Typography variant={"h6"} sx={{ textAlign: "center" }}></Typography>*/}
-                            {/*</div>*/}
-                        </CardContent>
-                    </div>
-                }
-        />
+                            front_content={
+                                <div>
+                                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center", alignItems: "center" ,textAlign: "center" }}>
+                                        <img src={secret} style={{ width: 180, height: 200, opacity: 0.7 }} />
+                                        <br/>
+                                        <Typography variant={"h4"}> <b>Secret Mission</b></Typography>
+                                        <Typography variant={"h6"}> Make sure no one is peeking, then click to reveal your secret mission</Typography>
+                                        {/*<Typography variant={"h4"} >Secret Mission</Typography>*/}
+                                        {/*<div style={{ maxWidth: '100%', maxHeight: '100%', overflow: 'hidden' }}>*/}
+                                        {/*    <img src={secret} alt="a" style={{ maxWidth: '30%', maxHeight: '30%', objectFit: 'contain' }} />*/}
+                                        {/*</div>*/}
+                                        {/*/!*<div style={{ marginTop: "auto" }}>*!/*/}
+                                        {/*    <Typography variant={"h6"} sx={{ textAlign: "center" }}></Typography>*/}
+                                        {/*</div>*/}
+                                    </CardContent>
+                                </div>
+                            }
+            />
 
         <ToggleReady curGame={curGame} handleNext={handleNext}/>
 

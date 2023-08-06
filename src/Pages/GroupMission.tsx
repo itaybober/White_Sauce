@@ -31,7 +31,7 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
     }
 
     return (
-        <Container className={"group_mission_component"} sx={{ p: 2 }}>
+        <Container className={"survival_page_component"} sx={{ p: 2 }}>
             <Avatar_and_points name={curPlayer._name} points={curPlayer._points} avatarName={curPlayer._avatar} avatarRef={curPlayer._avatarRef}/>
             <Flippable_card
                 back_content={
@@ -51,6 +51,8 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
                             <br />
                             <Typography variant={"h4"}> <b>tribe mission</b></Typography>
                             <Typography variant={"h5"}> {mission_object._title}</Typography>
+                            <Typography variant={"h6"} color={"primary"}>Click to reveal</Typography>
+
                         </CardContent>
                     </div>
                 }
