@@ -43,7 +43,6 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
         // this checks if we are on the last page or not
         if (nextMiss === PAGESMISSIONS.length - 1)
             setIsGameOver(true)
-
     }
 
 

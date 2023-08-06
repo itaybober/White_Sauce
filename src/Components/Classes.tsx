@@ -425,7 +425,7 @@ class Game {
             const game = await transaction.get(this._gameRef);
             if (game.exists()) {
                 const increment = game.data().done + 1;
-                transaction.update(this._gameRef, {done: increment});
+                await transaction.update(this._gameRef, {done: increment});
             }
         });
 

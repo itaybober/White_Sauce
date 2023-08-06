@@ -7,16 +7,18 @@ import ToggleButton from "@mui/material/ToggleButton";
 // @ts-ignore
 export default function ToggleReady({curGame,handleNext}) {
     const [selected, setSelected] = useState(false);
+    let [counter, setCounter] = useState(0)
 
-
-    onSnapshot(curGame._gameRef, (snapshot: { data: () => any; }) => {
+    const unsubscribe = onSnapshot(curGame._gameRef, (snapshot: { data: () => any; }) => {
         if (!curGame || !snapshot || !snapshot.data())
             return
         const data = snapshot.data().ready
         if (typeof data !== 'undefined') {
-            if (data === curGame._players.length){
+            if (data === curGame._players.length && counter < 1){
                 //     advance all
                 curGame.setReady(0)
+                setCounter(counter+1)
+                unsubscribe()
                 handleNext()
             }
         }
