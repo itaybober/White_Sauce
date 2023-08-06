@@ -79,17 +79,17 @@ class Mission {
      * points attribute
      *
      */
-    public survivalPointSystem(player: Player, time: number, succeed = true) {
+    public async survivalPointSystem(player: Player, time: number, succeed = true) {
         // calculate number of points to add to a player
+        console.log(3)
         if (succeed) {
             if ((60000 / time) > 800) {
                 const newTotal = player._points + 800;
-                player.setPoints(newTotal);
-            }
-            else {
-                const newTotal =player._points + (Math.ceil(60000 / time)); /// math-לא מחזיר מספררר
-                console.log(" time", time)
-                player.setPoints(newTotal);
+                await player.setPoints(newTotal);
+            } else {
+                console.log(4)
+                const newTotal = player._points + Math.ceil(60000 / time);
+                await player.setPoints(newTotal);
             }
         }
         return;
@@ -618,7 +618,6 @@ class Game {
     async getPlayerDataFromRef(playerRef: any):Promise<any>{
         const playerData = await getDoc(playerRef);
         const data : any = await playerData.data();
-        console.log("data name", data.name)
         return data
     }
     public async assignsAvatar() {
