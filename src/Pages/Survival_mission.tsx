@@ -49,7 +49,9 @@ export default function Survival({ curPlayer, curGame }) {
     const handleFinishClick = async ()=> {
         if (sendToPun) {
         //     go to punishment
-            curGame.setDone(0)
+            const newTotal = curPlayer._points - 500;
+            await curPlayer.setPoints(newTotal);
+            await curGame.setDone(0)
             await curGame.getPunishmentFromDataBase()
             await curPlayer.setCurPage(PAGES.PUN)
         } else {
@@ -64,7 +66,6 @@ export default function Survival({ curPlayer, curGame }) {
 
             // adds points
             const missionDurationInSeconds = timeElapsed - 10;
-            console.log("sec:", missionDurationInSeconds);
             setShowClock(false);
             if (missionDurationInSeconds > 0) {
                 curGame.addPointsSinglePlayer(curPlayer, curGame, missionDurationInSeconds,"Survival");
@@ -86,6 +87,7 @@ export default function Survival({ curPlayer, curGame }) {
             }
         }
         setIsPictureUploaded(true);
+
     }
 
 
