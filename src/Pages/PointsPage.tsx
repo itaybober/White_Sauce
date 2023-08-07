@@ -61,17 +61,7 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
 
             <ToggleReady curGame={curGame} handleNext={handleNext}/>
         </Container>
-///
     );
 
 }
 
-// for calling the winner list-
-// <Card sx={{ width: 330, height: 370 } }>
-//     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
-//         <Typography variant="h5" color={"primary"}> <b>You better hurry people are starting to finish...</b></Typography>
-//         {/*<Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"}*/}
-//         {/*             name2={"?"} points2={0} bg2={"#78909C"}*/}
-//         {/*             name3={"?"} points3={0} bg3={"#78909C"} />*/}
-//     </CardContent>
-// </Card>
