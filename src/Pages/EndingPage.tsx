@@ -148,9 +148,9 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
                     startIcon={<GetAppIcon />}
                     sx={{
                         borderRadius: '10px',
-                        color: '#D1B067',
-                        background: '#282c34',
-                        width: '40%', // Adjust the width as needed
+                        // color: '#D1B067',
+                        // background: '#282c34',
+                        width: '140px', // Adjust the width as needed
                     }}
                 >
                     Download
@@ -160,9 +160,7 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
                     startIcon={<ShareIcon />}
                     sx={{
                         borderRadius: '10px',
-                        color: '#D1B067',
-                        background: '#282c34',
-                        width: '40%', // Adjust the width as needed
+                        width: '140px', // Adjust the width as needed
                     }}
                 >
                     Share

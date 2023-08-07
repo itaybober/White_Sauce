@@ -52,15 +52,15 @@ function CovenantPage({curGame, curPlayer}) {
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "left"}}>
                     <Typography variant="h4" color={"primary"}>The Covenant</Typography>
 
-                    <Typography variant="h6" >Read out loud - Your New Ride or Die</Typography>
+                    <Typography variant="h6" >Your New Ride or Die</Typography>
                     <Typography variant="h6">
                         The anticipation is palpable.<br/> You have all gathered here together in order to
                         plan your next adventure. By joining forces, you can tackle
                         any challenge that lays ahead. With excited chatter and lively banter,
-                        each idea more exciting than the last, they knew they were in for an uplifting and
+                        each idea more exciting than the last, you all know you're in for an
                         unforgettable experience. <br/>
                     </Typography>
-                    <Typography variant="h6" >Press your finger to the square, but remeber...<br/> No Backsies</Typography>
+                    <Typography variant="h6" >Press your finger to the square, but remember...<br/> No Backsies</Typography>
 
                 </CardContent>
             </Card>
