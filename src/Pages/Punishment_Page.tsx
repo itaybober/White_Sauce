@@ -58,10 +58,10 @@ export default function Punishment({curPlayer,curGame}) {
                 <Flippable_card back_content={
                     <div>
 
-                        <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
+                        <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center", alignItems: "center" ,textAlign: "center"}}>
                             <Typography variant="h5" color={"primary"}> <b> {mission_object._title}</b></Typography>
-                            <Typography  sx={{lineHeight: '20px'}} variant={"h6"} >
-                                <br/>You lost, sucks to suck. <br/><br/>
+                            <Typography  variant={"h6"} ><br/>
+                                <b>You lost, sucks to suck. </b><br/>
                                 {mission_object._description}
                             </Typography>
                         </CardContent>
@@ -73,7 +73,7 @@ export default function Punishment({curPlayer,curGame}) {
                         <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center", alignItems: "center" ,textAlign: "center" }}>
                             <img src={turtle} style={{ width: 200, height: 200, opacity: 0.7 }}/>
                             <br/>
-                            <Typography variant={"h4"}> <b>turtle mission</b></Typography>
+                            <Typography variant={"h4"}> <b>Turtle Mission</b></Typography>
                             <Typography variant={"h5"}> {mission_object._title}</Typography>
                             <Typography variant={"h6"} color={"primary"}>Click to reveal</Typography>
                         </CardContent>
@@ -92,12 +92,17 @@ export default function Punishment({curPlayer,curGame}) {
                 {isPictureUploaded && <Typography variant={"h5"}> <br></br> a Loser photo: </Typography>}
 
 
-                {timeElapsed > 10 && <CameraComponent buttonText="Take a disgraceful Picture" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>}
+                {timeElapsed > 10 && <CameraComponent buttonText="Your disgraceful Picture" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>}
                 {!isPictureUploaded && <Button onClick={moveToNextPage}
                                                variant="contained"
                                                color="primary"
                                                size={"medium"}
-                                               sx={{mb: 4}}
+                                               sx={{textTransform: "none",
+                                                   mb: 4,
+                                                   fontSize: "20px",
+                                                   borderStyle:"solid",
+                                                   borderWidth:"2px",
+                                                   borderColor: "#D1B067"}}
                 >Forfeit</Button>}
 
 

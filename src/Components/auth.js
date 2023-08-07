@@ -59,7 +59,7 @@ export const Auth = () => {
                    onKeyPress={handleKeyPress}
             />
             <Button  onClick={signInAnonymous}
-                     variant={"contained"}
+                     variant={"outlined"}
                      sx={{
                          background: "#D1B067",
                          color: "#282c34",

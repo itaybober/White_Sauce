@@ -20,6 +20,8 @@ import info from './images/info.png';
 
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import ShareIcon from "@mui/icons-material/Share";
+import {ArrowRight} from "@mui/icons-material";
 
 // @ts-ignore
 function Start_Page({ curPlayer, logOut }) {
@@ -111,7 +113,7 @@ function Start_Page({ curPlayer, logOut }) {
                 >
                     <img src={info} alt="Info" width="35" height="35" />
                 </div>
-                <Button variant={"outlined"} onClick={startPage} id={"StartPage_Button_Start"}>Start a trib</Button>
+                <Button variant={"outlined"} onClick={startPage} id={"StartPage_Button_Start"}>Start a tribe</Button>
                 <Button variant={"outlined"} onClick={joinPage} id={"StartPage_Button_Join"}>Join a tribe</Button>
             </div>
 
@@ -122,7 +124,19 @@ function Start_Page({ curPlayer, logOut }) {
                     </CardContent>
                     <div style={buttonContainerStyle}>
                         {currentImageIndex < imageArray.length - 1 ? (
-                            <Button variant="outlined" onClick={handleNextImage} disabled={currentImageIndex === imageArray.length - 1} style={{ ...nextButtonStyle }} disableElevation>
+                            <Button variant="outlined"
+                                    onClick={handleNextImage}
+                                    disabled={currentImageIndex === imageArray.length - 1}
+                                    style={{ ...nextButtonStyle }}
+                                    sx={{
+                                        borderRadius: '10px',
+                                        width: '140px', // Adjust the width as needed
+                                        textTransform: "none",
+                                        fontSize: "20px",
+                                        color: "white"
+                                    }}
+                                    disableElevation
+                            >
                                 Next
                             </Button>
                         ) : (

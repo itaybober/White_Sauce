@@ -63,7 +63,8 @@ export default function AlertDialog({ curPlayer, curGame }: any) {
                 PaperProps={{
                     style: {
                         backgroundColor: "#393948",
-                        borderRadius:10
+                        borderRadius:10,
+                        padding:10
                     },
                 }}
             >

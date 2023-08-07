@@ -180,6 +180,7 @@ const theme = createTheme({
                     padding:"8px 30px",
                     fontSize: "16px",
                     size: 2,
+                    textTransform: "lowercase",
                     // background:" #D1B067",
                     // opacity: "80%" ,
                     borderRadius: '10px'

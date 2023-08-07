@@ -113,7 +113,7 @@ export default function Survival({ curPlayer, curGame }) {
 
                         <img src={survivel2} style={{ width: 260, height: 110, opacity: 0.7 }} />
                         <br/>
-                        <Typography variant={"h4"}> <b>Survival mission</b></Typography>
+                        <Typography variant={"h4"}> <b>Survival Mission</b></Typography>
                         <Typography variant={"h5"}>
                             {mission_object._title}
                         </Typography>

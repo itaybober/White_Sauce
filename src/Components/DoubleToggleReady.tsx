@@ -38,7 +38,7 @@ export default function ToggleReady({curGame,handleNext,handleYes,handleNo}) {
         }}>
             {selected ? (
                 <div style={{
-                    width: "300px",
+                    width: "270px",
                     display: "flex",
                     justifyContent: "space-evenly"
                 }}>

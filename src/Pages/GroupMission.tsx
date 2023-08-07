@@ -50,8 +50,8 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
                         <CardContent sx={{ display: "flex", flexFlow: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
                             <img src={shield} style={{ width: 200, height: 200, opacity: 0.7 }} />
                             <br />
-                            <Typography variant={"h4"}> <b>tribe mission</b></Typography>
-                            <Typography variant={"h5"}> {mission_object._title}</Typography>
+                            <Typography variant={"h4"}> <b>Tribe Mission</b></Typography>
+                            <Typography variant={"h5"}> "{mission_object._title}"</Typography>
                             <Typography variant={"h6"} color={"primary"}>Click to reveal</Typography>
 
                         </CardContent>
