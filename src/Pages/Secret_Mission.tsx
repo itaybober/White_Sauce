@@ -34,11 +34,11 @@ export default function Secret_Mission({curPlayer,curGame}) {
             <Avatar_and_points name={curPlayer._name} points={curPlayer._points} avatarName={curPlayer._avatar} avatarRef={curPlayer._avatarRef}/>
             <Flippable_card back_content={
                 <div>
-                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
+                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center", alignItems: "center" ,textAlign: "justify" }}>
                         <Typography variant="h5" color={"primary"}> <b> {mission_object.title}</b></Typography>
                         <br/>
-                        <Typography variant="h6">
-                            {/*/!*{mission_object.description}*/}
+                        <Typography variant="h6" >
+                            {mission_object.description}
                                </Typography>
                     </CardContent>
                 </div>
