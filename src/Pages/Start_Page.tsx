@@ -13,6 +13,11 @@ import page5 from './images/demo/page5.png';
 import page6 from './images/demo/page6.png';
 import page7 from './images/demo/page7.png';
 import page8 from './images/demo/page8.png';
+import page9 from './images/demo/page9.png';
+import page10 from './images/demo/page10.png';
+import info from './images/info.png';
+
+
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
@@ -20,7 +25,7 @@ import CardContent from "@mui/material/CardContent";
 function Start_Page({ curPlayer, logOut }) {
     const [showInstructions, setShowInstructions] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const imageArray = [page1, page2, page3, page4, page5, page6, page7, page8];
+    const imageArray = [page1, page2, page3, page4, page5, page6, page7, page8, page9,page10];
 
     function startPage() {
         curPlayer.setCurPage(PAGES.FILTERS);
@@ -79,6 +84,19 @@ function Start_Page({ curPlayer, logOut }) {
         backgroundColor: showInstructions ? "rgba(0, 0, 0, 0.87)" : "#fff", // Set the button color based on showInstructions
     };
 
+    const infoButtonStyle = {
+        position: "absolute" as "absolute", // Type assertion
+        top: "20px", // Adjust the top position
+        right: "20px", // Adjust the right position
+        borderRadius: "50%",
+        width: "48px",
+        height: "20px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+    };
+
     return (
         <div id={"StartPage_Background"}>
             <img src={logo} onClick={logOut} width={103} height={85} />
@@ -86,9 +104,15 @@ function Start_Page({ curPlayer, logOut }) {
                 <Typography variant="h4"> <b>Which Journey is Yours?</b></Typography>
             </div>
             <div className={"buttons"}>
-                <Button variant={"outlined"} onClick={handleLearnHowToPlay} id={"StartPage_Button_Learn"}>HOW TO PLAY?</Button>
+                <div
+                    onClick={handleLearnHowToPlay}
+                    id={"StartPage_Button_Learn"}
+                    style={infoButtonStyle}
+                >
+                    <img src={info} alt="Info" width="35" height="35" />
+                </div>
                 <Button variant={"outlined"} onClick={startPage} id={"StartPage_Button_Start"}>START A TRIBE</Button>
-                <Button variant={"outlined"} onClick={joinPage} id={"StartPage_Button_Join"}>JOIN A TRIBE <br/></Button>
+                <Button variant={"outlined"} onClick={joinPage} id={"StartPage_Button_Join"}>JOIN A TRIBE</Button>
             </div>
 
             {showInstructions && (
