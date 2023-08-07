@@ -38,9 +38,9 @@ export default function ToggleReady({curGame,handleNext,handleYes,handleNo}) {
         }}>
             {selected ? (
                 <div style={{
-                    width: "270px",
+                    width: "280px",
                     display: "flex",
-                    justifyContent: "space-evenly"
+                    justifyContent: "space-around"
                 }}>
                     <Button variant="outlined" onClick={ () => {
                         handleToggle()

@@ -93,7 +93,7 @@ export default function Survival({ curPlayer, curGame }) {
 
     // @ts-ignore
     return (
-
+//
         <Container className={"survival_page_component"} sx={{p:2}}  >
             <Avatar_and_points name={curPlayer._name} points={curPlayer._points} avatarName={curPlayer._avatar} avatarRef={curPlayer._avatarRef}/>
             <Flippable_card back_content={
@@ -115,7 +115,7 @@ export default function Survival({ curPlayer, curGame }) {
                         <br/>
                         <Typography variant={"h4"}> <b>Survival Mission</b></Typography>
                         <Typography variant={"h5"}>
-                            {mission_object._title}
+                            "{mission_object._title}"
                         </Typography>
                         <Typography variant={"h6"} color={"primary"}>Click to reveal</Typography>
                         {/*<div style={{ width: 260, height: 100,display: "flex", flexFlow:"row", justifyContent: "flex-end", alignItems: "flex-end" }}>*/}
