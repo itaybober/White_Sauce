@@ -657,20 +657,20 @@ class Game {
     // this function update the order of the players list in the game class by there points
 
 
-    async winnerListUpdate() {
-        try {
-            const playersRef = collection(db, 'Games', this._id, 'players');
-            const sortedQuery = query(playersRef, orderBy('points'));
-            const querySnapshot = await getDocs(sortedQuery);
-            // this._players = querySnapshot.docs.map((doc) => ({
-            //     id: doc.id,
-            //     ...doc.data(),
-            // })) as Player[]; // Map the data and set the correct type
-
-            console.log('the sorted data is-', this._players);
-        } catch (error) {
-            console.log('Error fetching data:', error);
-        }
-    }
+    // async winnerListUpdate() {
+    //     try {
+    //         const playersRef = collection(db, 'Games', this._id, 'players');
+    //         const sortedQuery = query(playersRef, orderBy('points'));
+    //         const querySnapshot = await getDocs(sortedQuery);
+    //         // this._players = querySnapshot.docs.map((doc) => ({
+    //         //     id: doc.id,
+    //         //     ...doc.data(),
+    //         // })) as Player[]; // Map the data and set the correct type
+    //
+    //         console.log('the sorted data is-', this._players);
+    //     } catch (error) {
+    //         console.log('Error fetching data:', error);
+    //     }
+    // }
 }
 export {Mission, Player, Game}

@@ -37,7 +37,7 @@ export default function WinnerList({ game }) {
     const compareByPoints = (a: { points: any; }, b: { points: any; }) => {
         const pointsA = a.points;
         const pointsB = b.points;
-        return pointsB - pointsA; // Sort in descending order (highest to lowest points)
+        return pointsB - pointsA;
     };
 
     useEffect(() => {
