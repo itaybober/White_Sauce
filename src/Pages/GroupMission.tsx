@@ -29,7 +29,6 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
         setItemData([friends]);
     }
 
-    console.log(curGame._players.length)
 
 
     return (
@@ -63,54 +62,6 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
             <CameraComponent buttonText="Proof Of Concept" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>
 
         <AlertDialog curPlayer={curPlayer} curGame={curGame}/>
-
-            {/*{isGameOver ? (*/}
-            {/*    <Card sx={{ mb: 4 }}>*/}
-            {/*        <CardContent>*/}
-            {/*            <Typography variant="h6">*/}
-            {/*                Did you succeed in the secret mission?*/}
-            {/*            </Typography>*/}
-            {/*        </CardContent>*/}
-            {/*        <CardActions sx={{ justifyContent: 'center' }}>*/}
-            {/*            <Button*/}
-            {/*                variant="contained"*/}
-            {/*                color="primary"*/}
-            {/*                size="medium"*/}
-            {/*                onClick={ () => {*/}
-            {/*                    console.log("clicked")*/}
-            {/*                    curGame.addPointsSinglePlayer(curPlayer, 0, "Secret");*/}
-            {/*                    curGame.updateAllPlayersPages(PAGES.END); // Transition to the next page*/}
-            {/*                }}*/}
-            {/*            >*/}
-            {/*                Yes*/}
-            {/*            </Button>*/}
-            {/*            <Button*/}
-            {/*                variant="contained"*/}
-            {/*                color="secondary"*/}
-            {/*                size="medium"*/}
-            {/*                onClick={() => {*/}
-            {/*                    curGame.updateAllPlayersPages(PAGES.END); // Transition to the next page*/}
-            {/*                    curGame.addPointsSinglePlayer(curPlayer, 0, "Secret", false);*/}
-
-            {/*                }}*/}
-            {/*            >*/}
-            {/*                No*/}
-            {/*            </Button>*/}
-            {/*        </CardActions>*/}
-            {/*    </Card>*/}
-            {/*) : (*/}
-            {/*    <Button*/}
-            {/*        onClick={() => {curGame.updateAllPlayersPages(PAGES.END)*/}
-            {/*        }}*/}
-            {/*        variant="contained"*/}
-            {/*        color="primary"*/}
-            {/*        size="medium"*/}
-            {/*        sx={{*/}
-            {/*            mb: 4,*/}
-            {/*        }}*/}
-            {/*    >*/}
-            {/*        Next*/}
-            {/*    </Button>*/}
         </Container>
     );
 
