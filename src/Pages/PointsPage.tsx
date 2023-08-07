@@ -51,7 +51,7 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
     return (
         <Container className={"points_page_component"} sx={{p:2}} >
             <Avatar_and_points name={curPlayer._name} points={curPlayer._points} avatarName={curPlayer._avatar} avatarRef={curPlayer._avatarRef}/>
-            <Card sx={{ width: 330, height: 370 } }>
+            <Card sx={{ width: 330, minHeight: 370 } }>
                 <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "center"}}>
                     <Typography variant="h5" color={"primary"}> <b>Who will be the next chief of the tribe?</b></Typography>
                     <WinnerList game={curGame}/>
@@ -61,17 +61,7 @@ export default function PointsPage({curPlayer,curGame,nextMiss, setNextMiss, set
 
             <ToggleReady curGame={curGame} handleNext={handleNext}/>
         </Container>
-///
     );
 
 }
 
-// for calling the winner list-
-// <Card sx={{ width: 330, height: 370 } }>
-//     <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify"}}>
-//         <Typography variant="h5" color={"primary"}> <b>You better hurry people are starting to finish...</b></Typography>
-//         {/*<Winner_list name1={"Achsaf"} points1={340} bg1={"#D9FB68"}*/}
-//         {/*             name2={"?"} points2={0} bg2={"#78909C"}*/}
-//         {/*             name3={"?"} points3={0} bg3={"#78909C"} />*/}
-//     </CardContent>
-// </Card>
