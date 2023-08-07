@@ -93,7 +93,7 @@ export default function Survival({ curPlayer, curGame }) {
 
     // @ts-ignore
     return (
-
+//
         <Container className={"survival_page_component"} sx={{p:2}}  >
             <Avatar_and_points name={curPlayer._name} points={curPlayer._points} avatarName={curPlayer._avatar} avatarRef={curPlayer._avatarRef}/>
             <Flippable_card back_content={

@@ -67,7 +67,7 @@ export default function Punishment({curPlayer,curGame}) {
                         </CardContent>
                     </div>
                     }
-
+                    {/**/}
                     front_content={
                     <div>
                         <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center", alignItems: "center" ,textAlign: "center" }}>

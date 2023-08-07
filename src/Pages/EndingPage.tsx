@@ -199,5 +199,5 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
 
     )
 }
-
+//
 export default EndingPage;
