@@ -61,6 +61,13 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
         fetchImages();
     }, [curGame]);
 
+/////
+    const compareByPoints = (a: { points: any; }, b: { points: any; }) => {
+        const pointsA = a.points;
+        const pointsB = b.points;
+        return pointsB - pointsA;
+    };
+    //////
 
     const winnerName = async (game: any) => {
         const listItems: any[] = [];
@@ -72,8 +79,10 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
                 console.log('Name property not found or undefined');
             }
         }
-        console.log('the name of the first item', listItems[0]?.name);
-        let name = await listItems[0]?.name;
+        const sortedPointData = listItems.sort(compareByPoints);
+
+        console.log('the name of the first item', sortedPointData[0]?.name);
+        let name = await sortedPointData[0]?.name;
         return name || '';
     };
 
@@ -118,6 +127,7 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
                     justifyContent: "flex-start",
                     alignItems: "flex-start",
                     textAlign: "center"
+
                 }}>
 
                     <WinnerList game={curGame}/>
@@ -150,9 +160,9 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
                         borderRadius: '10px',
                         // color: '#D1B067',
                         // background: '#282c34',
-                        width: '140px', // Adjust the width as needed
+                        width: '160px', // Adjust the width as needed
                         textTransform: "none",
-                        fontSize: "20px"
+                        fontSize: "20px",
                     }}
                 >
                     Download
@@ -164,7 +174,7 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
                         borderRadius: '10px',
                         width: '140px', // Adjust the width as needed
                         textTransform: "none",
-                        fontSize: "20px"
+                        fontSize: "20px",
                     }}
                 >
                     Share
@@ -176,15 +186,11 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
                 And you just did it!</i></Typography>
 
             <Container sx={{display: 'flex', justifyContent: "center", alignItems: "center", gap: '15px', p: 2}}>
-                <Button className={"new-btn"}
-                        onClick={next}
-                        variant="contained"
-                        sx={{
-                            textTransform: "none",
-                            fontSize: "20px"
-                        }}
-
-                >New adventure</Button>
+                <Button sx={{
+                    textTransform: "none",
+                    fontSize: "20px",
+                }}
+                        className={"new-btn"} onClick={next} variant="contained">New adventure</Button>
 
 
             </Container>

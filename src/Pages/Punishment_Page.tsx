@@ -74,7 +74,7 @@ export default function Punishment({curPlayer,curGame}) {
                             <img src={turtle} style={{ width: 200, height: 200, opacity: 0.7 }}/>
                             <br/>
                             <Typography variant={"h4"}> <b>Turtle Mission</b></Typography>
-                            <Typography variant={"h5"}> {mission_object._title}</Typography>
+                            <Typography variant={"h5"}> "{mission_object._title}"</Typography>
                             <Typography variant={"h6"} color={"primary"}>Click to reveal</Typography>
                         </CardContent>
                     </div>
