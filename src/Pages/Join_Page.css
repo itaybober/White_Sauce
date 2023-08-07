@@ -24,7 +24,8 @@
     top: 25%;
     width: 80%;
     text-justify: auto;
-    margin-top: 120px;
+    margin-top: 45px;
+    margin-bottom: 90px;
 }
 
 #JoinPage_Input {
@@ -44,7 +45,8 @@
     background-color: #D1B067;
     color: #282c34;
     padding: 8px 70px;
-    font-size: 20px;
+    font-size: 22px;
+    text-transform: none;
 }
 
 #goBack {

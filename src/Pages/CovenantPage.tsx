@@ -45,7 +45,7 @@ function CovenantPage({curGame, curPlayer}) {
     return(
         <Container id={"CovenantPage_Background"} sx={{p:2}} >
             <Typography
-                variant='h6'>Your game cypher : </Typography>
+                variant='h5'>Your game cypher : </Typography>
             <Typography variant={"h3"}><strong> {curGame._id}</strong>
             </Typography>
             <Card sx={{flex:"auto",  position:'relative', width: "90%", top: "2%", alignContent: "left" }   } >

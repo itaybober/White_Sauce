@@ -53,7 +53,7 @@ const Timer_Component: React.FC = () => {
                     </strong></Typography>
 
             ) : showClock ? (
-                <Typography variant={"h4"}><strong>Mission Started!<br></br> {formatTime(timeElapsed)}</strong></Typography>
+                <Typography variant={"h4"}><strong>Mission started!<br></br> {formatTime(timeElapsed)}</strong></Typography>
             ) : null}
             </Container>
         // </Card>

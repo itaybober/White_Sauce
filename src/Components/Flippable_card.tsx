@@ -12,9 +12,12 @@ const [showFront,setShowFront] = useState(true);
                 in={showFront} timeout={300} classNames={"flip"}>
                 {/*in- is for the start the CSS animation*/}
 
-                <Card onClick={() => {
+                <Card
+                    onClick={() => {
                     setShowFront((v) => !v);
-                } } back_continer={back_content} front_continer={front_content}/>
+                } } back_continer={back_content}
+                      front_continer={front_content}
+                />
             </CSSTransition>
 
         </div>

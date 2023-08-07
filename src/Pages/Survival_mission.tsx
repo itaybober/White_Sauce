@@ -98,7 +98,7 @@ export default function Survival({ curPlayer, curGame }) {
             <Avatar_and_points name={curPlayer._name} points={curPlayer._points} avatarName={curPlayer._avatar} avatarRef={curPlayer._avatarRef}/>
             <Flippable_card back_content={
                 <div>
-                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "flex-start", alignItems: "flex-start" ,textAlign: "justify" }}>
+                    <CardContent sx={{display: "flex", flexFlow:"column", justifyContent: "center", alignItems: "center" ,textAlign: "center" }}>
                         <Typography variant="h5" color={"primary"}> <b> {mission_object._title}</b></Typography>
                         <br/>
                         <Typography variant="h6">
@@ -140,6 +140,11 @@ export default function Survival({ curPlayer, curGame }) {
 
             {isPictureUploaded && <Button onClick={handleFinishClick} variant="contained" color="primary" size={"medium"} sx={{
                 mb: 4,
+                textTransform: "none",
+                fontSize: "20px",
+                borderStyle:"solid",
+                borderWidth:"2px",
+                borderColor: "#D1B067"
             }} >Finish!</Button>}
         </Container>
     );

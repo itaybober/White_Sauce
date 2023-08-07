@@ -151,6 +151,8 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
                         // color: '#D1B067',
                         // background: '#282c34',
                         width: '140px', // Adjust the width as needed
+                        textTransform: "none",
+                        fontSize: "20px"
                     }}
                 >
                     Download
@@ -161,6 +163,8 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
                     sx={{
                         borderRadius: '10px',
                         width: '140px', // Adjust the width as needed
+                        textTransform: "none",
+                        fontSize: "20px"
                     }}
                 >
                     Share
@@ -172,7 +176,15 @@ function EndingPage({ curPlayer, curGame }: EndingPageProps) {
                 And you just did it!</i></Typography>
 
             <Container sx={{display: 'flex', justifyContent: "center", alignItems: "center", gap: '15px', p: 2}}>
-                <Button className={"new-btn"} onClick={next} variant="contained">New adventure</Button>
+                <Button className={"new-btn"}
+                        onClick={next}
+                        variant="contained"
+                        sx={{
+                            textTransform: "none",
+                            fontSize: "20px"
+                        }}
+
+                >New adventure</Button>
 
 
             </Container>

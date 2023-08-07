@@ -34,17 +34,36 @@ export default function ToggleReady({curGame,handleNext,handleYes,handleNo}) {
     }
 
     return (
-        <div>
+        <div style={{
+        }}>
             {selected ? (
-                <div>
+                <div style={{
+                    width: "300px",
+                    display: "flex",
+                    justifyContent: "space-evenly"
+                }}>
                     <Button variant="outlined" onClick={ () => {
                         handleToggle()
                         handleNo()
-                    }}>No</Button>
+                    }}
+                            sx={{
+                                borderStyle:"solid",
+                                borderWidth:"2px",
+                                borderColor: "#D1B067",
+                                color: "white"
+                            }}
+                    >No</Button>
                     <Button variant="outlined" onClick={ () =>{
                         handleToggle()
                         handleYes()
-                    }}>Yes</Button>
+                    }}
+                            sx={{
+                                borderStyle:"solid",
+                                borderWidth:"2px",
+                                borderColor: "#D1B067",
+                                color: "white"
+                            }}
+                    >Yes</Button>
                 </div>
             ) : (
                 <div style={{ display: 'flex',
@@ -61,30 +80,6 @@ export default function ToggleReady({curGame,handleNext,handleYes,handleNo}) {
                 </div>
             )}
 
-            {/*<ToggleButton*/}
-            {/*    color="primary"*/}
-            {/*    value="check"*/}
-            {/*    selected={selected}*/}
-            {/*    onChange={handleToggle}*/}
-            {/*>*/}
-            {/*    {selected ? 'Waiting' : 'Ready'}*/}
-            {/*</ToggleButton>*/}
         </div>
-
-
-
-            // <Button variant={"outlined"} onClick={() => {handleNo()}} >No</Button>
-            // <Button variant={"outlined"} onClick={handleYes}>Yes</Button>
-            //
-            // <ToggleButton
-            //     color={"primary"}
-            // value="check"
-            // selected={selected}
-            // onChange={handleToggle}
-            // >
-            // {selected ? "Waiting" : "Ready"}
-            // </ToggleButton>
-
-
     )
 }

@@ -99,7 +99,7 @@ function Start_Page({ curPlayer, logOut }) {
 
     return (
         <div id={"StartPage_Background"}>
-            <img src={logo} onClick={logOut} width={103} height={85} />
+            <img src={logo} onClick={logOut} width={103} height={85} className={"logo"} />
             <div id={"StartPage_Title"}>
                 <Typography variant="h4"> <b>Which Journey is Yours?</b></Typography>
             </div>
@@ -111,8 +111,8 @@ function Start_Page({ curPlayer, logOut }) {
                 >
                     <img src={info} alt="Info" width="35" height="35" />
                 </div>
-                <Button variant={"outlined"} onClick={startPage} id={"StartPage_Button_Start"}>START A TRIBE</Button>
-                <Button variant={"outlined"} onClick={joinPage} id={"StartPage_Button_Join"}>JOIN A TRIBE</Button>
+                <Button variant={"outlined"} onClick={startPage} id={"StartPage_Button_Start"}>Start a trib</Button>
+                <Button variant={"outlined"} onClick={joinPage} id={"StartPage_Button_Join"}>Join a tribe</Button>
             </div>
 
             {showInstructions && (

@@ -48,7 +48,7 @@ export default function Filters({ curPlayer, setCurGame }) {
                 <img src={arrow} alt="Arrow" style={{ width: '600%', height: '600%', objectFit: 'contain' }} />
             </Button>
 
-            <Typography variant={"h4"} className={"text_container"}><b>what are you
+            <Typography variant={"h4"} className={"text_container"}><b>What are you
                 <br />
                 looking for?</b></Typography>
 

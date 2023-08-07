@@ -10,6 +10,7 @@ import galiLogo from "./images/gali_test_logo.png";
 import Button from "@mui/material/Button";
 import arrow from './images/arrow.png';
 
+
 // @ts-ignore
 
 function Join_Page({ curPlayer, curGame }) {
@@ -62,10 +63,11 @@ function Join_Page({ curPlayer, curGame }) {
 
     return (
         <div id={"JoinPage_Background"}>
+            <img src={logo} className={"logo"}/>
             <Button onClick={goToPrevPage} id={"ArrowButton"} sx={{ position: 'absolute', left: '10px', top: '10px', width: '32px', height: '32px' }}>
                 <img src={arrow} alt="Arrow" style={{ width: '600%', height: '600%', objectFit: 'contain' }} />
             </Button>
-            <Typography variant={"h3"} id={"JoinPage_Title"}><b>Enter Cypher</b></Typography>
+            <Typography variant={"h4"} id={"JoinPage_Title"}><b>Enter Cypher</b></Typography>
             <div id={"JoinPage_Input"}>
                 <TextField value={gameToJoin} onChange={handleChange} onKeyDown={enterValue} inputProps={{ min: 0, style: { textAlign: 'center' } }}
                            placeholder={"PIN"} sx={{ textAlign: 'center', position: 'relative', top: '50%' }} variant="outlined" />

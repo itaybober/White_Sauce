@@ -61,6 +61,11 @@ const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText, onPicture
                 color="info"
                 variant="contained"
                 size="medium"
+                sx={{
+                    textTransform: "none",
+                    fontSize: "20px",
+                    marginBottom: "10px",
+                }}
             >
                 {buttonText}
             </Button>
@@ -94,8 +99,8 @@ const CameraComponent: React.FC<CameraComponentProps> = ({ buttonText, onPicture
                                     backgroundColor: 'gray',
                                     width: 200,
                                     height: 200,
-                                    margin: 'auto',
                                     borderRadius: 20
+
                                 }}
                             />
                         )}

@@ -84,7 +84,8 @@ export default function WinnerList({ game }) {
                                   </React.Fragment>}
 
                         ></ListItemText>
-                    </ListItem>))
+                    </ListItem>
+                ))
                 }
                 </List>
         </div>

@@ -15,12 +15,14 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    text-transform: none;
 }
 
 
 #StartPage_Logo {
     position: relative;
     top: 5%;
+
 
 }
 
@@ -29,14 +31,21 @@
     top: 10%;
     width: 80%;
     text-justify: auto;
+
 }
 
 #StartPage_Button_Start {
+    margin-top: 20px;
     position: relative;
-    padding: 6px 22px;
-    font-size: small;
     top: 35%;
     background-color: #25252D;
+    text-transform: none;
+    font-size: 22px;
+    padding: 4px 45px;
+
+
+
+
     /*background-color: #D1B067;*/
 }
 
@@ -45,13 +54,32 @@
     top: 40%;
     color: #25252D;
     background-color: #D1B067;
-    padding: 10px 32px;
-    font-size: 20px;
+    text-transform: none;
+    font-size: 22px;
+    padding: 4px 45px;
+
+
+
 }
 
 #StartPage_Button_Learn {
-    font-size: small;
     position: relative;
     top: 45%;
-    padding: 6px 22px;
+    text-transform: none;
+
+}
+
+@keyframes floatAnimation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.logo {
+    margin-top: 20px;
+    width: 100px;
+    animation: floatAnimation 3s infinite;
 }

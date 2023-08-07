@@ -36,7 +36,7 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
             <Avatar_and_points name={curPlayer._name} points={curPlayer._points} avatarName={curPlayer._avatar} avatarRef={curPlayer._avatarRef}/>
             <Flippable_card
                 back_content={
-                    <CardContent sx={{ display: "flex", flexFlow: "column", justifyContent: "flex-start", alignItems: "flex-start", textAlign: "justify" }}>
+                    <CardContent sx={{ display: "flex", flexFlow: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
                         <Typography variant="h5" color={"primary"}>{mission_object._title}</Typography>
                         <br />
                         <Typography variant="h6">
@@ -59,9 +59,10 @@ export default function GroupMission({ curPlayer, curGame, isGameOver }) {
                 }
             ></Flippable_card>
 
-            <CameraComponent buttonText="Proof Of Concept" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>
+            <CameraComponent buttonText="To finish take a photo" onPictureUpload={handlePictureUpload} curGameNum={curGame._id}/>
 
         <AlertDialog curPlayer={curPlayer} curGame={curGame}/>
+
         </Container>
     );
 

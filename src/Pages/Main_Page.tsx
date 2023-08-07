@@ -12,13 +12,11 @@ export default function Main_Page() {
 
 
      return(
-
-
         <Container className={"mainFrame"}>
             <img src={logo} className={"logo"}/>
             <Typography variant="h3" ><b>step-1</b></Typography>
             <Typography className={"text"} variant="h4">
-                this is where
+                This is where
            <br />
                 your journey begins
             </Typography>

@@ -53,11 +53,17 @@ export default function ToggleReady({curGame,handleNext}) {
     return (
 
 
-        <ToggleButton
-            color={"primary"}
-        value="check"
-        selected={selected}
-        onChange={handleToggle}
+        <ToggleButton color={"primary"}
+                    value="check"
+                    selected={selected}
+                    onChange={handleToggle}
+                      sx={{textTransform:"none",
+                          fontSize: "20px",
+                          borderStyle: "solid",
+                          borderWidth: "2px",
+                          borderColor: "rgba(255, 255, 255, 0.5)"
+
+        }}
         >
         {selected ? "Waiting" : "Ready"}
         </ToggleButton>

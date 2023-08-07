@@ -9,6 +9,7 @@ import {PAGES} from "../Pages/GameManager";
 import {Game, Player} from "../Components/Classes";
 import DoubleToggleReady from './DoubleToggleReady';
 import {useState} from "react";
+import './dialog.css'
 
 
 export default function AlertDialog({ curPlayer, curGame }: any) {
@@ -42,8 +43,17 @@ export default function AlertDialog({ curPlayer, curGame }: any) {
 
 
     return (
-        <div>
-            <Button onClick={handleClickOpen} variant="contained" color="primary" size={"medium"} sx={{mb: 4}} >Finish!</Button>
+        <div className={"dialog-container"}>
+            <Button onClick={handleClickOpen} variant="contained"
+                    color="primary"
+                    size={"medium"}
+                    sx={{mb: 4,
+                    textTransform: "none",
+                    fontSize: "20px",
+                    borderStyle:"solid",
+                    borderWidth:"2px",
+                    borderColor: "#D1B067"
+            }} >Finish!</Button>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -57,7 +67,9 @@ export default function AlertDialog({ curPlayer, curGame }: any) {
                     },
                 }}
             >
-                {!userAnswer &&<DialogTitle id="alert-dialog-title">
+                {!userAnswer &&<DialogTitle id="alert-dialog-title" sx={{
+                    textAlign: "center"
+                }}>
                     {" Did you succeed in the secret mission?"}
                 </DialogTitle>}
                 {/*<DialogContent>*/}

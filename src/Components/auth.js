@@ -51,7 +51,7 @@ export const Auth = () => {
         }>
             <Input placeholder="Enter your warrior name"
                    onChange={(e) => setEmail(e.target.value)}
-                   sx={{fontSize: "24px",
+                   sx={{fontSize: "22px",
                         color: "white"}}
                    inputProps={{
                        maxLength: 12 // Set the maximum length to 12 characters
@@ -64,9 +64,10 @@ export const Auth = () => {
                          background: "#D1B067",
                          color: "#282c34",
                          padding: "4px 45px",
-                         fontSize: "20px"
+                         fontSize: "22px",
+                         textTransform: "none"
                      }}
-            >Embrace The Quest
+            >Embrace the quest
               </Button>
 
             {/*<Button onClick={signInWithGoogle}>Sing in with Google</Button>*/}
