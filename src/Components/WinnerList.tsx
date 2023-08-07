@@ -8,6 +8,7 @@ import {text} from "stream/consumers";
 import {Game} from './Classes'
 import {useEffect, useState} from "react";
 import Typography from "@mui/material/Typography";
+import mask from "../Pages/images/icon/avatar.png";
 
 // let player_dict: Dict<any>={};
 //
@@ -57,6 +58,9 @@ export default function WinnerList({ game }) {
             <List sx={{ width: '100%', maxWidth: 200, color: 'background.paper' }}>
                 {listItems.map((item:any, index) => (
                     <ListItem>
+                        <ListItemAvatar>
+                            <Avatar alt={item.avatar} src={item.avatarRef} sx={{width: 40, height: 50}}> </Avatar>
+                        </ListItemAvatar>
                     <ListItemText key={index}
                                   primary={
                                 <React.Fragment>
