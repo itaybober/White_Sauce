@@ -1,9 +1,6 @@
-import { auth, googleProvider} from "../config/firebase";
-import { signInWithPopup, signOut, signInAnonymously, updateProfile } from "firebase/auth"
+import { auth } from "../config/firebase";
+import { signInAnonymously, updateProfile } from "firebase/auth"
 import {useState} from "react";
-import {collection} from "firebase/firestore";
-import {db} from "../Achsaf_Folder/firebase-config";
-import { Player } from "./Classes"
 import Input from '@mui/material/Input';
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
@@ -27,22 +24,6 @@ export const Auth = () => {
         }
     }
 
-    /**
-     * this function creates a new player from player class (in page classes)
-     * @returns {newPlayer}
-     */
-    function createNewPlayer() {
-        let newPlayer = new Player(auth.currentUser.uid);
-        return newPlayer;
-    }
-
-    /**
-     * this function is called when a user authenticate.
-     * it will call 'createNewPlayer' function to add the player to the firestore Players darabase.
-     */
-    function addPlayerToFirestore() {
-
-    }
 
     return (
         <Container sx={{display: "flex", flexFlow:"column",justifyContent:"space-evenly",alignItems:"center",
@@ -70,7 +51,6 @@ export const Auth = () => {
             >Embrace the quest
               </Button>
 
-            {/*<Button onClick={signInWithGoogle}>Sing in with Google</Button>*/}
 
         </Container>
     );

@@ -1,48 +1,43 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Start_Page from "./Start_Page";
 import Join_Page from "./Join_Page";
 import Filters from "./Filters";
 import CovenantPage from "./CovenantPage";
-import Survival_mission from "./Survival_mission"
+import Survival_mission from "./Survival_mission";
 import GroupMission from "./GroupMission";
 import Punishment from "./Punishment_Page";
 import EndingPage from "./EndingPage";
-import {db, auth, storage} from "../config/firebase"
+import { db, auth, storage } from "../config/firebase";
 import Main_Page from "./Main_Page";
-import {Game, Player} from "../Components/Classes";
+import { Game, Player } from "../Components/Classes";
 import { onAuthStateChanged } from "firebase/auth";
-import {doc, getDoc, onSnapshot } from "firebase/firestore";
-import logo from "./step-1_logo.svg";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import PointsPage from "./PointsPage";
-import galiLogo from "./images/gali_test_logo.png";
-import CircularProgress from '@mui/material/CircularProgress';
-// import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
+import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Secret_Mission from "./Secret_Mission";
-import {ref, deleteObject, listAll, getDownloadURL} from "firebase/storage";
-import FirebaseTest from "../Achsaf_Folder/FirebaseTest";
+import { ref, deleteObject, listAll } from "firebase/storage";
 import Button from "@mui/material/Button";
 import AlertDialog from "../Components/dialog";
 
 export const PAGES = {
-    DEBUG : 0,
-    SIGNUP : 1,
-    START : 2,
-    JOIN : 3,
-    FILTERS : 4,
-    COVEN : 5,
-    GROUP : 6,
-    SURV : 7,
-    PUN : 8,
-    END : 9,
-    AUTH: 10,
-    WAIT: 11,
-    POINTS:12,
-    SECRET:13
-}
+  DEBUG: 0,
+  SIGNUP: 1,
+  START: 2,
+  JOIN: 3,
+  FILTERS: 4,
+  COVEN: 5,
+  GROUP: 6,
+  SURV: 7,
+  PUN: 8,
+  END: 9,
+  AUTH: 10,
+  WAIT: 11,
+  POINTS: 12,
+  SECRET: 13,
+};
 
-export const PAGESMISSIONS = [PAGES.GROUP, PAGES.SURV, PAGES.GROUP]
-
+export const PAGESMISSIONS = [PAGES.GROUP, PAGES.SURV, PAGES.GROUP];
 
 /**
  *
@@ -84,192 +79,207 @@ export const PAGESMISSIONS = [PAGES.GROUP, PAGES.SURV, PAGES.GROUP]
  *
  */
 
-
 function GameManager() {
+  const [curPage, setPage] = useState(PAGES.WAIT);
+  const [curGame, setCurGame] = useState<Game>(new Game());
+  const [curPlayer, setCurPlayer] = useState<Player>();
+  const [nextMiss, setNextMiss] = useState(0);
+  const [isGameOver, setIsGameOver] = useState(false);
 
-    const [curPage, setPage] = useState(PAGES.WAIT)
-    const [curGame, setCurGame] = useState<Game>(new Game())
-    const [curPlayer , setCurPlayer] = useState<Player>()
-    const [nextMiss, setNextMiss] = useState(0)
-    const [isGameOver, setIsGameOver] = useState(false)
+  let page = <div />;
 
-
-    let page = <div/>;
-
-    function logOut() {
-        auth.signOut()
-            .then(async () => {
-                setNextMiss(0)
-                setIsGameOver(false)
-                curPlayer?.setCurPage(PAGES.AUTH)
-                if (curGame && curPlayer) {
-                    curGame.removePlayerFromFirebase(curPlayer._playerRef)
-                    listAll(ref(storage, `${curGame._id}/`))
-                        .then( (response) => {
-                            response.items.forEach( (fileRef) => {
-                                deleteObject(fileRef)
-                            })
-                        })
-                }
-                if (curPlayer) {
-                    curPlayer.removePlayerFromFireBase()
-                }
-                console.log('User logged out successfully');
-            })
-            .catch((error) => {
-                console.log('Error logging out:', error);
+  function logOut() {
+    auth
+      .signOut()
+      .then(async () => {
+        setNextMiss(0);
+        setIsGameOver(false);
+        curPlayer?.setCurPage(PAGES.AUTH);
+        if (curGame && curPlayer) {
+          curGame.removePlayerFromFirebase(curPlayer._playerRef);
+          listAll(ref(storage, `${curGame._id}/`)).then((response) => {
+            response.items.forEach((fileRef) => {
+              deleteObject(fileRef);
             });
-    }
-
-    // Updates the curPlayer instance every time information in the firestore is changed
-    if (curPlayer && curPlayer._playerRef) {
-        onSnapshot(curPlayer._playerRef, (snapshot) => {
-            const data = snapshot.data()
-            if (typeof data !== 'undefined') {
-                curPlayer.getUpdate(data)
-            }
-            setPage(curPlayer._curPage)
-        })
-    }
-
-    // Updates the curGame instance every time information in the firestore is changed
-    if (curGame && curGame._gameRef) {
-        onSnapshot(curGame._gameRef, (snapshot) => {
-            const data = snapshot.data()
-            if (typeof data !== 'undefined') {
-                curGame.getUpdate(data)
-            }
-        })
-    }
-
-
-    // updates the user's display name
-    onAuthStateChanged(auth, () => {
-        if(curPlayer && auth.currentUser && auth.currentUser.displayName) {
-            curPlayer.setName(auth.currentUser.displayName)
-            console.log("auth state change")
+          });
         }
-    })
-
-    // Event listener for key press
-    // @ts-ignore
-    const handleKeyPress = (event) => {
-        // Check if the Ctrl, Alt, and L keys are pressed
-        if (event.ctrlKey && event.altKey && event.key.toLowerCase() === 'l') {
-            logOut(); // Call the logout function if the combination is detected
+        if (curPlayer) {
+          curPlayer.removePlayerFromFireBase();
         }
+        console.log("User logged out successfully");
+      })
+      .catch((error) => {
+        console.log("Error logging out:", error);
+      });
+  }
+
+  // Updates the curPlayer instance every time information in the firestore is changed
+  if (curPlayer && curPlayer._playerRef) {
+    onSnapshot(curPlayer._playerRef, (snapshot) => {
+      const data = snapshot.data();
+      if (typeof data !== "undefined") {
+        curPlayer.getUpdate(data);
+      }
+      setPage(curPlayer._curPage);
+    });
+  }
+
+  // Updates the curGame instance every time information in the firestore is changed
+  if (curGame && curGame._gameRef) {
+    onSnapshot(curGame._gameRef, (snapshot) => {
+      const data = snapshot.data();
+      if (typeof data !== "undefined") {
+        curGame.getUpdate(data);
+      }
+    });
+  }
+
+  // updates the user's display name
+  onAuthStateChanged(auth, () => {
+    if (curPlayer && auth.currentUser && auth.currentUser.displayName) {
+      curPlayer.setName(auth.currentUser.displayName);
+      console.log("auth state change");
+    }
+  });
+
+  // Event listener for key press
+  // @ts-ignore
+  const handleKeyPress = (event) => {
+    // Check if the Ctrl, Alt, and L keys are pressed
+    if (event.ctrlKey && event.altKey && event.key.toLowerCase() === "l") {
+      logOut(); // Call the logout function if the combination is detected
+    }
+  };
+
+  // Adding event listener when the component mounts
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      // Clean up the event listener when the component unmounts
+      window.removeEventListener("keydown", handleKeyPress);
     };
+  }, []);
 
-    // Adding event listener when the component mounts
-    useEffect(() => {
-        window.addEventListener('keydown', handleKeyPress);
-        return () => {
-            // Clean up the event listener when the component unmounts
-            window.removeEventListener('keydown', handleKeyPress);
-        };
-    }, []);
-
-    // After login creates a player instance if none exists or connects to firebase if it does.
-    useEffect(() => {
-        // console.log("login attempt")
-        const unsubscribe = auth.onAuthStateChanged(  (user) => {
-            if (user) {
-                let curUser;
-                const docRef = doc(db, "Active_Players", user.uid)
-                getDoc(docRef)
-                    .then((docSnapshot) => {
-                        curUser = new Player(user.uid, user.displayName)
-                        if (docSnapshot.exists()) {
-                            console.log("Player exists");
-                        } else {
-                            Player.addPlayerToFirestore(curUser);
-                            if (curPlayer){
-                                setPage(curPlayer._curPage)
-                            }
-                            console.log("Creating new player: " + curUser._name);
-                        }
-                        setCurPlayer(curUser)
-                    })
-                    .catch((error) => {console.log("Couldn't get User doc: " + error)})
+  // After login creates a player instance if none exists or connects to firebase if it does.
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        let curUser;
+        const docRef = doc(db, "Active_Players", user.uid);
+        getDoc(docRef)
+          .then((docSnapshot) => {
+            curUser = new Player(user.uid, user.displayName);
+            if (docSnapshot.exists()) {
+              console.log("Player exists");
             } else {
-                console.log('User is signed out');
-                setPage(PAGES.AUTH);
-                // setPage(PAGES.DEBUG);
+              Player.addPlayerToFirestore(curUser);
+              if (curPlayer) {
+                setPage(curPlayer._curPage);
+              }
+              console.log("Creating new player: " + curUser._name);
             }
-        });
+            setCurPlayer(curUser);
+          })
+          .catch((error) => {
+            console.log("Couldn't get User doc: " + error);
+          });
+      } else {
+        console.log("User is signed out");
+        setPage(PAGES.AUTH);
+        // setPage(PAGES.DEBUG); //do not delete - for internal use
+      }
+    });
 
-        // Clean up the listener when the component unmounts
-        return () => {
-            unsubscribe();
-        };
-    }, []);
+    // Clean up the listener when the component unmounts
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
-    // console.log(curPlayer)
-
-    switch (curPage) {
-
-        case PAGES.DEBUG:
-            // For debug and testing
-            page = <AlertDialog curPlayer={new Player()} curGame={new Game()} />;
-            break;
-        case PAGES.START:
-            page = <Start_Page curPlayer={curPlayer} logOut={logOut}/>;
-            break;
-        case PAGES.JOIN:
-            page = <Join_Page curPlayer={curPlayer} curGame={curGame}/>
-;            break;
-        case PAGES.FILTERS:
-            page = <Filters curPlayer={curPlayer} setCurGame={setCurGame}/>
-            break;
-        case PAGES.COVEN:
-            page = <CovenantPage curPlayer={curPlayer} curGame={curGame}/>
-            break;
-        case PAGES.SECRET:
-            page = <Secret_Mission curPlayer={curPlayer} curGame={curGame}/>
-            break;
-        case PAGES.GROUP:
-            page = <GroupMission curPlayer={curPlayer} curGame={curGame} isGameOver={isGameOver}/>
-            break;
-        case PAGES.SURV:
-            page = <Survival_mission  curPlayer={curPlayer} curGame={curGame}/>
-            break;
-        case PAGES.PUN:
-            page = <Punishment curPlayer={curPlayer} curGame={curGame}/>
-            break;
-        case PAGES.END:
-            page = <EndingPage curPlayer={curPlayer} curGame={curGame}/>
-            break;
-        case PAGES.AUTH:
-            page = <Main_Page/>;
-            break;
-        case PAGES.WAIT:
-            page = <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',  flexFlow:"column" }}>
-                <br/>
-                <CircularProgress color="primary" />
-                <br/>
-                <Typography variant={"h5"}>Move to the covenant<br/>in the host screen</Typography>
-                <br/>
-
-                {/*<img style={{position: "absolute", bottom: "50%"}} src={logo} width={200} height={200}/>*/}
-            </div>
-            break;
-        case PAGES.POINTS:
-            page = <PointsPage curPlayer={curPlayer} curGame={curGame} setNextMiss={setNextMiss} nextMiss={nextMiss}
-                                                                                        setIsGameOver={setIsGameOver}/>
-            break;
-    }
-
-    return(
-        <div>
-            <Button onClick={logOut}></Button>
-            <br/>
-            <br/>
-            {page}
+  switch (curPage) {
+    case PAGES.DEBUG:
+      // For debug and testing
+      page = <AlertDialog curPlayer={new Player()} curGame={new Game()} />;
+      break;
+    case PAGES.START:
+      page = <Start_Page curPlayer={curPlayer} logOut={logOut} />;
+      break;
+    case PAGES.JOIN:
+      page = <Join_Page curPlayer={curPlayer} curGame={curGame} />;
+      break;
+    case PAGES.FILTERS:
+      page = <Filters curPlayer={curPlayer} setCurGame={setCurGame} />;
+      break;
+    case PAGES.COVEN:
+      page = <CovenantPage curPlayer={curPlayer} curGame={curGame} />;
+      break;
+    case PAGES.SECRET:
+      page = <Secret_Mission curPlayer={curPlayer} curGame={curGame} />;
+      break;
+    case PAGES.GROUP:
+      page = (
+        <GroupMission
+          curPlayer={curPlayer}
+          curGame={curGame}
+          isGameOver={isGameOver}
+        />
+      );
+      break;
+    case PAGES.SURV:
+      page = <Survival_mission curPlayer={curPlayer} curGame={curGame} />;
+      break;
+    case PAGES.PUN:
+      page = <Punishment curPlayer={curPlayer} curGame={curGame} />;
+      break;
+    case PAGES.END:
+      page = <EndingPage curPlayer={curPlayer} curGame={curGame} />;
+      break;
+    case PAGES.AUTH:
+      page = <Main_Page />;
+      break;
+    case PAGES.WAIT:
+      page = (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexFlow: "column",
+          }}
+        >
+          <br />
+          <CircularProgress color="primary" />
+          <br />
+          <Typography variant={"h5"}>
+            Move to the covenant
+            <br />
+            in the host screen
+          </Typography>
+          <br />
         </div>
+      );
+      break;
+    case PAGES.POINTS:
+      page = (
+        <PointsPage
+          curPlayer={curPlayer}
+          curGame={curGame}
+          setNextMiss={setNextMiss}
+          nextMiss={nextMiss}
+          setIsGameOver={setIsGameOver}
+        />
+      );
+      break;
+  }
 
-    )
-
+  return (
+    <div>
+      <Button onClick={logOut}></Button>
+      <br />
+      <br />
+      {page}
+    </div>
+  );
 }
 
-
-export default GameManager
+export default GameManager;

@@ -1,43 +1,24 @@
-
-
-/*
-    Background component, will add given gradient to any component
-
-    ex1: The following will give a default background (Mia Background)
-
-                <Background>
-                    <Dugma/>
-                </Background>
-
-     ex2: you can change the colors, and angle as follows
-
-            angle - angle of the gradient line
-            colors - the color to change (must be a string properly formatted)
-
-                <Background angle={100} colors={"black,yellow,red,#db7093"}>
-                   <Dugma />
-                </Background>
-
-
- */
-
-
 // @ts-ignore
-function Background_loser({children, className = "", id = "", angle = 125 , colors = "#6D505B,#232A3D,#232A3D,#232B3E,#6D505B"} ) {
+function Background_loser({
+  children,
+  className = "",
+  id = "",
+  angle = 125,
+  colors = "#6D505B,#232A3D,#232A3D,#232B3E,#6D505B",
+}) {
+  const gradient = "linear-gradient(" + angle + "deg, " + colors + ")";
 
-    console.log("angle: ", angle);
-    console.log("colors: ", colors);
-
-    const gradient = "linear-gradient("+angle+"deg, "+colors+")";
-
-    return (
-        <div className={className} id={id} style={{
-            backgroundImage: gradient,
-
-        }} >
-            {children}
-        </div>
-    );
+  return (
+    <div
+      className={className}
+      id={id}
+      style={{
+        backgroundImage: gradient,
+      }}
+    >
+      {children}
+    </div>
+  );
 }
 
-export default Background_loser
+export default Background_loser;
