@@ -1,7 +1,4 @@
 .punishment_page_component {
-    /*background-image: url("../Pages/images/background/light_background.svg");*/
-    /*background-size: cover;*/
-    /*background-position: center;*/
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -9,13 +6,8 @@
     align-items: center;
     gap: 30px;
     padding: 20px 20px;
-    /*position: relative;*/
     text-justify: auto;
-    /*top: 50px;*/
-
 }
-
-
 
 #fuckBR{
     line-height: 1.5;

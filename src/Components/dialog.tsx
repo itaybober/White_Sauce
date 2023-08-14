@@ -6,7 +6,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { PAGES } from "../Pages/GameManager";
 import DoubleToggleReady from "./DoubleToggleReady";
 import { useState } from "react";
-import "./dialog.css";
 
 export default function AlertDialog({ curPlayer, curGame }: any) {
   const [open, setOpen] = React.useState(false);

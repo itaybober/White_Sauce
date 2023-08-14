@@ -1,12 +1,9 @@
-
 .mainFrame {
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-Content: space-evenly;
     gap: 15px;
-
 }
 
 @keyframes floatAnimation {

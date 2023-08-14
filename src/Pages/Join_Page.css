@@ -1,22 +1,14 @@
-
-
-
 #JoinPage_Background {
-
-    /*min-height: 500vh;*/
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 30px;
-    /*height: 100vh;*/
-    /*width: 100vw;*/
 }
 
 #JoinPage_Logo {
     position: relative;
     top: 5%;
-
 }
 
 #JoinPage_Title{
@@ -31,7 +23,6 @@
 #JoinPage_Input {
     position: relative;
     top: 30%;
-    /*margin-bottom: 30px;*/
 }
 
 .buttons {
@@ -52,5 +43,4 @@
 #goBack {
     padding: 8px 70px;
     font-size: 20px;
-
 }

@@ -1,4 +1,3 @@
-
 .container_filters_col {
     display: flex;
     flex-direction: column;
@@ -22,8 +21,7 @@
     position: relative;
     top: 50px;
 }
-    /*padding: 2em;*/
-/*}*/
+
 
 .text_container {
     display: flex;
@@ -51,13 +49,6 @@
     justify-content: space-evenly;
 }
 
-/*#drinks {*/
-/*    margin: auto;*/
-/*    width: 44%;*/
-/*    height: 44%;*/
-/*    display: flex;*/
-/*    justify-content: space-evenly;*/
-/*}*/
 
 .typo_card {
     width: 120px;
@@ -67,15 +58,12 @@
     font-weight: 400;
     font-size: 30px;
     line-height: 22px;
-    /* identical to box height */
-
     text-align: center;
 
     color: #011B3D;
 }
 
 .cards_container {
-    /*position: absolute;*/
     width: 340px;
     height: 10%;
     /*left: 38px;*/
@@ -127,5 +115,4 @@
     text-transform: none;
     font-size: 22px;
     padding: 4px 45px;
-    /*font-weight: 400;*/
 }

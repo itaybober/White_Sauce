@@ -1,14 +1,4 @@
-/*
 
-Exit transition:
-showfront = true -> false
-front -> back
-
-enter transition:
-sowfront = false -> true
-back -> front
-
-*/
 
 
 .flip-exit{
@@ -17,7 +7,6 @@ back -> front
 
 .flip-exit-active{
     transform: rotateY(180deg);
-    /*in order to mange the time of the flip:*/
     transition: transform 300ms ;
     transition-timing-function: cubic-bezier(.57,.21, .69, 1.25);
 }

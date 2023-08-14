@@ -1,14 +1,9 @@
-
-
 #StartPage_Background{
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 80px;
-    /*height: 100vh;*/
-    /*width: 100vw;*/
 }
 
 .buttons {
@@ -18,12 +13,9 @@
     text-transform: none;
 }
 
-
 #StartPage_Logo {
     position: relative;
     top: 5%;
-
-
 }
 
 #StartPage_Title {
@@ -31,7 +23,6 @@
     top: 10%;
     width: 80%;
     text-justify: auto;
-
 }
 
 #StartPage_Button_Start {
@@ -42,11 +33,6 @@
     text-transform: none;
     font-size: 22px;
     padding: 4px 45px;
-
-
-
-
-    /*background-color: #D1B067;*/
 }
 
 #StartPage_Button_Join {
@@ -57,16 +43,12 @@
     text-transform: none;
     font-size: 22px;
     padding: 4px 45px;
-
-
-
 }
 
 #StartPage_Button_Learn {
     position: relative;
     top: 45%;
     text-transform: none;
-
 }
 
 @keyframes floatAnimation {
